@@ -1,7 +1,6 @@
-package com.example.pintalk;
+package com.pintalk;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.List;
