@@ -38,4 +38,4 @@ out/
 node_modules/
 
 ## database ##
-**/**/resources/database/*
+src/main/resources/database/*
