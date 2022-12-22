@@ -1,13 +1,15 @@
-package com.example.pintalk;
+package com.pintalk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication 
+@SpringBootApplication
 public class PintalkApplication {
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(PintalkApplication.class, args);
 	}
+
 
 }
