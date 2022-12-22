@@ -1,13 +1,17 @@
-package com.example.pintalk;
+package com.pintalk;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
+
 @SpringBootTest
 class PintalkApplicationTests {
 
+
 	@Test
-	void contextLoads() {
+	public void test(){
+		System.out.println("test");
 	}
 
 }
