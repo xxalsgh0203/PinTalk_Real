@@ -14,5 +14,4 @@ public class HomeController {
         System.out.println("Hello : START ");
         return Arrays.asList("서버포트 8080","리액트 포트 3000");
     }
-
 }

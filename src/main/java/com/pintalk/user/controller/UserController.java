@@ -7,9 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
-@Controller
+@RestController
 public class UserController {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
@@ -20,8 +22,9 @@ public class UserController {
 
 //    public void setUserService(UserService userService) {this.userService = userService;}
 
-    @GetMapping("/user")
+    @GetMapping("/api/user")
     public List getUserMemberList() throws Exception {
+        System.out.println("getUserMemberList : start");
         List<UserMember> li_result = userService.userList();
 
         logger.debug("===================================================================");
