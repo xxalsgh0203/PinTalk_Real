@@ -62,12 +62,12 @@ const LoanApply = () => {
               <div className='flex items-center space-x-4'>
                 <input
                   type='text'
-                  className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[80%]'
+                  className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%]'
                 />
-                <div className='w-[5%] h-[1px] bg-gray-200'></div>
+                <span>-</span>
                 <input
                   type='text'
-                  className='bg-transparent border-gray-500 rounded-md w-[80%] p-1 px-3 outline-none border-2 transition-all focus:border-teal-600'
+                  className='bg-transparent border-gray-500 rounded-md w-[50%] p-1 px-3 outline-none border-2 transition-all focus:border-teal-600'
                 />
               </div>
             </div>
@@ -77,14 +77,23 @@ const LoanApply = () => {
                 휴대폰
               </label>
               <div className='flex items-center space-x-4'>
+                <select
+                  name='010'
+                  id=''
+                  className='bg-transparent p-1 outline-none'
+                >
+                  <option value='010'>010</option>
+                  <option value='011'>011</option>
+                  <option value='016'>016</option>
+                </select>
                 <input
                   type='text'
-                  className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[80%]'
+                  className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[30%]'
                 />
-                <div className='w-[5%] h-[1px] bg-gray-200'></div>
+                <span>-</span>
                 <input
                   type='text'
-                  className='bg-transparent border-gray-500 rounded-md w-[80%] p-1 px-3 outline-none border-2 transition-all focus:border-teal-600'
+                  className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[30%]'
                 />
               </div>
             </div>
