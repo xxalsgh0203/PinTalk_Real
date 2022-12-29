@@ -1,10 +1,10 @@
 import Navbar from './Navbar';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title }) => {
   return (
     <section>
-      <Navbar />
-      {children}
+      <Navbar title={title} />
+      <main>{children}</main>
     </section>
   );
 };
