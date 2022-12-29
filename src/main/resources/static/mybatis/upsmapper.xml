@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pintalk.ups.mapper.UpsMapper">
+
+    <select id="upsMemberList" resultType="UpsMember">
+        SELECT *
+          FROM UPS_MEMBER_INFO
+         WHERE 1=1
+           AND STATUS = 'Y'
+    </select>
+
+<!--    <select id="upsOneList" resultType="UpsMember" parameterType="int">-->
+<!--        SELECT *-->
+<!--        FROM UPS_MEMBER_INFO-->
+<!--        WHERE 1=1-->
+<!--          AND STATUS = 'Y'-->
+<!--          AND NO = #{no}-->
+<!--    </select>-->
+<!--    <update id="upsModify" parameterType="UpsMember">-->
+<!--        UPDATE UPS_MEMBER_INFO-->
+<!--           SET UPDATE_DATE = SYSDATE()-->
+<!--        <if test="password != null">-->
+<!--            , PASSWORD = #{password}-->
+<!--        </if>-->
+<!--        <if test="name != null">-->
+<!--            , NAME = #{name}-->
+<!--        </if>-->
+<!--        <if test="type != null">-->
+<!--            , TYPE = #{type}-->
+<!--        </if>-->
+<!--        <if test="phone1 != null">-->
+<!--            , PHONE1 = #{phone1}-->
+<!--        </if>-->
+<!--        <if test="phone2 != null">-->
+<!--            , PHONE2 = #{phone2}-->
+<!--        </if>-->
+<!--        <if test="phone3 != null">-->
+<!--            , PHONE3 = #{phone3}-->
+<!--        </if>-->
+<!--        <if test="email != null">-->
+<!--            , EMAIL = #{email}-->
+<!--        </if>-->
+<!--        <if test="gender != null">-->
+<!--            , GENDER = #{gender}-->
+<!--        </if>-->
+<!--        <if test="address1 != null">-->
+<!--            , ADDRESS1 = #{address1}-->
+<!--        </if>-->
+<!--        <if test="address2 != null">-->
+<!--            , ADDRESS2 = #{address2}-->
+<!--        </if>-->
+<!--        <if test="job_key != null">-->
+<!--            , JOB_KEY = #{job_key}-->
+<!--        </if>-->
+<!--        <if test="status != null">-->
+<!--            , STATUS = #{status}-->
+<!--        </if>-->
+<!--        WHERE 1=1-->
+<!--           AND NO = #{no}-->
+<!--    </update>-->
+
+<!--    <update id="upsDelete" parameterType="UpsMember">-->
+<!--        UPDATE UPS_MEMBER_INFO-->
+<!--        SET STATUS ='N'-->
+<!--        WHERE 1=1-->
+<!--          AND NO = #{no}-->
+<!--    </update>-->
+
+</mapper>
