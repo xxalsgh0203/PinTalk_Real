@@ -1,4 +1,7 @@
-const LoanApply = () => {
+import Button from './Button';
+import Input from './Input';
+
+const ApplicationForm = () => {
   return (
     <div
       style={{
@@ -21,13 +24,10 @@ const LoanApply = () => {
         <form className='rounded-lg max-w-lg lg:max-w-2xl m-auto space-y-10 text-gray-100 p-4 bg-white/10 backdrop-blur-sm'>
           <div className='space-y-8'>
             <div className='flex flex-col space-y-2'>
-              <label className='' htmlFor=''>
+              <label className='' htmlFor='name'>
                 이름
               </label>
-              <input
-                type='text'
-                className='bg-transparent border-gray-500 rounded-md w-full p-1 px-3 outline-none border-2 transition-all focus:border-teal-600'
-              />
+              <Input htmlFor='name' />
             </div>
 
             <fieldset>
@@ -56,26 +56,18 @@ const LoanApply = () => {
             </fieldset>
 
             <div className='space-y-2'>
-              <label className='flex' htmlFor=''>
+              <label className='flex' htmlFor='ssn'>
                 주민번호
               </label>
               <div className='flex items-center space-x-4'>
-                <input
-                  type='text'
-                  className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%]'
-                />
+                <Input size='small' htmlFor='ssn' />
                 <span>-</span>
-                <input
-                  type='text'
-                  className='bg-transparent border-gray-500 rounded-md w-[50%] p-1 px-3 outline-none border-2 transition-all focus:border-teal-600'
-                />
+                <Input size='small' />
               </div>
             </div>
 
             <div className='space-y-2'>
-              <label className='flex' htmlFor=''>
-                휴대폰
-              </label>
+              <label className='flex'>휴대폰</label>
               <div className='flex items-center space-x-4'>
                 <select
                   name='010'
@@ -86,15 +78,9 @@ const LoanApply = () => {
                   <option value='011'>011</option>
                   <option value='016'>016</option>
                 </select>
-                <input
-                  type='text'
-                  className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[30%]'
-                />
+                <Input size='small' />
                 <span>-</span>
-                <input
-                  type='text'
-                  className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[30%]'
-                />
+                <Input size='small' />
               </div>
             </div>
 
@@ -109,73 +95,53 @@ const LoanApply = () => {
             </div>
 
             <div className='flex flex-col space-y-2'>
-              <label className='' htmlFor=''>
+              <label className='' htmlFor='password'>
                 비밀번호
               </label>
-              <input
-                type='text'
-                className='bg-transparent border-gray-500 rounded-md w-full p-1 px-3 outline-none border-2 transition-all focus:border-teal-600'
-              />
+              <Input htmlFor='password' type='password' />
             </div>
 
             <div className='flex flex-col space-y-2'>
-              <label className='' htmlFor=''>
+              <label className='' htmlFor='address1'>
                 사는곳
               </label>
-              <input
-                type='text'
-                className='bg-transparent border-gray-500 rounded-md w-full p-1 px-3 outline-none border-2 transition-all focus:border-teal-600'
-              />
+              <Input htmlFor='address1' />
             </div>
 
             <div className='flex flex-col space-y-2'>
-              <label className='' htmlFor=''>
+              <label className='' htmlFor='address2'>
                 상세주소
               </label>
-              <input
-                type='text'
-                className='bg-transparent border-gray-500 rounded-md w-full p-1 px-3 outline-none border-2 transition-all focus:border-teal-600'
-              />
+              <Input htmlFor='address2' />
             </div>
 
             <div className='flex flex-col space-y-2'>
-              <label className='' htmlFor=''>
+              <label className='' htmlFor='email'>
                 이메일
               </label>
-              <input
-                type='text'
-                className='bg-transparent border-gray-500 rounded-md w-full p-1 px-3 outline-none border-2 transition-all focus:border-teal-600'
-              />
+              <Input htmlFor='email' type='email' />
             </div>
 
             <div className='flex flex-col space-y-2'>
-              <label className='' htmlFor=''>
+              <label className='' htmlFor='job_key'>
                 작업코드
               </label>
-              <input
-                type='text'
-                className='bg-transparent border-gray-500 rounded-md w-full p-1 px-3 outline-none border-2 transition-all focus:border-teal-600'
-              />
+              <Input htmlFor='job_key' />
             </div>
 
             <div className='flex flex-col space-y-2'>
-              <label className='' htmlFor=''>
+              <label className='' htmlFor='job'>
                 직업명
               </label>
-              <input
-                type='text'
-                className='bg-transparent border-gray-500 rounded-md w-full p-1 px-3 outline-none border-2 transition-all focus:border-teal-600'
-              />
+              <Input htmlFor='job' />
             </div>
           </div>
           <div className='w-full flex justify-center items-center'>
-            <button className='text-white py-2 px-6 rounded-lg bg-teal-700 hover:bg-teal-500 transition-colors text-lg'>
-              신청서 제출
-            </button>
+            <Button title='신청서 제출' />
           </div>
         </form>
       </div>
     </div>
   );
 };
-export default LoanApply;
+export default ApplicationForm;
