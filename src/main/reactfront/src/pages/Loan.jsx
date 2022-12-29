@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 
 const Loan = () => {
@@ -21,11 +22,13 @@ const Loan = () => {
               받음으로써 금리를 낮추고, 단골고객은 늘립니다.
             </p>
           </div>
-          <button className='mt-20 rounded-lg relative flex justify-center items-center overflow-hidden before:absolute before:translate-y-[100%] hover:before:bg-pink-600 before:w-full before:h-full hover:before:translate-y-0 before:transition-transform before:duration-500 px-4 before:px-4 py-1'>
-            <span className='block text-white uppercase z-20'>
-              pintalk 대출 신청
-            </span>
-          </button>
+          <Link to='/loan/apply' target='_blank'>
+            <button className='mt-20 rounded-lg relative flex justify-center items-center overflow-hidden before:absolute before:translate-y-[100%] hover:before:bg-pink-600 before:w-full before:h-full hover:before:translate-y-0 before:transition-transform before:duration-500 px-4 before:px-4 py-1'>
+              <span className='block text-white uppercase z-20'>
+                pintalk 대출 신청
+              </span>
+            </button>
+          </Link>
         </div>
       </header>
 
