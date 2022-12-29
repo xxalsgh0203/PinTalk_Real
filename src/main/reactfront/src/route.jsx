@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
+import ApplicationForm from './components/ApplicationForm';
 import Home from './pages/Home';
 import Investment from './pages/Investment';
 import Loan from './pages/Loan';
-import LoanApply from './pages/LoanApply';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'loan/apply',
-        element: <LoanApply />,
+        element: <ApplicationForm />,
       },
     ],
   },
