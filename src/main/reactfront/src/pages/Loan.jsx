@@ -1,9 +1,10 @@
 import Layout from '../components/layout/Layout';
+import LoanComponent from '../components/loan/LoanComponent';
 
 const Loan = () => {
   return (
     <Layout title='대출'>
-      <h1>투자자 페이지</h1>
+      <LoanComponent />
     </Layout>
   );
 };
