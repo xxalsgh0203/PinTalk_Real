@@ -62,7 +62,7 @@ const Table = ({erpMembers}) => {
                                         {member.name}
                                     </td>
                                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.id}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.gender}</td>
+                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.gender === 'M' ? "남자" : "여자"}</td>
                                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.address1}</td>
                                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.email}</td>
                                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.erp_LEVEL}</td>

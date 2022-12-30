@@ -41,12 +41,12 @@ const Button = styled.button`
   border-radius: 8px;
   padding: 8px;
   margin: 0;
-  background: black;
+  background: #cae0bc;
   color: white;
   font-size: 1rem;
 
   &:hover {
-    background: tomato;
+    background: #9070ce;
     cursor: pointer;
     transform: translateY(-2px);
   }
@@ -58,7 +58,7 @@ const Button = styled.button`
   }
 
   &[aria-current] {
-    background: deeppink;
+    background: #73a871;
     font-weight: bold;
     cursor: revert;
     transform: revert;
