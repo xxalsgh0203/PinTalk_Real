@@ -15,6 +15,6 @@ public interface UpsMapper {
     List<UpsMember> upsMemberList();
 //    List<UpsMember> upsOneList(int no);
 //    int upsModify(UpsMember model);
-//    int upsInsert(UpsMember model);
+    int upsInsert(UpsMember model);
 //    int upsDelete(UpsMember model);
 }
