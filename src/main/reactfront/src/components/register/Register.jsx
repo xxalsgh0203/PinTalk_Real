@@ -1,7 +1,7 @@
-import Button from './Button';
-import Input from './Input';
+import Button from '../Button';
+import Input from '../Input';
 
-const ApplicationForm = () => {
+const Register = () => {
   return (
     <div
       style={{
@@ -144,4 +144,4 @@ const ApplicationForm = () => {
     </div>
   );
 };
-export default ApplicationForm;
+export default Register;
