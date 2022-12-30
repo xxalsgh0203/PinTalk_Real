@@ -45,13 +45,13 @@ public class UpsService {
 //        logger.debug("===================================================================");
 //        return result;
 //    }
-//    public int getUpsInsert(UpsMember model) throws Exception{
-//        int result = mapper.upsInsert(model);
-//        logger.debug("===================================================================");
-//        logger.debug("UpsService.getUpsModify 실행쿼리 결과 값  : " + result);
-//        logger.debug("===================================================================");
-//        return result;
-//    }
+    public int getUpsInsert(UpsMember model) throws Exception{
+        int result = mapper.upsInsert(model);
+        logger.debug("===================================================================");
+        logger.debug("UpsService.getUpsModify 실행쿼리 결과 값  : " + result);
+        logger.debug("===================================================================");
+        return result;
+    }
 //    public int getUpsDelete(UpsMember model) throws Exception{
 //        int result = mapper.upsDelete(model);
 //        logger.debug("===================================================================");
