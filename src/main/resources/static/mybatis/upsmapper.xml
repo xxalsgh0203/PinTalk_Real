@@ -60,6 +60,51 @@
 <!--          AND STATUS = 'Y'-->
 <!--          AND NO = #{no}-->
 <!--    </select>-->
+
+    <insert id="upsInsert"  parameterType="UpsMember">
+        INSERT INTO UPS_MEMBER_INFO(NO,ID,NAME,SSN,PHONE1,PHONE2,PHONE3,GENDER,REG_DATE,UPDATE_DATE,USER_NO,STATUS,PASSWORD
+        <if test="email != null">
+            , EMAIL
+        </if>
+        <if test="address1 != null">
+            , ADDRESS1
+        </if>
+        <if test="address2 != null">
+            , ADDRESS2
+        </if>
+        <if test="job_key != null">
+            , JOB_KEY
+        </if>
+        )
+        VALUES (
+        UPSMEMBER_SEQ.NEXTVAL
+        ,#{id}
+        ,#{name}
+        ,#{ssn}
+        ,#{phone1}
+        ,#{phone2}
+        ,#{phone3}
+        ,#{gender}
+        ,#{reg_date}
+        ,#{update_date}
+        ,USERMEMBER_SEQ.nextval
+        ,'Y'
+        ,#{password}
+        <if test="email != null">
+            , EMAIL = #{email}
+        </if>
+        <if test="address1 != null">
+            , ADDRESS1 = #{address1}
+        </if>
+        <if test="address2 != null">
+            , ADDRESS2 = #{address2}
+        </if>
+        <if test="job_key != null">
+            , JOB_KEY = #{job_key}
+        </if>
+        )
+
+    </insert>
 <!--    <update id="upsModify" parameterType="UpsMember">-->
 <!--        UPDATE UPS_MEMBER_INFO-->
 <!--           SET UPDATE_DATE = SYSDATE()-->
