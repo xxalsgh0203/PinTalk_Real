@@ -4,6 +4,7 @@ import ApplicationForm from './components/ApplicationForm';
 import Home from './pages/Home';
 import Investment from './pages/Investment';
 import Loan from './pages/Loan';
+import Admin from "./pages/Admin";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: 'loan/apply',
         element: <ApplicationForm />,
+      },
+      {
+        path: 'admin',
+        element: <Admin />,
       },
     ],
   },
