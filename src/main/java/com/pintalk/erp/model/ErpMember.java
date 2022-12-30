@@ -7,24 +7,24 @@ import java.time.LocalDateTime;
 @Data
 public class ErpMember {
 
-    private int NO;
-    private String ID;
-    private String NAME;
-    private String SSN;
-    private int PHONE1;
-    private int PHONE2;
-    private int PHONE3;
-    private String EMAIL;
-    private String GENDER;
-    private String ADDRESS1;
-    private String ADDRESS2;
-    private String JOB_KEY;
-    private String ERP_LEVEL;
-    private LocalDateTime REG_DATE;
-    private LocalDateTime UPDATE_DATE;
-    private int USER_NO;
-    private String STATUS;
-    private int CONTRACT_NO;
-    private String PASSWORD;
+    private int no;
+    private String id;
+    private String name;
+    private String ssn;
+    private int phone1;
+    private int phone2;
+    private int phone3;
+    private String email;
+    private String gender;
+    private String address1;
+    private String address2;
+    private String job_key;
+    private String erp_level;
+    private LocalDateTime reg_date;
+    private LocalDateTime update_date;
+    private int user_no;
+    private String status;
+    private int contract_no;
+    private String password;
 
 }
