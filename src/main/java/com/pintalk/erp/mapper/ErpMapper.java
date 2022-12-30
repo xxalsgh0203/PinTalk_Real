@@ -12,7 +12,7 @@ public interface ErpMapper {
 
     //대출자 전체 리스트
     List<ErpMember> erpMemberList();
-//    List<UpsMember> erpOneList(int no);
+//    String erpMemberOneList(ErpMember model);
 //    int erpModify(UpsMember model);
 //    int erpMemberInsert(ErpMember model);
 //    int erpDelete(UpsMember model);

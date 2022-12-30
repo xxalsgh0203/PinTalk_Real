@@ -3,16 +3,16 @@
 
 <mapper namespace="com.pintalk.erp.mapper.ErpMapper">
 
-    <select id="ErpMemberList" resultType="ErpMember">
+    <select id="erpMemberList" resultType="ErpMember">
         SELECT *
           FROM ERP_MEMBER_INFO
          WHERE 1=1
            AND STATUS = 'Y'
     </select>
 
-<!--    <select id="upsOneList" resultType="UpsMember" parameterType="int">-->
+<!--    <select id="erpMemberOneList" resultType="ErpMember" parameterType="int">-->
 <!--        SELECT *-->
-<!--        FROM UPS_MEMBER_INFO-->
+<!--        FROM ERP_MEMBER_INFO-->
 <!--        WHERE 1=1-->
 <!--          AND STATUS = 'Y'-->
 <!--          AND NO = #{no}-->
