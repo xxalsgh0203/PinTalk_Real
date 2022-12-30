@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -32,17 +33,17 @@ public class ErpController {
 
         return li_result;
     }
-//    //투자자 개인 리스트
-//    @GetMapping("/erpMemberList/${no}")
-//    public List getErpMemberOneList(@Param("no") String no, ErpMember model) throws Exception {
-//        List<ErpMember> li_result = service.getErpMemberList();
-//
-//        logger.debug("===================================================================");
-//        logger.debug("ErpController.getErpMemberOneList 리스트 결과값  : " + li_result);
-//        logger.debug("===================================================================");
-//
-//        return li_result;
-//    }
+    //투자자 개인 리스트
+    @RequestMapping("/erpMemberOneList")
+    public List getErpMemberOneList(ErpMember model) throws Exception {
+        List result = service.getErpMemberOneList(model);
+
+        logger.debug("===================================================================");
+        logger.debug("ErpController.getErpMemberOneList 리스트 결과값  : " + result);
+        logger.debug("===================================================================");
+
+        return result;
+    }
 
 //    @RequestMapping("/erpMemberInsertView")
 //    public String getErpMemberInsertView(){

@@ -8,15 +8,60 @@
           FROM ERP_MEMBER_INFO
          WHERE 1=1
            AND STATUS = 'Y'
+      ORDER BY NO DESC
     </select>
 
-<!--    <select id="erpMemberOneList" resultType="ErpMember" parameterType="int">-->
-<!--        SELECT *-->
-<!--        FROM ERP_MEMBER_INFO-->
-<!--        WHERE 1=1-->
-<!--          AND STATUS = 'Y'-->
-<!--          AND NO = #{no}-->
-<!--    </select>-->
+    <select id="erpMemberOneList" resultType="ErpMember" parameterType="ErpMember">
+        SELECT *
+        FROM ERP_MEMBER_INFO
+        WHERE 1=1
+          AND STATUS = 'Y'
+        <if test="no != null">
+          AND NO = #{no}
+        </if>
+        <if test="id != null">
+            AND ID LIKE '%'||#{id}||'%'
+        </if>
+        <if test="name != null">
+            AND NAME LIKE '%'||#{name}||'%'
+        </if>
+        <if test="ssn != null">
+            AND SSN LIKE '%'||#{ssn}||'%'
+        </if>
+        <if test="phone1 != null">
+            AND PHONE1 LIKE '%'||#{phone1}||'%'
+        </if>
+        <if test="phone2 != null">
+            AND PHONE2 LIKE '%'||#{phone2}||'%'
+        </if>
+        <if test="phone3 != null">
+            AND PHONE3 LIKE '%'||#{phone3}||'%'
+        </if>
+        <if test="email != null">
+            AND EMAIL LIKE '%'||#{email}||'%'
+        </if>
+        <if test="gender != null">
+            AND GENDER = #{gender}
+        </if>
+        <if test="erp_level != null">
+            AND ERP_LEVEL = #{erp_level}
+        </if>
+        <if test="reg_date != null">
+            AND REG_DATE LIKE '%'||#{reg_date}||'%'
+        </if>
+        <if test="update_date != null">
+            AND UPDATE_DATE LIKE '%'||#{update_date}||'%'
+        </if>
+        <if test="user_no != null">
+            AND USER_NO = #{user_no}
+        </if>
+        <if test="contract_no != null">
+            AND CONTRACT_NO = #{contract_no}
+        </if>
+    </select>
+
+
+
 <!--    <insert id="upsMemberInsert" parameterType="UpsMember">-->
 <!--        INSERT INTO UPS_MEMBER_INFO-->
 <!--        VALUES-->

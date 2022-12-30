@@ -27,13 +27,14 @@ public class ErpService {
         logger.debug("===================================================================");
         return result;
     }
-//    public List<UpsMember> getUpsOneList(@PathParam("no") int no) throws Exception{
-//        List<UpsMember> result = mapper.upsOneList(no);
-//        logger.debug("===================================================================");
-//        logger.debug("UpsService.getUpsList 실행쿼리 결과 값  : " + result);
-//        logger.debug("===================================================================");
-//        return result;
-//    }
+
+    public List getErpMemberOneList(ErpMember model) throws Exception{
+        List result = mapper.erpMemberOneList(model);
+        logger.debug("===================================================================");
+        logger.debug("UpsService.getUpsList 실행쿼리 결과 값  : " + result);
+        logger.debug("===================================================================");
+        return result;
+    }
 //
 //    public int getUpsModify( UpsMember model) throws Exception{
 //        int result = mapper.upsModify(model);
