@@ -46,7 +46,7 @@ public class UpsService {
 //        return result;
 //    }
     public int getUpsInsert(UpsMember model) throws Exception{
-        int result = mapper.upsInsert(model);
+        int result = mapper.upsMemberInsert(model);
         logger.debug("===================================================================");
         logger.debug("UpsService.getUpsModify 실행쿼리 결과 값  : " + result);
         logger.debug("===================================================================");
