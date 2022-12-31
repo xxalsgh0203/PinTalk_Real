@@ -2,7 +2,13 @@ import Button from '../Button';
 import RegisterInput from './RegisterInput';
 import { useForm } from 'react-hook-form';
 import cls from '../../utils/cls';
+import ValidateForm from '../../utils/validateForm';
 
+const NUMBER = 'number';
+const NUMBER_ENGLISH = 'numberWithEnglish';
+const PASSWORD = 'password';
+const NOT_NUMBER = 'not_number';
+const validateForm = new ValidateForm();
 const RegisterForm = () => {
   const {
     register,
@@ -26,44 +32,39 @@ const RegisterForm = () => {
       phone1: data.phone1,
       phone2: data.phone2,
       phone3: data.phone3,
-      ssn1: data.ssn1,
-      ssn2: data.ssn2,
+      ssn: data.ssn1 + data.ssn2,
     };
   };
 
-  const numberValid = (e, name) => {
-    if (e.target.value.toString().length > 6) return;
-    isBlank(e.target.value, name);
-    return (e.target.value = e.target.value.replace(/\D/g, ''));
-  };
-
-  const englishWithNumberValid = (e, name) => {
-    isBlank(e.target.value, name);
-    return (e.target.value = e.target.value.replace(/[^A-Za-z0-9]/gi, ''));
-  };
-
-  const checkPassword = (e) => {
-    const currentPassword = e.target.value;
-    const checkSpecialString =
-      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
-    const isIncludeRegx = checkSpecialString.test(currentPassword);
-    if (!isIncludeRegx) {
-      setError('password', { message: '숫자,영문,특수문자를 포함해주세요.' });
+  const inputValid = (event, name, type) => {
+    if (type === NOT_NUMBER) {
+      validateForm.notNumberValid(event)?.message &&
+        setError(name, {
+          message: validateForm.notNumberValid(event)?.message,
+        });
     }
-    if (currentPassword.length > 20) {
-      setError('password', { message: '비밀 번호는 20자 이내로 작성해주세요' });
+    if (type === NUMBER) {
+      BlankErrorMessage(event, name);
+      return validateForm.numberValid(event, name);
     }
-    isBlank(currentPassword, 'password');
-  };
-
-  const isBlank = (value, name) => {
-    const checkBlank = /\s/g;
-    if (value.match(checkBlank)) {
-      setError(name, { message: '빈공간은 허용되지 않습니다.' });
+    if (type === NUMBER_ENGLISH) {
+      BlankErrorMessage(event, name);
+      return validateForm.englishWithNumberValid(event, name);
+    }
+    if (type === PASSWORD) {
+      BlankErrorMessage(event, name);
+      const checkPassword = validateForm.checkPassword(event, name);
+      checkPassword?.message &&
+        setError(name, { message: checkPassword?.message });
+      return;
     }
   };
 
-  console.log('error', errors.password.message);
+  const BlankErrorMessage = (event, name) => {
+    const checkBlank = validateForm.checkBlank(event, name);
+    console.log(name);
+    checkBlank?.message && setError(name, { message: checkBlank?.message });
+  };
 
   return (
     <form
@@ -74,7 +75,7 @@ const RegisterForm = () => {
         <RegisterInput
           register={register('name', {
             required: '이름을 입력해 주세요.',
-            onChange: (e) => isBlank(e.target.value, 'name'),
+            onChange: (e) => inputValid(e, 'name', NOT_NUMBER),
           })}
           htmlFor='name'
           label='이름'
@@ -129,7 +130,7 @@ const RegisterForm = () => {
                   value: '6',
                   message: '6자리를 입력해주세요.',
                 },
-                onChange: (e) => numberValid(e, 'ssn1'),
+                onChange: (e) => inputValid(e, 'ssn1', NUMBER),
               })}
               type='text'
               maxLength={6}
@@ -147,7 +148,7 @@ const RegisterForm = () => {
                   value: '7',
                   message: '7자리를 입력해주세요.',
                 },
-                onChange: (e) => numberValid(e, 'phone', 'ssn22'),
+                onChange: (e) => inputValid(e, 'ssn2', NUMBER),
               })}
               type='text'
               maxLength={7}
@@ -176,7 +177,7 @@ const RegisterForm = () => {
             </select>
             <input
               {...register('phone2', {
-                onChange: (e) => numberValid(e, 'phone2'),
+                onChange: (e) => inputValid(e, 'phone2', NUMBER),
               })}
               type='text'
               maxLength={4}
@@ -185,7 +186,7 @@ const RegisterForm = () => {
             <span>-</span>
             <input
               {...register('phone3', {
-                onChange: (e) => numberValid(e, 'phone3'),
+                onChange: (e) => inputValid(e, 'phone3', NUMBER),
               })}
               type='text'
               maxLength={4}
@@ -196,16 +197,17 @@ const RegisterForm = () => {
         <RegisterInput
           register={register('id', {
             required: '아이디를 입력해주세요.',
-            onChange: (e) => englishWithNumberValid(e, 'id'),
+            onChange: (e) => inputValid(e, 'id', NUMBER_ENGLISH),
           })}
           htmlFor='id'
           label='아이디'
         />
         <RegisterInput
-          register={register('password', {
+          register={register(PASSWORD, {
             required: '비밀번호를 입력해주세요.',
-            onChange: (e) => checkPassword(e),
+            onChange: (e) => inputValid(e, PASSWORD, PASSWORD),
           })}
+          maxLength={15}
           type='password'
           htmlFor='password'
           label='비밀번호'
@@ -228,7 +230,7 @@ const RegisterForm = () => {
           <div className='flex items-center space-x-4'>
             <input
               {...register('frontEmail', {
-                onChange: (e) => englishWithNumberValid(e, 'email'),
+                onChange: (e) => inputValid(e, 'email', NUMBER_ENGLISH),
               })}
               maxLength={15}
               type='text'
@@ -249,7 +251,7 @@ const RegisterForm = () => {
 
         <RegisterInput
           register={register('job_key', {
-            onChange: (e) => numberValid(e, 'job_key'),
+            onChange: (e) => inputValid(e, 'job_key', NUMBER),
             minLength: {
               value: 4,
               message: '4자리 이상 숫자로 입력해주세요.',
@@ -261,7 +263,7 @@ const RegisterForm = () => {
         />
         <RegisterInput
           register={register('job', {
-            onChange: (e) => numberValid(e, 'job'),
+            onChange: (e) => inputValid(e, 'job', NUMBER),
           })}
           htmlFor='job'
           label='직업명'
