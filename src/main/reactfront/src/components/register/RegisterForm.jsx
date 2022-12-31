@@ -3,6 +3,7 @@ import RegisterInput from './RegisterInput';
 import { useForm } from 'react-hook-form';
 import cls from '../../utils/cls';
 import ValidateForm from '../../utils/validateForm';
+import RegisterErrorMessage from './RegisterErrorMessage';
 
 const NUMBER = 'number';
 const NUMBER_ENGLISH = 'numberWithEnglish';
@@ -77,6 +78,7 @@ const RegisterForm = () => {
             required: '이름을 입력해 주세요.',
             onChange: (e) => inputValid(e, 'name', NOT_NUMBER),
           })}
+          errorMessage={errors.name?.message}
           htmlFor='name'
           label='이름'
         />
@@ -116,7 +118,12 @@ const RegisterForm = () => {
 
         <div className='space-y-2'>
           <label className='flex' htmlFor='ssn'>
-            주민번호
+            주민번호{' '}
+            {(errors.ssn1?.message || errors.ssn2?.message) && (
+              <RegisterErrorMessage
+                errorMessage={errors.ssn1?.message || errors.ssn2?.message}
+              />
+            )}
           </label>
           <div className='flex items-center space-x-4'>
             <input
@@ -158,7 +165,14 @@ const RegisterForm = () => {
         </div>
 
         <div className='space-y-2,"phone3"'>
-          <label className='flex'>핸드폰 번호</label>
+          <label className='flex'>
+            핸드폰 번호{' '}
+            {(errors.phone1?.message || errors.phone2?.message) && (
+              <RegisterErrorMessage
+                errorMessage={errors.phone1?.message || errors.phone2?.message}
+              />
+            )}
+          </label>
           <div className='flex items-center space-x-4'>
             <select
               {...register('phone1')}
@@ -201,6 +215,7 @@ const RegisterForm = () => {
           })}
           htmlFor='id'
           label='아이디'
+          errorMessage={errors.id?.message}
         />
         <RegisterInput
           register={register(PASSWORD, {
@@ -211,6 +226,7 @@ const RegisterForm = () => {
           type='password'
           htmlFor='password'
           label='비밀번호'
+          errorMessage={errors.password?.message}
         />
         <RegisterInput
           register={register('address1')}
@@ -225,7 +241,14 @@ const RegisterForm = () => {
 
         <div className='space-y-2'>
           <label className='flex' htmlFor='email'>
-            이메일
+            이메일{' '}
+            {(errors.frontEmail?.message || errors.backEmail?.message) && (
+              <RegisterErrorMessage
+                errorMessage={
+                  errors.frontEmail?.message || errors.backEmail?.message
+                }
+              />
+            )}
           </label>
           <div className='flex items-center space-x-4'>
             <input
@@ -257,6 +280,7 @@ const RegisterForm = () => {
               message: '4자리 이상 숫자로 입력해주세요.',
             },
           })}
+          errorMessage={errors.job_key?.message}
           htmlFor='job_key'
           label='직업코드'
           maxLength={4}

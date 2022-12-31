@@ -1,14 +1,18 @@
+import RegisterErrorMessage from './RegisterErrorMessage';
+
 const RegisterInput = ({
   label,
   type = 'text',
   htmlFor,
   register,
   maxLength,
+  errorMessage,
 }) => {
   return (
     <div className='flex flex-col space-y-2'>
-      <label className='' htmlFor={htmlFor}>
+      <label className='flex' htmlFor={htmlFor}>
         {label}
+        {errorMessage && <RegisterErrorMessage errorMessage={errorMessage} />}
       </label>
       <input
         {...register}
