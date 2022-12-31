@@ -2,7 +2,8 @@ package com.pintalk.ups.controller;
 
 import com.pintalk.ups.model.UpsMember;
 import com.pintalk.ups.service.UpsService;
-import org.apache.ibatis.annotations.Param;
+import com.pintalk.user.model.UserMember;
+import com.pintalk.user.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,16 @@ public class UpsController {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Autowired
-    UpsService service;
+    UpsService upsService;
+
+    @Autowired
+    UserService userService;
 
 
     //대출자 전체 리스트
     @GetMapping("/upsMemberList")
     public List getUpsMemberList() throws Exception {
-        List<UpsMember> li_result = service.getUpsMemberList();
+        List<UpsMember> li_result = upsService.getUpsMemberList();
 
         logger.debug("===================================================================");
         logger.debug("UpsController.getUpsMemberList 리스트 결과값  : " + li_result);
@@ -35,18 +39,17 @@ public class UpsController {
     }
     @RequestMapping("/upsMemberInsert")
     public String getUpsMemberInsert(UpsMember model) throws Exception {
-        LocalDateTime now = LocalDateTime.now();
 
-        model.setReg_date(now);
-        model.setUpdate_date(now);
 
-        service.getUpsInsert(model);
+        upsService.getUpsInsert(model);
+
+
         return "redirect:/upsMemberInsert";
     }
 //    @RequestMapping("/userMemberUpdate")
 //    public int getUpsModify(UpsMember model,@Param("user_no") int user_no) throws Exception {
 //        model.setNo(user_no);
-//        int li_result = service.getUpsModify(model);
+//        int li_result = upsService.getUpsModify(model);
 //
 //        logger.debug("===================================================================");
 //        logger.debug("UserController.getUserModify 리스트 결과값  : " + li_result);
