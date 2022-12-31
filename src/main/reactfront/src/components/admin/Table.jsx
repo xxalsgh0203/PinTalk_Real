@@ -3,6 +3,7 @@ import { useState } from "react";
 import Pagination from "./Pagination";
 const Table = ({erpMembers}) => {
 
+    const [newErpMembers, filterErpMembers] = useState([...erpMembers]);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
@@ -26,7 +27,7 @@ const Table = ({erpMembers}) => {
                     </select>
                 </label>
 
-                <div className="overflow-auto rounded-lg shadow">
+                <div className="overflow-auto rounded-lg shadow pt-5">
                     <table className="w-full">
                         <thead className="bg-gray-50 border-b-2 border-gray-200">
                             <tr>
@@ -44,11 +45,10 @@ const Table = ({erpMembers}) => {
                         <tbody className="divide-y divide-gray-100">
 
                         {erpMembers.slice(offset, offset + limit).map(member => {
-                            console.log(member);
                             return (
                                 <tr className="bg-gray-50">
                                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                        <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">{member.no}</span>
+                                        <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-blue-800 bg-blue-200 rounded-lg bg-opacity-50">{member.no}</span>
                                     </td>
                                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
                                         {member.gender === 'M' ? "남자" : "여자"}

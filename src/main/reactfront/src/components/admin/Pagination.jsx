@@ -41,7 +41,7 @@ const Button = styled.button`
   border-radius: 8px;
   padding: 8px;
   margin: 0;
-  background: #cae0bc;
+  background: #dddef6;
   color: white;
   font-size: 1rem;
 
@@ -52,13 +52,13 @@ const Button = styled.button`
   }
 
   &[disabled] {
-    background: grey;
+    background: #657b98;
     cursor: revert;
     transform: revert;
   }
 
   &[aria-current] {
-    background: #73a871;
+    background: #3a6abe;
     font-weight: bold;
     cursor: revert;
     transform: revert;

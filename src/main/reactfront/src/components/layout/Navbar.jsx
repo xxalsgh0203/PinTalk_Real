@@ -14,6 +14,9 @@ const Navbar = ({ title }) => {
         <li>
           <Link to='/loan'>대출자</Link>
         </li>
+          <li>
+              <Link to='/admin'>관리자</Link>
+          </li>
       </ul>
     </div>
   );
