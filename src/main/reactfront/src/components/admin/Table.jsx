@@ -1,10 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import styled from "styled-components";
 import Pagination from "./Pagination";
 const Table = ({erpMembers}) => {
 
-    const [posts, setPosts] = useState([]);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
@@ -32,45 +30,36 @@ const Table = ({erpMembers}) => {
                     <table className="w-full">
                         <thead className="bg-gray-50 border-b-2 border-gray-200">
                             <tr>
-                                <th className="w-20 p-3 text-sm font-semi-bold tracking-wide text-left">No.</th>
-                                <th className="w-20 p-3 text-sm font-semi-bold tracking-wide text-left">Status</th>
-                                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">Name</th>
-                                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">id</th>
-                                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">Gender</th>
-                                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">Address</th>
-                                <th className="w-24 p-3 text-sm font-semi-bold tracking-wide text-left">email</th>
-                                <th className="p-3 text-sm font-semi-bold tracking-wide text-left">Phone Number</th>
-                                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">Erp level</th>
-                                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">Job Key</th>
-                                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">contract_no</th>
-                                <th className="w-20 p-3 text-sm font-semi-bold tracking-wide text-left">Reg Date</th>
-                                <th className="w-20 p-3 text-sm font-semi-bold tracking-wide text-left">Update Date</th>
+                                <th className="w-20 p-3 text-sm font-semi-bold tracking-wide text-left">고유번호</th>
+                                <th className="w-20 p-3 text-sm font-semi-bold tracking-wide text-left">성별</th>
+                                <th className="w-20 p-3 text-sm font-semi-bold tracking-wide text-left">이름</th>
+                                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">휴대폰 번호</th>
+                                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">사는곳</th>
+                                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">이메일</th>
+                                <th className="w-24 p-3 text-sm font-semi-bold tracking-wide text-left">투자자 등급</th>
+                                <th className="w-24 p-3 text-sm font-semi-bold tracking-wide text-left">가입날짜</th>
+                                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">정보 변경날짜</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
 
                         {erpMembers.slice(offset, offset + limit).map(member => {
+                            console.log(member);
                             return (
                                 <tr className="bg-gray-50">
                                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                        <a href="#" className="font-bold text-blue-500 hover:underline">{member.no}</a>
+                                        <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">{member.no}</span>
                                     </td>
                                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                        <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">{member.status}</span>
+                                        {member.gender === 'M' ? "남자" : "여자"}
                                     </td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                        {member.name}
-                                    </td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.id}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.gender === 'M' ? "남자" : "여자"}</td>
+                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.name}</td>
+                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">0{member.phone1} - {member.phone2} - {member.phone3}</td>
                                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.address1}</td>
                                     <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.email}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.erp_LEVEL}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.phone1}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.job_KEY}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.contract_NO}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.reg_DATE}</td>
-                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.update_DATE}</td>
+                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.erp_level}</td>
+                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.reg_date}</td>
+                                    <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.update_date}</td>
                                 </tr>
                             );
                         })}
