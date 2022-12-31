@@ -11,9 +11,9 @@ public class ErpMember {
     private String id;
     private String name;
     private String ssn;
-    private int phone1;
-    private int phone2;
-    private int phone3;
+    private String phone1;
+    private String phone2;
+    private String phone3;
     private String email;
     private String gender;
     private String address1;
