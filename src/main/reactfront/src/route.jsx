@@ -5,6 +5,7 @@ import Register from './components/register/Register';
 import Home from './pages/Home';
 import Investment from './pages/Investment';
 import Loan from './pages/Loan';
+import Admin from "./pages/Admin";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: 'loan/apply',
         element: <Register />,
+      },
+      {
+        path: 'admin',
+        element: <Admin />,
       },
     ],
   },
