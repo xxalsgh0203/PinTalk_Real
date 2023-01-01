@@ -22,20 +22,22 @@ const RegisterForm = () => {
     reValidateMode: 'onChange',
   });
 
+  console.log(errors);
+
   const onValid = (data) => {
     console.log({
       email: data.frontEmail + '@' + data.backEmail,
       address1: data.address1,
       address2: data.address2,
       gender: data.gender,
-      id: data.id,
+      id: data.id || null,
       job: data.job,
       job_key: data.job_key,
       name: data.name,
       password: data.password,
-      phone1: data.phone1,
-      phone2: data.phone2,
-      phone3: data.phone3,
+      phone1: data.phone1 || null,
+      phone2: data.phone2 || null,
+      phone3: data.phone3 || null,
       ssn: data.ssn1 + data.ssn2,
     });
     return {
@@ -43,15 +45,15 @@ const RegisterForm = () => {
       address1: data.address1,
       address2: data.address2,
       gender: data.gender,
-      id: data.id,
+      id: data.id || null,
       job: data.job,
       job_key: data.job_key,
       name: data.name,
       password: data.password,
-      phone1: data.phone1,
-      phone2: data.phone2,
-      phone3: data.phone3,
-      ssn: data.ssn1 + data.ssn2,
+      phone1: data.phone1 || null,
+      phone2: data.phone2 || null,
+      phone3: data.phone3 || null,
+      ssn: data.ssn1 + data.ssn2 || null,
     };
   };
 
@@ -88,59 +90,66 @@ const RegisterForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onValid)}
-      className='rounded-lg max-w-lg lg:max-w-2xl m-auto space-y-10 text-gray-100 p-4 bg-white/10 backdrop-blur-sm'
+      className='rounded-lg max-w-xl lg:max-w-2xl m-auto space-y-8 text-gray-100 p-4 bg-white/10 backdrop-blur-sm'
     >
-      <div className='space-y-8'>
-        <RegisterInput
-          register={register('name', {
-            required: '이름을 입력해 주세요.',
-            onChange: (e) => inputValid(e, 'name', NOT_NUMBER),
-          })}
-          errorMessage={errors.name?.message}
-          htmlFor='name'
-          label='이름'
-        />
+      <div className='space-y-6 pb-2'>
+        <div className='flex items-center space-x-10'>
+          <div className='w-[50%]'>
+            <RegisterInput
+              register={register('name', {
+                onChange: (e) => inputValid(e, 'name', NOT_NUMBER),
+              })}
+              errorMessage={errors.name?.message}
+              htmlFor='name'
+              label='이름'
+            />
+          </div>
 
-        <div>
-          <span className='block mb-2'>성별</span>
-          <div className='flex items-center space-x-4'>
-            <label htmlFor='M'>
-              <input
-                type='radio'
-                value='M'
-                {...register('gender')}
-                checked={watch('gender') === 'M'}
-                className={cls(
-                  'appearance-none w-3 h-3 text-blue-600 bg-gray-100  focus:bg-teal-400 rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-teal-700',
-                  watch('gender') === 'M' ? 'bg-teal-400' : ''
-                )}
-              />
-              남
-            </label>
+          <div className='w-[50%]'>
+            <span className='block mb-2 text-sm'>성별</span>
+            <div className='flex items-center space-x-4'>
+              <label className='text-sm' htmlFor='M'>
+                <input
+                  type='radio'
+                  value='M'
+                  {...register('gender')}
+                  checked={watch('gender') === 'M'}
+                  className={cls(
+                    'appearance-none w-3 h-3 text-blue-600 bg-gray-100  focus:bg-teal-400 rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-teal-700',
+                    watch('gender') === 'M' ? 'bg-teal-400' : ''
+                  )}
+                />
+                <span className='text-sm'>남</span>
+              </label>
 
-            <label htmlFor='G'>
-              <input
-                type='radio'
-                value='G'
-                checked={watch('gender') === 'G'}
-                {...register('gender')}
-                className={cls(
-                  'appearance-none w-3 h-3 text-blue-600 bg-gray-100   rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-teal-700',
-                  watch('gender') === 'G' ? 'bg-teal-400' : ''
-                )}
-              />
-              여
-            </label>
+              <label htmlFor='G'>
+                <input
+                  type='radio'
+                  value='G'
+                  checked={watch('gender') === 'G'}
+                  {...register('gender')}
+                  className={cls(
+                    'appearance-none w-3 h-3 text-blue-600 bg-gray-100   rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-teal-700',
+                    watch('gender') === 'G' ? 'bg-teal-400' : ''
+                  )}
+                />
+                <span className='text-sm'>여</span>
+              </label>
+            </div>
           </div>
         </div>
 
         <div className='space-y-2'>
-          <label className='flex' htmlFor='ssn'>
-            주민번호{' '}
-            {(errors.ssn1?.message || errors.ssn2?.message) && (
+          <label className='flex text-sm' htmlFor='ssn'>
+            주민번호
+            {errors.ssn1?.message || errors.ssn2?.message ? (
               <RegisterErrorMessage
                 errorMessage={errors.ssn1?.message || errors.ssn2?.message}
               />
+            ) : (
+              <span className='ml-4 text-sm text-teal-200'>
+                필수정보입니다.
+              </span>
             )}
           </label>
           <div className='flex items-center space-x-4'>
@@ -160,7 +169,7 @@ const RegisterForm = () => {
               placeholder='앞자리'
               type='text'
               maxLength={6}
-              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%] placeholder:text-gray-400 placeholder:text-sm'
+              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%] placeholder:text-gray-400 placeholder:text-sm text-sm'
             />
             <span>-</span>
             <input
@@ -179,18 +188,37 @@ const RegisterForm = () => {
               type='text'
               maxLength={7}
               placeholder='뒷자리'
-              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%] placeholder:text-gray-400 placeholder:text-sm'
+              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%] placeholder:text-gray-400 placeholder:text-sm text-sm'
             />
           </div>
         </div>
 
         <div className='space-y-2'>
-          <label className='flex'>핸드폰 번호</label>
+          <label className='flex text-sm'>
+            핸드폰 번호
+            {(errors.phone1?.message ||
+              errors.phone2?.message ||
+              errors.phone3?.message) && (
+              <RegisterErrorMessage
+                errorMessage={
+                  errors.phone1?.message ||
+                  errors.phone2?.message ||
+                  errors.phone3?.message
+                }
+              />
+            )}
+          </label>
           <div className='flex items-center space-x-4'>
             <select
-              {...register('phone1')}
-              className='bg-transparent p-1 outline-none'
+              {...register('phone1', {
+                validate: (value) => {
+                  if (!watch('phone2') || !watch('phone3')) return;
+                  return value !== '' || '번호를 선택해주세요.';
+                },
+              })}
+              className='bg-transparent p-1 outline-none text-sm border-2 border-gray-500 rounded-md'
             >
+              <option value=''>선택</option>
               <option value='010'>010</option>
               <option value='011'>011</option>
               <option value='012'>012</option>
@@ -205,19 +233,27 @@ const RegisterForm = () => {
             <input
               {...register('phone2', {
                 onChange: (e) => inputValid(e, 'phone2', NUMBER),
+                validate: (value) => {
+                  if (!watch('phone1') || !watch('phone3')) return;
+                  return value !== '' || '번호를 선택해주세요.';
+                },
               })}
               type='text'
               maxLength={4}
-              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%]'
+              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%] text-sm'
             />
             <span>-</span>
             <input
               {...register('phone3', {
                 onChange: (e) => inputValid(e, 'phone3', NUMBER),
+                validate: (value) => {
+                  if (!watch('phone1') || !watch('phone2')) return;
+                  return value !== '' || '번호를 선택해주세요.';
+                },
               })}
               type='text'
               maxLength={4}
-              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%]'
+              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%] text-sm'
             />
           </div>
         </div>
@@ -229,6 +265,7 @@ const RegisterForm = () => {
           })}
           htmlFor='id'
           label='아이디'
+          necessary
           errorMessage={errors.id?.message}
         />
         <RegisterInput
@@ -240,12 +277,14 @@ const RegisterForm = () => {
               message: '비밀 번호는 15자 이내로 작성해주세요',
             },
           })}
+          necessary
           maxLength={15}
           type='password'
           htmlFor='password'
           name='password'
           label='비밀번호'
           errorMessage={errors.password?.message}
+          password
         />
         <RegisterInput
           register={register('address1')}
@@ -259,8 +298,8 @@ const RegisterForm = () => {
         />
 
         <div className='space-y-2'>
-          <label className='flex' htmlFor='email'>
-            이메일{' '}
+          <label className='flex text-sm' htmlFor='email'>
+            이메일
             {(errors.frontEmail?.message || errors.backEmail?.message) && (
               <RegisterErrorMessage
                 errorMessage={
@@ -273,16 +312,26 @@ const RegisterForm = () => {
             <input
               {...register('frontEmail', {
                 onChange: (e) => inputValid(e, 'frontEmail', NUMBER_ENGLISH),
+                validate: (value) => {
+                  if (!watch('backEmail')) return;
+                  return value !== '' || '이메일을 입력해주세요.';
+                },
               })}
               maxLength={15}
               type='text'
-              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%]'
+              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%] text-sm'
             />
             <span>@</span>
             <select
-              {...register('backEmail')}
-              className='bg-transparent py-1 px-2 outline-none w-[30%]'
+              {...register('backEmail', {
+                validate: (value) => {
+                  if (!watch('frontEmail')) return;
+                  return value !== '' || '이메일을 선택해주세요';
+                },
+              })}
+              className='bg-transparent border-2 rounded-md px-1 border-gray-500 py-1 outline-none w-[20%] relative text-sm'
             >
+              <option value=''>선택</option>
               <option value='naver'>naver</option>
               <option value='nate'>nate</option>
               <option value='gmail'>gmail</option>
@@ -291,28 +340,40 @@ const RegisterForm = () => {
           </div>
         </div>
 
-        <RegisterInput
-          register={register('job_key', {
-            onChange: (e) => inputValid(e, 'job_key', NUMBER),
-            minLength: {
-              value: 4,
-              message: '4자리 이상 숫자로 입력해주세요.',
-            },
-          })}
-          errorMessage={errors.job_key?.message}
-          htmlFor='job_key'
-          label='직업코드'
-          maxLength={4}
-        />
-        <RegisterInput
-          register={register('job', {
-            onChange: (e) => inputValid(e, 'job', NUMBER),
-          })}
-          htmlFor='job'
-          label='직업명'
-          maxLength={6}
-        />
+        <div className='flex items-center space-x-6'>
+          <div className='w-[50%]'>
+            <RegisterInput
+              register={register('job_key', {
+                onChange: (e) => inputValid(e, 'job_key', NUMBER),
+                minLength: {
+                  value: 4,
+                  message: '4자리 이상 입력해주세요.',
+                },
+              })}
+              errorMessage={errors.job_key?.message}
+              htmlFor='job_key'
+              label='직업코드'
+              maxLength={4}
+            />
+          </div>
+          <div className='w-[50%]'>
+            <RegisterInput
+              register={register('job', {
+                onChange: (e) => inputValid(e, 'job', NUMBER),
+                minLength: {
+                  value: 6,
+                  message: '6자리 이상 입력해주세요.',
+                },
+              })}
+              errorMessage={errors.job?.message}
+              htmlFor='job'
+              label='직업명'
+              maxLength={6}
+            />
+          </div>
+        </div>
       </div>
+
       <div className='w-full flex justify-center items-center'>
         <Button title='신청서 제출' />
       </div>

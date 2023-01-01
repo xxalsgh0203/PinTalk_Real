@@ -26,11 +26,11 @@ export default class ValidateForm {
   checkPassword = (e, name) => {
     this.checkBlank(e, name);
     const checkSpecialString =
-      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{2,20}$/;
+      /^(?=.*[a-zA-Z])(?=.*[!~@#$%^*+=-])(?=.*[0-9]).{2,20}$/;
     const isIncludeRegx = checkSpecialString.test(e.target.value);
     if (!isIncludeRegx) {
       return {
-        message: '숫자,영문,특수문자(!@#$%^*+=-)를 포함해주세요.',
+        message: '숫자,영문,특수문자(!~@#$%^*+=-)를 포함해주세요.',
       };
     }
     /*  if (e.target.value.includes(' ')) {
