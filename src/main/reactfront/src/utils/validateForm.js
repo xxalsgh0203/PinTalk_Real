@@ -1,13 +1,9 @@
 export default class ValidateForm {
   notNumberValid = (e) => {
-    const checkNumber = /[^0-9]/g;
-    const isIncludeNumber = checkNumber.test(+e.target.value);
-    console.log(isIncludeNumber);
-    if (!isIncludeNumber) {
-      return {
-        message: '숫자를 제외 시켜주세요.',
-      };
-    }
+    return (e.target.value = e.target.value.replace(
+      /[^a-z|A-Z|ㄱ-ㅎ|가-힣]/g,
+      ''
+    ));
   };
 
   numberValid = (e, name) => {
@@ -16,9 +12,15 @@ export default class ValidateForm {
     return (e.target.value = e.target.value.replace(/\D/g, ''));
   };
 
-  englishWithNumberValid = (e, name) => {
+  koreanValid = (e, name) => {
     this.checkBlank(e, name);
-    return (e.target.value = e.target.value.replace(/[^A-Za-z0-9]/gi, ''));
+    const checkKorean = /[ㄱ-ㅎ|가-힣]/g;
+    const isIncludeKorean = checkKorean.test(e.target.value);
+    if (isIncludeKorean) {
+      return {
+        message: '영문 숫자만 가능합니다.',
+      };
+    }
   };
 
   checkPassword = (e, name) => {
@@ -28,22 +30,27 @@ export default class ValidateForm {
     const isIncludeRegx = checkSpecialString.test(e.target.value);
     if (!isIncludeRegx) {
       return {
-        message: '숫자,영문,특수문자를 포함해주세요.',
+        message: '숫자,영문,특수문자(!@#$%^*+=-)를 포함해주세요.',
       };
     }
-    if (e.target.value.length > 15) {
+    /*  if (e.target.value.includes(' ')) {
       return {
-        message: '비밀 번호는 15자 이내로 작성해주세요',
+        message: '빈공간을 제거해주세요.',
+      };
+    } */
+    if (e.target.value.length < 8) {
+      return {
+        message: '8자이상 입력해주세요.',
       };
     }
   };
 
   checkBlank = (e) => {
     const checkBlank = /\s/g;
-    if (e.target.value.match(checkBlank)) {
+    const currentValue = e.target.value;
+    if (currentValue.match(checkBlank) || currentValue.includes(' ')) {
       return {
         message: '빈공간은 허용되지 않습니다.',
-        isError: true,
       };
     }
     return;

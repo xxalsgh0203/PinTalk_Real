@@ -17,9 +17,27 @@ const RegisterForm = () => {
     watch,
     formState: { errors },
     setError,
-  } = useForm();
+    clearErrors,
+  } = useForm({
+    reValidateMode: 'onChange',
+  });
 
   const onValid = (data) => {
+    console.log({
+      email: data.frontEmail + '@' + data.backEmail,
+      address1: data.address1,
+      address2: data.address2,
+      gender: data.gender,
+      id: data.id,
+      job: data.job,
+      job_key: data.job_key,
+      name: data.name,
+      password: data.password,
+      phone1: data.phone1,
+      phone2: data.phone2,
+      phone3: data.phone3,
+      ssn: data.ssn1 + data.ssn2,
+    });
     return {
       email: data.frontEmail + '@' + data.backEmail,
       address1: data.address1,
@@ -39,32 +57,32 @@ const RegisterForm = () => {
 
   const inputValid = (event, name, type) => {
     if (type === NOT_NUMBER) {
-      validateForm.notNumberValid(event)?.message &&
-        setError(name, {
-          message: validateForm.notNumberValid(event)?.message,
-        });
+      validateForm.notNumberValid(event);
     }
     if (type === NUMBER) {
-      BlankErrorMessage(event, name);
-      return validateForm.numberValid(event, name);
+      validateForm.numberValid(event, name);
     }
     if (type === NUMBER_ENGLISH) {
       BlankErrorMessage(event, name);
-      return validateForm.englishWithNumberValid(event, name);
+      const checkedKorean = validateForm.koreanValid(event, name);
+      return (
+        checkedKorean?.message &&
+        setError(name, { message: checkedKorean?.message })
+      );
     }
     if (type === PASSWORD) {
       BlankErrorMessage(event, name);
-      const checkPassword = validateForm.checkPassword(event, name);
-      checkPassword?.message &&
-        setError(name, { message: checkPassword?.message });
-      return;
+      const checkedPassword = validateForm.checkPassword(event, name);
+      checkedPassword?.message &&
+        setError(name, { message: checkedPassword?.message });
     }
   };
 
   const BlankErrorMessage = (event, name) => {
     const checkBlank = validateForm.checkBlank(event, name);
-    console.log(name);
-    checkBlank?.message && setError(name, { message: checkBlank?.message });
+    checkBlank?.message
+      ? setError(name, { message: checkBlank?.message })
+      : clearErrors(name);
   };
 
   return (
@@ -164,15 +182,8 @@ const RegisterForm = () => {
           </div>
         </div>
 
-        <div className='space-y-2,"phone3"'>
-          <label className='flex'>
-            핸드폰 번호{' '}
-            {(errors.phone1?.message || errors.phone2?.message) && (
-              <RegisterErrorMessage
-                errorMessage={errors.phone1?.message || errors.phone2?.message}
-              />
-            )}
-          </label>
+        <div className='space-y-2'>
+          <label className='flex'>핸드폰 번호</label>
           <div className='flex items-center space-x-4'>
             <select
               {...register('phone1')}
@@ -208,6 +219,7 @@ const RegisterForm = () => {
             />
           </div>
         </div>
+
         <RegisterInput
           register={register('id', {
             required: '아이디를 입력해주세요.',
@@ -221,10 +233,15 @@ const RegisterForm = () => {
           register={register(PASSWORD, {
             required: '비밀번호를 입력해주세요.',
             onChange: (e) => inputValid(e, PASSWORD, PASSWORD),
+            maxLength: {
+              value: 15,
+              message: '비밀 번호는 15자 이내로 작성해주세요',
+            },
           })}
           maxLength={15}
           type='password'
           htmlFor='password'
+          name='password'
           label='비밀번호'
           errorMessage={errors.password?.message}
         />
@@ -253,7 +270,7 @@ const RegisterForm = () => {
           <div className='flex items-center space-x-4'>
             <input
               {...register('frontEmail', {
-                onChange: (e) => inputValid(e, 'email', NUMBER_ENGLISH),
+                onChange: (e) => inputValid(e, 'frontEmail', NUMBER_ENGLISH),
               })}
               maxLength={15}
               type='text'
