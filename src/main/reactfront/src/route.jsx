@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import ApplicationForm from './components/ApplicationForm';
+import Register from './components/register/Register';
+
 import Home from './pages/Home';
 import Investment from './pages/Investment';
 import Loan from './pages/Loan';
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'loan/apply',
-        element: <ApplicationForm />,
+        element: <Register />,
       },
       {
         path: 'admin',

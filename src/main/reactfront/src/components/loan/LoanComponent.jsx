@@ -13,10 +13,12 @@ const LoanComponent = () => {
         <h3 className='text-xl text-gray-200 mb-10'>
           가치에 금융을 더 합니다.
         </h3>
-        <div className='text-gray-400 flex items-center'>
-          <span className='text-teal-500 font-bold uppercase'>pintalk</span>
-          <p className=''>
-            에 직접 투자하고, 대출이자는 적절한 현금과 가게의 상품(현물)으로
+        <div className='text-gray-400 flex items-center flex-col lg:flex-row px-2'>
+          <span className='text-teal-500 font-bold uppercase'>
+            pintalk &nbsp;
+          </span>
+          <p className='text-center'>
+            직접 투자하고, 대출이자는 적절한 현금과 가게의 상품(현물)으로
             받음으로써 금리를 낮추고, 단골고객은 늘립니다.
           </p>
         </div>
