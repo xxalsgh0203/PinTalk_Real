@@ -11,6 +11,7 @@ const Table = ({erpMembers}) => {
     //  --------------- 검색 기능 ---------------
 
     const [isFiltered, toggleFilter] = useState(false);
+    const [FilteredMembers, updateFilteredMembers] = useState([]);
     const [filterState, setFilterState] = useState({
         gender: "",
         name: "",
@@ -21,6 +22,25 @@ const Table = ({erpMembers}) => {
         reg_date: "",
         update_date: "",
     });
+
+    const resetFilter = () => {
+
+        updateFilteredMembers(newErpMembers);
+        toggleFilter(false);
+
+        setFilterState(
+            {
+                gender: "",
+                name: "",
+                phone: "",
+                address: "",
+                email: "",
+                erp_level: "",
+                reg_date: "",
+                update_date: "",
+            }
+        )
+    }
 
     const handleChange = (e) => {
         setFilterState({
@@ -41,15 +61,19 @@ const Table = ({erpMembers}) => {
     // //input box filters
     const filterMembers = () => {
 
-        return newErpMembers.filter(member => member.name.toString() === filterState.name.toString())
-                // .filter(member => member.gender.toString() === filterState.gender.toString())
+        return newErpMembers.map(
 
+            )
+                .filter(member => member.name.toString() === filterState.name.toString())
+                // .filter(member => {
+                //     member.gender.toString() === "남자" ? mem_gender = 'm' : mem_gender = 'g'
+                //     mem_gender === filterState.gender.toString()})
                 // .filter(member => member.phone.toString() === filterState.phone.toString())
                 // .filter(member => member.address.toString() === filterState.address.toString())
                 // .filter(member => member.email.toString() === filterState.email.toString())
                 // .filter(member => member.erp_level.toString() === filterState.erp_level.toString())
-                // .filter(member => member.reg_date.toString() === filterState.reg_date.toString())
-                // .filter(member => member.update_date.toString() === filterState.update_date.toString())
+                // .filter(member => member.reg_date === filterState.reg_date)
+                // .filter(member => member.update_date === filterState.update_date)
     }
 
     return (
@@ -171,7 +195,13 @@ const Table = ({erpMembers}) => {
 
                         <div className="grid md:flex grid-cols-2 justify-end space-x-4 w-full mt-6">
                             <button
-                                className="px-4 py-2 rounded-lg text-white-800 bg-blue-400 rounded-lg bg-opacity-50 hover:bg-stone-200 font-bold text-white shadow-lg shadow-stone-200 transition ease-in-out duration-200 translate-10" id="reset">
+                                className="px-4 py-2 rounded-lg text-white-800 bg-blue-400 rounded-lg bg-opacity-50 hover:bg-stone-200 font-bold text-white shadow-lg shadow-stone-200 transition ease-in-out duration-200 translate-10" id="reset"
+                                onClick={
+                                    ()=>{
+                                        resetFilter();
+                                        console.log(FilteredMembers);
+                                    }
+                                }>>
                                 Reset
                             </button>
 
@@ -179,9 +209,9 @@ const Table = ({erpMembers}) => {
                                 className="px-4 py-2 rounded-lg bg-blue-800 rounded-lg bg-opacity-50 hover:bg-stone-200 hover:bg-orange-500 font-bold text-white shadow-lg shadow-orange-200 transition ease-in-out duration-200 translate-10" id="search"
                                 onClick={
                                     ()=>{
-                                        newErpMembers = filterMembers();
+                                        updateFilteredMembers(filterMembers);
                                         toggleFilter(true);
-                                        console.log(newErpMembers);
+                                        console.log(FilteredMembers);
                                     }
                                 }>
                                 Search
@@ -230,7 +260,7 @@ const Table = ({erpMembers}) => {
                                 <ErpMember member={member} />
                             );
                             })) :
-                                (newErpMembers.slice(offset, offset + limit).map(member => {
+                                (FilteredMembers.slice(offset, offset + limit).map(member => {
                                     return (
                                         <ErpMember member={member} />
                                     );
@@ -243,7 +273,7 @@ const Table = ({erpMembers}) => {
 
                 <footer>
                     <Pagination
-                        total={erpMembers.length}
+                        total={FilteredMembers.length}
                         limit={limit}
                         page={page}
                         setPage={setPage}
