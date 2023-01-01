@@ -10,9 +10,8 @@ const RegisterInput = ({
 }) => {
   return (
     <div className='flex flex-col space-y-2'>
-      <label className='flex' htmlFor={htmlFor}>
-        {label}
-        {errorMessage && <RegisterErrorMessage errorMessage={errorMessage} />}
+      <label className='' htmlFor={htmlFor}>
+        {label} {errorMessage && <RegisterErrorMessage />}
       </label>
       <input
         {...register}

@@ -1,6 +1,6 @@
-import ApplicationForm from '../components/ApplicationForm';
+import Register from '../components/register/Register';
 
 const LoanApply = () => {
-  return <ApplicationForm />;
+  return <Register />;
 };
 export default LoanApply;

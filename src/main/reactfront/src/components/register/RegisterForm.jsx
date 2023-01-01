@@ -157,9 +157,10 @@ const RegisterForm = () => {
                 },
                 onChange: (e) => inputValid(e, 'ssn1', NUMBER),
               })}
+              placeholder='앞자리'
               type='text'
               maxLength={6}
-              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%]'
+              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%] placeholder:text-gray-400 placeholder:text-sm'
             />
             <span>-</span>
             <input
@@ -177,7 +178,8 @@ const RegisterForm = () => {
               })}
               type='text'
               maxLength={7}
-              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%]'
+              placeholder='뒷자리'
+              className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%] placeholder:text-gray-400 placeholder:text-sm'
             />
           </div>
         </div>
