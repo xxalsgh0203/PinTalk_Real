@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Map;
 
-public class function {
+public class Util {
 
 
     /**
@@ -17,8 +17,7 @@ public class function {
         ObjectMapper objectMapper = new ObjectMapper();
 
         Map<String, Object> result = objectMapper.convertValue(object, Map.class);
-            for(String key : result.keySet()){
-            System.out.println(key + " : " + key);
+        for(String key : result.keySet()){
         }
 
         return result;
