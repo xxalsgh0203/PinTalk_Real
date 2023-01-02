@@ -2,7 +2,7 @@ package com.pintalk.erp.model;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 public class ErpMember {
@@ -20,11 +20,12 @@ public class ErpMember {
     private String address2;
     private String job_key;
     private String erp_level;
-    private LocalDateTime reg_date;
-    private LocalDateTime update_date;
-    private int user_no;
+    private String reg_date;
+    private String update_date;
     private String status;
-    private int contract_no;
     private String password;
+    private int user_no;
+    private int erp_no;
+    private int contract_no;
 
 }
