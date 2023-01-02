@@ -22,8 +22,8 @@ public class UserMember {
     private String address1;
     private String address2;
     private String job_key;
-    private LocalDateTime reg_date;
-    private LocalDateTime update_date;
+    private String reg_date;
+    private String update_date;
     private String ssn;
     private String status;
     private int erp_no;

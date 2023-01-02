@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -28,8 +29,8 @@ public class ErpService {
         return result;
     }
 
-    public List getErpMemberOneList(ErpMember model) throws Exception{
-        List result = mapper.erpMemberOneList(model);
+    public HashMap getErpMemberOneList(ErpMember model) throws Exception{
+        HashMap result = mapper.erpMemberOneList(model);
         logger.debug("===================================================================");
         logger.debug("UpsService.getUpsList 실행쿼리 결과 값  : " + result);
         logger.debug("===================================================================");

@@ -35,8 +35,11 @@ public class ErpController {
     }
     //투자자 개인 리스트
     @RequestMapping("/erpMemberOneList")
-    public List getErpMemberOneList(ErpMember model) throws Exception {
-        List result = service.getErpMemberOneList(model);
+    public HashMap getErpMemberOneList(ErpMember model) throws Exception {
+
+
+
+        HashMap result = service.getErpMemberOneList(model);
 
         logger.debug("===================================================================");
         logger.debug("ErpController.getErpMemberOneList 리스트 결과값  : " + result);

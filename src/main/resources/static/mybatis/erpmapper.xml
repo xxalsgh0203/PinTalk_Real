@@ -5,32 +5,32 @@
 
     <select id="erpMemberList" resultType="ErpMember">
         SELECT ROWNUM AS RNUM
-             ,NO
-             ,ID
-             ,NAME
-             ,SSN
-             ,PHONE1
-             ,PHONE2
-             ,PHONE3
-             ,EMAIL
-             ,GENDER
-             ,ADDRESS1
-             ,ADDRESS2
-             ,JOB_KEY
-             ,ERP_LEVEL
-             ,REG_DATE
-             ,UPDATE_DATE
-             ,USER_NO
-             ,STATUS
-             ,SAVE_STATUS
-             ,CONTRACT_NO
-             ,PASSWORD
+             , A.NO
+             , A.ID
+             , A.NAME
+             , A.SSN
+             , A.PHONE1
+             , A.PHONE2
+             , A.PHONE3
+             , A.EMAIL
+             , A.GENDER
+             , A.ADDRESS1
+             , A.ADDRESS2
+             , A.JOB_KEY
+             , A.ERP_LEVEL
+             , TO_DATE(TO_CHAR(A.REG_DATE,'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS') AS REG_DATE
+             , TO_DATE(TO_CHAR(A.UPDATE_DATE,'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS') AS UPDATE_DATE
+             , A.USER_NO
+             , A.STATUS
+             , A.SAVE_STATUS
+             , A.CONTRACT_NO
+             , A.PASSWORD
          FROM ERP_MEMBER_INFO A
         WHERE 1=1
           AND A.SAVE_STATUS = 'Y'
     </select>
 
-    <select id="erpMemberOneList" resultType="ErpMember" parameterType="ErpMember">
+    <select id="erpMemberOneList" resultType="HashMap" parameterType="ErpMember">
         SELECT NO
               ,ID
               ,NAME
@@ -44,8 +44,8 @@
               ,ADDRESS2
               ,JOB_KEY
               ,ERP_LEVEL
-              ,REG_DATE
-              ,UPDATE_DATE
+              ,TO_DATE(TO_CHAR(REG_DATE,'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS') AS REG_DATE
+              ,TO_DATE(TO_CHAR(UPDATE_DATE,'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS') AS UPDATE_DATE
               ,USER_NO
               ,STATUS
               ,SAVE_STATUS
