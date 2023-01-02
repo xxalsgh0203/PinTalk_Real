@@ -4,18 +4,56 @@
 <mapper namespace="com.pintalk.erp.mapper.ErpMapper">
 
     <select id="erpMemberList" resultType="ErpMember">
-        SELECT *
-          FROM ERP_MEMBER_INFO
-         WHERE 1=1
-           AND STATUS = 'Y'
-      ORDER BY NO DESC
+        SELECT ROWNUM AS RNUM
+             ,NO
+             ,ID
+             ,NAME
+             ,SSN
+             ,PHONE1
+             ,PHONE2
+             ,PHONE3
+             ,EMAIL
+             ,GENDER
+             ,ADDRESS1
+             ,ADDRESS2
+             ,JOB_KEY
+             ,ERP_LEVEL
+             ,REG_DATE
+             ,UPDATE_DATE
+             ,USER_NO
+             ,STATUS
+             ,SAVE_STATUS
+             ,CONTRACT_NO
+             ,PASSWORD
+         FROM ERP_MEMBER_INFO A
+        WHERE 1=1
+          AND A.SAVE_STATUS = 'Y'
     </select>
 
     <select id="erpMemberOneList" resultType="ErpMember" parameterType="ErpMember">
-        SELECT *
+        SELECT NO
+              ,ID
+              ,NAME
+              ,SSN
+              ,PHONE1
+              ,PHONE2
+              ,PHONE3
+              ,EMAIL
+              ,GENDER
+              ,ADDRESS1
+              ,ADDRESS2
+              ,JOB_KEY
+              ,ERP_LEVEL
+              ,REG_DATE
+              ,UPDATE_DATE
+              ,USER_NO
+              ,STATUS
+              ,SAVE_STATUS
+              ,CONTRACT_NO
+              ,PASSWORD
         FROM ERP_MEMBER_INFO
         WHERE 1=1
-          AND STATUS = 'Y'
+          AND SAVE_STATUS = 'Y'
         <if test="no != null">
           AND NO = #{no}
         </if>

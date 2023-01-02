@@ -24,5 +24,9 @@ public class UpsMember {
     private String ssn;
     private String status;
     private int user_no;
+    private int ups_no;
 
+    private String ssn1;
+    private String ssn2;
+    private String type;
 }

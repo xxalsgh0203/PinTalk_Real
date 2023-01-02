@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.websocket.server.PathParam;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -22,6 +23,14 @@ public class UpsService {
 
     Logger logger = LoggerFactory.getLogger(getClass().getName());
 
+    //대출자 전체 리스트
+    public int getUpsMemberSeq() throws Exception {
+        int seq = mapper.getUpsMemberSeq();
+        logger.debug("===================================================================");
+        logger.debug("UpsService.getUpsMemberSeq 실행쿼리 결과 값  : " + seq);
+        logger.debug("===================================================================");
+        return seq;
+    }
     //대출자 전체 리스트
     public List<UpsMember> getUpsMemberList() throws Exception {
         List<UpsMember> result = mapper.upsMemberList();
@@ -37,27 +46,25 @@ public class UpsService {
 //        logger.debug("===================================================================");
 //        return result;
 //    }
-//
-//    public int getUpsModify( UpsMember model) throws Exception{
-//        int result = mapper.upsModify(model);
-//        logger.debug("===================================================================");
-//        logger.debug("UpsService.getUpsModify 실행쿼리 결과 값  : " + result);
-//        logger.debug("===================================================================");
-//        return result;
-//    }
-    public int getUpsInsert(UpsMember model) throws Exception{
+
+    public int getUpsInsert(HashMap model) throws Exception{
+
+        if (model.get("ssn1") == null && model.get("ssn2") == null) {
+            if (model.get("ssn") != null) {
+                String ssn = (String) model.get("ssn");
+                model.put("ssn1", ssn.substring(0, 6));
+                model.put("ssn2", ssn.substring(7, 13));
+            }
+        } else if(model.get("ssn") == null){
+            String ssn = (String) model.get("ssn1")+model.get("ssn2");
+            model.put("ssn",ssn);
+        }
+
         int result = mapper.upsMemberInsert(model);
         logger.debug("===================================================================");
         logger.debug("UpsService.getUpsModify 실행쿼리 결과 값  : " + result);
         logger.debug("===================================================================");
         return result;
     }
-//    public int getUpsDelete(UpsMember model) throws Exception{
-//        int result = mapper.upsDelete(model);
-//        logger.debug("===================================================================");
-//        logger.debug("UpsService.getUpsDelete 실행쿼리 결과 값  : " + result);
-//        logger.debug("===================================================================");
-//        return result;
-//    }
 
 }

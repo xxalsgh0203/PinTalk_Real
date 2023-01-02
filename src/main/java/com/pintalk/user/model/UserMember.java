@@ -14,9 +14,9 @@ public class UserMember {
     private String type;
     private String ssn1;
     private String ssn2;
-    private int phone1;
-    private int phone2;
-    private int phone3;
+    private String phone1;
+    private String phone2;
+    private String phone3;
     private String email;
     private String gender;
     private String address1;
