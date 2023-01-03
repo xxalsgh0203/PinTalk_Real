@@ -3,6 +3,11 @@
 
 <mapper namespace="com.pintalk.ups.mapper.UpsMapper">
 
+    <select id="getUpsMemberSeq" resultType="int">
+        SELECT UPSMEMBER_SEQ.NEXTVAL
+        FROM DUAL
+    </select>
+
     <select id="upsMemberList" resultType="UpsMember">
         SELECT NO
               ,ID
@@ -27,7 +32,7 @@
            AND STATUS = 'Y'
     </select>
 
-    <insert id="upsMemberInsert"  parameterType="UpsMember">
+    <insert id="upsMemberInsert"  parameterType="HashMap">
         INSERT INTO UPS_MEMBER_INFO(NO,ID,NAME,SSN,PHONE1,PHONE2,PHONE3,GENDER,REG_DATE,UPDATE_DATE,USER_NO,STATUS,PASSWORD
         <if test="email != null">
             , EMAIL
@@ -43,7 +48,7 @@
         </if>
         )
         VALUES (
-        UPSMEMBER_SEQ.NEXTVAL
+        #{ups_no}
         ,#{id}
         ,#{name}
         ,#{ssn}
@@ -53,20 +58,20 @@
         ,#{gender}
         ,SYSDATE
         ,SYSDATE
-        ,USERMEMBER_SEQ.CURRVAL
+        ,#{user_no}
         ,'Y'
         ,#{password}
         <if test="email != null">
-            , EMAIL = #{email}
+            , #{email}
         </if>
         <if test="address1 != null">
-            , ADDRESS1 = #{address1}
+            , #{address1}
         </if>
         <if test="address2 != null">
-            , ADDRESS2 = #{address2}
+            , #{address2}
         </if>
         <if test="job_key != null">
-            , JOB_KEY = #{job_key}
+            , #{job_key}
         </if>
         )
 

@@ -19,10 +19,14 @@ public class UpsMember {
     private String address1;
     private String address2;
     private String job_key;
-    private LocalDateTime reg_date;
-    private LocalDateTime update_date;
+    private String reg_date;
+    private String update_date;
     private String ssn;
     private String status;
     private int user_no;
+    private int ups_no;
 
+    private String ssn1;
+    private String ssn2;
+    private String type;
 }

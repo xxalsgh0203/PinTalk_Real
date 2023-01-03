@@ -16,21 +16,19 @@ public class UserController {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-
     @Autowired
     private UserService userService;
 
-//    public void setUserService(UserService userService) {this.userService = userService;}
-
     @GetMapping("/api/user")
     public List getUserMemberList() throws Exception {
-        System.out.println("getUserMemberList : start");
         List<UserMember> li_result = userService.userList();
-
         logger.debug("===================================================================");
         logger.debug("UserController.getUserMemberList 리스트 결과값  : " + li_result);
         logger.debug("===================================================================");
 
         return li_result;
     }
+
+
+
 }
