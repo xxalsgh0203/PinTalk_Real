@@ -8,7 +8,7 @@ const ErpMember = ({member}) => {
                 {member.gender === 'M' ? "남자" : "여자"}
             </td>
             <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.name}</td>
-            <td className="p-3 text-sm text-gray-700 whitespace-nowrap">0{member.phone1}-{member.phone2}-{member.phone3}</td>
+            <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.phone1}-{member.phone2}-{member.phone3}</td>
             <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.address1}</td>
             <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.email}</td>
             <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.erp_level}</td>
