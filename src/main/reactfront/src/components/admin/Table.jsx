@@ -63,34 +63,77 @@ const Table = ({erpMembers}) => {
 
     // //input box filters
     const filterMembers = () => {
+        // let finalFiltered =
+        //     newErpMembers
+        //         .filter(member => encodeURI(member.email.toString()) === encodeURI(filterState.email.toString()))
+        //         .filter(member => member.name.toString() === filterState.name.toString())
+        //         .filter(member => (member.phone1).toString()+ "-" + (member.phone2).toString() + "-" + (member.phone3).toString() === (filterState.phone).toString())
+        //         .filter(member => member.address.toString() === filterState.address.toString())
+        //         .filter(member => member.gender.toString() === filterState.gender.toString())
+        //         .filter(member => member.erp_level === filterState.erp_level)
+        //         .filter(member => member.reg_date.toString().slice(0,10) === filterState.reg_date.toString().slice(0,10))
+        //         .filter(member => member.update_date.toString().slice(0,10) === filterState.update_date.toString().slice(0,10))
 
-        // newErpMembers.map(e => console.log(e))
 
-        const emailFiltered =
-            newErpMembers.filter(member => encodeURI(member.email.toString()) === encodeURI(filterState.email.toString()))
+        let finalFiltered = erpMembers;
+        let genderFiltered;
 
-        const nameFiltered =
-            newErpMembers.filter(member => member.name.toString() === filterState.name.toString())
+        if(filterState.gender === ""){
+            genderFiltered = finalFiltered;
+        }
+        else{
+            genderFiltered = finalFiltered.filter(member => member.gender.toString() === filterState.gender.toString())
+        }
 
-        const phoneFiltered =
-            newErpMembers.filter(member => (member.phone1).toString()+ "-" + (member.phone2).toString() + "-" + (member.phone3).toString() === (filterState.phone).toString())
+        let nameFiltered;
+        if(filterState.name === ""){
+            nameFiltered = genderFiltered;
+        }
+        else{
+            nameFiltered = genderFiltered.filter(member => member.name.toString() === filterState.name.toString())
+        }
 
-        // const addressFiltered =
-        //     newErpMembers.filter(member => member.address.toString() === filterState.address.toString())
+        let phoneFiltered;
+        if(filterState.phone === ""){
+            phoneFiltered = nameFiltered;
+        }
+        else{
+            phoneFiltered = nameFiltered.filter(member => (member.phone1).toString()+ "-" + (member.phone2).toString() + "-" + (member.phone3).toString() === (filterState.phone).toString())
+        }
 
-        const genderFiltered =
-            newErpMembers.filter(member => member.gender.toString() === filterState.gender.toString())
+        let emailFiltered;
+        if(filterState.email === ""){
+            emailFiltered = phoneFiltered;
+        }
+        else{
+            emailFiltered = phoneFiltered.filter(member => encodeURI(member.email.toString()) === encodeURI(filterState.email.toString()))
+        }
 
-        const erp_levelFiltered =
-            newErpMembers.filter(member => member.erp_level === filterState.erp_level)
+        let erpLevelFilterd;
+        if(filterState.erp_level === ""){
+            erpLevelFilterd = emailFiltered;
+        }
+        else{
+            erpLevelFilterd = emailFiltered.filter(member => member.erp_level === filterState.erp_level)
+        }
 
-        const reg_dateFiltered =
-            newErpMembers.filter(member => member.reg_date.toString().slice(0,10) === filterState.reg_date.toString().slice(0,10))
+        let reg_dateFiltered;
+        if(filterState.reg_date === ""){
+            reg_dateFiltered = erpLevelFilterd;
+        }
+        else{
+            reg_dateFiltered = erpLevelFilterd.filter(member => member.reg_date.toString().slice(0,10) === filterState.reg_date.toString().slice(0,10))
+        }
 
-        const update_dateFiltered =
-            newErpMembers.filter(member => member.update_date.toString().slice(0,10) === filterState.update_date.toString().slice(0,10))
+        let update_dateFiltered;
+        if(filterState.update_date === ""){
+            update_dateFiltered = reg_dateFiltered;
+        }
+        else{
+            update_dateFiltered = reg_dateFiltered.filter(member => member.update_date.toString().slice(0,10) === filterState.update_date.toString().slice(0,10))
+        }
 
-        const finalFiltered = [...emailFiltered, ...nameFiltered, ...phoneFiltered, ...genderFiltered, ...erp_levelFiltered, ...reg_dateFiltered, ...update_dateFiltered]
+        finalFiltered = update_dateFiltered;
 
         return (finalFiltered);
 
