@@ -2,13 +2,13 @@ import Button from '../Button';
 import RegisterInput from './RegisterInput';
 import { useForm } from 'react-hook-form';
 import cls from '../../utils/cls';
-import ValidateForm from '../../utils/validateForm';
+import ValidateForm, {
+  NOT_NUMBER,
+  NUMBER,
+  NUMBER_ENGLISH,
+} from '../../utils/validateForm';
 import RegisterErrorMessage from './RegisterErrorMessage';
 
-const NUMBER = 'number';
-const NUMBER_ENGLISH = 'numberWithEnglish';
-const PASSWORD = 'password';
-const NOT_NUMBER = 'not_number';
 const validateForm = new ValidateForm();
 const RegisterForm = () => {
   const {
@@ -16,75 +16,45 @@ const RegisterForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
-    setError,
-    clearErrors,
   } = useForm({
-    reValidateMode: 'onChange',
+    mode: 'onChange',
   });
 
-  console.log(errors);
-
   const onValid = (data) => {
+    const email = data.frontEmail && data.frontEmail + '@' + data.backEmail;
+    const ssn = data.ssn1 + data.ssn2;
+    const phone1 = data.phone2 && data.phone3 ? data.phone1 : null;
+
     console.log({
-      email: data.frontEmail + '@' + data.backEmail,
-      address1: data.address1,
-      address2: data.address2,
-      gender: data.gender,
-      id: data.id || null,
-      job: data.job,
-      job_key: data.job_key,
-      name: data.name,
+      email: email || null,
+      address1: data.address1 || null,
+      address2: data.address2 || null,
+      gender: data.gender || null,
+      id: data.id,
+      job: data.job || null,
+      job_key: data.job_key || null,
+      name: data.name || null,
       password: data.password,
-      phone1: data.phone1 || null,
+      phone1,
       phone2: data.phone2 || null,
       phone3: data.phone3 || null,
-      ssn: data.ssn1 + data.ssn2,
+      ssn,
     });
     return {
-      email: data.frontEmail + '@' + data.backEmail,
-      address1: data.address1,
-      address2: data.address2,
-      gender: data.gender,
-      id: data.id || null,
-      job: data.job,
-      job_key: data.job_key,
-      name: data.name,
+      email: email || null,
+      address1: data.address1 || null,
+      address2: data.address2 || null,
+      gender: data.gender || null,
+      id: data.id,
+      job: data.job || null,
+      job_key: data.job_key || null,
+      name: data.name || null,
       password: data.password,
-      phone1: data.phone1 || null,
+      phone1,
       phone2: data.phone2 || null,
       phone3: data.phone3 || null,
-      ssn: data.ssn1 + data.ssn2 || null,
+      ssn,
     };
-  };
-
-  const inputValid = (event, name, type) => {
-    if (type === NOT_NUMBER) {
-      validateForm.notNumberValid(event);
-    }
-    if (type === NUMBER) {
-      validateForm.numberValid(event, name);
-    }
-    if (type === NUMBER_ENGLISH) {
-      BlankErrorMessage(event, name);
-      const checkedKorean = validateForm.koreanValid(event, name);
-      return (
-        checkedKorean?.message &&
-        setError(name, { message: checkedKorean?.message })
-      );
-    }
-    if (type === PASSWORD) {
-      BlankErrorMessage(event, name);
-      const checkedPassword = validateForm.checkPassword(event, name);
-      checkedPassword?.message &&
-        setError(name, { message: checkedPassword?.message });
-    }
-  };
-
-  const BlankErrorMessage = (event, name) => {
-    const checkBlank = validateForm.checkBlank(event, name);
-    checkBlank?.message
-      ? setError(name, { message: checkBlank?.message })
-      : clearErrors(name);
   };
 
   return (
@@ -97,11 +67,12 @@ const RegisterForm = () => {
           <div className='w-[50%]'>
             <RegisterInput
               register={register('name', {
-                onChange: (e) => inputValid(e, 'name', NOT_NUMBER),
+                onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
               })}
               errorMessage={errors.name?.message}
               htmlFor='name'
               label='이름'
+              maxLength={10}
             />
           </div>
 
@@ -125,12 +96,12 @@ const RegisterForm = () => {
               <label htmlFor='G'>
                 <input
                   type='radio'
-                  value='G'
-                  checked={watch('gender') === 'G'}
+                  value='W'
+                  checked={watch('gender') === 'W'}
                   {...register('gender')}
                   className={cls(
                     'appearance-none w-3 h-3 text-blue-600 bg-gray-100   rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-teal-700',
-                    watch('gender') === 'G' ? 'bg-teal-400' : ''
+                    watch('gender') === 'W' ? 'bg-teal-400' : ''
                   )}
                 />
                 <span className='text-sm'>여</span>
@@ -164,9 +135,9 @@ const RegisterForm = () => {
                   value: '6',
                   message: '6자리를 입력해주세요.',
                 },
-                onChange: (e) => inputValid(e, 'ssn1', NUMBER),
+                onChange: (e) => validateForm.inputValid(e, 'ssn1', NUMBER),
               })}
-              placeholder='앞자리'
+              placeholder='앞 6자리'
               type='text'
               maxLength={6}
               className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%] placeholder:text-gray-400 placeholder:text-sm text-sm'
@@ -183,11 +154,11 @@ const RegisterForm = () => {
                   value: '7',
                   message: '7자리를 입력해주세요.',
                 },
-                onChange: (e) => inputValid(e, 'ssn2', NUMBER),
+                onChange: (e) => validateForm.inputValid(e, 'ssn2', NUMBER),
               })}
               type='text'
               maxLength={7}
-              placeholder='뒷자리'
+              placeholder='뒤 7자리'
               className='bg-transparent border-gray-500 rounded-md p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 w-[50%] placeholder:text-gray-400 placeholder:text-sm text-sm'
             />
           </div>
@@ -212,11 +183,11 @@ const RegisterForm = () => {
             <select
               {...register('phone1', {
                 validate: (value) => {
-                  if (!watch('phone2') || !watch('phone3')) return;
+                  if (watch('phone2') === '' && watch('phone3') === '') return;
                   return value !== '' || '번호를 선택해주세요.';
                 },
               })}
-              className='bg-transparent p-1 outline-none text-sm border-2 border-gray-500 rounded-md'
+              className='bg-transparent p-1 outline-none text-sm border-2 border-gray-500 rounded-md text-yellow-400 w-[15%]'
             >
               <option value=''>선택</option>
               <option value='010'>010</option>
@@ -232,9 +203,13 @@ const RegisterForm = () => {
             </select>
             <input
               {...register('phone2', {
-                onChange: (e) => inputValid(e, 'phone2', NUMBER),
+                onChange: (e) => validateForm.inputValid(e, 'phone2', NUMBER),
+                minLength: {
+                  value: 4,
+                  message: '4자리를 입력해주세요',
+                },
                 validate: (value) => {
-                  if (!watch('phone1') || !watch('phone3')) return;
+                  if (watch('phone1') === '' && watch('phone3') === '') return;
                   return value !== '' || '번호를 선택해주세요.';
                 },
               })}
@@ -245,9 +220,13 @@ const RegisterForm = () => {
             <span>-</span>
             <input
               {...register('phone3', {
-                onChange: (e) => inputValid(e, 'phone3', NUMBER),
+                minLength: {
+                  value: 4,
+                  message: '4자리를 입력해주세요',
+                },
+                onChange: (e) => validateForm.inputValid(e, 'phone3', NUMBER),
                 validate: (value) => {
-                  if (!watch('phone1') || !watch('phone2')) return;
+                  if (watch('phone1') === '' && watch('phone2') === '') return;
                   return value !== '' || '번호를 선택해주세요.';
                 },
               })}
@@ -261,20 +240,35 @@ const RegisterForm = () => {
         <RegisterInput
           register={register('id', {
             required: '아이디를 입력해주세요.',
-            onChange: (e) => inputValid(e, 'id', NUMBER_ENGLISH),
+            onChange: (e) => {
+              validateForm.notSpecialString(e);
+              return validateForm.inputValid(e, 'id', NUMBER_ENGLISH);
+            },
           })}
           htmlFor='id'
           label='아이디'
-          necessary
+          necessary={true}
           errorMessage={errors.id?.message}
+          maxLength={15}
         />
         <RegisterInput
-          register={register(PASSWORD, {
+          register={register('password', {
             required: '비밀번호를 입력해주세요.',
-            onChange: (e) => inputValid(e, PASSWORD, PASSWORD),
+            validate: (value) => {
+              const checkSpecialString =
+                /^(?=.*[a-zA-Z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,15}$/;
+              return (
+                checkSpecialString.test(value) ||
+                '숫자,영문,특수문자(!~@#$%^*+=-)를 포함해주세요.'
+              );
+            },
+            minLength: {
+              value: 8,
+              message: '8자 이상 작성해주세요',
+            },
             maxLength: {
               value: 15,
-              message: '비밀 번호는 15자 이내로 작성해주세요',
+              message: '15자 이내로 작성해주세요',
             },
           })}
           necessary
@@ -286,6 +280,7 @@ const RegisterForm = () => {
           errorMessage={errors.password?.message}
           password
         />
+
         <RegisterInput
           register={register('address1')}
           htmlFor='address1'
@@ -311,7 +306,19 @@ const RegisterForm = () => {
           <div className='flex items-center space-x-4'>
             <input
               {...register('frontEmail', {
-                onChange: (e) => inputValid(e, 'frontEmail', NUMBER_ENGLISH),
+                minLength: {
+                  value: 3,
+                  message: '3자리 이상 입력해주세요.',
+                },
+                onChange: (e) => {
+                  validateForm.noSpecialString(e);
+                  return validateForm.inputValid(
+                    e,
+                    'frontEmail',
+                    NUMBER_ENGLISH
+                  );
+                },
+
                 validate: (value) => {
                   if (!watch('backEmail')) return;
                   return value !== '' || '이메일을 입력해주세요.';
@@ -329,13 +336,13 @@ const RegisterForm = () => {
                   return value !== '' || '이메일을 선택해주세요';
                 },
               })}
-              className='bg-transparent border-2 rounded-md px-1 border-gray-500 py-1 outline-none w-[20%] relative text-sm'
+              className='bg-transparent border-2 rounded-md px-1 border-gray-500 py-1 outline-none w-[20%] relative text-sm text-yellow-400'
             >
               <option value=''>선택</option>
-              <option value='naver'>naver</option>
-              <option value='nate'>nate</option>
-              <option value='gmail'>gmail</option>
-              <option value='daum'>daum</option>
+              <option value='naver.com'>naver.com</option>
+              <option value='nate.com'>nate.com</option>
+              <option value='gmail.com'>gmail.com</option>
+              <option value='daum.net'>daum.net</option>
             </select>
           </div>
         </div>
@@ -344,7 +351,7 @@ const RegisterForm = () => {
           <div className='w-[50%]'>
             <RegisterInput
               register={register('job_key', {
-                onChange: (e) => inputValid(e, 'job_key', NUMBER),
+                onChange: (e) => validateForm.inputValid(e, 'job_key', NUMBER),
                 minLength: {
                   value: 4,
                   message: '4자리 이상 입력해주세요.',
@@ -359,7 +366,10 @@ const RegisterForm = () => {
           <div className='w-[50%]'>
             <RegisterInput
               register={register('job', {
-                onChange: (e) => inputValid(e, 'job', NUMBER),
+                onChange: (e) => {
+                  const regex = /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\s|]/g;
+                  return (e.target.value = e.target.value.replace(regex, ''));
+                },
                 minLength: {
                   value: 6,
                   message: '6자리 이상 입력해주세요.',
@@ -368,7 +378,7 @@ const RegisterForm = () => {
               errorMessage={errors.job?.message}
               htmlFor='job'
               label='직업명'
-              maxLength={6}
+              maxLength={10}
             />
           </div>
         </div>

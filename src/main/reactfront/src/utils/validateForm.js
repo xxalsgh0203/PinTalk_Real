@@ -1,3 +1,7 @@
+/* eslint-disable no-useless-escape */
+export const NUMBER = 'number';
+export const NUMBER_ENGLISH = 'numberWithEnglish';
+export const NOT_NUMBER = 'not_number';
 export default class ValidateForm {
   notNumberValid = (e) => {
     return (e.target.value = e.target.value.replace(
@@ -6,53 +10,36 @@ export default class ValidateForm {
     ));
   };
 
-  numberValid = (e, name) => {
+  numberValid = (e) => {
     if (e.target.value.toString().length > 6) return;
-    this.checkBlank(e, name);
     return (e.target.value = e.target.value.replace(/\D/g, ''));
   };
 
   koreanValid = (e, name) => {
-    this.checkBlank(e, name);
-    const checkKorean = /[ㄱ-ㅎ|가-힣]/g;
-    const isIncludeKorean = checkKorean.test(e.target.value);
-    if (isIncludeKorean) {
-      return {
-        message: '영문 숫자만 가능합니다.',
-      };
-    }
+    this.notBlank(e, name);
+    const checkKorean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
+    return (e.target.value = e.target.value.replace(checkKorean, ''));
   };
 
-  checkPassword = (e, name) => {
-    this.checkBlank(e, name);
-    const checkSpecialString =
-      /^(?=.*[a-zA-Z])(?=.*[!~@#$%^*+=-])(?=.*[0-9]).{2,20}$/;
-    const isIncludeRegx = checkSpecialString.test(e.target.value);
-    if (!isIncludeRegx) {
-      return {
-        message: '숫자,영문,특수문자(!~@#$%^*+=-)를 포함해주세요.',
-      };
-    }
-    /*  if (e.target.value.includes(' ')) {
-      return {
-        message: '빈공간을 제거해주세요.',
-      };
-    } */
-    if (e.target.value.length < 8) {
-      return {
-        message: '8자이상 입력해주세요.',
-      };
-    }
-  };
-
-  checkBlank = (e) => {
+  notBlank = (e) => {
     const checkBlank = /\s/g;
-    const currentValue = e.target.value;
-    if (currentValue.match(checkBlank) || currentValue.includes(' ')) {
-      return {
-        message: '빈공간은 허용되지 않습니다.',
-      };
+    return (e.target.value = e.target.value.replace(checkBlank, ''));
+  };
+
+  notSpecialString = (e) => {
+    const regex = /[`~!@#$%^&*|\\\'\";:\?]/g;
+    return (e.target.value = e.target.value.replace(regex, ''));
+  };
+
+  inputValid = (event, name, type) => {
+    if (type === NOT_NUMBER) {
+      this.notNumberValid(event);
     }
-    return;
+    if (type === NUMBER) {
+      this.numberValid(event, name);
+    }
+    if (type === NUMBER_ENGLISH) {
+      this.koreanValid(event, name);
+    }
   };
 }
