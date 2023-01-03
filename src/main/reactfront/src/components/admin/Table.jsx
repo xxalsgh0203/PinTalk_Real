@@ -3,6 +3,8 @@ import Pagination from "./Pagination";
 import ErpMember from "./ErpMember";
 const Table = ({erpMembers}) => {
 
+    // 페이지 네이션을 위한 변수들
+
     let newErpMembers = erpMembers;
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
@@ -10,9 +12,9 @@ const Table = ({erpMembers}) => {
 
     //  --------------- 검색 기능 ---------------
 
-    const [isFiltered, toggleFilter] = useState(false);
-    const [FilteredMembers, updateFilteredMembers] = useState([]);
-    const [filterState, setFilterState] = useState({
+    const [isFiltered, toggleFilter] = useState(false); // 보여진 데이터들의 필터링 여부
+    const [FilteredMembers, updateFilteredMembers] = useState([]);  // 필터된 멤버들 state
+    const [filterState, setFilterState] = useState({    //  어떤 정보들을 검색할건지를 담고 있는 state
         gender: "",
         name: "",
         phone: "",
@@ -25,7 +27,7 @@ const Table = ({erpMembers}) => {
 
     const resetFilter = () => {
 
-        updateFilteredMembers(newErpMembers);
+        updateFilteredMembers(erpMembers);
         toggleFilter(false);
 
         setFilterState(
@@ -43,6 +45,7 @@ const Table = ({erpMembers}) => {
     }
 
     const handleChange = (e) => {
+
         setFilterState({
             ...filterState,
             [e.target.name] : e.target.value,
@@ -61,19 +64,36 @@ const Table = ({erpMembers}) => {
     // //input box filters
     const filterMembers = () => {
 
-        return newErpMembers.map(
+        // newErpMembers.map(e => console.log(e))
 
-            )
-                .filter(member => member.name.toString() === filterState.name.toString())
-                // .filter(member => {
-                //     member.gender.toString() === "남자" ? mem_gender = 'm' : mem_gender = 'g'
-                //     mem_gender === filterState.gender.toString()})
-                // .filter(member => member.phone.toString() === filterState.phone.toString())
-                // .filter(member => member.address.toString() === filterState.address.toString())
-                // .filter(member => member.email.toString() === filterState.email.toString())
-                // .filter(member => member.erp_level.toString() === filterState.erp_level.toString())
-                // .filter(member => member.reg_date === filterState.reg_date)
-                // .filter(member => member.update_date === filterState.update_date)
+        const emailFiltered =
+            newErpMembers.filter(member => encodeURI(member.email.toString()) === encodeURI(filterState.email.toString()))
+
+        const nameFiltered =
+            newErpMembers.filter(member => member.name.toString() === filterState.name.toString())
+
+        const phoneFiltered =
+            newErpMembers.filter(member => (member.phone1).toString()+ "-" + (member.phone2).toString() + "-" + (member.phone3).toString() === (filterState.phone).toString())
+
+        // const addressFiltered =
+        //     newErpMembers.filter(member => member.address.toString() === filterState.address.toString())
+
+        const genderFiltered =
+            newErpMembers.filter(member => member.gender.toString() === filterState.gender.toString())
+
+        const erp_levelFiltered =
+            newErpMembers.filter(member => member.erp_level === filterState.erp_level)
+
+        const reg_dateFiltered =
+            newErpMembers.filter(member => member.reg_date.toString().slice(0,10) === filterState.reg_date.toString().slice(0,10))
+
+        const update_dateFiltered =
+            newErpMembers.filter(member => member.update_date.toString().slice(0,10) === filterState.update_date.toString().slice(0,10))
+
+        const finalFiltered = [...emailFiltered, ...nameFiltered, ...phoneFiltered, ...genderFiltered, ...erp_levelFiltered, ...reg_dateFiltered, ...update_dateFiltered]
+
+        return (finalFiltered);
+
     }
 
     return (
@@ -96,8 +116,8 @@ const Table = ({erpMembers}) => {
                                     value={filterState.gender}
                                     onChange={handleChange}
                                 >
-                                    <option>남자</option>
-                                    <option>여자</option>
+                                    <option>M</option>
+                                    <option>G</option>
                                 </select>
                             </div>
 
@@ -199,7 +219,6 @@ const Table = ({erpMembers}) => {
                                 onClick={
                                     ()=>{
                                         resetFilter();
-                                        console.log(FilteredMembers);
                                     }
                                 }>>
                                 Reset
@@ -211,7 +230,7 @@ const Table = ({erpMembers}) => {
                                     ()=>{
                                         updateFilteredMembers(filterMembers);
                                         toggleFilter(true);
-                                        console.log(FilteredMembers);
+                                        console.log(filterState)
                                     }
                                 }>
                                 Search
@@ -252,6 +271,7 @@ const Table = ({erpMembers}) => {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
+
 
                         {
                             !isFiltered ?
