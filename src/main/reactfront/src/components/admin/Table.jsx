@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Pagination from "./Pagination";
 import ErpMember from "./ErpMember";
 const Table = ({erpMembers}) => {
@@ -75,14 +75,12 @@ const Table = ({erpMembers}) => {
         //         .filter(member => member.update_date.toString().slice(0,10) === filterState.update_date.toString().slice(0,10))
 
 
-        let finalFiltered = erpMembers;
         let genderFiltered;
-
         if(filterState.gender === ""){
-            genderFiltered = finalFiltered;
+            genderFiltered = erpMembers;
         }
         else{
-            genderFiltered = finalFiltered.filter(member => member.gender.toString() === filterState.gender.toString())
+            genderFiltered = erpMembers.filter(member => member.gender.toString() === filterState.gender.toString())
         }
 
         let nameFiltered;
@@ -133,7 +131,9 @@ const Table = ({erpMembers}) => {
             update_dateFiltered = reg_dateFiltered.filter(member => member.update_date.toString().slice(0,10) === filterState.update_date.toString().slice(0,10))
         }
 
-        finalFiltered = update_dateFiltered;
+        let finalFiltered = update_dateFiltered;
+
+        console.log(finalFiltered)
 
         return (finalFiltered);
 
@@ -271,9 +271,9 @@ const Table = ({erpMembers}) => {
                                 className="px-4 py-2 rounded-lg bg-blue-800 rounded-lg bg-opacity-50 hover:bg-stone-200 hover:bg-orange-500 font-bold text-white shadow-lg shadow-orange-200 transition ease-in-out duration-200 translate-10" id="search"
                                 onClick={
                                     ()=>{
-                                        updateFilteredMembers(filterMembers);
                                         toggleFilter(true);
-                                        console.log(filterState)
+                                        updateFilteredMembers(filterMembers);
+                                        console.log(isFiltered)
                                     }
                                 }>
                                 Search
