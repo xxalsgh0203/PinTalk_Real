@@ -28,6 +28,8 @@
     "key-spacing": "off",
     "no-empty": "off",
     "keyword-spacing": "off",
+    "space-before-blocks": "off",
+    "no-fallthrough": "off",
 
     "space-before-function-paren": "off",
     "react/react-in-jsx-scope": 0,
