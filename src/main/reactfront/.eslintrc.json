@@ -22,6 +22,14 @@
     "eol-last": "off",
     "no-unused-vars": "off",
     "camelcase": "off",
+    "no-multiple-empty-lines": "off",
+    "no-trailing-spaces": "off",
+    "no-empty-pattern": "off",
+    "key-spacing": "off",
+    "no-empty": "off",
+    "keyword-spacing": "off",
+
+    "space-before-function-paren": "off",
     "react/react-in-jsx-scope": 0,
     "react/prop-types": 0,
     "react/jsx-key": 0
