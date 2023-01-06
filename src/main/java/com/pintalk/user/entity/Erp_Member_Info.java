@@ -1,13 +1,19 @@
-package com.pintalk.erp.model;
+package com.pintalk.user.entity;
 
 import lombok.Data;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 @Data
-public class ErpMember {
+public class Erp_Member_Info {
 
-    private int no;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer no;
     private String id;
     private String name;
     private String ssn;
@@ -24,8 +30,7 @@ public class ErpMember {
     private String update_date;
     private String status;
     private String password;
-    private int user_no;
-    private int erp_no;
-    private int contract_no;
+    private Integer user_no;
+    private Integer contract_no;
 
 }
