@@ -45,7 +45,7 @@ public class UserController {
         List result_li = new ArrayList();
         HashMap result_hs = new HashMap();
 
-        result_hs.put("nowPage", nowPage);
+        result_hs.put("currPage", nowPage);
         result_hs.put("startPage", startPage);
         result_hs.put("endPage", endPage);
         result_li.add(list.getContent());
