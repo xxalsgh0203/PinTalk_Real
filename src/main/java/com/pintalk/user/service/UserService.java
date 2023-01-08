@@ -1,7 +1,7 @@
 package com.pintalk.user.service;
 
 import com.pintalk.user.repository.UserRepository;
-import com.pintalk.user.entity.Erp_Member_Info;
+import com.pintalk.user.entity.UserMember;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,11 @@ public class UserService {
     Logger log = LoggerFactory.getLogger(getClass().getName());
 
     //유저 전체 리스트
-    public Page<Erp_Member_Info> erpMemberList(Pageable pageable) throws Exception {
+    public Page<UserMember> userMemberList(Pageable pageable) throws Exception {
         return mapper.findAll(pageable);
     }
     //유저 개인 리스트
-    public Page<Erp_Member_Info> erpMemberSearchList(String searchKeyword, Pageable pageable) throws Exception {
+    public Page<UserMember> userMemberListSearch(String searchKeyword, Pageable pageable) throws Exception {
         return mapper.findErpMemberBy(searchKeyword,pageable);
     }
 
