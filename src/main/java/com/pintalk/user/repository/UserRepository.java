@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<UserMember, Integer> {
 
-    //투자자 전체 리스트
+    //유저 전체 리스트
     Page<UserMember> findErpMemberBy(String searchKeyword, Pageable pageable);
 
 }
