@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import HttpError from '../../service/httpError';
-
+import HttpError from '../../service/HttpError';
 export const getList = createAsyncThunk('GET_USER', async (_, thunkApi) => {
   try {
     const response = await axios.get(`/erpMemberList`);
@@ -25,7 +24,7 @@ const initialState = {
 
 export const userReducer = createSlice({
   name: 'userList',
-  initialState: initialState,
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getList.pending, (state) => {

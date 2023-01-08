@@ -2,10 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState, useRef } from 'react';
 import { getList } from '../../redux/slices/userReducer';
 import UserMembers from './userMembers';
-import useMembers from '../../hooks/useMembers';
 
 const Table = () => {
-  const { users: userList, loading, error } = useMembers();
+  const dispatch = useDispatch();
+  const userList = useSelector((state) => state.userReducer);
+
+  useEffect(() => {
+    dispatch(getList());
+  }, []);
 
   const [filterState, setFilterState] = useState({
     //  어떤 정보들을 검색할건지를 담고 있는 state
@@ -222,7 +226,7 @@ const Table = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {userList?.map((member) => {
+              {userList[0]?.map((member) => {
                 return <UserMembers member={member} key={member.id} />;
               })}
             </tbody>

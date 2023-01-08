@@ -1,6 +1,6 @@
 import React from "react";
 
-const ErpMember = ({member}) => {
+const UserMembers = ({member}) => {
     return (
         <tr className="bg-gray-50">
             <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.no}</td>
@@ -18,4 +18,4 @@ const ErpMember = ({member}) => {
     )
 }
 
-export default ErpMember;
+export default UserMembers;
