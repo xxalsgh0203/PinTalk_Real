@@ -30,8 +30,10 @@
     "keyword-spacing": "off",
     "space-before-blocks": "off",
     "no-fallthrough": "off",
-
     "space-before-function-paren": "off",
+    "spaced-comment": 0,
+    "no-unused-expressions": 0,
+
     "react/react-in-jsx-scope": 0,
     "react/prop-types": 0,
     "react/jsx-key": 0

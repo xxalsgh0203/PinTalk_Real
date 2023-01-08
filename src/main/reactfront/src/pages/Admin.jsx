@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Table from '../components/admin/Table';
 import Layout from '../components/layout/Layout';
-import { useDispatch, useSelector } from 'react-redux';
-import { getList } from '../redux/slices/userReducer';
+
+import useMembers from '../hooks/useMembers';
 
 const Admin = () => {
-  const dispatch = useDispatch();
-  const userList = useSelector((state) => state.userReducer);
-
-  useEffect(() => {
-    dispatch(getList());
-  }, []);
-
-  console.log(userList);
-
   return (
     <div>
       <Layout title="관리자">
