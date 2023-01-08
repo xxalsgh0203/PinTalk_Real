@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import HttpError from '../../service/HttpError';
-export const getList = createAsyncThunk('GET_USER', async (_, thunkApi) => {
+import HttpError from '../../service/httpError';
+
+export const getList = createAsyncThunk('GET_USER', async (page, thunkApi) => {
   try {
-    const response = await axios.get(`/erpMemberList`);
+    const response = await axios.get(`/userMemberList?page=${page}`);
     return response.data;
   } catch (error) {
     if (error instanceof Error) {
@@ -20,12 +21,17 @@ const initialState = {
   payload: [],
   loading: false,
   error: undefined,
+  page: 1,
 };
 
 export const userReducer = createSlice({
   name: 'userList',
   initialState,
-  reducers: {},
+  reducers: {
+    handlePage(state, action) {
+      state.page = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getList.pending, (state) => {
       state.loading = true;
