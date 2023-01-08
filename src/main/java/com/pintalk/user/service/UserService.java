@@ -18,11 +18,11 @@ public class UserService {
     Logger log = LoggerFactory.getLogger(getClass().getName());
 
     //유저 전체 리스트
-    public Page<UserMember> erpMemberList(Pageable pageable) throws Exception {
+    public Page<UserMember> userMemberList(Pageable pageable) throws Exception {
         return mapper.findAll(pageable);
     }
     //유저 개인 리스트
-    public Page<UserMember> erpMemberSearchList(String searchKeyword, Pageable pageable) throws Exception {
+    public Page<UserMember> userMemberListSearch(String searchKeyword, Pageable pageable) throws Exception {
         return mapper.findErpMemberBy(searchKeyword,pageable);
     }
 
