@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ import java.util.List;
 
 //@Controller
 @RestController
+@EnableJpaAuditing
 public class UserController {
 
     private Logger log = LoggerFactory.getLogger(getClass().getName());
@@ -55,5 +57,10 @@ public class UserController {
 
         System.out.println("result_li : " + result_li);
         return result_li;
+    }
+
+    //유저 신규 등록
+    public void getUserMemberInsert(UserMember userMember) throws Exception {
+        service.userMemberInsert(userMember);
     }
 }

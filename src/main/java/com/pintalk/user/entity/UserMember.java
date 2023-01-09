@@ -1,17 +1,23 @@
 package com.pintalk.user.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@ToString
 @Table(name = "USER_MEMBER")
-public class UserMember {
+public class UserMember extends BaseEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERMEMBER_GENERATOR")
+    @SequenceGenerator(name = "USERMEMBER_GENERATOR", sequenceName = "USERMEMBER_SEQ", initialValue = 1, allocationSize = 1)
     private Integer no;
+
     private String id;
     private String password;
     private String name;
@@ -26,9 +32,12 @@ public class UserMember {
     private String address1;
     private String address2;
     private String job_key;
-    private String reg_date;
-    private String update_date;
     private String status;
     private String save_status;
+
+
+//    private LocalDateTime reg_date;
+//    private LocalDateTime update_date;
+
 
 }
