@@ -18,6 +18,7 @@ public class Comcod extends BaseEntity {
     private Integer no;
 
     private String code_value;
+    private String code_group;
     private String code_name;
     private String username;
 }
