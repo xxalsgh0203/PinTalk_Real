@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../utils/validateForm';
 import RegisterErrorMessage from '../register/RegisterErrorMessage';
+import BirthPicker from './datePicker/BirthPicker';
+import DatePicker from './datePicker/DatePicker';
 
 const validateForm = new ValidateForm();
 const FilteringTable = () => {
@@ -75,6 +77,8 @@ const FilteringTable = () => {
             />
           </div>
 
+          <BirthPicker />
+
           <div className="flex flex-col">
             <label htmlFor="phone" className="font-medium text-sm text-stone-600">
               전화 번호
@@ -129,52 +133,8 @@ const FilteringTable = () => {
             />
           </div>
 
-          <div className="flex flex-col">
-            <div className="flex items-center">
-              <label htmlFor="erp_level" className="font-medium text-sm text-stone-600">
-                주민번호
-              </label>
-              {errors.ssn?.message && <RegisterErrorMessage errorMessage={errors.ssn?.message} />}
-            </div>
-            <input
-              {...register('ssn', {
-                onChange: (e) => validateForm.inputValid(e, 'ssn', NUMBER),
-                minLength: {
-                  value: 13,
-                  message: '13자리를 입력해주세요.',
-                },
-              })}
-              type="text"
-              placeholder="주민번호"
-              maxLength={13}
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <label htmlFor="reg_date" className="font-medium text-sm text-stone-600">
-              가입날짜
-            </label>
-            <input
-              {...register('reg_date')}
-              type="date"
-              id="reg_date"
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <label htmlFor="update_date" className="font-medium text-sm text-stone-600">
-              정보 변경날짜
-            </label>
-            <input
-              {...register('update_date')}
-              id="update_date"
-              type="date"
-              name="update_date"
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
-            />
-          </div>
+          <DatePicker label="가입날짜" />
+          <DatePicker label="정보변경" />
         </div>
 
         <div className="grid md:flex grid-cols-2 justify-end space-x-4 w-full mt-6">
@@ -199,3 +159,13 @@ const FilteringTable = () => {
   );
 };
 export default FilteringTable;
+
+/**
+ *     <input
+              {...register('update_date')}
+              id="update_date"
+              type="date"
+              name="update_date"
+              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
+            />
+ */
