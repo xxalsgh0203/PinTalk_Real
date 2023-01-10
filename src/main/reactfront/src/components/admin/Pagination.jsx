@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { userReducer } from '../../redux/slices/userReducer';
 
 function Pagination({ PageInfo }) {
-  const [page, setPage] = useState(1);
   const pageDispatch = useDispatch();
 
   const handlePrevPage = () => {
@@ -23,11 +22,8 @@ function Pagination({ PageInfo }) {
   };
 
   const handlePageChange = (p) => {
-    setPage(p);
     pageDispatch(userReducer.actions.handlePage(p));
   };
-
-  console.log(PageInfo);
 
   return (
     <>
