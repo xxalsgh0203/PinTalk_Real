@@ -33,6 +33,7 @@
     "space-before-function-paren": "off",
     "spaced-comment": 0,
     "no-unused-expressions": 0,
+    "array-callback-return": "off",
 
     "react/react-in-jsx-scope": 0,
     "react/prop-types": 0,

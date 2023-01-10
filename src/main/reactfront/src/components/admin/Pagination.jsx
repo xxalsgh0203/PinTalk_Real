@@ -2,37 +2,68 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { userReducer } from '../../redux/slices/userReducer';
 
-function Pagination({ total, limit }) {
+function Pagination({ PageInfo }) {
   const [page, setPage] = useState(1);
   const pageDispatch = useDispatch();
-  const numPages = Math.ceil(total / limit);
 
   const handlePrevPage = () => {
-    setPage((prev) => (prev - 1 === 0 ? 1 : prev - 1));
-    pageDispatch(userReducer.actions.handlePage(page));
+    pageDispatch(
+      userReducer.actions.handlePage(PageInfo?.currPage - 1 === 0 ? 1 : PageInfo?.currPage - 1),
+    );
   };
 
   const handleAfterPage = () => {
-    setPage((prev) => prev + 1);
-    pageDispatch(userReducer.actions.handlePage(page));
+    pageDispatch(
+      userReducer.actions.handlePage(
+        PageInfo?.currPage + 1 === PageInfo?.totalPage
+          ? PageInfo?.totalPage
+          : PageInfo?.currPage + 1,
+      ),
+    );
   };
+
+  const handlePageChange = (p) => {
+    setPage(p);
+    pageDispatch(userReducer.actions.handlePage(p));
+  };
+
+  console.log(PageInfo);
 
   return (
     <>
-      <nav className="flex justify-center items-center gap-4 m-16">
-        <button onClick={handlePrevPage}>&lt;</button>
-        {/* {Array(numPages)
+      <nav className="flex justify-center items-center m-16 rounded-1g font-[Poppins]">
+        <button
+          className="h-12 bg-bg-slate-400 text-slate-400
+               px-4 rounded-l-lg hover:bg-kukmin-dark-brown hover:text-white"
+          onClick={handlePrevPage}
+        >
+          &lt;
+        </button>
+        {Array(PageInfo?.totalPage)
           .fill()
           .map((_, i) => (
             <button
+              className={`h-12 text-kukmin-dark-brown text-2xl
+               w-12 hover:bg-kukmin-yellow2 hover:text-white${
+                 i + 1 === PageInfo?.currPage
+                   ? 'text-kukmin-dark-brown text-decoration-line: underline'
+                   : ''
+               }`}
               key={i + 1}
-              onClick={() => setPage(i + 1)}
-              aria-current={page === i + 1 ? 'page' : null}
+              onClick={() => handlePageChange(i + 1)}
             >
               {i + 1}
             </button>
-          ))} */}
-        <button onClick={handleAfterPage}>&gt;</button>
+          ))
+          .splice(0)
+          .slice(PageInfo?.startPage === 0 ? 0 : PageInfo?.startPage - 1, PageInfo?.endPage - 1)}
+        <button
+          className="h-12 bg-bg-slate-400 text-slate-400
+               px-4 rounded-r-lg hover:bg-kukmin-dark-brown hover:text-white"
+          onClick={handleAfterPage}
+        >
+          &gt;
+        </button>
       </nav>
     </>
   );

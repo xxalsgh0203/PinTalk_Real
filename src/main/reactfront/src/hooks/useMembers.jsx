@@ -15,7 +15,7 @@ const useMembers = () => {
     users: userList.payload[0],
     loading: userList.loading,
     error: userList.error,
-    totalPage: userList.payload[1]?.totalPage,
+    PageInfo: userList.payload[1],
   };
 };
 export default useMembers;
