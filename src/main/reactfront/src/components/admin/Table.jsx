@@ -25,10 +25,10 @@ const Table = () => {
                 <th className="w-16 p-3 text-sm font-semi-bold tracking-wide text-left">
                   주민등록번호
                 </th>
-                <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">
+                <th className="w-20 p-3 text-sm font-semi-bold tracking-wide text-left">
                   전화번호
                 </th>
-                <th className="w-40 p-3 text-sm font-semi-bold tracking-wide text-left">주소</th>
+                <th className="w-48 p-3 text-sm font-semi-bold tracking-wide text-left">주소</th>
                 <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">이메일</th>
                 <th className="w-24 p-3 text-sm font-semi-bold tracking-wide text-left">
                   가입날짜
