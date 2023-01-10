@@ -7,19 +7,27 @@ function Pagination({ PageInfo }) {
   const pageDispatch = useDispatch();
 
   const handlePrevPage = () => {
-    setPage((prev) => (prev - 1 === 0 ? 1 : prev - 1));
-    pageDispatch(userReducer.actions.handlePage(page));
+    pageDispatch(
+      userReducer.actions.handlePage(PageInfo?.currPage - 1 === 0 ? 1 : PageInfo?.currPage - 1),
+    );
   };
 
   const handleAfterPage = () => {
-    setPage(page + 1 === PageInfo?.totalPage ? PageInfo?.totalPage : page + 1);
-    pageDispatch(userReducer.actions.handlePage(page));
+    pageDispatch(
+      userReducer.actions.handlePage(
+        PageInfo?.currPage + 1 === PageInfo?.totalPage
+          ? PageInfo?.totalPage
+          : PageInfo?.currPage + 1,
+      ),
+    );
   };
 
   const handlePageChange = (p) => {
     setPage(p);
     pageDispatch(userReducer.actions.handlePage(p));
   };
+
+  console.log(PageInfo);
 
   return (
     <>
@@ -36,7 +44,7 @@ function Pagination({ PageInfo }) {
           .map((_, i) => (
             <button
               className={`h-12 text-kukmin-dark-brown text-2xl
-               w-12 ${
+               w-12 hover:bg-kukmin-yellow2 hover:text-white${
                  i + 1 === PageInfo?.currPage
                    ? 'text-kukmin-dark-brown text-decoration-line: underline'
                    : ''
@@ -51,7 +59,7 @@ function Pagination({ PageInfo }) {
           .slice(PageInfo?.startPage === 0 ? 0 : PageInfo?.startPage - 1, PageInfo?.endPage - 1)}
         <button
           className="h-12 bg-bg-slate-400 text-slate-400
-               px-4 rounded-r-lg hover:bg-kukmin-yellow2 hover:text-white"
+               px-4 rounded-r-lg hover:bg-kukmin-dark-brown hover:text-white"
           onClick={handleAfterPage}
         >
           &gt;
