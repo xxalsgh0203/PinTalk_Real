@@ -17,10 +17,10 @@ const UserMembers = ({ member }) => {
       <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.address1}</td>
       <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{member.email}</td>
       <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-        {member.reg_date.slice(0, 10)}
+        {member.reg_date?.slice(0, 10)}
       </td>
       <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-        {member.update_date.slice(0, 10)}
+        {member.update_date?.slice(0, 10)}
       </td>
     </tr>
   );
