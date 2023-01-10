@@ -1,4 +1,4 @@
-package com.pintalk.user.entity;
+package com.pintalk.common.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
