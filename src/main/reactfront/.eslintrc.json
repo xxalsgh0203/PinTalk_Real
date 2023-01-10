@@ -34,6 +34,7 @@
     "spaced-comment": 0,
     "no-unused-expressions": 0,
     "array-callback-return": "off",
+    "prefer-const": 0,
 
     "react/react-in-jsx-scope": 0,
     "react/prop-types": 0,
