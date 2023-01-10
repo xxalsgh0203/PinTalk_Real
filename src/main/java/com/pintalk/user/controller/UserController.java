@@ -38,15 +38,16 @@ public class UserController {
             list = service.userMemberListSearch(searchKeyWord, pageable);
         }
 
-        int nowPage = list.getPageable().getPageNumber() + 1;
-        int startPage = Math.max(nowPage - 4, 1);
-        int endPage = Math.min(nowPage + 9, list.getTotalPages());
+        int currPage = list.getPageable().getPageNumber();
         int totalPage = list.getTotalPages();
+        int startPage = (int)Math.floor(currPage / 10) * 10;
+        int endPage = Math.min(totalPage, startPage + 10);
+
 
         List result_li = new ArrayList();
         HashMap result_hs = new HashMap();
 
-        result_hs.put("currPage", nowPage);
+        result_hs.put("currPage", currPage);
         result_hs.put("startPage", startPage);
         result_hs.put("endPage", endPage);
         result_hs.put("totalPage", totalPage);
