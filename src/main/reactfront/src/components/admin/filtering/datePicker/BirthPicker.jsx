@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { calculateMonthWithDay, calculateYear } from '../../../utils/calculateDatePicker';
+import { calculateMonthWithDay, calculateYear } from '../../../../utils/calculateDatePicker';
 import BirthSelector from './BirthSelector';
 
 const BirthPicker = ({ register }) => {

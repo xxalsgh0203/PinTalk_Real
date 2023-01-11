@@ -1,6 +1,7 @@
 import { useForm, Controller } from 'react-hook-form';
-import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../utils/validateForm';
-import RegisterErrorMessage from '../register/RegisterErrorMessage';
+import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
+import FormErrorMessage from '../../FormErrorMessage';
+
 import BirthPicker from './datePicker/BirthPicker';
 import DatePicker from './datePicker/DatePicker';
 
@@ -115,9 +116,7 @@ const FilteringTable = () => {
               <label htmlFor="email" className="font-medium text-sm text-stone-600">
                 Email
               </label>
-              {errors.email?.message && (
-                <RegisterErrorMessage errorMessage={errors.email?.message} />
-              )}
+              {errors.email?.message && <FormErrorMessage errorMessage={errors.email?.message} />}
             </div>
             <input
               {...register('email', {

@@ -3,7 +3,7 @@ import RegisterInput from './RegisterInput';
 import { useForm } from 'react-hook-form';
 import cls from '../../utils/cls';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../utils/validateForm';
-import RegisterErrorMessage from './RegisterErrorMessage';
+import FormErrorMessage from '../FormErrorMessage';
 
 const validateForm = new ValidateForm();
 const RegisterForm = () => {
@@ -110,7 +110,7 @@ const RegisterForm = () => {
           <label className="flex text-sm" htmlFor="ssn">
             주민번호
             {errors.ssn1?.message || errors.ssn2?.message ? (
-              <RegisterErrorMessage errorMessage={errors.ssn1?.message || errors.ssn2?.message} />
+              <FormErrorMessage errorMessage={errors.ssn1?.message || errors.ssn2?.message} />
             ) : (
               <span className="ml-4 text-sm text-teal-200">필수정보입니다.</span>
             )}
@@ -160,7 +160,7 @@ const RegisterForm = () => {
           <label className="flex text-sm">
             핸드폰 번호
             {(errors.phone1?.message || errors.phone2?.message || errors.phone3?.message) && (
-              <RegisterErrorMessage
+              <FormErrorMessage
                 errorMessage={
                   errors.phone1?.message || errors.phone2?.message || errors.phone3?.message
                 }
@@ -274,7 +274,7 @@ const RegisterForm = () => {
           <label className="flex text-sm" htmlFor="email">
             이메일
             {(errors.frontEmail?.message || errors.backEmail?.message) && (
-              <RegisterErrorMessage
+              <FormErrorMessage
                 errorMessage={errors.frontEmail?.message || errors.backEmail?.message}
               />
             )}

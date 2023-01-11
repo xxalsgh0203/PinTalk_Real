@@ -1,4 +1,4 @@
-import cls from '../../../utils/cls';
+import cls from '../../../../utils/cls';
 
 const BirthSelector = ({ selectorRef, dateRange, title, yearSize, register }) => {
   const { ref, ...rest } = { ...register };
