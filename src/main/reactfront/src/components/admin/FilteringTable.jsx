@@ -139,7 +139,7 @@ const FilteringTable = () => {
 
         <div className="grid md:flex grid-cols-2 justify-end space-x-4 w-full mt-6">
           <button
-            className="px-4 py-2 text-white-800 bg-kukmin-yellow rounded-lg bg-opacity-50 hover:bg-stone-200 font-bold text-white shadow-lg shadow-stone-200 transition ease-in-out duration-200 translate-10"
+            className="px-4 py-2 text-white-800 bg-pintalk-light-yellow rounded-lg bg-opacity-50 hover:bg-stone-200 font-bold text-white shadow-lg shadow-stone-200 transition ease-in-out duration-200 translate-10"
             id="reset"
             type="button"
             onClick={handleResetValue}
@@ -148,7 +148,7 @@ const FilteringTable = () => {
           </button>
 
           <button
-            className="px-4 py-2 bg-kukmin-yellow2 rounded-lg bg-opacity-50  hover:bg-orange-500 font-bold text-white shadow-lg shadow-orange-200 transition ease-in-out duration-200 translate-10"
+            className="px-4 py-2 bg-pintalk-dark-yellow rounded-lg bg-opacity-50  hover:bg-orange-500 font-bold text-white shadow-lg shadow-orange-200 transition ease-in-out duration-200 translate-10"
             type="submit"
           >
             Search
