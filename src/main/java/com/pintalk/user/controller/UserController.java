@@ -64,12 +64,12 @@ public class UserController {
     }
 
     //유저상세 페이지
-    @GetMapping("/userMemberDetail")
-    public String userMemberDetail(Model model, Integer id) {
+    @GetMapping("/userMemberDetails/{id}")
+    public String userMemberDetail(Model model, @PathVariable Integer id) {
 
         model.addAttribute("UserMemberList",service.userMemberDetail(id));
 
-        return "/userMemberDetail";
+        return "/userMemberDetail/"+id;
     }
 
     //유저 신규 처리
