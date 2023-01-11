@@ -1,7 +1,8 @@
 import UserMembers from './userMembers';
 import useMembers from '../../hooks/useMembers';
-import FilteringTable from './FilteringTable';
+
 import Pagination from './Pagination';
+import FilteringTable from './filtering/FilteringTable';
 
 const Table = () => {
   const { users: userList, loading, error, PageInfo } = useMembers();

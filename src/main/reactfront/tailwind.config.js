@@ -6,7 +6,7 @@ module.exports = {
       colors: {
         'pintalk-light-yellow': '#ffcf0f;',
         'pintalk-dark-yellow': '#ffb700;',
-        'pintalk-dark-brown': '#5f584c;;',
+        'pintalk-dark-brown': '#5f584c;',
       },
     },
   },

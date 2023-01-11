@@ -13,3 +13,19 @@ input[type='number'] {
 body {
   @apply scrollbar-hide;
 }
+
+select {
+  @apply outline-gray-300;
+}
+
+input {
+  @apply border-0 outline-none;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__input-container input {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}

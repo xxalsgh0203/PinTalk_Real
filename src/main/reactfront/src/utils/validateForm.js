@@ -4,14 +4,10 @@ export const NUMBER_ENGLISH = 'numberWithEnglish';
 export const NOT_NUMBER = 'not_number';
 export default class ValidateForm {
   notNumberValid = (e) => {
-    return (e.target.value = e.target.value.replace(
-      /[^a-z|A-Z|ㄱ-ㅎ|가-힣]/g,
-      ''
-    ));
+    return (e.target.value = e.target.value.replace(/[^a-z|A-Z|ㄱ-ㅎ|가-힣]/g, ''));
   };
 
   numberValid = (e) => {
-    if (e.target.value.toString().length > 6) return;
     return (e.target.value = e.target.value.replace(/\D/g, ''));
   };
 
