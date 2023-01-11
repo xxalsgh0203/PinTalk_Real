@@ -1,9 +1,9 @@
 import { useForm, Controller } from 'react-hook-form';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
-import FormErrorMessage from '../../FormErrorMessage';
 
 import BirthPicker from './datePicker/BirthPicker';
 import DatePicker from './datePicker/DatePicker';
+import FilteringInput from './FilteringInput';
 
 const validateForm = new ValidateForm();
 const FilteringTable = () => {
@@ -64,75 +64,50 @@ const FilteringTable = () => {
             </select>
           </div>
 
-          <div className="flex flex-col">
-            <label htmlFor="name" className="font-medium text-sm text-stone-600">
-              이름
-            </label>
-            <input
-              {...register('name', {
-                onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
-              })}
-              id="name"
-              type="text"
-              maxLength={10}
-              placeholder="홍길동"
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
-            />
-          </div>
+          <FilteringInput
+            label="이름"
+            placeholder="홍길동"
+            max={10}
+            htmlFor="name"
+            register={register('name', {
+              onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
+            })}
+          />
 
           <BirthPicker register={register} />
 
-          <div className="flex flex-col">
-            <label htmlFor="phone" className="font-medium text-sm text-stone-600">
-              전화 번호
-            </label>
-            <input
-              {...register('phone', {
-                onChange: (e) => validateForm.inputValid(e, 'phone', NUMBER),
-              })}
-              type="text"
-              id="phone"
-              maxLength={15}
-              placeholder="010-0000-0000"
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
-            />
-          </div>
+          <FilteringInput
+            label="전화번호"
+            htmlFor="phone"
+            placeholder="010-0000-0000"
+            max={12}
+            register={register('phone', {
+              onChange: (e) => validateForm.inputValid(e, 'phone', NUMBER),
+            })}
+          />
 
-          <div className="flex flex-col">
-            <label htmlFor="address" className="font-medium text-sm text-stone-600">
-              주소
-            </label>
-            <input
-              {...register('address')}
-              type="text"
-              name="address"
-              placeholder="서울특별시 둔촌동 12로"
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
-            />
-          </div>
+          <FilteringInput
+            label="주소"
+            htmlFor="address"
+            placeholder="서울특별시 둔촌동 12로"
+            register={register('address')}
+          />
 
-          <div className="flex flex-col justify-center">
-            <div className="flex items-center">
-              <label htmlFor="email" className="font-medium text-sm text-stone-600">
-                Email
-              </label>
-              {errors.email?.message && <FormErrorMessage errorMessage={errors.email?.message} />}
-            </div>
-            <input
-              {...register('email', {
-                onChange: (e) => {
-                  return validateForm.inputValid(e, 'email', NUMBER_ENGLISH);
-                },
-                validate: (value) => {
-                  return value.includes('@') || '@을 포함시켜주세요.';
-                },
-              })}
-              type="text"
-              maxLength={15}
-              placeholder="pintalk@example.com"
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
-            />
-          </div>
+          <FilteringInput
+            label="Email"
+            htmlFor="email"
+            placeholder="pintalk@example.com"
+            errorMessage={errors.email?.message}
+            max={15}
+            register={register('email', {
+              onChange: (e) => {
+                return validateForm.inputValid(e, 'email', NUMBER_ENGLISH);
+              },
+              validate: (value) => {
+                return value.includes('@') || '@을 포함시켜주세요.';
+              },
+            })}
+          />
 
           <DatePicker label="가입날짜" Controller={Controller} control={control} name="reg_date" />
           <DatePicker
@@ -165,13 +140,3 @@ const FilteringTable = () => {
   );
 };
 export default FilteringTable;
-
-/**
- *     <input
-              {...register('update_date')}
-              id="update_date"
-              type="date"
-              name="update_date"
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
-            />
- */
