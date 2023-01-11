@@ -17,15 +17,13 @@ function Pagination({ PageInfo }) {
     pageDispatch(userReducer.actions.handlePage(p));
   };
 
-  console.log(PageInfo);
-
   return (
     <>
       <nav className="flex justify-center items-center m-16 rounded-1g font-[Poppins]">
         <button
           className="h-9 bg-bg-slate-400 text-slate-400
                px-4 rounded-l-lg hover:bg-pintalk-dark-brown hover:text-white"
-          disabled={PageInfo?.currPage - 1 === 0 ? true : false}
+          disabled={PageInfo?.currPage - 1 === 0}
           onClick={handlePrevPage}
         >
           &lt;
@@ -51,7 +49,7 @@ function Pagination({ PageInfo }) {
         <button
           className="h-9 bg-bg-slate-400 text-slate-400
                px-4 rounded-r-lg hover:bg-pintalk-dark-brown hover:text-white"
-          disabled={PageInfo?.currPage + 1 === PageInfo?.totalPage ? true : false}
+          disabled={PageInfo?.currPage + 1 === PageInfo?.totalPage}
           onClick={handleAfterPage}
         >
           &gt;
