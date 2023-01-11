@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../utils/validateForm';
 import RegisterErrorMessage from '../register/RegisterErrorMessage';
 import BirthPicker from './datePicker/BirthPicker';
@@ -11,6 +11,7 @@ const FilteringTable = () => {
     handleSubmit,
     reset,
     formState: { errors },
+    control,
   } = useForm({
     defaultValues: {
       gender: 'M',
@@ -18,7 +19,6 @@ const FilteringTable = () => {
       phone: '',
       address: '',
       email: '',
-      erp_level: '',
       reg_date: '',
       update_date: '',
     },
@@ -32,8 +32,10 @@ const FilteringTable = () => {
       phone: '',
       address: '',
       email: '',
-      erp_level: '',
       reg_date: '',
+      year: '',
+      day: '',
+      month: '',
       update_date: '',
     }));
   };
@@ -77,7 +79,7 @@ const FilteringTable = () => {
             />
           </div>
 
-          <BirthPicker />
+          <BirthPicker register={register} />
 
           <div className="flex flex-col">
             <label htmlFor="phone" className="font-medium text-sm text-stone-600">
@@ -133,8 +135,13 @@ const FilteringTable = () => {
             />
           </div>
 
-          <DatePicker label="가입날짜" />
-          <DatePicker label="정보변경" />
+          <DatePicker label="가입날짜" Controller={Controller} control={control} name="reg_date" />
+          <DatePicker
+            label="정보 변경날짜"
+            Controller={Controller}
+            control={control}
+            name="update_date"
+          />
         </div>
 
         <div className="grid md:flex grid-cols-2 justify-end space-x-4 w-full mt-6">
