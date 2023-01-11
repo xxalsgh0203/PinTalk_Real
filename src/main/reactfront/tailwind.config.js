@@ -4,9 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'kukmin-yellow': '#ffcf0f;',
-        'kukmin-yellow2': '#ffb700;',
-        'kukmin-dark-brown': '#5f584c;;',
+        'pintalk-light-yellow': '#ffcf0f;',
+        'pintalk-dark-yellow': '#ffb700;',
+        'pintalk-dark-brown': '#5f584c;;',
       },
     },
   },

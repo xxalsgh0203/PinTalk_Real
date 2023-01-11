@@ -6,31 +6,26 @@ function Pagination({ PageInfo }) {
   const pageDispatch = useDispatch();
 
   const handlePrevPage = () => {
-    pageDispatch(
-      userReducer.actions.handlePage(PageInfo?.currPage - 1 === 0 ? 1 : PageInfo?.currPage - 1),
-    );
+    pageDispatch(userReducer.actions.handlePage(PageInfo?.currPage - 1));
   };
 
   const handleAfterPage = () => {
-    pageDispatch(
-      userReducer.actions.handlePage(
-        PageInfo?.currPage + 1 === PageInfo?.totalPage
-          ? PageInfo?.totalPage
-          : PageInfo?.currPage + 1,
-      ),
-    );
+    pageDispatch(userReducer.actions.handlePage(PageInfo?.currPage + 1));
   };
 
   const handlePageChange = (p) => {
     pageDispatch(userReducer.actions.handlePage(p));
   };
 
+  console.log(PageInfo);
+
   return (
     <>
       <nav className="flex justify-center items-center m-16 rounded-1g font-[Poppins]">
         <button
-          className="h-12 bg-bg-slate-400 text-slate-400
-               px-4 rounded-l-lg hover:bg-kukmin-dark-brown hover:text-white"
+          className="h-9 bg-bg-slate-400 text-slate-400
+               px-4 rounded-l-lg hover:bg-pintalk-dark-brown hover:text-white"
+          disabled={PageInfo?.currPage - 1 === 0 ? true : false}
           onClick={handlePrevPage}
         >
           &lt;
@@ -39,10 +34,10 @@ function Pagination({ PageInfo }) {
           .fill()
           .map((_, i) => (
             <button
-              className={`h-12 text-kukmin-dark-brown text-2xl
-               w-12 hover:bg-kukmin-yellow2 hover:text-white${
+              className={`h-9 text-1xl rounded
+               w-12 hover:bg-pintalk-dark-brown hover:text-white${
                  i + 1 === PageInfo?.currPage
-                   ? 'text-kukmin-dark-brown text-decoration-line: underline'
+                   ? 'text-white text-decoration-line: underline bg-pintalk-dark-brown'
                    : ''
                }`}
               key={i + 1}
@@ -54,8 +49,9 @@ function Pagination({ PageInfo }) {
           .splice(0)
           .slice(PageInfo?.startPage === 0 ? 0 : PageInfo?.startPage - 1, PageInfo?.endPage - 1)}
         <button
-          className="h-12 bg-bg-slate-400 text-slate-400
-               px-4 rounded-r-lg hover:bg-kukmin-dark-brown hover:text-white"
+          className="h-9 bg-bg-slate-400 text-slate-400
+               px-4 rounded-r-lg hover:bg-pintalk-dark-brown hover:text-white"
+          disabled={PageInfo?.currPage + 1 === PageInfo?.totalPage ? true : false}
           onClick={handleAfterPage}
         >
           &gt;
