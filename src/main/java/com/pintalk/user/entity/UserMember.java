@@ -1,17 +1,18 @@
 package com.pintalk.user.entity;
 
+import com.pintalk.common.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "USERMEMBER")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString
 @Table(name = "USER_MEMBER")
-public class UserMember extends BaseEntity{
+public class UserMember extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERMEMBER_GENERATOR")
@@ -34,10 +35,6 @@ public class UserMember extends BaseEntity{
     private String job_key;
     private String status;
     private String save_status;
-
-
-//    private LocalDateTime reg_date;
-//    private LocalDateTime update_date;
 
 
 }
