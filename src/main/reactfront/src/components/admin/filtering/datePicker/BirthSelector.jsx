@@ -5,21 +5,25 @@ const BirthSelector = ({ selectorRef, dateRange, title, yearSize, register }) =>
 
   return (
     <select
+      defaultValue=""
       ref={(e) => {
         ref(e);
         selectorRef.current = e;
       }}
       {...rest}
-      className={cls('py-1 absolute z-10 shadow-sm', yearSize ? 'w-[24%]' : 'w-[20%]')}
+      className={cls(
+        'py-1 absolute z-10 shadow-sm bg-clip-padding',
+        yearSize ? 'w-[24%]' : 'w-[20%]',
+      )}
       onFocus={() => {
         selectorRef.current.size = 10;
       }}
     >
-      <option className="" value="">
+      <option disabled value="">
         {title}
       </option>
       {dateRange.map((item) => (
-        <option value={item} key={item}>
+        <option className="hover:bg-gray-50 cursor-pointer" value={item} key={item}>
           {item}
         </option>
       ))}

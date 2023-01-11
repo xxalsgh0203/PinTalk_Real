@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/esm/locale';
@@ -14,8 +14,9 @@ const DatePicker = ({ label, Controller, control, name }) => {
     e.preventDefault();
     monthHandler();
   };
+
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-[30%]">
       <label htmlFor="reg_date" className="font-medium text-sm text-stone-600 mb-2">
         {label}
       </label>
@@ -49,7 +50,7 @@ const DatePicker = ({ label, Controller, control, name }) => {
                   </button>
                   <div className="custom-react-datepicker__select-item relative space-x-16">
                     <select
-                      className="w-14 mr-2 absolute"
+                      className="w-14 mr-2 absolute bg-transparent cursor-pointer"
                       ref={yearRef}
                       value={getYear(date)}
                       onFocus={() => {
@@ -64,7 +65,11 @@ const DatePicker = ({ label, Controller, control, name }) => {
                       }}
                     >
                       {years.map((option) => (
-                        <option key={option} value={option}>
+                        <option
+                          className="bg-white hover:bg-gray-50 cursor-pointer"
+                          key={option}
+                          value={option}
+                        >
                           {option}
                         </option>
                       ))}
@@ -74,7 +79,7 @@ const DatePicker = ({ label, Controller, control, name }) => {
                   <div className="custom-react-datepicker__select-item relative space-x-12">
                     {/* 월 선택 select box */}
                     <select
-                      className="w-10 mr-2 absolute"
+                      className="w-10 mr-2 absolute bg-transparent cursor-pointer"
                       ref={monthRef}
                       value={months[getMonth(date)]}
                       onFocus={() => {
@@ -89,7 +94,11 @@ const DatePicker = ({ label, Controller, control, name }) => {
                       }}
                     >
                       {months.map((option) => (
-                        <option key={option} value={option}>
+                        <option
+                          className="bg-white hover:bg-gray-50 cursor-pointer"
+                          key={option}
+                          value={option}
+                        >
                           {option}
                         </option>
                       ))}

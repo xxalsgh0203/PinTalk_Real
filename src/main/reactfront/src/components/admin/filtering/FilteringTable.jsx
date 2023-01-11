@@ -56,7 +56,7 @@ const FilteringTable = () => {
             </label>
             <select
               name="gender"
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
+              className="mt-2 block w-[30%] rounded-md border-gray-300 shadow-sm"
               {...register('gender')}
             >
               <option>M</option>
@@ -79,7 +79,7 @@ const FilteringTable = () => {
           <FilteringInput
             label="전화번호"
             htmlFor="phone"
-            placeholder="010-0000-0000"
+            placeholder="핸드폰번호"
             max={12}
             register={register('phone', {
               onChange: (e) => validateForm.inputValid(e, 'phone', NUMBER),
@@ -94,7 +94,7 @@ const FilteringTable = () => {
           />
 
           <FilteringInput
-            label="Email"
+            label="이메일"
             htmlFor="email"
             placeholder="pintalk@example.com"
             errorMessage={errors.email?.message}

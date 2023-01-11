@@ -18,7 +18,6 @@ const BirthPicker = ({ register }) => {
           <BirthSelector
             register={register('year', {
               onChange: (e) => {
-                console.log(e);
                 e.target.size = 1;
                 e.target.blur();
               },

@@ -15,7 +15,7 @@ const FilteringInput = ({ register, label, placeholder, max, min, htmlFor, error
         type="text"
         maxLength={max}
         placeholder={placeholder}
-        className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
+        className="mt-2 block w-full rounded-md  shadow-sm focus:ring-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-opacity-50"
       />
     </div>
   );
