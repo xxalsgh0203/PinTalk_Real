@@ -34,10 +34,6 @@ const router = createBrowserRouter([
         element: <Admin />,
       },
       {
-        path: '/admin/memberDetails',
-        element: <MemberDetails />,
-      },
-      {
         path: '/admin/memberDetails/:id',
         element: <MemberDetails />,
       },

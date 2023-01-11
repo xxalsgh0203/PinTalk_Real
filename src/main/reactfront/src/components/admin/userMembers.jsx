@@ -1,17 +1,21 @@
 import React from 'react';
 
 const UserMembers = ({ member }) => {
-  const handleNewWindow = (member) => {
-    window.open(`http://localhost:3000/admin/MemberDetails${member.id}`, '_blank', 'fullscreen');
+  const handleNewWindow = (e) => {
+    window.open(
+      `http://localhost:3000/admin/MemberDetails/${e.target.innerHTML}`,
+      '_blank',
+      'fullscreen',
+    );
   };
 
   return (
     <tr className="bg-gray-50 hover:text-white hover:bg-pintalk-dark-brown cursor-pointer">
-      <td className="p-3 text-sm whitespace-nowrap">{member.no}</td>
-      <td className="p-3 text-sm whitespace-nowrap">{member.gender === 'M' ? '남자' : '여자'}</td>
       <td className="p-3 text-sm whitespace-nowrap" onClick={handleNewWindow}>
-        {member.name}
+        {member.no}
       </td>
+      <td className="p-3 text-sm whitespace-nowrap">{member.gender === 'M' ? '남자' : '여자'}</td>
+      <td className="p-3 text-sm whitespace-nowrap">{member.name}</td>
       <td className="p-3 text-sm whitespace-nowrap">
         {member.ssn1}-{member.ssn2}
       </td>
