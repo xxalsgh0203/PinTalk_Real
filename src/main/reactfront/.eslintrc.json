@@ -36,6 +36,7 @@
     "no-unneeded-ternary": "off",
     "array-callback-return": "off",
     "prefer-const": 0,
+    "no-useless-return": 0,
 
     "react/react-in-jsx-scope": 0,
     "react/prop-types": 0,

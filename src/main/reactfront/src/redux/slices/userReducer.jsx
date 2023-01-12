@@ -2,9 +2,11 @@ import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import HttpError from '../../service/httpError';
 
-export const getList = createAsyncThunk('GET_USER', async (page, thunkApi) => {
+export const getList = createAsyncThunk('GET_USER', async (arg, thunkApi) => {
   try {
-    const response = await axios.get(`/userMemberList?page=${page}`);
+    const response = await axios.get(
+      `/userMemberList?page=${arg.page}${arg.status ? `&status=${arg.status}` : ''}`,
+    );
     return response.data;
   } catch (error) {
     if (error instanceof Error) {
@@ -22,6 +24,7 @@ const initialState = {
   loading: false,
   error: undefined,
   page: 1,
+  status: null,
 };
 
 export const userReducer = createSlice({
@@ -30,6 +33,9 @@ export const userReducer = createSlice({
   reducers: {
     handlePage(state, action) {
       state.page = action.payload;
+    },
+    handleStatus(state, action) {
+      state.status = action.payload;
     },
   },
   extraReducers: (builder) => {
