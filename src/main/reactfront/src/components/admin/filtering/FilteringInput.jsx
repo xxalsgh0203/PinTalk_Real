@@ -4,7 +4,7 @@ const FilteringInput = ({ register, label, placeholder, max, min, htmlFor, error
   return (
     <div className="flex flex-col">
       <div className="flex items-center">
-        <label htmlFor={htmlFor} className="font-medium text-sm text-stone-600">
+        <label htmlFor={htmlFor} className="text-sm font-bold">
           {label}
         </label>
         {errorMessage && <FormErrorMessage errorMessage={errorMessage} />}
