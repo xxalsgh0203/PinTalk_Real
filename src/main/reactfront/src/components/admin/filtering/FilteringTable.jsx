@@ -1,15 +1,18 @@
-import { useEffect } from 'react';
+import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import useMutation from '../../../hooks/useMutation';
 import { userReducer } from '../../../redux/slices/userReducer';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
 
 import BirthPicker from './datePicker/BirthPicker';
 import DatePicker from './datePicker/DatePicker';
+import FilteringButton from './FilteringButton';
 import FilteringInput from './FilteringInput';
 
 const validateForm = new ValidateForm();
 const FilteringTable = () => {
+  const { error, loading, mutation } = useMutation('/userMemberList');
   const userStatusDispatch = useDispatch();
   const {
     register,
@@ -48,8 +51,9 @@ const FilteringTable = () => {
     }));
   };
 
-  const onValid = (data) => {
-    console.log('onValid', data);
+  const onValid = async (data) => {
+    if (data === {} || !data) return;
+    mutation(data);
     return data;
   };
 
@@ -145,22 +149,10 @@ const FilteringTable = () => {
           </div>
         </div>
 
-        <div className="grid md:flex grid-cols-2 justify-end space-x-4 w-full mt-6">
-          <button
-            className="px-4 py-2 text-white-800 bg-pintalk-light-yellow rounded-lg bg-opacity-50 hover:bg-stone-200 font-bold text-white shadow-lg shadow-stone-200 transition ease-in-out duration-200 translate-10"
-            id="reset"
-            type="button"
-            onClick={handleResetValue}
-          >
-            Reset
-          </button>
-
-          <button
-            className="px-4 py-2 bg-pintalk-dark-yellow rounded-lg bg-opacity-50  hover:bg-orange-500 font-bold text-white shadow-lg shadow-orange-200 transition ease-in-out duration-200 translate-10"
-            type="submit"
-          >
-            Search
-          </button>
+        <div className="flex justify-end space-x-2 mt-10">
+          <FilteringButton type="button" title="create" />
+          <FilteringButton type="button" handleButton={handleResetValue} title="reset" />
+          <FilteringButton type="submit" title="submit" />
         </div>
       </div>
     </form>
