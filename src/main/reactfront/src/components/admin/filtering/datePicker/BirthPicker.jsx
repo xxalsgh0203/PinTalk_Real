@@ -12,7 +12,7 @@ const BirthPicker = ({ register }) => {
 
   return (
     <div className="mb-6 md:mb-0 relative">
-      <label className="text-sm">생년월일</label>
+      <label className="text-sm font-bold">생년월일</label>
       <div className="relative w-full flex space-x-32 sm:space-x-44 md:space-x-28 lg:space-x-24 2xl:space-x-28">
         <div className="mr-10 sm:mr-4 md:mr-6 lg:mr-4 xl:mr-4 2xl:mr-6">
           <BirthSelector
