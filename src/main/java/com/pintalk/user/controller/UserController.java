@@ -33,16 +33,11 @@ public class UserController {
 
         Page<UserMember> list = null;
 
-
-
-
         if (searchKeyWord == null) {
             list = service.userMemberList(pageable);
         } else {
             list = service.userMemberListSearch(searchKeyWord, pageable);
         }
-
-
 
         int currPage = list.getPageable().getPageNumber();
         int totalPage = list.getTotalPages();
@@ -64,17 +59,17 @@ public class UserController {
     }
 
     //유저상세 페이지
-    @GetMapping("/userMemberDetails/{id}")
-    public String userMemberDetail(Model model, @PathVariable Integer id) {
+    @GetMapping("/userMemberDetail/{id}")
+    public List userMemberDetail(Model model, @PathVariable Integer id) {
 
-        model.addAttribute("UserMemberList",service.userMemberDetail(id));
+        List<UserMember> result_li = new ArrayList();
 
-        return "/userMemberDetail/"+id;
+        result_li.add(service.userMemberDetail(id));
+        return result_li;
     }
 
     //유저 신규 처리
     @GetMapping("/userMemberInsert")
-    //유저 신규 등록
     public void getUserMemberInsert(UserMember userMember) {
         service.userMemberInsert(userMember);
     }
