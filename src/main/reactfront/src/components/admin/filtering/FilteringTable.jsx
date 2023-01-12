@@ -1,5 +1,7 @@
+import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import useMutation from '../../../hooks/useMutation';
 import { userReducer } from '../../../redux/slices/userReducer';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
 
@@ -10,6 +12,7 @@ import FilteringInput from './FilteringInput';
 
 const validateForm = new ValidateForm();
 const FilteringTable = () => {
+  const { error, loading, mutation } = useMutation('/userMemberList');
   const userStatusDispatch = useDispatch();
   const {
     register,
@@ -48,8 +51,9 @@ const FilteringTable = () => {
     }));
   };
 
-  const onValid = (data) => {
-    console.log('onValid', data);
+  const onValid = async (data) => {
+    if (data === {} || !data) return;
+    mutation(data);
     return data;
   };
 
