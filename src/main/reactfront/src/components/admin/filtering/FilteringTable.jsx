@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { userReducer } from '../../../redux/slices/userReducer';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
 
 import BirthPicker from './datePicker/BirthPicker';
@@ -7,11 +10,13 @@ import FilteringInput from './FilteringInput';
 
 const validateForm = new ValidateForm();
 const FilteringTable = () => {
+  const userStatusDispatch = useDispatch();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
+    watch,
     control,
   } = useForm({
     defaultValues: {
@@ -22,6 +27,7 @@ const FilteringTable = () => {
       email: '',
       reg_date: '',
       update_date: '',
+      user_state: 'all',
     },
   });
 
@@ -38,12 +44,19 @@ const FilteringTable = () => {
       day: '',
       month: '',
       update_date: '',
+      user_state: '',
     }));
   };
 
   const onValid = (data) => {
     console.log('onValid', data);
     return data;
+  };
+
+  const handleUserStatus = (e) => {
+    const value = e.target.value;
+    if (value === '' || value === 'all') return;
+    userStatusDispatch(userReducer.actions.handleStatus(value));
   };
 
   return (
@@ -116,6 +129,20 @@ const FilteringTable = () => {
             control={control}
             name="update_date"
           />
+
+          <div className="flex flex-col w-[50%] shadow-sm">
+            <label className="font-medium text-sm text-stone-600 mb-2">회원가입 상태</label>
+            <select
+              {...register('user_state', {
+                onChange: (e) => handleUserStatus(e),
+              })}
+            >
+              <option value="all">전체</option>
+              <option value="A">승인</option>
+              <option value="P">대기</option>
+              <option value="W">탈퇴</option>
+            </select>
+          </div>
         </div>
 
         <div className="grid md:flex grid-cols-2 justify-end space-x-4 w-full mt-6">

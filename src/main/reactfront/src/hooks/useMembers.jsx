@@ -6,10 +6,16 @@ const useMembers = () => {
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.userReducer);
   const pageSelector = useSelector((state) => state.userReducer);
+  const userStatusSelector = useSelector((state) => state.userReducer);
+
+  const userListArgs = {
+    page: pageSelector.page,
+    status: userStatusSelector.status,
+  };
 
   useEffect(() => {
-    dispatch(getList(pageSelector.page));
-  }, [pageSelector.page]);
+    dispatch(getList(userListArgs));
+  }, [pageSelector.page, userStatusSelector.status]);
 
   return {
     users: userList.payload[0],

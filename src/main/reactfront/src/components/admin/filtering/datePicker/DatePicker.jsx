@@ -16,7 +16,7 @@ const DatePicker = ({ label, Controller, control, name }) => {
   };
 
   return (
-    <div className="flex flex-col w-[30%]">
+    <div className="flex flex-col w-[50%]">
       <label htmlFor="reg_date" className="font-medium text-sm text-stone-600 mb-2">
         {label}
       </label>
