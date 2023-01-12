@@ -2,8 +2,8 @@ import React from 'react';
 
 const UserMembers = ({ member }) => {
   const handleNewWindow = (e) => {
-    window.open(
-      `http://localhost:3000/admin/MemberDetails/${e.target.innerHTML}`,
+    let newWindow = window.open(
+      `http://localhost:3000/userMemberDetail/${e.target.innerHTML}`,
       '_blank',
       'fullscreen',
     );

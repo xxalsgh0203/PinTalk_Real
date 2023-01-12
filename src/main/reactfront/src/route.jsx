@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Investment from './pages/Investment';
 import Loan from './pages/Loan';
 import Admin from './pages/Admin';
-import MemberDetails from './components/admin/MemberDetails';
+import UserMemberDetail from './components/admin/UserMemberDetail';
 
 const router = createBrowserRouter([
   {
@@ -34,8 +34,8 @@ const router = createBrowserRouter([
         element: <Admin />,
       },
       {
-        path: '/admin/memberDetails/:id',
-        element: <MemberDetails />,
+        path: 'userMemberDetail/:id',
+        element: <UserMemberDetail />,
       },
     ],
   },
