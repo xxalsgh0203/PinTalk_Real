@@ -52,6 +52,7 @@ const FilteringTable = () => {
   };
 
   const onValid = async (data) => {
+    console.log(data);
     if (data === {} || !data) return;
     mutation(data);
     return data;
