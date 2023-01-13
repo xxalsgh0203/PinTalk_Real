@@ -3,6 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import useMutation from '../../../hooks/useMutation';
 import { userReducer } from '../../../redux/slices/userReducer';
+import { openNewWindow } from '../../../utils/openNewWindow';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
 import FormErrorMessage from '../../FormErrorMessage';
 
@@ -75,6 +76,10 @@ const FilteringTable = () => {
     userStatusDispatch(userReducer.actions.handleStatus(value));
   };
 
+  const openWindow = () => {
+    openNewWindow('admin/insertUser');
+  };
+
   return (
     <form onSubmit={handleSubmit(onValid)} className="flex flex-col pb-5">
       <div className="bg-white p-6 rounded-xl">
@@ -89,8 +94,8 @@ const FilteringTable = () => {
               {...register('gender')}
             >
               <option value="">성별</option>
-              <option value="M">M</option>
-              <option value="W">W</option>
+              <option value="남">남</option>
+              <option value="여">여</option>
             </select>
           </div>
 
@@ -106,6 +111,7 @@ const FilteringTable = () => {
 
           <BirthPicker register={register} />
 
+          {/* 핸드폰 */}
           <div className="space-y-2">
             <label className="flex text-sm font-bold">
               핸드폰 번호
@@ -175,52 +181,6 @@ const FilteringTable = () => {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="flex text-sm font-bold" htmlFor="ssn">
-              주민번호
-              {(errors.ssn1?.message || errors.ssn2?.message) && (
-                <FormErrorMessage errorMessage={errors.ssn1?.message || errors.ssn2?.message} />
-              )}
-            </label>
-            <div className="flex items-center space-x-4">
-              <input
-                {...register('ssn1', {
-                  maxLength: {
-                    value: 6,
-                    message: '6자리까지 입력해주세요.',
-                  },
-                  minLength: {
-                    value: '6',
-                    message: '6자리를 입력해주세요.',
-                  },
-                  onChange: (e) => validateForm.inputValid(e, 'ssn1', NUMBER),
-                })}
-                placeholder="앞 6자리"
-                type="text"
-                maxLength={6}
-                className="bg-transparent rounded-md outline-none transition-all w-[30%] shadow-sm"
-              />
-              <span>-</span>
-              <input
-                {...register('ssn2', {
-                  maxLength: {
-                    value: 7,
-                    message: '6자리까지 입력해주세요.',
-                  },
-                  minLength: {
-                    value: '7',
-                    message: '7자리를 입력해주세요.',
-                  },
-                  onChange: (e) => validateForm.inputValid(e, 'ssn2', NUMBER),
-                })}
-                type="text"
-                maxLength={7}
-                placeholder="뒤 7자리"
-                className="bg-transparent rounded-md outline-none transition-all w-[30%] md:w-[40%] shadow-sm"
-              />
-            </div>
-          </div>
-
           <FilteringInput
             label="주소"
             htmlFor="address"
@@ -228,6 +188,7 @@ const FilteringTable = () => {
             register={register('address')}
           />
 
+          {/* 이메일 */}
           <div className="space-x-2">
             <label className="flex text-sm mb-2 font-bold" htmlFor="email">
               이메일
@@ -303,7 +264,7 @@ const FilteringTable = () => {
         </div>
 
         <div className="flex justify-end space-x-2 mt-10">
-          <FilteringButton type="button" title="등록" />
+          <FilteringButton type="button" title="등록" handleButton={openWindow} />
           <FilteringButton type="button" handleButton={handleResetValue} title="리셋" />
           <FilteringButton type="submit" title="검색" />
         </div>
