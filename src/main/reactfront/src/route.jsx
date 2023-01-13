@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import Register from './components/register/Register';
 
 import Home from './pages/Home';
 import Investment from './pages/Investment';
 import Loan from './pages/Loan';
 import Admin from './pages/Admin';
 import UserMemberDetail from './components/admin/UserMemberDetail';
+import RegisterForm from './components/admin/register/RegisterForm';
 
 const router = createBrowserRouter([
   {
@@ -26,8 +26,8 @@ const router = createBrowserRouter([
         element: <Loan />,
       },
       {
-        path: 'loan/apply',
-        element: <Register />,
+        path: 'admin/insertUser',
+        element: <RegisterForm />,
       },
       {
         path: 'admin',
