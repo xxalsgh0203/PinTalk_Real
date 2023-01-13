@@ -1,8 +1,10 @@
-import cls from '../../../utils/cls';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
-import FormErrorMessage from '../../FormErrorMessage';
 import RegisterInput from './RegisterInput';
 import { useForm } from 'react-hook-form';
+import Gender from './Gender';
+import SSN from './SSN';
+import Phone from './Phone';
+import Email from './Email';
 
 const validateForm = new ValidateForm();
 const RegisterForm = () => {
@@ -75,163 +77,28 @@ const RegisterForm = () => {
               />
             </div>
 
-            <div className="w-[50%]">
-              <span className="block mb-2 text-sm">성별</span>
-              <div className="flex items-center space-x-4">
-                <label className="text-sm" htmlFor="M">
-                  <input
-                    type="radio"
-                    value="M"
-                    {...register('gender')}
-                    checked={watch('gender') === 'M'}
-                    className={cls(
-                      'appearance-none w-3 h-3 bg-gray-100 rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow',
-                      watch('gender') === 'M' ? 'bg-pintalk-dark-yellow' : '',
-                    )}
-                  />
-                  <span className="text-sm">남</span>
-                </label>
-
-                <label htmlFor="G">
-                  <input
-                    type="radio"
-                    value="W"
-                    checked={watch('gender') === 'W'}
-                    {...register('gender')}
-                    className={cls(
-                      'appearance-none w-3 h-3 bg-gray-100   rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow',
-                      watch('gender') === 'W' ? 'bg-pintalk-dark-yellow' : '',
-                    )}
-                  />
-                  <span className="text-sm">여</span>
-                </label>
-              </div>
-            </div>
+            <Gender register={register('gender')} watch={watch} />
           </div>
 
           <div className="space-y-2">
-            <div className="space-y-2">
-              <label className="flex text-sm" htmlFor="ssn">
-                주민번호
-                {errors.ssn1?.message || errors.ssn2?.message ? (
-                  <FormErrorMessage errorMessage={errors.ssn1?.message || errors.ssn2?.message} />
-                ) : (
-                  <span className="ml-4 text-sm text-pintalk-dark-yellow">필수정보입니다.</span>
-                )}
-              </label>
-              <div className="flex items-center space-x-4">
-                <input
-                  {...register('ssn1', {
-                    required: '주민번호를 입력해주세요',
-                    maxLength: {
-                      value: 6,
-                      message: '6자리까지 입력해주세요.',
-                    },
-                    minLength: {
-                      value: '6',
-                      message: '6자리를 입력해주세요.',
-                    },
-                    onChange: (e) => validateForm.inputValid(e, 'ssn1', NUMBER),
-                  })}
-                  placeholder="앞 6자리"
-                  type="text"
-                  maxLength={6}
-                  className="bg-transparent  rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%] placeholder:text-gray-400 placeholder:text-sm"
-                />
-                <span>-</span>
-                <input
-                  {...register('ssn2', {
-                    required: '주민번호를 입력해주세요',
-                    maxLength: {
-                      value: 7,
-                      message: '6자리까지 입력해주세요.',
-                    },
-                    minLength: {
-                      value: '7',
-                      message: '7자리를 입력해주세요.',
-                    },
-                    onChange: (e) => validateForm.inputValid(e, 'ssn2', NUMBER),
-                  })}
-                  type="text"
-                  maxLength={7}
-                  placeholder="뒤 7자리"
-                  className="bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%] placeholder:text-gray-400 placeholder:text-sm"
-                />
-              </div>
-            </div>
+            <SSN
+              register={register}
+              validateForm={validateForm}
+              errorMessage={errors.ssn1?.message || errors.ssn2?.message}
+            />
             <button className="text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
               주민번호 확인
             </button>
           </div>
 
-          <div className="space-y-2">
-            <label className="flex text-sm">
-              핸드폰 번호
-              {(errors.phone1?.message || errors.phone2?.message || errors.phone3?.message) && (
-                <FormErrorMessage
-                  errorMessage={
-                    errors.phone1?.message || errors.phone2?.message || errors.phone3?.message
-                  }
-                />
-              )}
-            </label>
-            <div className="flex items-center space-x-4">
-              <select
-                {...register('phone1', {
-                  validate: (value) => {
-                    if (watch('phone2') === '' && watch('phone3') === '') return;
-                    return value !== '' || '번호를 선택해주세요.';
-                  },
-                })}
-                className="bg-transparent p-1 outline-none text-sm border-2 rounded-md text-pintalk-dark-brown w-[15%]"
-              >
-                <option value="">선택</option>
-                <option value="010">010</option>
-                <option value="011">011</option>
-                <option value="012">012</option>
-                <option value="013">013</option>
-                <option value="014">014</option>
-                <option value="015">015</option>
-                <option value="016">016</option>
-                <option value="017">017</option>
-                <option value="018">018</option>
-                <option value="019">019</option>
-              </select>
-              <input
-                {...register('phone2', {
-                  onChange: (e) => validateForm.inputValid(e, 'phone2', NUMBER),
-                  minLength: {
-                    value: 4,
-                    message: '4자리를 입력해주세요',
-                  },
-                  validate: (value) => {
-                    if (watch('phone1') === '' && watch('phone3') === '') return;
-                    return value !== '' || '번호를 선택해주세요.';
-                  },
-                })}
-                type="text"
-                maxLength={4}
-                className="bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]"
-              />
-              <span>-</span>
-              <input
-                {...register('phone3', {
-                  minLength: {
-                    value: 4,
-                    message: '4자리를 입력해주세요',
-                  },
-                  onChange: (e) => validateForm.inputValid(e, 'phone3', NUMBER),
-                  validate: (value) => {
-                    if (watch('phone1') === '' && watch('phone2') === '') return;
-                    return value !== '' || '번호를 선택해주세요.';
-                  },
-                })}
-                type="text"
-                maxLength={4}
-                className="bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]"
-              />
-            </div>
-          </div>
+          <Phone
+            register={register}
+            watch={watch}
+            validateForm={validateForm}
+            errorMessage={
+              errors.phone1?.message || errors.phone2?.message || errors.phone3?.message
+            }
+          />
 
           <div className="space-y-2">
             <RegisterInput
@@ -291,54 +158,12 @@ const RegisterForm = () => {
           <RegisterInput register={register('address1')} htmlFor="address1" label="사는곳" />
           <RegisterInput register={register('address2')} htmlFor="address2" label="상세주소" />
 
-          <div className="space-y-2">
-            <label className="flex text-sm" htmlFor="email">
-              이메일
-              {(errors.frontEmail?.message || errors.backEmail?.message) && (
-                <FormErrorMessage
-                  errorMessage={errors.frontEmail?.message || errors.backEmail?.message}
-                />
-              )}
-            </label>
-            <div className="flex items-center space-x-4">
-              <input
-                {...register('frontEmail', {
-                  minLength: {
-                    value: 3,
-                    message: '3자리 이상 입력해주세요.',
-                  },
-                  onChange: (e) => {
-                    validateForm.notSpecialString(e);
-                    return validateForm.inputValid(e, 'frontEmail', NUMBER_ENGLISH);
-                  },
-
-                  validate: (value) => {
-                    if (!watch('backEmail')) return;
-                    return value !== '' || '이메일을 입력해주세요.';
-                  },
-                })}
-                maxLength={15}
-                type="text"
-                className="bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]"
-              />
-              <span>@</span>
-              <select
-                {...register('backEmail', {
-                  validate: (value) => {
-                    if (!watch('frontEmail')) return;
-                    return value !== '' || '이메일을 선택해주세요';
-                  },
-                })}
-                className="bg-transparent border-2 rounded-md px-1 py-1 outline-none w-[20%] relative text-pintalk-dark-brown"
-              >
-                <option value="">선택</option>
-                <option value="naver.com">naver.com</option>
-                <option value="nate.com">nate.com</option>
-                <option value="gmail.com">gmail.com</option>
-                <option value="daum.net">daum.net</option>
-              </select>
-            </div>
-          </div>
+          <Email
+            register={register}
+            watch={watch}
+            validateForm={validateForm}
+            errorMessage={errors.frontEmail?.message || errors.backEmail?.message}
+          />
 
           <div className="flex items-center space-x-6">
             <div className="w-[50%]">
