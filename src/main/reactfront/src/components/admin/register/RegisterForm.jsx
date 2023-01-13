@@ -1,9 +1,9 @@
-import Button from '../Button';
+import cls from '../../../utils/cls';
+import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
+import Button from '../../Button';
+import FormErrorMessage from '../../FormErrorMessage';
 import RegisterInput from './RegisterInput';
 import { useForm } from 'react-hook-form';
-import cls from '../../utils/cls';
-import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../utils/validateForm';
-import FormErrorMessage from '../FormErrorMessage';
 
 const validateForm = new ValidateForm();
 const RegisterForm = () => {
