@@ -1,10 +1,14 @@
-import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import useMutation from '../../../hooks/useMutation';
 import { userReducer } from '../../../redux/slices/userReducer';
 import { openNewWindow } from '../../../utils/openNewWindow';
-import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
+import ValidateForm, {
+  isFormData,
+  NOT_NUMBER,
+  NUMBER,
+  NUMBER_ENGLISH,
+} from '../../../utils/validateForm';
 import FormErrorMessage from '../../FormErrorMessage';
 
 import BirthPicker from './datePicker/BirthPicker';
@@ -23,23 +27,7 @@ const FilteringTable = () => {
     formState: { errors },
     watch,
     control,
-  } = useForm({
-    defaultValues: {
-      gender: '',
-      name: '',
-      phone1: '',
-      phone2: '',
-      phone3: '',
-      address: '',
-      frontEmail: '',
-      backEmail: '',
-      reg_date: '',
-      update_date: '',
-      user_state: 'all',
-      ssn1: '',
-      ssn2: '',
-    },
-  });
+  } = useForm();
 
   const handleResetValue = () => {
     reset((formValue) => ({
@@ -64,15 +52,18 @@ const FilteringTable = () => {
   };
 
   const onValid = async (data) => {
+    console.log('=======================');
     console.log(data);
-    if (data === {} || !data) return;
-    mutation(data);
-    return data;
+    console.log('=======================');
+    if (isFormData(data)) {
+      mutation(data);
+    }
+    return;
   };
 
   const handleUserStatus = (e) => {
     const value = e.target.value;
-    if (value === '' || value === 'all') return;
+    if (value === '') return;
     userStatusDispatch(userReducer.actions.handleStatus(value));
   };
 
@@ -255,7 +246,7 @@ const FilteringTable = () => {
                 onChange: (e) => handleUserStatus(e),
               })}
             >
-              <option value="all">전체</option>
+              <option value="">전체</option>
               <option value="A">승인</option>
               <option value="P">대기</option>
               <option value="W">탈퇴</option>
