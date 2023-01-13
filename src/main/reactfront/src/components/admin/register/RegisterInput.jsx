@@ -18,18 +18,21 @@ const RegisterInput = ({
         {errorMessage ? (
           <FormErrorMessage errorMessage={errorMessage} />
         ) : (
-          <span className="ml-4 text-sm text-teal-200">{necessary ? '필수정보입니다.' : null}</span>
+          <span className="ml-4 text-sm text-pintalk-dark-yellow">
+            {necessary ? '필수정보입니다.' : null}
+          </span>
         )}
       </label>
+
       <div className="relative">
         <input
           {...register}
           type={type}
           maxLength={maxLength}
-          className="bg-transparent border-gray-500 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all focus:border-teal-600 text-sm"
+          className="bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all"
         />
         {password && (
-          <div className="flex items-center absolute h-full top-0 bottom-0 right-2 px-1 text-center text-gray-300">
+          <div className="flex items-center absolute h-full top-0 bottom-0 right-2 px-1 text-center">
             <AiOutlineLock size={18} />
           </div>
         )}
