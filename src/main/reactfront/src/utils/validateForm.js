@@ -39,3 +39,13 @@ export default class ValidateForm {
     }
   };
 }
+
+export const isFormData = (data) => {
+  const dataKeys = Object.keys(data);
+  const checkData = dataKeys.map((item) => {
+    if (data[item] === '' || data[item] === undefined) return 'notData';
+    return 'okData';
+  });
+  const checkFormData = checkData.includes('okData');
+  return checkFormData;
+};

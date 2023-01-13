@@ -1,9 +1,14 @@
-import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import useMutation from '../../../hooks/useMutation';
 import { userReducer } from '../../../redux/slices/userReducer';
-import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
+import { openNewWindow } from '../../../utils/openNewWindow';
+import ValidateForm, {
+  isFormData,
+  NOT_NUMBER,
+  NUMBER,
+  NUMBER_ENGLISH,
+} from '../../../utils/validateForm';
 import FormErrorMessage from '../../FormErrorMessage';
 
 import BirthPicker from './datePicker/BirthPicker';
@@ -22,23 +27,7 @@ const FilteringTable = () => {
     formState: { errors },
     watch,
     control,
-  } = useForm({
-    defaultValues: {
-      gender: '',
-      name: '',
-      phone1: '',
-      phone2: '',
-      phone3: '',
-      address: '',
-      frontEmail: '',
-      backEmail: '',
-      reg_date: '',
-      update_date: '',
-      user_state: 'all',
-      ssn1: '',
-      ssn2: '',
-    },
-  });
+  } = useForm();
 
   const handleResetValue = () => {
     reset((formValue) => ({
@@ -63,16 +52,23 @@ const FilteringTable = () => {
   };
 
   const onValid = async (data) => {
+    console.log('=======================');
     console.log(data);
-    if (data === {} || !data) return;
-    mutation(data);
-    return data;
+    console.log('=======================');
+    if (isFormData(data)) {
+      mutation(data);
+    }
+    return;
   };
 
   const handleUserStatus = (e) => {
     const value = e.target.value;
-    if (value === '' || value === 'all') return;
+    if (value === '') return;
     userStatusDispatch(userReducer.actions.handleStatus(value));
+  };
+
+  const openWindow = () => {
+    openNewWindow('admin/insertUser');
   };
 
   return (
@@ -89,8 +85,8 @@ const FilteringTable = () => {
               {...register('gender')}
             >
               <option value="">성별</option>
-              <option value="M">M</option>
-              <option value="W">W</option>
+              <option value="남">남</option>
+              <option value="여">여</option>
             </select>
           </div>
 
@@ -106,6 +102,7 @@ const FilteringTable = () => {
 
           <BirthPicker register={register} />
 
+          {/* 핸드폰 */}
           <div className="space-y-2">
             <label className="flex text-sm font-bold">
               핸드폰 번호
@@ -175,52 +172,6 @@ const FilteringTable = () => {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="flex text-sm font-bold" htmlFor="ssn">
-              주민번호
-              {(errors.ssn1?.message || errors.ssn2?.message) && (
-                <FormErrorMessage errorMessage={errors.ssn1?.message || errors.ssn2?.message} />
-              )}
-            </label>
-            <div className="flex items-center space-x-4">
-              <input
-                {...register('ssn1', {
-                  maxLength: {
-                    value: 6,
-                    message: '6자리까지 입력해주세요.',
-                  },
-                  minLength: {
-                    value: '6',
-                    message: '6자리를 입력해주세요.',
-                  },
-                  onChange: (e) => validateForm.inputValid(e, 'ssn1', NUMBER),
-                })}
-                placeholder="앞 6자리"
-                type="text"
-                maxLength={6}
-                className="bg-transparent rounded-md outline-none transition-all w-[30%] shadow-sm"
-              />
-              <span>-</span>
-              <input
-                {...register('ssn2', {
-                  maxLength: {
-                    value: 7,
-                    message: '6자리까지 입력해주세요.',
-                  },
-                  minLength: {
-                    value: '7',
-                    message: '7자리를 입력해주세요.',
-                  },
-                  onChange: (e) => validateForm.inputValid(e, 'ssn2', NUMBER),
-                })}
-                type="text"
-                maxLength={7}
-                placeholder="뒤 7자리"
-                className="bg-transparent rounded-md outline-none transition-all w-[30%] md:w-[40%] shadow-sm"
-              />
-            </div>
-          </div>
-
           <FilteringInput
             label="주소"
             htmlFor="address"
@@ -228,6 +179,7 @@ const FilteringTable = () => {
             register={register('address')}
           />
 
+          {/* 이메일 */}
           <div className="space-x-2">
             <label className="flex text-sm mb-2 font-bold" htmlFor="email">
               이메일
@@ -294,7 +246,7 @@ const FilteringTable = () => {
                 onChange: (e) => handleUserStatus(e),
               })}
             >
-              <option value="all">전체</option>
+              <option value="">전체</option>
               <option value="A">승인</option>
               <option value="P">대기</option>
               <option value="W">탈퇴</option>
@@ -303,7 +255,7 @@ const FilteringTable = () => {
         </div>
 
         <div className="flex justify-end space-x-2 mt-10">
-          <FilteringButton type="button" title="등록" />
+          <FilteringButton type="button" title="등록" handleButton={openWindow} />
           <FilteringButton type="button" handleButton={handleResetValue} title="리셋" />
           <FilteringButton type="submit" title="검색" />
         </div>
