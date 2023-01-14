@@ -1,10 +1,10 @@
-import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
-import RegisterInput from './RegisterInput';
 import { useForm } from 'react-hook-form';
-import Gender from './Gender';
-import SSN from './SSN';
-import Phone from './Phone';
-import Email from './Email';
+import CommonInput from '../shareInputs/CommonInput';
+import Gender from '../shareInputs/Gender';
+import SSN from '../shareInputs/SSN';
+import Phone from '../shareInputs/Phone';
+import Email from '../shareInputs/Email';
+import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../utils/validateForm';
 
 const validateForm = new ValidateForm();
 const RegisterForm = () => {
@@ -66,7 +66,7 @@ const RegisterForm = () => {
         <div className="space-y-5 pb-2">
           <div className="flex items-center space-x-10">
             <div className="w-[50%]">
-              <RegisterInput
+              <CommonInput
                 register={register('name', {
                   onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
                 })}
@@ -101,7 +101,7 @@ const RegisterForm = () => {
           />
 
           <div className="space-y-2">
-            <RegisterInput
+            <CommonInput
               register={register('id', {
                 required: '아이디를 입력해주세요.',
                 onChange: (e) => {
@@ -121,7 +121,7 @@ const RegisterForm = () => {
           </div>
 
           <div className="space-y-2">
-            <RegisterInput
+            <CommonInput
               register={register('password', {
                 required: '비밀번호를 입력해주세요.',
                 validate: (value) => {
@@ -155,8 +155,8 @@ const RegisterForm = () => {
             </button>
           </div>
 
-          <RegisterInput register={register('address1')} htmlFor="address1" label="사는곳" />
-          <RegisterInput register={register('address2')} htmlFor="address2" label="상세주소" />
+          <CommonInput register={register('address1')} htmlFor="address1" label="사는곳" />
+          <CommonInput register={register('address2')} htmlFor="address2" label="상세주소" />
 
           <Email
             register={register}
@@ -167,7 +167,7 @@ const RegisterForm = () => {
 
           <div className="flex items-center space-x-6">
             <div className="w-[50%]">
-              <RegisterInput
+              <CommonInput
                 register={register('job_key', {
                   onChange: (e) => validateForm.inputValid(e, 'job_key', NUMBER),
                   minLength: {
@@ -182,7 +182,7 @@ const RegisterForm = () => {
               />
             </div>
             <div className="w-[50%]">
-              <RegisterInput
+              <CommonInput
                 register={register('job', {
                   onChange: (e) => {
                     const regex = /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\s|]/g;

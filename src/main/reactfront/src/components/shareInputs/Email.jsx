@@ -1,5 +1,5 @@
-import { NUMBER_ENGLISH } from '../../../utils/validateForm';
-import FormErrorMessage from '../../FormErrorMessage';
+import { NUMBER_ENGLISH } from '../../utils/validateForm';
+import FormErrorMessage from '../FormErrorMessage';
 
 const Email = ({ register, errorMessage, validateForm, watch }) => {
   return (

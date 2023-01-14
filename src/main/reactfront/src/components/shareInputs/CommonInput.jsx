@@ -1,7 +1,7 @@
 import { AiOutlineLock } from 'react-icons/ai';
-import FormErrorMessage from '../../FormErrorMessage';
+import FormErrorMessage from '../FormErrorMessage';
 
-const RegisterInput = ({
+const CommonInput = ({
   label,
   type = 'text',
   htmlFor,
@@ -40,4 +40,4 @@ const RegisterInput = ({
     </div>
   );
 };
-export default RegisterInput;
+export default CommonInput;

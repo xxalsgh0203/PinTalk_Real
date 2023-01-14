@@ -1,4 +1,4 @@
-import cls from '../../../utils/cls';
+import cls from '../../utils/cls';
 
 const Gender = ({ register, watch }) => {
   return (
