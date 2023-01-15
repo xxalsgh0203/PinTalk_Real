@@ -4,7 +4,7 @@ import useMutation from '../../../hooks/useMutation';
 import { userReducer } from '../../../redux/slices/userReducer';
 import { openNewWindow } from '../../../utils/openNewWindow';
 import ValidateForm, {
-  isFormData,
+  inputSetValues,
   NOT_NUMBER,
   NUMBER,
   NUMBER_ENGLISH,
@@ -27,43 +27,54 @@ const FilteringTable = () => {
     formState: { errors },
     watch,
     control,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      address: null,
+      backEmail: null,
+      dd: null,
+      frontEmail: null,
+      gender: null,
+      mm: null,
+      name: null,
+      phone1: null,
+      phone2: null,
+      phone3: null,
+      reg_date: null,
+      update_date: null,
+      user_state: null,
+      yy: null,
+    },
+  });
 
   const handleResetValue = () => {
     reset((formValue) => ({
       ...formValue,
-      gender: '',
-      name: '',
-      phone1: '',
-      phone2: '',
-      phone3: '',
-      address: '',
-      frontEmail: '',
-      backEmail: '',
-      reg_date: '',
-      year: '',
-      day: '',
-      month: '',
-      update_date: '',
-      user_state: '',
-      ssn1: '',
-      ssn2: '',
+      gender: null,
+      name: null,
+      phone1: null,
+      phone2: null,
+      phone3: null,
+      address: null,
+      frontEmail: null,
+      backEmail: null,
+      reg_date: null,
+      year: null,
+      day: null,
+      month: null,
+      update_date: null,
+      user_state: null,
+      ssn1: null,
+      ssn2: null,
     }));
   };
 
   const onValid = async (data) => {
-    console.log('=======================');
     console.log(data);
-    console.log('=======================');
-    if (isFormData(data)) {
-      mutation(data);
-    }
-    return;
+    //mutation(data);
   };
 
   const handleUserStatus = (e) => {
     const value = e.target.value;
-    if (value === '') return;
     userStatusDispatch(userReducer.actions.handleStatus(value));
   };
 
@@ -74,7 +85,7 @@ const FilteringTable = () => {
   return (
     <form onSubmit={handleSubmit(onValid)} className="flex flex-col pb-5">
       <div className="bg-white p-6 rounded-xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
           <div className="flex flex-col">
             <label id="gender" className="font-bold text-sm">
               성별
@@ -82,11 +93,13 @@ const FilteringTable = () => {
             <select
               name="gender"
               className="mt-2 block w-[30%] rounded-md border-gray-300 shadow-sm"
-              {...register('gender')}
+              {...register('gender', {
+                setValueAs: (v) => inputSetValues(v),
+              })}
             >
               <option value="">성별</option>
-              <option value="남">남</option>
-              <option value="여">여</option>
+              <option value="M">남</option>
+              <option value="W">여</option>
             </select>
           </div>
 
@@ -102,10 +115,10 @@ const FilteringTable = () => {
 
           <BirthPicker register={register} />
 
-          {/* 핸드폰 */}
+          {/* 전화번호 */}
           <div className="space-y-2">
             <label className="flex text-sm font-bold">
-              핸드폰 번호
+              전화번호
               {(errors.phone1?.message || errors.phone2?.message || errors.phone3?.message) && (
                 <FormErrorMessage
                   errorMessage={
@@ -200,11 +213,6 @@ const FilteringTable = () => {
                     validateForm.notSpecialString(e);
                     return validateForm.inputValid(e, 'frontEmail', NUMBER_ENGLISH);
                   },
-
-                  validate: (value) => {
-                    if (!watch('backEmail')) return;
-                    return value !== '' || '이메일을 입력해주세요.';
-                  },
                 })}
                 maxLength={15}
                 type="text"
@@ -213,12 +221,7 @@ const FilteringTable = () => {
               />
               <span>@</span>
               <select
-                {...register('backEmail', {
-                  validate: (value) => {
-                    if (!watch('frontEmail')) return;
-                    return value !== '' || '이메일을 선택해주세요';
-                  },
-                })}
+                {...register('backEmail')}
                 className="bg-transparent rounded-md p-1 outline-none w-[30%] md:w-[40%] relative text-sm shadow-sm"
               >
                 <option value="">선택</option>
@@ -231,19 +234,29 @@ const FilteringTable = () => {
             </div>
           </div>
 
-          <DatePicker label="가입날짜" Controller={Controller} control={control} name="reg_date" />
-          <DatePicker
-            label="정보 변경날짜"
-            Controller={Controller}
-            control={control}
-            name="update_date"
-          />
+          <div>
+            <DatePicker
+              label="가입날짜"
+              Controller={Controller}
+              control={control}
+              name="reg_date"
+            />
+          </div>
+          <div>
+            <DatePicker
+              label="정보 변경날짜"
+              Controller={Controller}
+              control={control}
+              name="update_date"
+            />
+          </div>
 
           <div className="flex flex-col w-[50%] shadow-sm">
             <label className="font-bold text-sm mb-2">회원가입 상태</label>
             <select
               {...register('user_state', {
                 onChange: (e) => handleUserStatus(e),
+                setValueAs: (v) => inputSetValues(v, 'all'),
               })}
             >
               <option value="">전체</option>

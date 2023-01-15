@@ -1,3 +1,4 @@
+import cls from '../../../utils/cls';
 import FormErrorMessage from '../../FormErrorMessage';
 
 const FilteringInput = ({ register, label, placeholder, max, min, htmlFor, errorMessage }) => {
@@ -15,7 +16,10 @@ const FilteringInput = ({ register, label, placeholder, max, min, htmlFor, error
         type="text"
         maxLength={max}
         placeholder={placeholder}
-        className="mt-2 block w-full rounded-md  shadow-sm focus:ring-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-opacity-50"
+        className={cls(
+          'mt-2 block rounded-md  shadow-sm focus:ring-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-opacity-50',
+          label === '주소' ? 'w-full 2xl:w-[80%]' : 'w-[50%]',
+        )}
       />
     </div>
   );

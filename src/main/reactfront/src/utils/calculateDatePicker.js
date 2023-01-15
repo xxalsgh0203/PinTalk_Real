@@ -3,17 +3,17 @@ export function calculateYear(number) {
   const maxYear = new Date().getFullYear();
   const minYear = maxYear - limit;
   let rangeYear = [];
-  for (let i = minYear; i <= maxYear; i++) {
-    number === 'number' ? rangeYear.push(i) : rangeYear.push(i + '년');
+  for (let i = maxYear; i >= minYear; i--) {
+    rangeYear.push(i);
   }
   return rangeYear;
 }
 
-export function calculateMonthWithDay(length, name) {
-  const array = Array.from({ length }, (_, i) => i + 1 + name);
+export function calculateMonthWithDay(length) {
+  const array = Array.from({ length }, (_, i) => i + 1);
   const newArray = array.map((item) => {
     const stringNumber = item + '';
-    return stringNumber.length === 2 ? '0' + stringNumber : stringNumber;
+    return stringNumber.length === 1 ? '0' + stringNumber : stringNumber;
   });
   return newArray;
 }
