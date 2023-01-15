@@ -1,7 +1,8 @@
-import { NUMBER_ENGLISH } from '../../../utils/validateForm';
-import FormErrorMessage from '../../FormErrorMessage';
+import cls from '../../utils/cls';
+import { NUMBER_ENGLISH } from '../../utils/validateForm';
+import FormErrorMessage from '../FormErrorMessage';
 
-const Email = ({ register, errorMessage, validateForm, watch }) => {
+const Email = ({ register, errorMessage, validateForm, watch, editPage }) => {
   return (
     <div className="space-y-2">
       <label className="flex text-sm" htmlFor="email">
@@ -27,7 +28,11 @@ const Email = ({ register, errorMessage, validateForm, watch }) => {
           })}
           maxLength={15}
           type="text"
-          className="bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]"
+          className={cls(
+            editPage
+              ? ''
+              : 'bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]',
+          )}
         />
         <span>@</span>
         <select
@@ -37,7 +42,11 @@ const Email = ({ register, errorMessage, validateForm, watch }) => {
               return value !== '' || '이메일을 선택해주세요';
             },
           })}
-          className="bg-transparent border-2 rounded-md px-1 py-1 outline-none w-[20%] relative text-pintalk-dark-brown"
+          className={cls(
+            editPage
+              ? ''
+              : 'bg-transparent border-2 rounded-md px-1 py-1 outline-none w-[20%] relative text-pintalk-dark-brown',
+          )}
         >
           <option value="">선택</option>
           <option value="naver.com">naver.com</option>

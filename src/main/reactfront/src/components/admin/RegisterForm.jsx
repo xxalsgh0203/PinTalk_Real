@@ -1,10 +1,11 @@
-import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
-import RegisterInput from './RegisterInput';
 import { useForm } from 'react-hook-form';
-import Gender from './Gender';
-import SSN from './SSN';
-import Phone from './Phone';
-import Email from './Email';
+import CommonInput from '../shareInputs/CommonInput';
+import Gender from '../shareInputs/Gender';
+import SSN from '../shareInputs/SSN';
+import Phone from '../shareInputs/Phone';
+import Email from '../shareInputs/Email';
+import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../utils/validateForm';
+import Password from '../shareInputs/Password';
 
 const validateForm = new ValidateForm();
 const RegisterForm = () => {
@@ -66,7 +67,7 @@ const RegisterForm = () => {
         <div className="space-y-5 pb-2">
           <div className="flex items-center space-x-10">
             <div className="w-[50%]">
-              <RegisterInput
+              <CommonInput
                 register={register('name', {
                   onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
                 })}
@@ -101,7 +102,7 @@ const RegisterForm = () => {
           />
 
           <div className="space-y-2">
-            <RegisterInput
+            <CommonInput
               register={register('id', {
                 required: '아이디를 입력해주세요.',
                 onChange: (e) => {
@@ -121,42 +122,21 @@ const RegisterForm = () => {
           </div>
 
           <div className="space-y-2">
-            <RegisterInput
-              register={register('password', {
-                required: '비밀번호를 입력해주세요.',
-                validate: (value) => {
-                  const checkSpecialString =
-                    /^(?=.*[a-zA-Z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,15}$/;
-                  return (
-                    checkSpecialString.test(value) ||
-                    '숫자,영문,특수문자(!~@#$%^*+=-)를 포함해주세요.'
-                  );
-                },
-                minLength: {
-                  value: 8,
-                  message: '8자 이상 작성해주세요',
-                },
-                maxLength: {
-                  value: 15,
-                  message: '15자 이내로 작성해주세요',
-                },
-              })}
+            <Password
               necessary
-              maxLength={15}
+              register={register}
+              label="비밀번호"
               type="password"
               htmlFor="password"
-              name="password"
-              label="비밀번호"
               errorMessage={errors.password?.message}
-              password
             />
             <button className="text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
               비밀번호 검증
             </button>
           </div>
 
-          <RegisterInput register={register('address1')} htmlFor="address1" label="사는곳" />
-          <RegisterInput register={register('address2')} htmlFor="address2" label="상세주소" />
+          <CommonInput register={register('address1')} htmlFor="address1" label="사는곳" />
+          <CommonInput register={register('address2')} htmlFor="address2" label="상세주소" />
 
           <Email
             register={register}
@@ -167,7 +147,7 @@ const RegisterForm = () => {
 
           <div className="flex items-center space-x-6">
             <div className="w-[50%]">
-              <RegisterInput
+              <CommonInput
                 register={register('job_key', {
                   onChange: (e) => validateForm.inputValid(e, 'job_key', NUMBER),
                   minLength: {
@@ -182,7 +162,7 @@ const RegisterForm = () => {
               />
             </div>
             <div className="w-[50%]">
-              <RegisterInput
+              <CommonInput
                 register={register('job', {
                   onChange: (e) => {
                     const regex = /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\s|]/g;

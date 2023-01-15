@@ -1,7 +1,8 @@
-import { NUMBER } from '../../../utils/validateForm';
-import FormErrorMessage from '../../FormErrorMessage';
+import cls from '../../utils/cls';
+import { NUMBER } from '../../utils/validateForm';
+import FormErrorMessage from '../FormErrorMessage';
 
-const Phone = ({ register, watch, errorMessage, validateForm }) => {
+const Phone = ({ register, watch, errorMessage, validateForm, editPage }) => {
   return (
     <div className="space-y-2">
       <label className="flex text-sm">
@@ -16,7 +17,11 @@ const Phone = ({ register, watch, errorMessage, validateForm }) => {
               return value !== '' || '번호를 선택해주세요.';
             },
           })}
-          className="bg-transparent p-1 outline-none text-sm border-2 rounded-md text-pintalk-dark-brown w-[15%]"
+          className={cls(
+            editPage
+              ? ''
+              : 'bg-transparent p-1 outline-none text-sm border-2 rounded-md text-pintalk-dark-brown w-[15%]',
+          )}
         >
           <option value="">선택</option>
           <option value="010">010</option>
@@ -44,7 +49,11 @@ const Phone = ({ register, watch, errorMessage, validateForm }) => {
           })}
           type="text"
           maxLength={4}
-          className="bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]"
+          className={
+            editPage
+              ? ''
+              : 'bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]'
+          }
         />
         <span>-</span>
         <input
@@ -61,7 +70,11 @@ const Phone = ({ register, watch, errorMessage, validateForm }) => {
           })}
           type="text"
           maxLength={4}
-          className="bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]"
+          className={
+            editPage
+              ? ''
+              : 'bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]'
+          }
         />
       </div>
     </div>

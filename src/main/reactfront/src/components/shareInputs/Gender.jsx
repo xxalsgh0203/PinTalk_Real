@@ -1,6 +1,6 @@
-import cls from '../../../utils/cls';
+import cls from '../../utils/cls';
 
-const Gender = ({ register, watch }) => {
+const Gender = ({ register, watch, editPage }) => {
   return (
     <div className="w-[50%]">
       <span className="block mb-2 text-sm">성별</span>
@@ -12,7 +12,9 @@ const Gender = ({ register, watch }) => {
             value="M"
             checked={watch('gender') === 'M'}
             className={cls(
-              'appearance-none w-3 h-3 bg-gray-100 rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow',
+              editPage
+                ? ''
+                : 'appearance-none w-3 h-3 bg-gray-100 rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow',
               watch('gender') === 'M' ? 'bg-pintalk-dark-yellow' : '',
             )}
           />
@@ -26,7 +28,9 @@ const Gender = ({ register, watch }) => {
             checked={watch('gender') === 'W'}
             {...register}
             className={cls(
-              'appearance-none w-3 h-3 bg-gray-100   rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow',
+              editPage
+                ? ''
+                : 'appearance-none w-3 h-3 bg-gray-100   rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow',
               watch('gender') === 'W' ? 'bg-pintalk-dark-yellow' : '',
             )}
           />

@@ -1,5 +1,5 @@
-import { NUMBER } from '../../../utils/validateForm';
-import FormErrorMessage from '../../FormErrorMessage';
+import { NUMBER } from '../../utils/validateForm';
+import FormErrorMessage from '../FormErrorMessage';
 
 const SSN = ({ register, errorMessage, validateForm }) => {
   return (

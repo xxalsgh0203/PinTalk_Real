@@ -1,7 +1,8 @@
 import { AiOutlineLock } from 'react-icons/ai';
-import FormErrorMessage from '../../FormErrorMessage';
+import cls from '../../utils/cls';
+import FormErrorMessage from '../FormErrorMessage';
 
-const RegisterInput = ({
+const CommonInput = ({
   label,
   type = 'text',
   htmlFor,
@@ -9,7 +10,7 @@ const RegisterInput = ({
   maxLength,
   errorMessage,
   necessary,
-  password,
+  editPage,
 }) => {
   return (
     <div className="flex flex-col space-y-2">
@@ -29,15 +30,14 @@ const RegisterInput = ({
           {...register}
           type={type}
           maxLength={maxLength}
-          className="bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all"
+          className={cls(
+            editPage
+              ? ''
+              : 'bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all',
+          )}
         />
-        {password && (
-          <div className="flex items-center absolute h-full top-0 bottom-0 right-2 px-1 text-center">
-            <AiOutlineLock size={18} />
-          </div>
-        )}
       </div>
     </div>
   );
 };
-export default RegisterInput;
+export default CommonInput;

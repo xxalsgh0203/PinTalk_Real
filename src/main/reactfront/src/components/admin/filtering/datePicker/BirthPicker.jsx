@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { calculateMonthWithDay, calculateYear } from '../../../../utils/calculateDatePicker';
+import { inputSetValues } from '../../../../utils/validateForm';
 import BirthSelector from './BirthSelector';
 
 const BirthPicker = ({ register }) => {
@@ -7,16 +8,17 @@ const BirthPicker = ({ register }) => {
   const monthRef = useRef();
   const dayRef = useRef();
   const yearRange = calculateYear();
-  const monthRange = calculateMonthWithDay(12, '월');
-  const dayRange = calculateMonthWithDay(31, '일');
+  const monthRange = calculateMonthWithDay(12);
+  const dayRange = calculateMonthWithDay(31);
 
   return (
-    <div className="mb-6 md:mb-0 relative">
+    <div className="mb-2 relative">
       <label className="text-sm font-bold">생년월일</label>
-      <div className="relative w-full flex space-x-32 sm:space-x-44 md:space-x-28 lg:space-x-24 2xl:space-x-28">
-        <div className="mr-10 sm:mr-4 md:mr-6 lg:mr-4 xl:mr-4 2xl:mr-6">
+      <div className="mt-2 relative w-full flex space-x-4">
+        {/* 년 */}
+        <div className="">
           <BirthSelector
-            register={register('year', {
+            register={register('yy', {
               onChange: (e) => {
                 e.target.size = 1;
                 e.target.blur();
@@ -24,16 +26,18 @@ const BirthPicker = ({ register }) => {
               onBlur: (e) => {
                 return (e.target.size = 1);
               },
+              setValueAs: (v) => inputSetValues(v),
             })}
             selectorRef={yearRef}
             dateRange={yearRange}
-            title="년도"
+            title="년"
             yearSize
           />
         </div>
-        <div>
+        {/* 월 */}
+        <div className="flex items-center">
           <BirthSelector
-            register={register('month', {
+            register={register('mm', {
               onChange: (e) => {
                 e.target.size = 1;
                 e.target.blur();
@@ -41,28 +45,29 @@ const BirthPicker = ({ register }) => {
               onBlur: (e) => {
                 return (e.target.size = 1);
               },
+              setValueAs: (v) => inputSetValues(v),
             })}
             dateRange={monthRange}
             selectorRef={monthRef}
             title="월"
           />
         </div>
-        <div>
-          <BirthSelector
-            register={register('day', {
-              onChange: (e) => {
-                e.target.size = 1;
-                e.target.blur();
-              },
-              onBlur: (e) => {
-                return (e.target.size = 1);
-              },
-            })}
-            dateRange={dayRange}
-            selectorRef={dayRef}
-            title="일"
-          />
-        </div>
+        {/* 일 */}
+        <BirthSelector
+          register={register('dd', {
+            onChange: (e) => {
+              e.target.size = 1;
+              e.target.blur();
+            },
+            onBlur: (e) => {
+              return (e.target.size = 1);
+            },
+            setValueAs: (v) => inputSetValues(v),
+          })}
+          dateRange={dayRange}
+          selectorRef={dayRef}
+          title="일"
+        />
       </div>
     </div>
   );

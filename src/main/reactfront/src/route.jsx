@@ -6,7 +6,7 @@ import Investment from './pages/Investment';
 import Loan from './pages/Loan';
 import Admin from './pages/Admin';
 import UserMemberDetail from './components/admin/UserMemberDetail';
-import RegisterForm from './components/admin/register/RegisterForm';
+import RegisterForm from './components/admin/RegisterForm';
 
 const router = createBrowserRouter([
   {
