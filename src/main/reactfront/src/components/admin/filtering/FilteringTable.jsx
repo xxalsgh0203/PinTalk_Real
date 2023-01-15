@@ -256,7 +256,7 @@ const FilteringTable = () => {
             <select
               {...register('user_state', {
                 onChange: (e) => handleUserStatus(e),
-                setValueAs: (v) => inputSetValues(v, 'all'),
+                setValueAs: (v) => inputSetValues(v),
               })}
             >
               <option value="">전체</option>
