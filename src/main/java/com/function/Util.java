@@ -2,26 +2,49 @@ package com.function;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.Map;
+import java.util.*;
 
 public class Util {
 
+    Util util;
 
     /**
-     * Object to Map keySet
+     * Object to Map
      * @param object
      * @return
      */
-    public Map mapKeySet(Object object){
-
+    public HashMap convertObjectToMap(Object object) {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        Map<String, Object> result = objectMapper.convertValue(object, Map.class);
-        for(String key : result.keySet()){
-        }
-
+        HashMap<String, Object> result = (HashMap<String, Object>) objectMapper.convertValue(object, Map.class);
         return result;
+    }
 
+    /**
+     * Map values null Remove
+     * @param map
+     */
+    public void mapValueNullRemove(HashMap map){
+
+        map.values().removeAll(Collections.singletonList(null));
+        map.values().removeAll(Collections.singletonList(""));
+
+    }
+
+    /**
+     * mapKeySetToList
+     * @param map
+     * @return
+     */
+    public List mapKeySetToList(Map map){
+        List result = new ArrayList();
+
+        Iterator<String> keys = map.keySet().iterator();
+        while (keys.hasNext()){
+            String key = keys.next();
+            result.add(key);
+        }
+        return result;
     }
 
 }
