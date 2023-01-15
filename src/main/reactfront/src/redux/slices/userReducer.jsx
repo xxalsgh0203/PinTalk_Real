@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import HttpError from '../../service/HttpError';
+import HttpError from '../../service/httpError';
 
 export const getList = createAsyncThunk('GET_USER', async (arg, thunkApi) => {
   try {
