@@ -1,16 +1,17 @@
 import cls from '../../utils/cls';
 
-const Gender = ({ register, watch, editPage }) => {
+const Gender = ({ register, watch, editPage, ugender, label }) => {
   return (
     <div className="w-[50%]">
-      <span className="block mb-2 text-sm">성별</span>
+      <span className="block mb-2 text-sm">{label}</span>
       <div className="flex items-center space-x-4">
         <label className="text-sm" htmlFor="M">
           <input
             {...register}
             type="radio"
             value="M"
-            checked={watch('gender') === 'M'}
+            // checked={watch('gender') === 'M'}
+            checked={editPage ? ugender === 'M' : watch('gender') === 'M'}
             className={cls(
               editPage
                 ? ''
@@ -25,7 +26,8 @@ const Gender = ({ register, watch, editPage }) => {
           <input
             type="radio"
             value="W"
-            checked={watch('gender') === 'W'}
+            // checked={watch('gender') === 'W'}
+            checked={editPage ? ugender === 'W' : watch('gender') === 'W'}
             {...register}
             className={cls(
               editPage

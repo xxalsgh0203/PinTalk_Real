@@ -72,7 +72,7 @@ const UserInfoData = ({ userInfo }) => {
                     <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900">
                       이름
                     </td>
-                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap w-[40%]">
+                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap w-5/12">
                       <CommonInput
                         register={register('name', {
                           onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
