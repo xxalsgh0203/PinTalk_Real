@@ -129,12 +129,7 @@ const FilteringTable = () => {
             </label>
             <div className="flex items-center space-x-4">
               <select
-                {...register('phone1', {
-                  validate: (value) => {
-                    if (watch('phone2') === '' && watch('phone3') === '') return;
-                    return value !== '' || '번호를 선택해주세요.';
-                  },
-                })}
+                {...register('phone1')}
                 className="bg-transparent outline-none rounded-md w-[20%]  shadow-sm"
               >
                 <option value="">선택</option>
@@ -156,10 +151,6 @@ const FilteringTable = () => {
                     value: 4,
                     message: '4자리를 입력해주세요',
                   },
-                  validate: (value) => {
-                    if (watch('phone1') === '' && watch('phone3') === '') return;
-                    return value !== '' || '번호를 선택해주세요.';
-                  },
                 })}
                 type="text"
                 maxLength={4}
@@ -173,10 +164,6 @@ const FilteringTable = () => {
                     message: '4자리를 입력해주세요',
                   },
                   onChange: (e) => validateForm.inputValid(e, 'phone3', NUMBER),
-                  validate: (value) => {
-                    if (watch('phone1') === '' && watch('phone2') === '') return;
-                    return value !== '' || '번호를 선택해주세요.';
-                  },
                 })}
                 type="text"
                 maxLength={4}
