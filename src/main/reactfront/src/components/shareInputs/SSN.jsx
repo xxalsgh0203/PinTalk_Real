@@ -1,7 +1,7 @@
 import { NUMBER } from '../../utils/validateForm';
 import FormErrorMessage from '../FormErrorMessage';
 
-const SSN = ({ register, errorMessage, validateForm }) => {
+const SSN = ({ register, errorMessage, validateForm, ssn1, ssn2, editPage }) => {
   return (
     <div className="space-y-2">
       <label className="flex text-sm" htmlFor="ssn">
@@ -26,7 +26,7 @@ const SSN = ({ register, errorMessage, validateForm }) => {
             },
             onChange: (e) => validateForm.inputValid(e, 'ssn1', NUMBER),
           })}
-          placeholder="앞 6자리"
+          placeholder={editPage ? ssn1 : '앞 6자리'}
           type="text"
           maxLength={6}
           className="bg-transparent  rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%] placeholder:text-gray-400 placeholder:text-sm"
@@ -47,7 +47,7 @@ const SSN = ({ register, errorMessage, validateForm }) => {
           })}
           type="text"
           maxLength={7}
-          placeholder="뒤 7자리"
+          placeholder={editPage ? ssn2 : '뒤 7자리'}
           className="bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%] placeholder:text-gray-400 placeholder:text-sm"
         />
       </div>

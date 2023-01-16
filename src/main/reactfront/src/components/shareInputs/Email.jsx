@@ -2,11 +2,11 @@ import cls from '../../utils/cls';
 import { NUMBER_ENGLISH } from '../../utils/validateForm';
 import FormErrorMessage from '../FormErrorMessage';
 
-const Email = ({ register, errorMessage, validateForm, watch, editPage }) => {
+const Email = ({ register, errorMessage, validateForm, email1, email2, watch, editPage }) => {
   return (
     <div className="space-y-2">
       <label className="flex text-sm" htmlFor="email">
-        이메일
+        {editPage ? '' : '이메일'}
         {errorMessage && <FormErrorMessage errorMessage={errorMessage} />}
       </label>
       <div className="flex items-center space-x-4">
@@ -28,9 +28,10 @@ const Email = ({ register, errorMessage, validateForm, watch, editPage }) => {
           })}
           maxLength={15}
           type="text"
+          placeholder={editPage ? email1 : ''}
           className={cls(
             editPage
-              ? ''
+              ? 'bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]'
               : 'bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]',
           )}
         />
@@ -48,7 +49,7 @@ const Email = ({ register, errorMessage, validateForm, watch, editPage }) => {
               : 'bg-transparent border-2 rounded-md px-1 py-1 outline-none w-[20%] relative text-pintalk-dark-brown',
           )}
         >
-          <option value="">선택</option>
+          {editPage ? <option value="email2">{email2}</option> : <option value="">선택</option>}
           <option value="naver.com">naver.com</option>
           <option value="nate.com">nate.com</option>
           <option value="gmail.com">gmail.com</option>

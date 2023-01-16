@@ -11,6 +11,7 @@ const CommonInput = ({
   errorMessage,
   necessary,
   editPage,
+  placeholder,
 }) => {
   return (
     <div className="flex flex-col space-y-2">
@@ -30,9 +31,10 @@ const CommonInput = ({
           {...register}
           type={type}
           maxLength={maxLength}
+          placeholder={placeholder}
           className={cls(
             editPage
-              ? ''
+              ? 'bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all '
               : 'bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all',
           )}
         />
