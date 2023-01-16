@@ -6,6 +6,7 @@ import Phone from '../../shareInputs/Phone';
 import Email from '../../shareInputs/Email';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
 import Password from '../../shareInputs/Password';
+import Status from '../../shareInputs/Status';
 
 const validateForm = new ValidateForm();
 
@@ -19,7 +20,7 @@ const UserInfoData = ({ userInfo }) => {
     mode: 'onChange',
   });
 
-  // console.log(userInfo[0]?.email.split('@'));
+  // console.log(userInfo[0]);
 
   const onValid = (data) => {
     const email = data.frontEmail && data.frontEmail + '@' + data.backEmail;
@@ -225,7 +226,12 @@ const UserInfoData = ({ userInfo }) => {
                     </td>
 
                     <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                      {userInfo[0]?.status}
+                      <Status
+                        register={register('status')}
+                        watch={watch}
+                        ustatus={userInfo[0]?.status}
+                        editPage
+                      />
                     </td>
                   </tr>
 
@@ -250,9 +256,9 @@ const UserInfoData = ({ userInfo }) => {
         </div>
       </div>
 
-      <div className="flex items-center justify-center inline-block py-5">
+      <div className="flex justify-center items-center space-x-2 mt-10">
         <button
-          className="px-4 py-2 text-white-800 bg-pintalk-light-yellow rounded-lg bg-opacity-50 hover:bg-stone-200 font-bold text-white shadow-lg shadow-stone-200 transition ease-in-out duration-200 translate-10"
+          className="px-4 py-2 text-white-800  rounded-lg bg-opacity-50 hover:bg-stone-200 font-bold text-white shadow-lg shadow-stone-200 transition ease-in-out duration-200 translate-10 w-[30%] md:w-[15%] lg:w-[10%] bg-pintalk-light-yellow"
           id="reset"
           type="button"
         >
@@ -260,7 +266,7 @@ const UserInfoData = ({ userInfo }) => {
         </button>
 
         <button
-          className="px-4 py-2 bg-pintalk-dark-yellow rounded-lg bg-opacity-50  hover:bg-orange-500 font-bold text-white shadow-lg shadow-orange-200 transition ease-in-out duration-200 translate-10"
+          className="px-4 py-2 text-white-800  rounded-lg bg-opacity-50 hover:bg-stone-200 font-bold text-white shadow-lg shadow-stone-200 transition ease-in-out duration-200 translate-10 w-[30%] md:w-[15%] lg:w-[10%] bg-pintalk-dark-yellow"
           type="submit"
           onClick={window.close}
         >
