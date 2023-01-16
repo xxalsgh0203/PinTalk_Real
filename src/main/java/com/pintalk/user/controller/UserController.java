@@ -77,10 +77,15 @@ public class UserController {
         HashMap member = util.convertObjectToMap(userMember);
         System.out.println("member : " + member);
 
-        String signDate = (String) member.get("signDate");
-        String modifyDate = (String) member.get("modifyDate");
-        member.put("signDate",util.setDateFormatStr(signDate,"yyyy-MM-dd","yyyyMMdd"));
-        member.put("modifyDate",util.setDateFormatStr(modifyDate,"yyyy-MM-dd","yyyyMMdd"));
+        if(member.get("signDate") != null){
+            String signDate = (String) member.get("signDate");
+            member.put("signDate",util.setDateFormatStr(signDate,"yyyy-MM-dd","yyyyMMdd"));
+        }
+        if(member.get("modifyDate") != null){
+            String modifyDate = (String) member.get("modifyDate");
+            member.put("modifyDate",util.setDateFormatStr(modifyDate,"yyyy-MM-dd","yyyyMMdd"));
+        }
+
 
         System.out.println("============================");
 
