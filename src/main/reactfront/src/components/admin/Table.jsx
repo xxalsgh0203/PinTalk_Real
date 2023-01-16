@@ -14,8 +14,6 @@ const Table = () => {
 
         <FilteringTable />
 
-        <h1 className="">고유번호 클릭시 상세페이지로 이동합니다</h1>
-
         <div className="overflow-auto rounded-lg shadow pt-5">
           <table className="w-full">
             <thead className="bg-gray-50 border-b-2 border-gray-200">
@@ -34,10 +32,10 @@ const Table = () => {
                 <th className="w-48 p-3 text-sm font-semi-bold tracking-wide text-left">주소</th>
                 <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">이메일</th>
                 <th className="w-24 p-3 text-sm font-semi-bold tracking-wide text-left">
-                  가입날짜
+                  가입일자
                 </th>
                 <th className="w-32 p-3 text-sm font-semi-bold tracking-wide text-left">
-                  정보 변경날짜
+                  정보변경일자
                 </th>
               </tr>
             </thead>

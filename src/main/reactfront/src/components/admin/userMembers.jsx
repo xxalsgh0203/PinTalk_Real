@@ -1,19 +1,22 @@
 import React from 'react';
+import { openNewWindow } from '../../utils/openNewWindow';
 
 const UserMembers = ({ member }) => {
-  const handleNewWindow = (e) => {
+  const handleNewWindow = () => {
     let newWindow = window.open(
-      `http://localhost:3000/userMemberDetail/${e.target.innerHTML}`,
+      `http://localhost:3000/userMemberDetail/${member.no}`,
       '_blank',
       'fullscreen',
     );
   };
 
   return (
-    <tr className="bg-gray-50 hover:text-white hover:bg-pintalk-dark-brown cursor-pointer">
-      <td className="p-3 text-sm whitespace-nowrap" onClick={handleNewWindow}>
-        {member.no}
-      </td>
+    <tr
+      className="bg-gray-50 hover:text-white hover:bg-pintalk-dark-brown cursor-pointer"
+      // onClick={openNewWindow(`userMemberDetail/${member.no}`)}
+      onClick={handleNewWindow}
+    >
+      <td className="p-3 text-sm whitespace-nowrap">{member.no}</td>
       <td className="p-3 text-sm whitespace-nowrap">{member.gender === 'M' ? '남자' : '여자'}</td>
       <td className="p-3 text-sm whitespace-nowrap">{member.name}</td>
       <td className="p-3 text-sm whitespace-nowrap">

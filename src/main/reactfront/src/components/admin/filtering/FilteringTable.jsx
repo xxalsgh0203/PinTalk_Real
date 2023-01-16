@@ -236,7 +236,7 @@ const FilteringTable = () => {
 
           <div>
             <DatePicker
-              label="가입날짜"
+              label="가입일자"
               Controller={Controller}
               control={control}
               name="reg_date"
@@ -244,7 +244,7 @@ const FilteringTable = () => {
           </div>
           <div>
             <DatePicker
-              label="정보 변경날짜"
+              label="정보변경일자"
               Controller={Controller}
               control={control}
               name="update_date"
