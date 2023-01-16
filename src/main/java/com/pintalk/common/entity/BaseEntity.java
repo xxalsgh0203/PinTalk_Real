@@ -18,13 +18,11 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 
-//    @Column(name = "reg_date", nullable = false, updatable = false)
-//    //생성일 자동 저장
+    //생성일 자동 저장
     @CreatedDate
     private LocalDateTime reg_Date;
-//
-//    @Column(name = "update_date")
-//    //마지막 수정시간 자동저장
+
+    //마지막 수정시간 자동저장
     @LastModifiedDate
     private LocalDateTime update_Date;
 }
