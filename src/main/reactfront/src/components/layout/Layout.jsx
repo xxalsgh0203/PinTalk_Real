@@ -1,8 +1,8 @@
 import Navbar from './Navbar';
 
-const Layout = ({ children, title }) => {
+const Layout = ({ children, title, page }) => {
   return (
-    <section>
+    <section className={page === 'home' ? 'bg-slide-whitespace' : ''}>
       <Navbar title={title} />
       <main>{children}</main>
     </section>

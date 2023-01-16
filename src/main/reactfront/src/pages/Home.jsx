@@ -2,7 +2,7 @@ import Layout from '../components/layout/Layout';
 
 const Home = () => {
   return (
-    <Layout>
+    <Layout page={'home'}>
       <main>
         <div className="bg-slide-whitespace">
           <div className="absolute w-full h-full text-pintalk-dark-brown flex pl-10 pt-40 items-front flex-col">
