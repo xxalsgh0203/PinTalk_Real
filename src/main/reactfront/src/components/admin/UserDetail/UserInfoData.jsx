@@ -66,7 +66,9 @@ const UserInfoData = ({ userInfo }) => {
         <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
           <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div className="overflow-hidden">
-              <h1 className="py-5">회원 상세 정보</h1>
+              <h1 className="py-5 text-2xl text-pintalk-dark-brown text-semibold">
+                회원 상세 정보
+              </h1>
               <table className="min-w-full">
                 <tbody>
                   <tr className="border-b">
@@ -237,13 +239,13 @@ const UserInfoData = ({ userInfo }) => {
 
                   <tr className="border-b">
                     <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900">
-                      가입 날짜
+                      가입일자
                     </td>
                     <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                       {userInfo[0]?.reg_Date.slice(0, 10)}
                     </td>
                     <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900">
-                      업데이트 날짜
+                      정보변경일자
                     </td>
                     <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                       {userInfo[0]?.update_Date.slice(0, 10)}
