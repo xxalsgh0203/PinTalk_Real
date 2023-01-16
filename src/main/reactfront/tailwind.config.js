@@ -7,6 +7,10 @@ module.exports = {
         'pintalk-light-yellow': '#ffcf0f;',
         'pintalk-dark-yellow': '#ffb700;',
         'pintalk-dark-brown': '#5f584c;',
+        'slide-whitespace': '#E1EBF4;',
+      },
+      backgroundImage: {
+        silde1: "url('reactfront/src/img/slideshow.jpeg')",
       },
     },
   },
