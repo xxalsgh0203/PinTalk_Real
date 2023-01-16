@@ -7,11 +7,13 @@ import Loan from './pages/Loan';
 import Admin from './pages/Admin';
 import UserMemberDetail from './components/admin/UserDetail/UserMemberDetail';
 import RegisterForm from './components/admin/RegisterForm';
+import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
