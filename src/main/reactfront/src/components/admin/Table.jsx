@@ -3,6 +3,7 @@ import useMembers from '../../hooks/useMembers';
 
 import Pagination from './Pagination';
 import FilteringTable from './filtering/FilteringTable';
+import Loading from '../Loading';
 
 const Table = () => {
   const { users: userList, loading, error, PageInfo } = useMembers();
@@ -16,7 +17,7 @@ const Table = () => {
 
         <h1 className="">고유번호 클릭시 상세페이지로 이동합니다</h1>
 
-        <div className="overflow-auto rounded-lg shadow pt-5">
+        <div className="overflow-auto rounded-lg shadow pt-5 h-[36rem]">
           <table className="w-full">
             <thead className="bg-gray-50 border-b-2 border-gray-200">
               <tr>
@@ -41,11 +42,15 @@ const Table = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
-              {userList?.map((member) => {
-                return <UserMembers member={member} key={member.id} />;
-              })}
-            </tbody>
+            {loading ? (
+              <Loading />
+            ) : (
+              <tbody className="divide-y divide-gray-100">
+                {userList?.map((member) => {
+                  return <UserMembers member={member} key={member.id} />;
+                })}
+              </tbody>
+            )}
           </table>
         </div>
         <Pagination PageInfo={PageInfo} />
