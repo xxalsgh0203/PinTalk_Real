@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import useMutation from '../../../hooks/useMutation';
@@ -18,7 +19,7 @@ import FilteringInput from './FilteringInput';
 
 const validateForm = new ValidateForm();
 const FilteringTable = () => {
-  const { error, loading, mutation } = useMutation('/userMemberList');
+  const { error, loading, mutation } = useMutation('/userMemberListForm');
   const userStatusDispatch = useDispatch();
   const {
     register,
@@ -71,6 +72,8 @@ const FilteringTable = () => {
   const onValid = async (data) => {
     console.log(data);
     //mutation(data);
+    /* const test = await (await axios.post('/userMemberListForm', data)).data;
+    console.log(test); */
   };
 
   const handleUserStatus = (e) => {
@@ -129,12 +132,7 @@ const FilteringTable = () => {
             </label>
             <div className="flex items-center space-x-4">
               <select
-                {...register('phone1', {
-                  validate: (value) => {
-                    if (watch('phone2') === '' && watch('phone3') === '') return;
-                    return value !== '' || '번호를 선택해주세요.';
-                  },
-                })}
+                {...register('phone1')}
                 className="bg-transparent outline-none rounded-md w-[20%]  shadow-sm"
               >
                 <option value="">선택</option>
@@ -156,10 +154,6 @@ const FilteringTable = () => {
                     value: 4,
                     message: '4자리를 입력해주세요',
                   },
-                  validate: (value) => {
-                    if (watch('phone1') === '' && watch('phone3') === '') return;
-                    return value !== '' || '번호를 선택해주세요.';
-                  },
                 })}
                 type="text"
                 maxLength={4}
@@ -173,10 +167,6 @@ const FilteringTable = () => {
                     message: '4자리를 입력해주세요',
                   },
                   onChange: (e) => validateForm.inputValid(e, 'phone3', NUMBER),
-                  validate: (value) => {
-                    if (watch('phone1') === '' && watch('phone2') === '') return;
-                    return value !== '' || '번호를 선택해주세요.';
-                  },
                 })}
                 type="text"
                 maxLength={4}
@@ -239,15 +229,15 @@ const FilteringTable = () => {
               label="가입일자"
               Controller={Controller}
               control={control}
-              name="reg_date"
+              name="signDate"
             />
           </div>
           <div>
             <DatePicker
-              label="정보 변경날짜"
+              label="정보 변경일자"
               Controller={Controller}
               control={control}
-              name="update_date"
+              name="modifyDate"
             />
           </div>
 
