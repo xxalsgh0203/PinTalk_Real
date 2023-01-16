@@ -2,7 +2,16 @@ import cls from '../../utils/cls';
 import { NUMBER } from '../../utils/validateForm';
 import FormErrorMessage from '../FormErrorMessage';
 
-const Phone = ({ register, watch, errorMessage, validateForm, editPage }) => {
+const Phone = ({
+  register,
+  watch,
+  errorMessage,
+  validateForm,
+  phone1,
+  phone2,
+  phone3,
+  editPage,
+}) => {
   return (
     <div className="space-y-2">
       <label className="flex text-sm">
@@ -19,11 +28,11 @@ const Phone = ({ register, watch, errorMessage, validateForm, editPage }) => {
           })}
           className={cls(
             editPage
-              ? ''
+              ? 'bg-transparent p-1 outline-none text-sm border-2 rounded-md text-pintalk-dark-brown w-[25%]'
               : 'bg-transparent p-1 outline-none text-sm border-2 rounded-md text-pintalk-dark-brown w-[15%]',
           )}
         >
-          <option value="">선택</option>
+          {editPage ? <option value={phone1}>{phone1}</option> : <option value="">선택</option>}
           <option value="010">010</option>
           <option value="011">011</option>
           <option value="012">012</option>
@@ -49,6 +58,7 @@ const Phone = ({ register, watch, errorMessage, validateForm, editPage }) => {
           })}
           type="text"
           maxLength={4}
+          placeholder={editPage ? phone2 : ''}
           className={
             editPage
               ? ''
@@ -70,6 +80,7 @@ const Phone = ({ register, watch, errorMessage, validateForm, editPage }) => {
           })}
           type="text"
           maxLength={4}
+          placeholder={editPage ? phone3 : ''}
           className={
             editPage
               ? ''

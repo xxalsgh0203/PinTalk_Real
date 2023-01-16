@@ -9,6 +9,7 @@ const Password = ({
   register,
   errorMessage,
   necessary,
+  upassword,
   editPage,
 }) => {
   return (
@@ -45,16 +46,17 @@ const Password = ({
           })}
           type={type}
           maxLength={15}
+          placeholder={editPage ? upassword : ''}
           className={
             editPage
-              ? ''
+              ? 'bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all'
               : 'bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all'
           }
         />
         <div
           className={cls(
             editPage
-              ? ''
+              ? 'flex items-center absolute h-full top-0 bottom-0 right-2 px-1 text-center'
               : 'flex items-center absolute h-full top-0 bottom-0 right-2 px-1 text-center',
           )}
         >
