@@ -5,7 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity(name = "USERMEMBER")
+@Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,9 +34,14 @@ public class UserMember extends BaseEntity {
     private String gender;
     private String address1;
     private String address2;
-    private String job_key;
+    private String jobKey;
     private String status;
-    private String save_status;
+    private String saveStatus;
+
+    @Column(name = "signDate", length = 8)
+    private String signDate;    // 가입날짜
+    @Column(name = "modifyDate", length = 8)
+    private String modifyDate;  // 정보수정 날짜
 
 
 }
