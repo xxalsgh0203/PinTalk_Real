@@ -11,8 +11,8 @@ const useMutation = (url) => {
   const mutation = async (data) => {
     try {
       setValue((prev) => ({ ...prev, loading: true }));
-      const response = await await axios.post(url, data).data;
-      console.log(response);
+      const response = await (await axios.post(url, data)).data;
+      console.log('mutation res |', response);
       setValue((prev) => ({ ...prev, data: response }));
     } catch (error) {
       setValue((prev) => ({ ...prev, error }));
