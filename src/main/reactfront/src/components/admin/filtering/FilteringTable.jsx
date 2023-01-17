@@ -92,8 +92,9 @@ const FilteringTable = () => {
       user_state,
       yy,
     } = data;
+    console.log('address');
     const submitData = {
-      address,
+      address: address?.startsWith(' ') ? null : address?.trim(),
       dd,
       gender,
       mm,
@@ -144,7 +145,6 @@ const FilteringTable = () => {
           <FilteringInput
             label="이름"
             placeholder="홍길동"
-            max={10}
             htmlFor="name"
             register={register('name', {
               onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
@@ -185,22 +185,13 @@ const FilteringTable = () => {
               <input
                 {...register('phone2', {
                   onChange: (e) => validateForm.inputValid(e, 'phone2', NUMBER),
-                  minLength: {
-                    value: 4,
-                    message: '4자리를 입력해주세요',
-                  },
                 })}
                 type="text"
-                maxLength={4}
                 className="bg-transparent outline-none rounded-md w-[20%] lg:w-[25%] shadow-sm"
               />
               <span>-</span>
               <input
                 {...register('phone3', {
-                  minLength: {
-                    value: 4,
-                    message: '4자리를 입력해주세요',
-                  },
                   onChange: (e) => validateForm.inputValid(e, 'phone3', NUMBER),
                 })}
                 type="text"
@@ -230,16 +221,11 @@ const FilteringTable = () => {
             <div className="flex items-center space-x-4">
               <input
                 {...register('frontEmail', {
-                  minLength: {
-                    value: 3,
-                    message: '3자리 이상 입력해주세요.',
-                  },
                   onChange: (e) => {
                     validateForm.notSpecialString(e);
                     return validateForm.inputValid(e, 'frontEmail', NUMBER_ENGLISH);
                   },
                 })}
-                maxLength={15}
                 type="text"
                 placeholder="pintalk@pintalk.com"
                 className="bg-transparent w-[50%] md:w-[45%] shadow-sm"
