@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import useMutation from '../../../hooks/useMutation';
@@ -26,7 +25,6 @@ const FilteringTable = () => {
     handleSubmit,
     reset,
     formState: { errors },
-    watch,
     control,
   } = useForm({
     defaultValues: {
@@ -69,11 +67,48 @@ const FilteringTable = () => {
     }));
   };
 
-  const onValid = async (data) => {
-    console.log(data);
-    //mutation(data);
-    /* const test = await (await axios.post('/userMemberListForm', data)).data;
-    console.log(test); */
+  const convertEmail = (frontEmail, backEmail) => {
+    if (frontEmail && backEmail) {
+      return frontEmail + backEmail;
+    }
+    if (frontEmail) return frontEmail;
+    if (backEmail) return backEmail;
+  };
+
+  const onValid = (data) => {
+    const {
+      address,
+      backEmail,
+      dd,
+      frontEmail,
+      gender,
+      mm,
+      name,
+      phone1,
+      phone2,
+      phone3,
+      reg_date,
+      update_date,
+      user_state,
+      yy,
+    } = data;
+    const submitData = {
+      address,
+      dd,
+      gender,
+      mm,
+      name,
+      phone1,
+      phone2,
+      phone3,
+      reg_date,
+      update_date,
+      user_state,
+      yy,
+      email: convertEmail(frontEmail, backEmail),
+    };
+    console.log(submitData);
+    //mutation(submitData)
   };
 
   const handleUserStatus = (e) => {
