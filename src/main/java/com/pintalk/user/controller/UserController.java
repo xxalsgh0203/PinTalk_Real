@@ -29,31 +29,26 @@ public class UserController {
 
     Util util = new Util();
 
-    //유저 리스트
+    /**
+     * 유저 리스트화면
+     * @param pageable
+     * @return
+     */
     @GetMapping("/userMemberList")
     public List getUserMemberList(
             @PageableDefault(page = 0, size = 10, sort = "no", direction = Sort.Direction.DESC) Pageable pageable
-            ,UserMember userMember, String searchKeyword) {
+            ) {
+        log.info("==================GetMapping.UserController.getUserMemberList.START==================");
 
         Page<UserMember> list = null;
 
-//        HashMap member = util.convertObjectToMap(userMember);
-//        System.out.println("searchKeyword : " + searchKeyword);
-//        System.out.println("member : " + member);
-//        if(searchKeyword == null || searchKeyword.equals("")) {
-//            System.out.println("true");
-            list = service.userMemberList(pageable);
-//        } else {
-//            System.out.println("false");
-//            list = service.userMemberListSearch(member, pageable);
-//        }
-
-        System.out.println("listlistlistlistlistlistlist : " + list);
+        list = service.userMemberList(pageable);
+        log.info("검색 리스트 : " + list);
+        log.info("=======================================");
         int currPage = list.getPageable().getPageNumber();
         int totalPage = list.getTotalPages();
         int startPage = (int) Math.floor(currPage / 10) * 10;
         int endPage = Math.min(totalPage, startPage + 10);
-
 
         List result_li = new ArrayList();
         HashMap result_hs = new HashMap();
@@ -65,33 +60,29 @@ public class UserController {
         result_li.add(list.getContent());
         result_li.add(result_hs);
 
+        log.info("최종 결과 리턴 값 : " + result_li);
+        log.info("==================GetMapping.UserController.getUserMemberList.END==================");
         return result_li;
     }
 
+    /**
+     * 유저 검색화면 검색버튼 선택 시
+     * @param pageable
+     * @param userMember
+     * @return
+     * @throws ParseException
+     */
     @PostMapping("/userMemberListForm")
     public List getUserMemberList( @PageableDefault(page = 0, size = 10, sort = "no", direction = Sort.Direction.DESC) Pageable pageable, @RequestBody UserMember userMember) throws ParseException {
-        Page<UserMember> list = null;
-
-        System.out.println("============POST============");
-
+        log.info("==================PostMapping.UserController.getUserMemberList.START==================");
+        log.info("============POST============");
         HashMap member = util.convertObjectToMap(userMember);
-        System.out.println("member : " + member);
+        log.info("SearchList Parameter : " + member);
+        log.info("============================");
 
-        if(member.get("signDate") != null){
-            String signDate = (String) member.get("signDate");
-            member.put("signDate",util.setDateFormatStr(signDate,"yyyy-MM-dd","yyyyMMdd"));
-        }
-        if(member.get("modifyDate") != null){
-            String modifyDate = (String) member.get("modifyDate");
-            member.put("modifyDate",util.setDateFormatStr(modifyDate,"yyyy-MM-dd","yyyyMMdd"));
-        }
+        Page<UserMember> list = service.userMemberListSearch(member, pageable);
 
-
-        System.out.println("============================");
-
-
-        list = service.userMemberListSearch(member, pageable);
-        System.out.println("list : " + list);
+        //페이징 처리
         int currPage = list.getPageable().getPageNumber();
         int totalPage = list.getTotalPages();
         int startPage = (int) Math.floor(currPage / 10) * 10;
@@ -108,23 +99,41 @@ public class UserController {
         result_li.add(list.getContent());
         result_li.add(result_hs);
 
-        System.out.println("result_li : " +result_li);
+        log.info("============================");
+        log.info("최종 결과값 : " +result_li);
+        log.info("==================PostMapping.UserController.getUserMemberList.END==================");
         return result_li;
     }
 
-    //유저상세 페이지
+    /**
+     * 유저상세 페이지
+     * @param id
+     * @return
+     */
     @GetMapping("/userMemberDetail/{id}")
-    public List userMemberDetail(Model model, @PathVariable Integer id) {
+    public List userMemberDetail(@PathVariable Integer id) {
+        log.info("==================GetMapping.UserController.userMemberDetail.START==================");
 
         List<UserMember> result_li = new ArrayList();
 
         result_li.add(service.userMemberDetail(id));
+
+        log.info("============================");
+        log.info("최종 결과값 : " +result_li);
+        log.info("==================GetMapping.UserController.userMemberDetail.END==================");
         return result_li;
     }
 
-    //유저 신규 처리
+    /**
+     * 유저 신규 처리
+     * @param userMember
+     */
     @GetMapping("/userMemberInsert")
     public void getUserMemberInsert(UserMember userMember) {
-        service.userMemberInsert(userMember);
+
+        log.info("==================GetMapping.UserController.getUserMemberInsert.START==================");
+
+        log.info("최종 결과값 : " + service.userMemberInsert(userMember));
+        log.info("==================GetMapping.UserController.getUserMemberInsert.END==================");
     }
 }
