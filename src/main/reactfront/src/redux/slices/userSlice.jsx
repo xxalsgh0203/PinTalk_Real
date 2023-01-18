@@ -27,7 +27,7 @@ const initialState = {
   status: null,
 };
 
-export const userReducer = createSlice({
+export const userSlice = createSlice({
   name: 'userList',
   initialState,
   reducers: {

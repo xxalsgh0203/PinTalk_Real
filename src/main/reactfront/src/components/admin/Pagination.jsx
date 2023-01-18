@@ -1,20 +1,19 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { userReducer } from '../../redux/slices/userReducer';
+import { userSlice } from '../../redux/slices/userSlice';
 
 function Pagination({ PageInfo }) {
   const pageDispatch = useDispatch();
 
   const handlePrevPage = () => {
-    pageDispatch(userReducer.actions.handlePage(PageInfo?.currPage - 1));
+    pageDispatch(userSlice.actions.handlePage(PageInfo?.currPage - 1));
   };
 
   const handleAfterPage = () => {
-    pageDispatch(userReducer.actions.handlePage(PageInfo?.currPage + 1));
+    pageDispatch(userSlice.actions.handlePage(PageInfo?.currPage + 1));
   };
 
   const handlePageChange = (p) => {
-    pageDispatch(userReducer.actions.handlePage(p));
+    pageDispatch(userSlice.actions.handlePage(p));
   };
 
   return (

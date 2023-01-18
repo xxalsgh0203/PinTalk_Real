@@ -1,4 +1,4 @@
-import logo from '../../src/components/layout/pinbank_icon.png';
+import logo from '../asset/pinbank_icon.png';
 import LoginForm from '../components/login/LoginForm';
 import LoginLayout from '../components/login/LoginLayout';
 
