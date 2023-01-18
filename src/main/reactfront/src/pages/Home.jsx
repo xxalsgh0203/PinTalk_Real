@@ -3,7 +3,7 @@ import Layout from '../components/layout/Layout';
 const Home = () => {
   return (
     <Layout page={'home'}>
-      <main className="h-screen">
+      <main className="h-screen overflow-hidden">
         <div className="bg-slide-whitespace">
           <div className="absolute w-full h-full text-pintalk-dark-brown flex pl-10 pt-40 items-front flex-col">
             <h2 className="uppercase font-bold text-5xl mb-4">PIN BANK</h2>
