@@ -31,7 +31,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex fixed bottom-0 justify-center text-xl w-[100%] h-40">
+        <div className="flex fixed bottom-0 justify-center text-2xl w-[100%] h-32">
           <button className="bg-pintalk-light-yellow text-white w-1/6 h-full cursor-pointer">
             전체계좌조회
           </button>
