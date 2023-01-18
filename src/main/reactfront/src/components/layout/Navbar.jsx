@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import PinBankLogo from './pinbank_icon.png';
+import PinBankLogo from '../../asset/pinbank_icon.png';
 
 const Navbar = ({ title }) => {
   return (

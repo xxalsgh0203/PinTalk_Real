@@ -1,7 +1,8 @@
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import useMutation from '../../../hooks/useMutation';
-import { userReducer } from '../../../redux/slices/userReducer';
+import { userSlice } from '../../../redux/slices/userSlice';
+
 import { openNewWindow } from '../../../utils/openNewWindow';
 import ValidateForm, {
   inputSetValues,
@@ -114,7 +115,7 @@ const FilteringTable = () => {
 
   const handleUserStatus = (e) => {
     const value = e.target.value;
-    userStatusDispatch(userReducer.actions.handleStatus(value));
+    userStatusDispatch(userSlice.actions.handleStatus(value));
   };
 
   const openWindow = () => {
