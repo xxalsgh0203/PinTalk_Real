@@ -13,7 +13,7 @@ const Status = ({ register, watch, editPage, ustatus, label }) => {
             checked={editPage ? ustatus === 'A' : watch('status') === 'A'}
             className={cls(
               editPage
-                ? 'appearance-none w-3 h-3 bg-gray-100 rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow'
+                ? ''
                 : 'appearance-none w-3 h-3 bg-gray-100 rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow',
               watch('status') === 'A' ? 'bg-pintalk-dark-yellow' : '',
             )}
@@ -29,7 +29,7 @@ const Status = ({ register, watch, editPage, ustatus, label }) => {
             {...register}
             className={cls(
               editPage
-                ? 'appearance-none w-3 h-3 bg-gray-100 rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow'
+                ? ''
                 : 'appearance-none w-3 h-3 bg-gray-100   rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow',
               watch('status') === 'W' ? 'bg-pintalk-dark-yellow' : '',
             )}
@@ -45,7 +45,7 @@ const Status = ({ register, watch, editPage, ustatus, label }) => {
             {...register}
             className={cls(
               editPage
-                ? 'appearance-none w-3 h-3 bg-gray-100 rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow'
+                ? ''
                 : 'appearance-none w-3 h-3 bg-gray-100   rounded-full transition-all cursor-pointer mr-1 focus:ring-1 focus:ring-offset-1 focus:ring-pintalk-light-yellow',
               watch('status') === 'P' ? 'bg-pintalk-dark-yellow' : '',
             )}

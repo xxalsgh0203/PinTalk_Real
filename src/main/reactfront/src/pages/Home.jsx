@@ -3,7 +3,7 @@ import Layout from '../components/layout/Layout';
 const Home = () => {
   return (
     <Layout page={'home'}>
-      <main>
+      <main className="h-screen">
         <div className="bg-slide-whitespace">
           <div className="absolute w-full h-full text-pintalk-dark-brown flex pl-10 pt-40 items-front flex-col">
             <h2 className="uppercase font-bold text-5xl mb-4">PIN BANK</h2>
@@ -31,13 +31,25 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex justify-center text-xl w-[100%] h-60">
-          <button className="bg-pintalk-light-yellow text-white w-1/6 h-1/2">전체계좌조회</button>
-          <button className="bg-pintalk-light-yellow text-white w-1/6 h-1/2">계좌이체</button>
-          <button className="bg-pintalk-light-yellow text-white w-1/6 h-1/2">빠른조회</button>
-          <button className="bg-pintalk-dark-brown text-white w-1/6 h-1/2">보안센터</button>
-          <button className="bg-pintalk-dark-brown text-white w-1/6 h-1/2">상담/예약</button>
-          <button className="bg-pintalk-dark-brown text-white w-1/6 h-1/2">소비자보호</button>
+        <div className="flex fixed bottom-0 justify-center text-xl w-[100%] h-40">
+          <button className="bg-pintalk-light-yellow text-white w-1/6 h-full cursor-pointer">
+            전체계좌조회
+          </button>
+          <button className="bg-pintalk-light-yellow text-white w-1/6 h-full cursor-pointer">
+            계좌이체
+          </button>
+          <button className="bg-pintalk-light-yellow text-white w-1/6 h-full cursor-pointer">
+            빠른조회
+          </button>
+          <button className="bg-pintalk-dark-brown text-white w-1/6 h-full cursor-pointer">
+            보안센터
+          </button>
+          <button className="bg-pintalk-dark-brown text-white w-1/6 h-full cursor-pointer">
+            상담/예약
+          </button>
+          <button className="bg-pintalk-dark-brown text-white w-1/6 h-full cursor-pointer">
+            소비자보호
+          </button>
         </div>
       </main>
     </Layout>
