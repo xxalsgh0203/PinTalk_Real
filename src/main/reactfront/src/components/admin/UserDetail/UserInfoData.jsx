@@ -189,7 +189,6 @@ const UserInfoData = ({ userInfo }) => {
                           label="상세주소"
                           placeholder={userInfo[0]?.address2}
                         />
-                        {userInfo[0]?.address1} {userInfo[0]?.address2}
                       </td>
                     </tr>
 
