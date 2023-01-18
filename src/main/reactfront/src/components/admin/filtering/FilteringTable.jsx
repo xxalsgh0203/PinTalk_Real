@@ -39,9 +39,8 @@ const FilteringTable = () => {
       phone1: null,
       phone2: null,
       phone3: null,
-      reg_date: null,
-      update_date: null,
-      user_state: null,
+      modifyDate: null,
+      signDate: null,
       yy: null,
     },
   });
@@ -57,12 +56,11 @@ const FilteringTable = () => {
       address: null,
       frontEmail: null,
       backEmail: null,
-      reg_date: null,
-      year: null,
-      day: null,
-      month: null,
-      update_date: null,
-      user_state: null,
+      yy: null,
+      dd: null,
+      mm: null,
+      modifyDate: null,
+      signDate: null,
       ssn1: null,
       ssn2: null,
     }));
@@ -88,14 +86,13 @@ const FilteringTable = () => {
       phone1,
       phone2,
       phone3,
-      reg_date,
-      update_date,
-      user_state,
+      modifyDate,
+      signDate,
       yy,
     } = data;
-    console.log('address');
+
     const submitData = {
-      address: address?.startsWith(' ') ? null : address?.trim(),
+      address: address?.trim() || null,
       dd,
       gender,
       mm,
@@ -103,11 +100,10 @@ const FilteringTable = () => {
       phone1,
       phone2,
       phone3,
-      reg_date,
-      update_date,
-      user_state,
+      modifyDate,
+      signDate,
       yy,
-      email: convertEmail(frontEmail, backEmail),
+      email: convertEmail(frontEmail, backEmail) || null,
     };
     console.log(submitData);
     //mutation(submitData)
