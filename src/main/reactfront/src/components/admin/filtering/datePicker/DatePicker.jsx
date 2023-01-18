@@ -4,8 +4,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/esm/locale';
 import { getMonth, getYear } from 'date-fns';
 import { calculateYear } from '../../../../utils/calculateDatePicker';
+import cls from '../../../../utils/cls';
 
-const DatePicker = ({ label, Controller, control, name }) => {
+const DatePicker = ({ label, Controller, control, name, textEnd }) => {
   const yearRef = useRef();
   const monthRef = useRef();
   const years = calculateYear('number');
@@ -16,16 +17,14 @@ const DatePicker = ({ label, Controller, control, name }) => {
   };
 
   return (
-    <div className="flex flex-col w-[50%]">
-      <label htmlFor="reg_date" className="text-sm font-bold mb-2">
-        {label}
-      </label>
+    <div className="flex flex-col w-[140px] rounded-lg">
       <div className="shadow-sm">
         <Controller
           control={control}
           name={name}
           render={({ field: { onChange, value, onBlur } }) => (
             <ReactDatePicker
+              className={cls(textEnd ? 'text-end' : 'text-start')}
               locale={ko}
               dateFormat="yyyy년 MM월 dd일"
               onChange={onChange}
@@ -50,7 +49,7 @@ const DatePicker = ({ label, Controller, control, name }) => {
                   </button>
                   <div className="custom-react-datepicker__select-item relative space-x-16">
                     <select
-                      className="w-14 mr-2 absolute bg-transparent cursor-pointer"
+                      className="w-14 mr-2 absolute bg-transparent cursor-pointer z-30"
                       ref={yearRef}
                       value={getYear(date)}
                       onFocus={() => {

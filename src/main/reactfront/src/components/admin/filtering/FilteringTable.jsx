@@ -27,23 +27,7 @@ const FilteringTable = () => {
     reset,
     formState: { errors },
     control,
-  } = useForm({
-    defaultValues: {
-      address: null,
-      backEmail: null,
-      dd: null,
-      frontEmail: null,
-      gender: null,
-      mm: null,
-      name: null,
-      phone1: null,
-      phone2: null,
-      phone3: null,
-      modifyDate: null,
-      signDate: null,
-      yy: null,
-    },
-  });
+  } = useForm();
 
   const handleResetValue = () => {
     reset((formValue) => ({
@@ -56,11 +40,13 @@ const FilteringTable = () => {
       address: null,
       frontEmail: null,
       backEmail: null,
-      yy: null,
-      dd: null,
-      mm: null,
-      modifyDate: null,
-      signDate: null,
+      year: null,
+      month: null,
+      day: null,
+      signDateStart: null,
+      signDateEnd: null,
+      modifyDateStart: null,
+      modifyDateEnd: null,
       ssn1: null,
       ssn2: null,
     }));
@@ -68,41 +54,45 @@ const FilteringTable = () => {
 
   const convertEmail = (frontEmail, backEmail) => {
     if (frontEmail && backEmail) {
-      return frontEmail + backEmail;
+      return frontEmail + '@' + backEmail;
     }
     if (frontEmail) return frontEmail;
-    if (backEmail) return backEmail;
+    if (backEmail) return '@' + backEmail;
   };
 
   const onValid = (data) => {
     const {
       address,
       backEmail,
-      dd,
       frontEmail,
       gender,
-      mm,
+      year,
+      month,
+      day,
       name,
       phone1,
       phone2,
       phone3,
-      modifyDate,
-      signDate,
-      yy,
+      signDateStart,
+      signDateEnd,
+      modifyDateStart,
+      modifyDateEnd,
     } = data;
 
     const submitData = {
       address: address?.trim() || null,
-      dd,
-      gender,
-      mm,
-      name,
-      phone1,
-      phone2,
-      phone3,
-      modifyDate,
-      signDate,
-      yy,
+      year: year || null,
+      month: month || null,
+      day: day || null,
+      gender: gender || null,
+      name: name || null,
+      phone1: phone1 || null,
+      phone2: phone2 || null,
+      phone3: phone3 || null,
+      signDateStart: signDateStart || null,
+      signDateEnd: signDateEnd || null,
+      modifyDateStart: modifyDateStart || null,
+      modifyDateEnd: modifyDateEnd || null,
       email: convertEmail(frontEmail, backEmail) || null,
     };
     console.log(submitData);
@@ -243,20 +233,43 @@ const FilteringTable = () => {
           </div>
 
           <div>
-            <DatePicker
-              label="가입일자"
-              Controller={Controller}
-              control={control}
-              name="signDate"
-            />
+            <label className="text-sm font-bold mb-2">가입일자</label>
+            <div className="flex items-center space-x-2 mt-2">
+              <DatePicker
+                label="며칠 부터"
+                Controller={Controller}
+                control={control}
+                name="signDateStart"
+              />
+              <span>~</span>
+              <DatePicker
+                label="며칠 까지"
+                Controller={Controller}
+                control={control}
+                name="signDateEnd"
+                textEnd
+              />
+            </div>
           </div>
+
           <div>
-            <DatePicker
-              label="정보 변경일자"
-              Controller={Controller}
-              control={control}
-              name="modifyDate"
-            />
+            <label className="text-sm font-bold">정보 변경일자</label>
+            <div className="flex items-center space-x-2 mt-2">
+              <DatePicker
+                label="며칠 부터"
+                Controller={Controller}
+                control={control}
+                name="modifyDateStart"
+              />
+              <span>~</span>
+              <DatePicker
+                label="며칠 까지"
+                Controller={Controller}
+                control={control}
+                name="modifyDateEnd"
+                textEnd
+              />
+            </div>
           </div>
 
           <div className="flex flex-col w-[50%] shadow-sm">
