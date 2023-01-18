@@ -18,7 +18,7 @@ const BirthPicker = ({ register }) => {
         {/* 년 */}
         <div className="">
           <BirthSelector
-            register={register('yy', {
+            register={register('year', {
               onChange: (e) => {
                 e.target.size = 1;
                 e.target.blur();
@@ -37,7 +37,7 @@ const BirthPicker = ({ register }) => {
         {/* 월 */}
         <div className="flex items-center">
           <BirthSelector
-            register={register('mm', {
+            register={register('month', {
               onChange: (e) => {
                 e.target.size = 1;
                 e.target.blur();
@@ -54,7 +54,7 @@ const BirthPicker = ({ register }) => {
         </div>
         {/* 일 */}
         <BirthSelector
-          register={register('dd', {
+          register={register('day', {
             onChange: (e) => {
               e.target.size = 1;
               e.target.blur();
