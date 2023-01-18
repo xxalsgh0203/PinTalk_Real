@@ -8,6 +8,7 @@ import Admin from './pages/Admin';
 import UserMemberDetail from './components/admin/UserDetail/UserMemberDetail';
 import RegisterForm from './components/admin/RegisterForm';
 import NotFound from './pages/NotFound';
+import Login from './pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: 'userMemberDetail/:id',
         element: <UserMemberDetail />,
+      },
+      {
+        path: 'login',
+        element: <Login />,
       },
     ],
   },
