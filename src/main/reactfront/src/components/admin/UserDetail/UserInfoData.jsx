@@ -7,6 +7,8 @@ import Email from '../../shareInputs/Email';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
 import Password from '../../shareInputs/Password';
 import Status from '../../shareInputs/Status';
+import { useEffect } from 'react';
+import EditCloseButton from './EditCloseButton';
 
 const validateForm = new ValidateForm();
 
@@ -16,15 +18,33 @@ const UserInfoData = ({ userInfo }) => {
     handleSubmit,
     watch,
     formState: { errors },
+    setValue,
   } = useForm({
     mode: 'onChange',
+    // defaultValues: {
+    //   name: userInfo[0]?.name,
+    // },
   });
 
-  const onSubmit = (data) => {
-    console.log('data', data);
-  };
-
-  // console.log(userInfo[0]);
+  useEffect(() => {
+    if (userInfo[0]) {
+      setValue('name', userInfo[0].name);
+      setValue('gender', userInfo[0].gender);
+      setValue('ssn1', userInfo[0].ssn1);
+      setValue('ssn2', userInfo[0].ssn2);
+      setValue('phone1', userInfo[0].phone1);
+      setValue('phone2', userInfo[0].phone2);
+      setValue('phone3', userInfo[0].phone3);
+      setValue('id', userInfo[0].id);
+      setValue('password', userInfo[0].password);
+      setValue('address1', userInfo[0].address1);
+      setValue('address2', userInfo[0].address2);
+      setValue('frontEmail', userInfo[0].email.split('@')[0]);
+      setValue('backEmail', userInfo[0].email.split('@')[1]);
+      setValue('job_key', userInfo[0].job_key);
+      setValue('status', userInfo[0].status);
+    }
+  }, userInfo[0]);
 
   const onValid = (data) => {
     const email = data.frontEmail && data.frontEmail + '@' + data.backEmail;
@@ -45,6 +65,7 @@ const UserInfoData = ({ userInfo }) => {
       phone2: data.phone2 || null,
       phone3: data.phone3 || null,
       ssn,
+      status: data.status || null,
     });
 
     return {
@@ -61,6 +82,7 @@ const UserInfoData = ({ userInfo }) => {
       phone2: data.phone2 || null,
       phone3: data.phone3 || null,
       ssn,
+      status: data.status || null,
     };
   };
 
@@ -73,7 +95,7 @@ const UserInfoData = ({ userInfo }) => {
               <h1 className="py-5 text-2xl text-pintalk-dark-brown text-semibold">
                 회원 상세 정보
               </h1>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={handleSubmit(onValid)}>
                 <table className="min-w-full">
                   <tbody>
                     <tr className="border-b">
@@ -88,7 +110,8 @@ const UserInfoData = ({ userInfo }) => {
                           errorMessage={errors.name?.message}
                           htmlFor="name"
                           maxLength={10}
-                          placeholder={userInfo[0]?.name}
+                          // placeholder={userInfo[0]?.name}
+                          // defaultValue={userInfo[0]?.name}
                           editPage
                         />
                       </td>
@@ -160,7 +183,6 @@ const UserInfoData = ({ userInfo }) => {
                         <Password
                           necessary
                           register={register}
-                          type="password"
                           htmlFor="password"
                           errorMessage={errors.password?.message}
                           upassword={userInfo[0]?.password}
@@ -259,28 +281,13 @@ const UserInfoData = ({ userInfo }) => {
                     </tr>
                   </tbody>
                 </table>
+                <div className="flex justify-center items-center space-x-2 mt-10">
+                  <EditCloseButton />
+                </div>
               </form>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="flex justify-center items-center space-x-2 mt-10">
-        <button
-          className="px-4 py-2 text-white-800  rounded-lg bg-opacity-50 hover:bg-stone-200 font-bold text-white shadow-lg shadow-stone-200 transition ease-in-out duration-200 translate-10 w-[30%] md:w-[15%] lg:w-[10%] bg-pintalk-light-yellow"
-          id="edit"
-          type="submit"
-        >
-          수정
-        </button>
-
-        <button
-          className="px-4 py-2 text-white-800  rounded-lg bg-opacity-50 hover:bg-stone-200 font-bold text-white shadow-lg shadow-stone-200 transition ease-in-out duration-200 translate-10 w-[30%] md:w-[15%] lg:w-[10%] bg-pintalk-dark-yellow"
-          type="close"
-          onClick={window.close}
-        >
-          닫기
-        </button>
       </div>
     </>
   );

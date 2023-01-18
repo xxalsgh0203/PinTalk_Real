@@ -49,7 +49,7 @@ const Email = ({ register, errorMessage, validateForm, email1, email2, watch, ed
               : 'bg-transparent border-2 rounded-md px-1 py-1 outline-none w-[20%] relative text-pintalk-dark-brown',
           )}
         >
-          {editPage ? <option value="email2">{email2}</option> : <option value="">선택</option>}
+          {editPage ? <option value={email2}>{email2}</option> : <option value="">선택</option>}
           <option value="naver.com">naver.com</option>
           <option value="nate.com">nate.com</option>
           <option value="gmail.com">gmail.com</option>

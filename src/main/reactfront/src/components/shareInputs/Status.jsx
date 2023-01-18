@@ -10,7 +10,7 @@ const Status = ({ register, watch, editPage, ustatus, label }) => {
             {...register}
             type="radio"
             value="A"
-            checked={editPage ? ustatus === 'A' : watch('status') === 'A'}
+            checked={watch('status') === 'A'}
             className={cls(
               editPage
                 ? ''
@@ -18,14 +18,14 @@ const Status = ({ register, watch, editPage, ustatus, label }) => {
               watch('status') === 'A' ? 'bg-pintalk-dark-yellow' : '',
             )}
           />
-          <span className="text-sm">Accepted</span>
+          <span className="text-sm">승인</span>
         </label>
 
         <label htmlFor="W">
           <input
             type="radio"
             value="W"
-            checked={editPage ? ustatus === 'W' : watch('status') === 'W'}
+            checked={watch('status') === 'W'}
             {...register}
             className={cls(
               editPage
@@ -34,14 +34,14 @@ const Status = ({ register, watch, editPage, ustatus, label }) => {
               watch('status') === 'W' ? 'bg-pintalk-dark-yellow' : '',
             )}
           />
-          <span className="text-sm">Withdrawal</span>
+          <span className="text-sm">탈퇴</span>
         </label>
 
         <label htmlFor="P">
           <input
             type="radio"
             value="P"
-            checked={editPage ? ustatus === 'P' : watch('status') === 'P'}
+            checked={watch('status') === 'P'}
             {...register}
             className={cls(
               editPage
@@ -50,7 +50,7 @@ const Status = ({ register, watch, editPage, ustatus, label }) => {
               watch('status') === 'P' ? 'bg-pintalk-dark-yellow' : '',
             )}
           />
-          <span className="text-sm">Pending</span>
+          <span className="text-sm">대기</span>
         </label>
       </div>
     </div>

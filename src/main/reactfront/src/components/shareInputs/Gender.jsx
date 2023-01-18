@@ -11,7 +11,7 @@ const Gender = ({ register, watch, editPage, ugender, label }) => {
             type="radio"
             value="M"
             // checked={watch('gender') === 'M'}
-            checked={editPage ? ugender === 'M' : watch('gender') === 'M'}
+            checked={watch('gender') === 'M'}
             className={cls(
               editPage
                 ? ''
@@ -26,8 +26,7 @@ const Gender = ({ register, watch, editPage, ugender, label }) => {
           <input
             type="radio"
             value="W"
-            // checked={watch('gender') === 'W'}
-            checked={editPage ? ugender === 'W' : watch('gender') === 'W'}
+            checked={watch('gender') === 'W'}
             {...register}
             className={cls(
               editPage
