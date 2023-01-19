@@ -1,15 +1,71 @@
 import LoginInput from './LoginInput';
+import { useForm } from 'react-hook-form';
+import { useNavigate, Link } from 'react-router-dom';
+import LoginTitle from '../../pages/login/LoginTitle';
+import LoginButton from '../../pages/login/LoginButton';
 
 const LoginForm = () => {
-  return (
-    <form className="w-[50%]">
-      <LoginInput type="text" label="아이디" htmlFor="id" />
-      <LoginInput type="password" label="비밀번호" htmlFor="password" />
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm();
 
-      <button className="mt-12 w-full bg-amber-600 text-white p-1 text-lg font-bold flex justify-center items-center rounded-lg hover:bg-amber-500 transition-all cursor-pointer">
-        로그인
-      </button>
-    </form>
+  const onValid = (data) => {
+    console.info(data);
+  };
+
+  const onForgotAccount = () => {
+    navigate('/forgot-account');
+  };
+
+  return (
+    <div>
+      <Link to="/">
+        <span className="text-amber-600 hover:text-amber-500 cursor-pointer p-1 font-bold">
+          홈으로 가기
+        </span>
+      </Link>
+
+      <main className="w-[37rem] h-[40rem] flex flex-col items-center justify-center bg-white shadow-md rounded-md relative">
+        <LoginTitle title="로그인" />
+        <form onSubmit={handleSubmit(onValid)} className="w-[50%]">
+          <LoginInput
+            register={register('id', {
+              required: '아이디를 입력해주세요.',
+            })}
+            type="text"
+            label="아이디"
+            htmlFor="id"
+            errorMessage={errors?.id?.message}
+          />
+          <LoginInput
+            register={register('password', {
+              required: '비밀번호를 입려해주세요.',
+            })}
+            type="password"
+            label="비밀번호"
+            htmlFor="password"
+            errorMessage={errors?.password?.message}
+          />
+
+          <LoginButton title="로그인" isValid={isValid} />
+        </form>
+
+        <div
+          onClick={onForgotAccount}
+          className="mt-5 text-amber-700 text-sm flex justify-between w-[50%]"
+        >
+          <span className="block hover:text-amber-600 cursor-pointer transition-all">
+            아이디·비밀번호 찾기
+          </span>
+          <span className="block hover:text-amber-600 cursor-pointer transition-all">
+            회원신청 하기
+          </span>
+        </div>
+      </main>
+    </div>
   );
 };
 export default LoginForm;

@@ -1,14 +1,19 @@
 import { AiFillLock } from 'react-icons/ai';
 import { FaUserAlt } from 'react-icons/fa';
+import FormErrorMessage from '../FormErrorMessage';
 
-const LoginInput = ({ type, label, htmlFor }) => {
+const LoginInput = ({ type, label, htmlFor, register, errorMessage }) => {
   return (
     <div className="flex flex-col space-y-1 mb-10 w-full">
-      <label htmlFor={htmlFor} className="text-gray-600">
-        {label}
-      </label>
+      <div className="flex items-center">
+        <label htmlFor={htmlFor} className="text-gray-600">
+          {label}
+        </label>
+        {errorMessage && <FormErrorMessage errorMessage={errorMessage} />}
+      </div>
       <div className="relative">
         <input
+          {...register}
           id={htmlFor}
           type={type}
           placeholder={type === 'password' ? '비밀번호를 입력해주세요.' : '아이디를 입력해주세요.'}

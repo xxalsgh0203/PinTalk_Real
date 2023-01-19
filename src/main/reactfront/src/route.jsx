@@ -8,7 +8,8 @@ import Admin from './pages/Admin';
 import UserMemberDetail from './components/admin/UserDetail/UserMemberDetail';
 import RegisterForm from './components/admin/RegisterForm';
 import NotFound from './pages/NotFound';
-import Login from './pages/Login';
+import Login from './pages/login/Login';
+import ForgotAccount from './pages/login/ForgotAccount';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'forgot-account',
+        element: <ForgotAccount />,
       },
     ],
   },
