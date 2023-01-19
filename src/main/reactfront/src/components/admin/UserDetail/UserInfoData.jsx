@@ -99,7 +99,7 @@ const UserInfoData = ({ userInfo }) => {
                 <table className="min-w-full">
                   <tbody>
                     <tr className="border-b">
-                      <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900 w-52">
                         이름
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap w-5/12">
@@ -115,7 +115,7 @@ const UserInfoData = ({ userInfo }) => {
                           editPage
                         />
                       </td>
-                      <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900 ">
+                      <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900 w-48">
                         성별
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
