@@ -25,14 +25,12 @@ public class UserMember extends BaseEntity {
     private String ssn;             //유저 주민번호
     private String ssn1;            //유저 주민번호(앞자리)
     private String ssn2;            //유저 주민번호(뒷자리)
-    private String year;            //유저 생년
-    private String month;           //유저 월
-    private String day;             //유저 일
     private String phone1;          //유저 번호 앞자리
     private String phone2;          //유저 번호 중간자리
     private String phone3;          //유저 번호 뒷자리
     private String email;           //유저 이메일
     private String gender;          //유저 성별
+    private String address;         //유저 통합 주소
     private String address1;        //유저 사는곳
     private String address2;        //유저 상세주소
     private String jobKey;          //유저 직업코드
