@@ -15,7 +15,7 @@ const Phone = ({
   return (
     <div className="space-y-2">
       <label className="flex text-sm">
-        핸드폰 번호
+        {editPage ? '' : '핸드폰 번호'}
         {errorMessage && <FormErrorMessage errorMessage={errorMessage} />}
       </label>
       <div className="flex items-center space-x-4">
@@ -61,7 +61,7 @@ const Phone = ({
           placeholder={editPage ? phone2 : ''}
           className={
             editPage
-              ? ''
+              ? 'bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]'
               : 'bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]'
           }
         />
@@ -83,7 +83,7 @@ const Phone = ({
           placeholder={editPage ? phone3 : ''}
           className={
             editPage
-              ? ''
+              ? 'bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]'
               : 'bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%]'
           }
         />
