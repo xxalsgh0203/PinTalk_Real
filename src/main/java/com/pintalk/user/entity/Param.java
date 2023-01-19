@@ -1,22 +1,14 @@
 package com.pintalk.user.entity;
 
 import com.pintalk.common.entity.BaseEntity;
-import lombok.*;
+import lombok.Getter;
+import lombok.ToString;
 
-import javax.persistence.*;
+import java.time.LocalDateTime;
 
-@Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @ToString
-@Table(name = "USER_MEMBER")
-public class UserMember extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERMEMBER_GENERATOR")
-    @SequenceGenerator(name = "USERMEMBER_GENERATOR", sequenceName = "USERMEMBER_SEQ", initialValue = 1, allocationSize = 1)
+public class Param extends BaseEntity {
     private Integer no;             //유저 고유 번호
 
     private String id;              //유저 아이디
@@ -37,10 +29,14 @@ public class UserMember extends BaseEntity {
     private String status;          //유저 상태
     private String saveStatus;      //유저 활성화
 
-    @Column(name = "signDate", length = 8)
     private String signDate;        // 가입날짜
-    @Column(name = "modifyDate", length = 8)
     private String modifyDate;      // 정보수정 날짜
+    
+    private String signDateStart;   // 가입일자 시작
+    private String signDateEnd;     // 가입일자 끝
+    private String modifyDateStart; // 수정일자 시작
+    private String modifyDateEnd;   // 수정일자 끝
 
-
+    private LocalDateTime reg_Date;
+    private LocalDateTime update_Date;
 }
