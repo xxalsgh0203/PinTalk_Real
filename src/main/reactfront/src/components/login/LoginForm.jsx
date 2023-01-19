@@ -1,8 +1,10 @@
 import LoginInput from './LoginInput';
 import logo from '../../asset/pinbank_icon.png';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -11,6 +13,10 @@ const LoginForm = () => {
 
   const onValid = (data) => {
     console.info(data);
+  };
+
+  const onForgotAccount = () => {
+    navigate('/forgot-account');
   };
 
   return (
@@ -49,9 +55,12 @@ const LoginForm = () => {
         </button>
       </form>
 
-      <div className="mt-5 text-amber-700 text-sm flex justify-between w-[50%]">
+      <div
+        onClick={onForgotAccount}
+        className="mt-5 text-amber-700 text-sm flex justify-between w-[50%]"
+      >
         <span className="block hover:text-amber-600 cursor-pointer transition-all">
-          비밀번호 찾기
+          아이디·비밀번호 찾기
         </span>
         <span className="block hover:text-amber-600 cursor-pointer transition-all">
           회원신청 하기
