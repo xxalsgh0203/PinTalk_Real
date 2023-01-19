@@ -33,16 +33,36 @@ const Phone = ({
           )}
         >
           {editPage ? <option value={phone1}>{phone1}</option> : <option value="">선택</option>}
-          <option value="010">010</option>
-          <option value="011">011</option>
-          <option value="012">012</option>
-          <option value="013">013</option>
-          <option value="014">014</option>
-          <option value="015">015</option>
-          <option value="016">016</option>
-          <option value="017">017</option>
-          <option value="018">018</option>
-          <option value="019">019</option>
+          <option value="010" className={phone1 === '010' ? 'hidden' : ''}>
+            010
+          </option>
+          <option value="011" className={phone1 === '011' ? 'hidden' : ''}>
+            011
+          </option>
+          <option value="012" className={phone1 === '012' ? 'hidden' : ''}>
+            012
+          </option>
+          <option value="013" className={phone1 === '013' ? 'hidden' : ''}>
+            013
+          </option>
+          <option value="014" className={phone1 === '014' ? 'hidden' : ''}>
+            014
+          </option>
+          <option value="015" className={phone1 === '015' ? 'hidden' : ''}>
+            015
+          </option>
+          <option value="016" className={phone1 === '016' ? 'hidden' : ''}>
+            016
+          </option>
+          <option value="017" className={phone1 === '017' ? 'hidden' : ''}>
+            017
+          </option>
+          <option value="018" className={phone1 === '018' ? 'hidden' : ''}>
+            018
+          </option>
+          <option value="019" className={phone1 === '019' ? 'hidden' : ''}>
+            019
+          </option>
         </select>
         <input
           {...register('phone2', {
