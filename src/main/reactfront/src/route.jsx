@@ -8,7 +8,7 @@ import Admin from './pages/Admin';
 import UserMemberDetail from './components/admin/UserDetail/UserMemberDetail';
 import RegisterForm from './components/admin/RegisterForm';
 import NotFound from './pages/NotFound';
-import Login from './pages/Login';
+import Login from './pages/login/Login';
 
 const router = createBrowserRouter([
   {
