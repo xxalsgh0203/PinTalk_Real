@@ -9,7 +9,7 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm();
 
   const onValid = (data) => {
@@ -50,7 +50,7 @@ const LoginForm = () => {
             errorMessage={errors?.password?.message}
           />
 
-          <LoginButton title="로그인" />
+          <LoginButton title="로그인" isValid={isValid} />
         </form>
 
         <div
