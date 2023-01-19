@@ -1,6 +1,8 @@
 package com.pintalk.user.service;
 
 import com.function.Util;
+import com.pintalk.user.component.UserSpecification;
+import com.pintalk.user.entity.Param;
 import com.pintalk.user.entity.UserMember;
 import com.pintalk.user.repository.UserRepository;
 import org.slf4j.Logger;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.HashMap;
+import java.util.Map;
 
 
 @Service
@@ -42,30 +45,25 @@ public class UserService {
 
     /**
      * 유저 개인 리스트
-     * @param userMember
+//     * @param userMember
      * @param pageable
      * @return
      * @throws ParseException
      */
-    public Page<UserMember> userMemberListSearch(HashMap userMember, Pageable pageable) throws ParseException {
+    public Page<UserMember> userMemberListSearch(HashMap map, Pageable pageable) throws ParseException {
         log.info("==================UserService.userMemberListSearch.START==================");
+        log.info("param : " + map);
 
-        log.info("userMember : " + userMember);
+        HashMap paramMap = util.convertObjectToMap(map);
+        HashMap searchMap = new HashMap();
 
-        String gender = userMember.get("gender") == null ? "" : (String) userMember.get("gender");
-        String name = userMember.get("name") == null ? "" : (String) userMember.get("name");
-        String year = userMember.get("year") == null ? "" : (String) userMember.get("year");
-        String month = userMember.get("month") == null ? "" : (String) userMember.get("month");
-        String day = userMember.get("day") == null ? "" : (String) userMember.get("day");
-        String phone1 = userMember.get("phone1") == null ? "" : (String) userMember.get("phone1");
-        String phone2 = userMember.get("phone2") == null ? "" : (String) userMember.get("phone2");
-        String phone3 = userMember.get("phone3") == null ? "" : (String) userMember.get("phone3");
-        String address1 = userMember.get("address1") == null ? "" : (String) userMember.get("address1");
-        String email = userMember.get("email") == null ? "" : (String) userMember.get("email");
-        String status = userMember.get("status") == null ? "" : (String) userMember.get("status");
+        //HashMap null 값 제거
+        searchMap = util.mapKeyValueOupPut(paramMap);
 
-        String signDate = (String) userMember.get("signDate");
-        String modifyDate = (String) userMember.get("modifyDate");
+        System.out.println("searchMap : " + searchMap);
+        int cnt = searchMap.size();
+        String modifyDate = (String) searchMap.get("modifyDate");
+        String signDate = (String) searchMap.get("modifyDate");
 
         String signDateStart = "";
         String signDateEnd = "";
@@ -73,44 +71,145 @@ public class UserService {
         String modifyDateStart = "";
         String modifyDateEnd = "";
 
-        if(signDate != null){
-            userMember.put("signDate",util.setDateFormatStr(signDate,"yyyy-MM-dd","yyyyMMdd"));
-            signDateStart = signDate;
-            signDateEnd = signDate;
-        } else {
-            signDateStart = (String) userMember.remove("signDate");
-            signDateEnd = (String) userMember.remove("signDate");
+        if(searchMap.get("signDateStart") != null){
+            signDateStart = (String) searchMap.get("signDateStart");
+            searchMap.put("signDateStart",util.setDateFormatStr(signDateStart,"yyyy-MM-dd","yyyyMMdd"));
         }
+//        else {
+//            signDateStart = (String) searchMap.remove("signDateStart");
+//        }
 
-        if(modifyDate != null){
-            userMember.put("modifyDate",util.setDateFormatStr(modifyDate,"yyyy-MM-dd","yyyyMMdd"));
-            modifyDateStart = modifyDate;
-            modifyDateEnd = modifyDate;
-        } else {
-            modifyDateStart = (String) userMember.remove("modifyDate");
-            modifyDateEnd = (String) userMember.remove("modifyDate");
+        if(searchMap.get("signDateEnd") != null){
+            signDateEnd = (String) searchMap.get("signDateEnd");
+            searchMap.put("signDateEnd",util.setDateFormatStr(signDateEnd,"yyyy-MM-dd","yyyyMMdd"));
         }
+//        else {
+//            signDateEnd = (String) searchMap.remove("signDate");
+//        }
+
+        if(searchMap.get("modifyDateStart") != null){
+            modifyDateStart = (String) searchMap.get("modifyDateStart");
+            searchMap.put("modifyDateStart",util.setDateFormatStr(modifyDateStart,"yyyy-MM-dd","yyyyMMdd"));
+        }
+//        else {
+//            modifyDateStart = (String) searchMap.remove("modifyDateStart");
+//        }
+
+        if(searchMap.get("modifyDateEnd") != null){
+            modifyDateEnd = (String) searchMap.get("modifyDateEnd");
+            searchMap.put("modifyDateEnd",util.setDateFormatStr(modifyDateEnd,"yyyy-MM-dd","yyyyMMdd"));
+        }
+//        else {
+//            modifyDateEnd = (String) searchMap.remove("modifyDateEnd");
+//        }
 
         Page<UserMember> result = null;
 
-        if(modifyDate == null && signDate != null){
-            result = repository.findByGenderContainingAndNameContainingAndYearContainingAndMonthContainingAndDayContainingAndPhone1ContainingAndPhone2ContainingAndPhone3ContainingAndAddress1ContainingAndEmailContainingAndStatusContainingAndSignDateBetween
-                    (gender, name, year, month, day, phone1, phone2, phone3, address1, email, status, signDateStart, signDateEnd, pageable);
-        } else if (signDate == null && modifyDate != null) {
-            result = repository.findByGenderContainingAndNameContainingAndYearContainingAndMonthContainingAndDayContainingAndPhone1ContainingAndPhone2ContainingAndPhone3ContainingAndAddress1ContainingAndEmailContainingAndStatusContainingAndModifyDateBetween
-                    (gender, name, year, month, day, phone1, phone2, phone3, address1, email, status, modifyDateStart, modifyDateEnd, pageable);
-        } else if (signDate == null && modifyDate == null){
-            result = repository.findByGenderContainingAndNameContainingAndYearContainingAndMonthContainingAndDayContainingAndPhone1ContainingAndPhone2ContainingAndPhone3ContainingAndAddress1ContainingAndEmailContainingAndStatusContaining
-                    (gender, name, year, month, day, phone1, phone2, phone3, address1, email, status, pageable);
-        } else {
-            result = repository.findByGenderContainingAndNameContainingAndYearContainingAndMonthContainingAndDayContainingAndPhone1ContainingAndPhone2ContainingAndPhone3ContainingAndAddress1ContainingAndEmailContainingAndStatusContainingAndSignDateBetweenAndModifyDateBetween
-                    (gender, name, year, month, day, phone1, phone2, phone3, address1, email, status, signDateStart, signDateEnd, modifyDateStart, modifyDateEnd, pageable);
+
+
+        System.out.println("==========================================");
+        System.out.println("searchMap : " + searchMap);
+        System.out.println("==========================================");
+
+
+        Map<String, Object> searchKeys = new HashMap<>();
+        // Parameter 순차적으로 세팅
+        for (Object key : searchMap.keySet()) {
+            String value = String.valueOf(searchMap.get(key));
+            if(value != null && !value.isEmpty() && !"null".equals(value)){
+                searchKeys.put((String) key, searchMap.get(key));
+            }
         }
+
+        System.out.println("=====================================");
+        System.out.println("searchKeys : " + searchKeys);
+        System.out.println("=====================================");
+        UserMember userMember = new UserMember();
+
+        UserSpecification userSpecification = new UserSpecification();
+
+        System.out.println(repository.findAll(userSpecification.searchWith(searchKeys),pageable));
+
+        //결과값
+        result = repository.findAll(userSpecification.searchWith(searchKeys),pageable);
 
         log.info("최종 결과값 : " + result);
         log.info("==================UserService.userMemberListSearch.END==================");
         return result;
     }
+//    public Page<UserMember> userMemberListSearch(UserMember userMember, Pageable pageable) throws ParseException {
+//        log.info("==================UserService.userMemberListSearch.START==================");
+//        HashMap paramMap = util.convertObjectToMap(userMember);
+//        HashMap searchMap = new HashMap();
+//        //HashMap null 값 제거
+//        searchMap = util.mapKeyValueOupPut(paramMap);
+//
+//        log.info("paramMap : " + paramMap);
+//        log.info("============================");
+//
+//        log.info("resultMap : " + searchMap);
+//
+//        int cnt = searchMap.size();
+//        String signDate = (String) searchMap.get("signDate");
+//        String modifyDate = (String) searchMap.get("modifyDate");
+//
+//        String signDateStart = "";
+//        String signDateEnd = "";
+//
+//        String modifyDateStart = "";
+//        String modifyDateEnd = "";
+//
+//        if(signDate != null){
+//            searchMap.put("signDate",util.setDateFormatStr(signDate,"yyyy-MM-dd","yyyyMMdd"));
+//            signDateStart = signDate;
+//            signDateEnd = signDate;
+//        } else {
+//            signDateStart = (String) searchMap.remove("signDate");
+//            signDateEnd = (String) searchMap.remove("signDate");
+//        }
+//
+//        if(modifyDate != null){
+//            searchMap.put("modifyDate",util.setDateFormatStr(modifyDate,"yyyy-MM-dd","yyyyMMdd"));
+//            modifyDateStart = modifyDate;
+//            modifyDateEnd = modifyDate;
+//        } else {
+//            modifyDateStart = (String) searchMap.remove("modifyDate");
+//            modifyDateEnd = (String) searchMap.remove("modifyDate");
+//        }
+//
+//        Page<UserMember> result = null;
+//
+//        switch (cnt) {
+//            case 0: repository.findUserMemberBy(pageable);
+//
+//            case 1:
+////                if()
+//        }
+//
+//
+//
+//
+//
+////
+////        if(modifyDate == null && signDate != null){
+////            result = repository.findByGenderContainingAndNameContainingAndYearContainingAndMonthContainingAndDayContainingAndPhone1ContainingAndPhone2ContainingAndPhone3ContainingAndAddress1ContainingAndEmailContainingAndStatusContainingAndSignDateBetween
+////                    (gender, name, year, month, day, phone1, phone2, phone3, address1, email, status, signDateStart, signDateEnd, pageable);
+////        } else if (signDate == null && modifyDate != null) {
+////            result = repository.findByGenderContainingAndNameContainingAndYearContainingAndMonthContainingAndDayContainingAndPhone1ContainingAndPhone2ContainingAndPhone3ContainingAndAddress1ContainingAndEmailContainingAndStatusContainingAndModifyDateBetween
+////                    (gender, name, year, month, day, phone1, phone2, phone3, address1, email, status, modifyDateStart, modifyDateEnd, pageable);
+////        } else if (signDate == null && modifyDate == null){
+////            result = repository.findByGenderContainingAndNameContainingAndYearContainingAndMonthContainingAndDayContainingAndPhone1ContainingAndPhone2ContainingAndPhone3ContainingAndAddress1ContainingAndEmailContainingAndStatusContaining
+////                    (gender, name, year, month, day, phone1, phone2, phone3, address1, email, status, pageable);
+////        } else {
+////            result = repository.findByGenderContainingAndNameContainingAndYearContainingAndMonthContainingAndDayContainingAndPhone1ContainingAndPhone2ContainingAndPhone3ContainingAndAddress1ContainingAndEmailContainingAndStatusContainingAndSignDateBetweenAndModifyDateBetween
+////            result = repository.findUserMemberByEmailLike
+////                    (gender, name, year, month, day, phone1, phone2, phone3, address1, email, status, pageable);
+////        }
+//
+//        log.info("최종 결과값 : " + result);
+//        log.info("==================UserService.userMemberListSearch.END==================");
+//        return result;
+//    }
 
     /**
      * 유저상세 페이지

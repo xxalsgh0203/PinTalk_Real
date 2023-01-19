@@ -1,6 +1,7 @@
 package com.pintalk.user.controller;
 
 import com.function.Util;
+import com.pintalk.user.entity.Param;
 import com.pintalk.user.entity.UserMember;
 import com.pintalk.user.service.UserService;
 import org.slf4j.Logger;
@@ -10,13 +11,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 //@Controller
 @RestController
@@ -36,7 +36,7 @@ public class UserController {
      */
     @GetMapping("/userMemberList")
     public List getUserMemberList(
-            @PageableDefault(page = 0, size = 10, sort = "no", direction = Sort.Direction.DESC) Pageable pageable
+            @PageableDefault(page = 0, size = 10, sort = "no", direction = Sort.Direction.DESC) Pageable pageable, HttpServletResponse response, HttpServletRequest request
             ) {
         log.info("==================GetMapping.UserController.getUserMemberList.START==================");
 
@@ -68,26 +68,29 @@ public class UserController {
     /**
      * 유저 검색화면 검색버튼 선택 시
      * @param pageable
-     * @param userMember
+//     * @param userMember
      * @return
      * @throws ParseException
      */
+//    @GetMapping("/userMemberListForm")
     @PostMapping("/userMemberListForm")
-    public List getUserMemberList( @PageableDefault(page = 0, size = 10, sort = "no", direction = Sort.Direction.DESC) Pageable pageable, @RequestBody UserMember userMember) throws ParseException {
-        log.info("==================PostMapping.UserController.getUserMemberList.START==================");
-        log.info("============POST============");
-        HashMap member = util.convertObjectToMap(userMember);
-        log.info("SearchList Parameter : " + member);
-        log.info("============================");
+    public List getUserMemberList( @PageableDefault(page = 0, size = 10, sort = "no", direction = Sort.Direction.DESC) Pageable pageable
+            , @RequestBody Param param
+    ) throws ParseException {
 
-        Page<UserMember> list = service.userMemberListSearch(member, pageable);
+        log.info("==================PostMapping.UserController.getUserMemberList.START==================");
+        System.out.println("param.toString() : " + param.toString());
+        HashMap map = new HashMap();
+        map = util.convertObjectToMap(param);
+        System.out.println("map : " + map);
+        log.info("============POST============");
+        Page<UserMember> list = service.userMemberListSearch(map, pageable);
 
         //페이징 처리
         int currPage = list.getPageable().getPageNumber();
         int totalPage = list.getTotalPages();
         int startPage = (int) Math.floor(currPage / 10) * 10;
         int endPage = Math.min(totalPage, startPage + 10);
-
 
         List result_li = new ArrayList();
         HashMap result_hs = new HashMap();
