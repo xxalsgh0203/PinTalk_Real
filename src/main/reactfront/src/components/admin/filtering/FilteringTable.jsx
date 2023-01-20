@@ -96,7 +96,7 @@ const FilteringTable = () => {
       email: convertEmail(frontEmail, backEmail) || null,
     };
     console.log(submitData);
-    //mutation(submitData)
+    mutation(submitData);
   };
 
   const handleUserStatus = (e) => {
@@ -109,8 +109,8 @@ const FilteringTable = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onValid)} className="flex flex-col pb-5">
-      <div className="bg-white p-6 rounded-xl">
+    <form onSubmit={handleSubmit(onValid)} className="flex flex-col mb-5 shadow-md rounded-lg">
+      <div className="bg-white p-6 rounded-lg">
         <div className="grid md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
           <div className="flex flex-col">
             <label id="gender" className="font-bold text-sm">
