@@ -6,10 +6,11 @@ import Investment from './pages/Investment';
 import Loan from './pages/Loan';
 import Admin from './pages/Admin';
 import UserMemberDetail from './components/admin/UserDetail/UserMemberDetail';
-import RegisterForm from './components/admin/RegisterForm';
+
 import NotFound from './pages/NotFound';
 import Login from './pages/login/Login';
 import ForgotAccount from './pages/login/ForgotAccount';
+import RegisterForm from './components/register/RegisterForm';
 
 const router = createBrowserRouter([
   {
