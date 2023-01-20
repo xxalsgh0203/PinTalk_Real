@@ -12,14 +12,11 @@ const Table = () => {
       {error ? (
         <span>{error}</span>
       ) : (
-        <div className="p-3 h-screen bg-gray-100">
-          {/*  ------------------Table------------------  */}
-
+        <div className="p-3 bg-gray-100">
           <FilteringTable />
-
-          <div className="overflow-auto rounded-lg shadow pt-5 h-[36rem]">
+          <div className="overflow-hidden rounded-lg shadow-md">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b-2 border-gray-200">
+              <thead className="bg-white ">
                 <tr>
                   <th className="w-10 p-3 text-sm font-semi-bold tracking-wide text-left">
                     고유번호
