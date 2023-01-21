@@ -22,6 +22,8 @@ public class UserSpecification {
     private static List<Predicate> getPredicateWithKeyword(Map<String, Object> searchKeyword, Root<UserMember> root, CriteriaBuilder builder) {
         List<Predicate> predicate = new ArrayList<>();
 
+        System.out.println("searchKeyword : " + searchKeyword);
+
         String $signDate = "signDate";
         String $signDateStartValue = "";
         String $signDateEndValue = "";
@@ -31,33 +33,50 @@ public class UserSpecification {
         String $modifyDateEndValue = "";
 
         for (String key : searchKeyword.keySet()) {
-            if( key.equals("name") || key.equals("address") || key.equals("address1") || key.equals("email") || key.equals("phone2") || key.equals("phone3")) {
+            if (key.equals("name") || key.equals("address") || key.equals("address1") || key.equals("email") || key.equals("phone2") || key.equals("phone3")) {
                 predicate.add(builder.like(root.get(key), "%" + searchKeyword.get(key) + "%"));
-            } else if (key.equals("signDateStart")){
-                $signDateStartValue = searchKeyword.get("signDateStart") != null ? (String) searchKeyword.get("signDateStart") : "%";
-            } else if (key.equals("signDateEnd")) {
-                $signDateEndValue = searchKeyword.get("signDateEnd") != null ? (String) searchKeyword.get("signDateEnd") : "%";
-            } else if (key.equals("modifyDateStart")){
-                $modifyDateStartValue = searchKeyword.get("modifyDateStart") != null ? (String) searchKeyword.get("modifyDateStart") : "%";
-            } else if (key.equals("modifyDateEnd")) {
-                $modifyDateEndValue = searchKeyword.get("modifyDateEnd") != null ? (String) searchKeyword.get("modifyDateEnd") : "%";
             } else {
-                predicate.add(builder.equal(root.get(key), searchKeyword.get(key)));
+                if (key.equals("signDateStart") || key.equals("signDateEnd") || key.equals("modifyDateStart") || key.equals("modifyDateEnd")) {
+                    if (key.equals("signDateStart")) {
+                        $signDateStartValue = (String) searchKeyword.get(key);
+                    }
+                    if (key.equals("signDateEnd")) {
+                        $signDateEndValue = (String) searchKeyword.get(key);
+                    }
+                    if (key.equals("modifyDateStart")) {
+                        $modifyDateStartValue = (String) searchKeyword.get(key);
+                    }
+                    if (key.equals("modifyDateEnd")) {
+                        $modifyDateEndValue = (String) searchKeyword.get(key);
+                    }
+                } else {
+                    predicate.add(builder.equal(root.get(key), searchKeyword.get(key)));
+                }
             }
         }
 
-        if($signDateStartValue != null && $signDateEndValue != null){
-            predicate.add(builder.between(root.get($signDate),$signDateStartValue,$signDateEndValue));
-        } else {
-            predicate.add(builder.between(root.get($signDate),$signDateStartValue,$signDateEndValue));
+        if (searchKeyword.get("signDateStart") != null || searchKeyword.get("signDateEnd") != null) {
+            if (searchKeyword.get("signDateStart") != null || searchKeyword.get("signDateStart") == null) {
+                if (searchKeyword.get("signDateEnd") == null) {
+                    $signDateEndValue = "99991231";
+                }
+                if (searchKeyword.get("signDateStart") == null) {
+                    $signDateStartValue = "00000101";
+                }
+                predicate.add(builder.between(root.get($signDate), $signDateStartValue, $signDateEndValue));
+            }
         }
-
-        if($modifyDateStartValue != null && $modifyDateEndValue != null){
-            predicate.add(builder.between(root.get($modifyDate),$modifyDateStartValue,$modifyDateEndValue));
-        } else {
-            predicate.add(builder.between(root.get($modifyDate),$signDateStartValue,$signDateEndValue));
+        if (searchKeyword.get("modifyDateStart") != null || searchKeyword.get("modifyDateEnd") != null) {
+            if (searchKeyword.get("modifyDateStart") != null || searchKeyword.get("modifyDateStart") == null) {
+                if (searchKeyword.get("modifyDateStart") == null) {
+                    $modifyDateStartValue = "00000101";
+                }
+                if (searchKeyword.get("modifyDateEnd") == null) {
+                    $modifyDateEndValue = "99991231";
+                }
+                predicate.add(builder.between(root.get($modifyDate), $modifyDateStartValue, $modifyDateEndValue));
+            }
         }
-
         return predicate;
     }
 
