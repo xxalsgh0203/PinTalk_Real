@@ -20,6 +20,10 @@ const LoginForm = () => {
     navigate('/forgot-account');
   };
 
+  const onRegister = () => {
+    navigate('/register');
+  };
+
   return (
     <div>
       <Link to="/">
@@ -53,14 +57,17 @@ const LoginForm = () => {
           <LoginButton title="로그인" isValid={isValid} />
         </form>
 
-        <div
-          onClick={onForgotAccount}
-          className="mt-5 text-amber-700 text-sm flex justify-between w-[50%]"
-        >
-          <span className="block hover:text-amber-600 cursor-pointer transition-all">
+        <div className="mt-5 text-amber-700 text-sm flex justify-between w-[50%]">
+          <span
+            onClick={onForgotAccount}
+            className="block hover:text-amber-600 cursor-pointer transition-all"
+          >
             아이디·비밀번호 찾기
           </span>
-          <span className="block hover:text-amber-600 cursor-pointer transition-all">
+          <span
+            onClick={onRegister}
+            className="block hover:text-amber-600 cursor-pointer transition-all"
+          >
             회원신청 하기
           </span>
         </div>
