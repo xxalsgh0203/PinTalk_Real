@@ -21,20 +21,20 @@ function Pagination({ PageInfo }) {
     <>
       <nav className="flex justify-center items-center m-16 rounded-1g font-[Poppins]">
         <button
-          className="mr-6 hover:font-bold p-1 cursor-pointer hover:scale-110 transition-all text-gray-500 hover:text-pintalk-dark-brown"
+          className="mr-3 sm:mr-6 hover:font-bold p-1 cursor-pointer hover:scale-110 transition-all text-gray-500 hover:text-pintalk-dark-brown"
           disabled={PageInfo?.currPage - 1 === 0}
           onClick={handlePrevPage}
         >
           &lt;
         </button>
 
-        <div className="space-x-4">
+        <div className="sm:space-x-4">
           {Array(PageInfo?.totalPage)
             .fill()
             .map((_, i) => (
               <button
                 className={cls(
-                  'w-8 h-8 text-xl font-bold',
+                  'w-6 h-6 sm:w-8 sm:h-8 text-sm sm:text-xl font-bold',
                   i + 1 === PageInfo?.currPage
                     ? 'bg-pintalk-dark-yellow text-white rounded-full'
                     : 'hover:text-gray-400 transition-all',
@@ -50,7 +50,7 @@ function Pagination({ PageInfo }) {
         </div>
 
         <button
-          className="ml-6 hover:font-bold p-1 cursor-pointer hover:scale-110 transition-all text-gray-500 hover:text-pintalk-dark-brown"
+          className="ml-3 sm:ml-6 hover:font-bold p-1 cursor-pointer hover:scale-110 transition-all text-gray-500 hover:text-pintalk-dark-brown"
           disabled={PageInfo?.currPage + 1 === PageInfo?.totalPage}
           onClick={handleAfterPage}
         >

@@ -4,12 +4,16 @@ import App from './App';
 import Home from './pages/Home';
 import Investment from './pages/Investment';
 import Loan from './pages/Loan';
-import Admin from './pages/Admin';
+
 import UserMemberDetail from './components/admin/UserDetail/UserMemberDetail';
-import RegisterForm from './components/admin/RegisterForm';
+
 import NotFound from './pages/NotFound';
 import Login from './pages/login/Login';
 import ForgotAccount from './pages/login/ForgotAccount';
+
+import Admin from './pages/admin/Admin';
+import LoginRegister from './pages/login/LoginRegister';
+import AdminRegister from './pages/admin/AdminRegister';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'admin/insertUser',
-        element: <RegisterForm />,
+        element: <AdminRegister />,
       },
       {
         path: 'admin',
@@ -48,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: 'forgot-account',
         element: <ForgotAccount />,
+      },
+      {
+        path: 'register',
+        element: <LoginRegister />,
       },
     ],
   },

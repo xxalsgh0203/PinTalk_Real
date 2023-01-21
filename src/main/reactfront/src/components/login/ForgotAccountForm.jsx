@@ -1,4 +1,4 @@
-import LoginInput from '../../components/login/LoginInput';
+import LoginInput from './LoginInput';
 import LoginButton from './LoginButton';
 import { useForm } from 'react-hook-form';
 

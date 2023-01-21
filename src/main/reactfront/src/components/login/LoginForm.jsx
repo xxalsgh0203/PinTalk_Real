@@ -1,8 +1,9 @@
-import LoginInput from './LoginInput';
 import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
-import LoginTitle from '../../pages/login/LoginTitle';
-import LoginButton from '../../pages/login/LoginButton';
+import { openNewWindow } from '../../utils/openNewWindow';
+import LoginButton from './LoginButton';
+import LoginInput from './LoginInput';
+import LoginTitle from './LoginTitle';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -18,6 +19,10 @@ const LoginForm = () => {
 
   const onForgotAccount = () => {
     navigate('/forgot-account');
+  };
+
+  const openWindow = () => {
+    openNewWindow('register');
   };
 
   return (
@@ -53,14 +58,17 @@ const LoginForm = () => {
           <LoginButton title="로그인" isValid={isValid} />
         </form>
 
-        <div
-          onClick={onForgotAccount}
-          className="mt-5 text-amber-700 text-sm flex justify-between w-[50%]"
-        >
-          <span className="block hover:text-amber-600 cursor-pointer transition-all">
+        <div className="mt-5 text-amber-700 text-sm flex justify-between w-[50%]">
+          <span
+            onClick={onForgotAccount}
+            className="block hover:text-amber-600 cursor-pointer transition-all"
+          >
             아이디·비밀번호 찾기
           </span>
-          <span className="block hover:text-amber-600 cursor-pointer transition-all">
+          <span
+            onClick={openWindow}
+            className="block hover:text-amber-600 cursor-pointer transition-all"
+          >
             회원신청 하기
           </span>
         </div>
