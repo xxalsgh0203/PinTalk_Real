@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
+import ForgotAccountForm from '../../components/login/ForgotAccountForm';
+import ForgotAccountTitle from '../../components/login/ForgotAccountTitle';
 import LoginLayout from '../../components/login/LoginLayout';
-import ForgotAccountForm from './ForgotAccountForm';
-import ForgotAccountTitle from './ForgotAccountTitle';
-import LoginTitle from './LoginTitle';
+import LoginTitle from '../../components/login/LoginTitle';
 
 const ForgotAccount = () => {
   const [query, setQuery] = useSearchParams();

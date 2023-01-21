@@ -1,8 +1,8 @@
-import LoginInput from './LoginInput';
 import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
-import LoginTitle from '../../pages/login/LoginTitle';
-import LoginButton from '../../pages/login/LoginButton';
+import LoginButton from './LoginButton';
+import LoginInput from './LoginInput';
+import LoginTitle from './LoginTitle';
 
 const LoginForm = () => {
   const navigate = useNavigate();
