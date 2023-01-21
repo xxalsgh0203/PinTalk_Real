@@ -1,8 +1,8 @@
 import React from 'react';
-import Table from '../components/admin/Table';
-import Layout from '../components/layout/Layout';
+import Table from '../../components/admin/Table';
+import Layout from '../../components/layout/Layout';
 
-import useMembers from '../hooks/useMembers';
+import useMembers from '../../hooks/useMembers';
 
 const Admin = () => {
   return (
