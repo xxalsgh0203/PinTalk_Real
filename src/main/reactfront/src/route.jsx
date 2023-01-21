@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound';
 import Login from './pages/login/Login';
 import ForgotAccount from './pages/login/ForgotAccount';
 import RegisterForm from './components/register/RegisterForm';
+import Register from './pages/login/Register';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: 'forgot-account',
         element: <ForgotAccount />,
+      },
+      {
+        path: 'register',
+        element: <Register />,
       },
     ],
   },
