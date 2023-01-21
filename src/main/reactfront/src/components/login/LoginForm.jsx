@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
+import { openNewWindow } from '../../utils/openNewWindow';
 import LoginButton from './LoginButton';
 import LoginInput from './LoginInput';
 import LoginTitle from './LoginTitle';
@@ -20,8 +21,8 @@ const LoginForm = () => {
     navigate('/forgot-account');
   };
 
-  const onRegister = () => {
-    navigate('/register');
+  const openWindow = () => {
+    openNewWindow('register');
   };
 
   return (
@@ -65,7 +66,7 @@ const LoginForm = () => {
             아이디·비밀번호 찾기
           </span>
           <span
-            onClick={onRegister}
+            onClick={openWindow}
             className="block hover:text-amber-600 cursor-pointer transition-all"
           >
             회원신청 하기
