@@ -6,7 +6,6 @@ import FilteringTable from './filtering/FilteringTable';
 
 const Table = () => {
   const { users: userList, error, PageInfo } = useMembers();
-
   return (
     <div>
       {error ? (

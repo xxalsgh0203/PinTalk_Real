@@ -5,17 +5,16 @@ import { getList } from '../redux/slices/userSlice';
 const useMembers = () => {
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.userSlice);
-  const pageSelector = useSelector((state) => state.userSlice);
   const userStatusSelector = useSelector((state) => state.userSlice);
 
   const userListArgs = {
-    page: pageSelector.page,
-    status: userStatusSelector.status,
+    page: userStatusSelector.page,
+    submitData: userStatusSelector.submitData,
   };
 
   useEffect(() => {
     dispatch(getList(userListArgs));
-  }, [pageSelector.page, userStatusSelector.status]);
+  }, [userStatusSelector.page, userStatusSelector.submitData]);
 
   return {
     users: userList.payload[0],
