@@ -1,6 +1,5 @@
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import useMutation from '../../../hooks/useMutation';
 import { userSlice } from '../../../redux/slices/userSlice';
 
 import { openNewWindow } from '../../../utils/openNewWindow';
@@ -19,7 +18,7 @@ import FilteringInput from './FilteringInput';
 
 const validateForm = new ValidateForm();
 const FilteringTable = () => {
-  const { error, loading, mutation } = useMutation('/userMemberListForm');
+  const userSubmitDispatch = useDispatch();
   const userStatusDispatch = useDispatch();
   const {
     register,
@@ -49,6 +48,7 @@ const FilteringTable = () => {
       modifyDateEnd: null,
       ssn1: null,
       ssn2: null,
+      user_state: null,
     }));
   };
 
@@ -77,6 +77,7 @@ const FilteringTable = () => {
       signDateEnd,
       modifyDateStart,
       modifyDateEnd,
+      user_state,
     } = data;
 
     const submitData = {
@@ -93,10 +94,11 @@ const FilteringTable = () => {
       signDateEnd: signDateEnd || null,
       modifyDateStart: modifyDateStart || null,
       modifyDateEnd: modifyDateEnd || null,
+      user_state: user_state || null,
       email: convertEmail(frontEmail, backEmail) || null,
     };
-    console.log(submitData);
-    mutation(submitData);
+    console.log('submit', submitData);
+    userSubmitDispatch(userSlice.actions.handleSubmit(submitData));
   };
 
   const handleUserStatus = (e) => {
