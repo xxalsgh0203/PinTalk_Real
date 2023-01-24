@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 
 const validateForm = new ValidateForm();
 const RegisterForm = () => {
-  const { error, loading, mutation, data } = useMutation('upsMemberListInsert');
+  const { error, loading, mutation, data } = useMutation('/userMemberInsert');
   const {
     register,
     handleSubmit,
