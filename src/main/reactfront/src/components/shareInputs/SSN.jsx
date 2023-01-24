@@ -5,7 +5,7 @@ import FormErrorMessage from '../FormErrorMessage';
 const SSN = ({ register, errorMessage, validateForm, ssn1, ssn2, editPage }) => {
   const isSSN1Error = errorMessage === '앞 주민번호를 입력해주세요';
   const isSSN2Error = errorMessage === '뒷 주민번호를 입력해주세요';
-  console.log(errorMessage);
+
   return (
     <div className="space-y-2">
       <label className="flex text-sm" htmlFor="ssn">

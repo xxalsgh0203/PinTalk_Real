@@ -39,3 +39,5 @@ node_modules/
 
 ## database ##
 src/main/resources/database/*
+
+src/main/resources/application.properties

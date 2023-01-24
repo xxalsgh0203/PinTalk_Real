@@ -6,9 +6,12 @@ import Phone from '../shareInputs/Phone';
 import Email from '../shareInputs/Email';
 import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../utils/validateForm';
 import Password from '../shareInputs/Password';
+import useMutation from '../../hooks/useMutation';
+import { useEffect } from 'react';
 
 const validateForm = new ValidateForm();
 const RegisterForm = () => {
+  const { error, loading, mutation, data } = useMutation('upsMemberListInsert');
   const {
     register,
     handleSubmit,
@@ -38,7 +41,7 @@ const RegisterForm = () => {
       phone3: data.phone3 || null,
       ssn,
     });
-    return {
+    const submitData = {
       email: email || null,
       address1: data.address1 || null,
       address2: data.address2 || null,
@@ -53,7 +56,13 @@ const RegisterForm = () => {
       phone3: data.phone3 || null,
       ssn,
     };
+
+    mutation(submitData);
   };
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <form
