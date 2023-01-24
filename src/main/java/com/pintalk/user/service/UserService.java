@@ -1,8 +1,8 @@
 package com.pintalk.user.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.function.Util;
 import com.pintalk.user.component.UserSpecification;
-import com.pintalk.user.entity.Param;
 import com.pintalk.user.entity.UserMember;
 import com.pintalk.user.repository.UserRepository;
 import org.slf4j.Logger;
@@ -14,8 +14,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 
 
 @Service
@@ -30,7 +31,7 @@ public class UserService {
     Logger log = LoggerFactory.getLogger(getClass().getName());
 
     /**
-     * 유저 전체 리스트
+     * 회원 전체 리스트
      * @param pageable
      * @return
      */
@@ -44,7 +45,7 @@ public class UserService {
 
 
     /**
-     * 유저 개인 리스트
+     * 회원 개인 리스트
 //     * @param userMember
      * @param pageable
      * @return
@@ -106,7 +107,7 @@ public class UserService {
         return result;
     }
     /**
-     * 유저상세 페이지
+     * 회원상세 페이지
      * @param id
      * @return
      */
@@ -119,12 +120,25 @@ public class UserService {
     }
 
     /**
-     * 유저 신규 등록
-     * @param userMember
+     * 회원 신규 등록
+     * @param
      * @return
      */
-    public UserMember userMemberInsert(UserMember userMember) {
+    public UserMember userMemberInsert(HashMap resMap) throws ParseException {
         log.info("==================UserService.userMemberDetail.START==================");
+        String ssn = (String) resMap.get("ssn");
+        resMap.put("ssn1",ssn.substring(0,6));
+        resMap.put("ssn2",ssn.substring(7,13));
+
+        LocalDate seoulNow = LocalDate.now(ZoneId.of("Asia/Seoul"));
+        String signDate = util.setDateFormatStr(seoulNow.toString(), "yyyy-MM-dd","yyyyMMdd");
+
+        resMap.put("sign_Date",signDate);
+        resMap.put("modify_Date",signDate);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserMember userMember = objectMapper.convertValue(resMap, UserMember.class);
+
         UserMember result = repository.save(userMember);
         log.info("최종 결과값 : " + result);
         log.info("==================UserService.userMemberDetail.END==================");

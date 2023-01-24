@@ -13,8 +13,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.util.*;
 
@@ -30,14 +28,13 @@ public class UserController {
     Util util = new Util();
 
     /**
-     * 유저 리스트화면
+     * 회원 리스트화면
      * @param pageable
      * @return
      */
-    @GetMapping("/userMemberList")
+    @RequestMapping(value = "/userMemberList", method = RequestMethod.GET)
     public List getUserMemberList(
-            @PageableDefault(page = 0, size = 10, sort = "no", direction = Sort.Direction.DESC) Pageable pageable, HttpServletResponse response, HttpServletRequest request
-            ) {
+            @PageableDefault(page = 0, size = 10, sort = "no", direction = Sort.Direction.DESC) Pageable pageable) {
         log.info("==================GetMapping.UserController.getUserMemberList.START==================");
 
         Page<UserMember> list = null;
@@ -66,14 +63,13 @@ public class UserController {
     }
 
     /**
-     * 유저 검색화면 검색버튼 선택 시
+     * 회원 검색화면 검색버튼 선택 시
      * @param pageable
 //     * @param userMember
      * @return
      * @throws ParseException
      */
-//    @GetMapping("/userMemberListForm")
-    @PostMapping("/userMemberListForm")
+    @RequestMapping(value = "/userMemberListForm", method = RequestMethod.GET)
     public List getUserMemberList( @PageableDefault(page = 0, size = 10, sort = "no", direction = Sort.Direction.DESC) Pageable pageable
             , @RequestBody Param param
     ) throws ParseException {
@@ -109,7 +105,7 @@ public class UserController {
     }
 
     /**
-     * 유저상세 페이지
+     * 회원상세 페이지
      * @param id
      * @return
      */
@@ -128,15 +124,28 @@ public class UserController {
     }
 
     /**
-     * 유저 신규 처리
+     * 회원 신규 처리 화면
      * @param userMember
      */
-    @GetMapping("/userMemberInsert")
-    public void getUserMemberInsert(UserMember userMember) {
+    @GetMapping("/userMemberInsertView")
+    public void getUserMemberInsertView(UserMember userMember) {
 
         log.info("==================GetMapping.UserController.getUserMemberInsert.START==================");
 
-        log.info("최종 결과값 : " + service.userMemberInsert(userMember));
+//        log.info("최종 결과값 : " + service.userMemberInsert(userMember));
+        log.info("==================GetMapping.UserController.getUserMemberInsert.END==================");
+    }
+
+    /**
+     * 회원 신규 처리
+     * @param resMap
+     * @throws ParseException
+     */
+    @RequestMapping(value = "/userMemberInsert", method = RequestMethod.POST)
+    public void getUserMemberInsert(@RequestBody HashMap resMap) throws ParseException {
+        log.info("==================GetMapping.UserController.getUserMemberInsert.START==================");
+
+        log.info("최종 결과값 : " + service.userMemberInsert(resMap));
         log.info("==================GetMapping.UserController.getUserMemberInsert.END==================");
     }
 }
