@@ -5,6 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
@@ -20,9 +21,11 @@ public class BaseEntity {
 
     //생성일 자동 저장
     @CreatedDate
+    @Column(columnDefinition = "varchar(8) not null comment '가입날짜'")
     private LocalDateTime reg_Date;
 
     //마지막 수정시간 자동저장
     @LastModifiedDate
+    @Column(columnDefinition = "varchar(8) not null comment '정보수정 날짜'")
     private LocalDateTime update_Date;
 }
