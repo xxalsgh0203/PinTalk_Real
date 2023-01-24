@@ -87,7 +87,6 @@ const FilteringTable = () => {
       modifyDateEnd,
       user_state,
     } = data;
-    console.log('submit', modifyDateStart);
     const submitData = {
       address: address?.trim() || null,
       year: year || null,
