@@ -9,6 +9,7 @@ import Password from '../../shareInputs/Password';
 import Status from '../../shareInputs/Status';
 import { useEffect } from 'react';
 import EditCloseButton from './EditCloseButton';
+import useMutation from '../../../hooks/useMutation';
 
 const validateForm = new ValidateForm();
 
@@ -25,6 +26,8 @@ const UserInfoData = ({ userInfo }) => {
     //   name: userInfo[0]?.name,
     // },
   });
+
+  const { error, loading, mutation, data } = useMutation('updateUserMemberInfo');
 
   useEffect(() => {
     if (userInfo[0]) {
@@ -68,7 +71,7 @@ const UserInfoData = ({ userInfo }) => {
       status: data.status || null,
     });
 
-    return {
+    const submitData = {
       email: email || null,
       address1: data.address1 || null,
       address2: data.address2 || null,
@@ -82,8 +85,9 @@ const UserInfoData = ({ userInfo }) => {
       phone2: data.phone2 || null,
       phone3: data.phone3 || null,
       ssn,
-      status: data.status || null,
     };
+
+    mutation(submitData);
   };
 
   return (
