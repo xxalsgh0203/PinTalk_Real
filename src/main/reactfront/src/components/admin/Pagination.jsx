@@ -17,10 +17,6 @@ function Pagination({ PageInfo }) {
     pageDispatch(userSlice.actions.handlePage(p));
   };
 
-  const isCurrentPage = (currPage) => {
-    return currPage === 0 ? currPage + 1 : currPage;
-  };
-
   return (
     <>
       <nav className="flex justify-center items-center m-16 rounded-1g font-[Poppins]">
@@ -39,7 +35,7 @@ function Pagination({ PageInfo }) {
               <button
                 className={cls(
                   'w-6 h-6 sm:w-8 sm:h-8 text-sm sm:text-xl font-bold',
-                  i + 1 === isCurrentPage(PageInfo?.currPage)
+                  i + 1 === PageInfo?.currPage
                     ? 'bg-pintalk-dark-yellow text-white rounded-full'
                     : 'hover:text-gray-400 transition-all',
                 )}
