@@ -8,11 +8,10 @@ export const getList = createAsyncThunk('GET_USER', async (arg, thunkApi) => {
   try {
     if (submitData && submitData !== []) {
       response = await (await axios.post('/userMemberListForm', submitData)).data;
-      console.log('slice', response);
       return response;
     }
     response = await (await axios.get(`/userMemberList?page=${page}`)).data;
-    console.log(response);
+
     return response;
   } catch (error) {
     if (error instanceof Error) {
