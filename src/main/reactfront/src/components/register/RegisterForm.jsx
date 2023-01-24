@@ -66,6 +66,7 @@ const RegisterForm = () => {
             <CommonInput
               register={register('name', {
                 onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
+                required: '이름을 입력해주세요.',
               })}
               necessary
               errorMessage={errors.name?.message}
