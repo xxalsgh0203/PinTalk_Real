@@ -13,8 +13,7 @@ import javax.persistence.*;
 public class ComCode extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COMCODE_GENERATOR")
-    @SequenceGenerator(name = "COMCODE_GENERATOR", sequenceName = "COMCODE_SEQ", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "COMCODE_GENERATOR")
     private Integer no;
 
     private String codeValue;
