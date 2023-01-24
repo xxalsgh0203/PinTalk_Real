@@ -60,6 +60,14 @@ const FilteringTable = () => {
     if (backEmail) return '@' + backEmail;
   };
 
+  const convertDate = (date) => {
+    if (!date) return;
+    const year = new Date(date).getFullYear() + '';
+    const month = new Date(date).toLocaleDateString('default', { month: '2-digit' });
+    const day = new Date(date).toLocaleDateString('default', { day: '2-digit' });
+    return year + '-' + month + '-' + day;
+  };
+
   const onValid = (data) => {
     const {
       address,
@@ -79,7 +87,7 @@ const FilteringTable = () => {
       modifyDateEnd,
       user_state,
     } = data;
-
+    console.log('submit', modifyDateStart);
     const submitData = {
       address: address?.trim() || null,
       year: year || null,
@@ -90,14 +98,13 @@ const FilteringTable = () => {
       phone1: phone1 || null,
       phone2: phone2 || null,
       phone3: phone3 || null,
-      signDateStart: signDateStart || null,
-      signDateEnd: signDateEnd || null,
-      modifyDateStart: modifyDateStart || null,
-      modifyDateEnd: modifyDateEnd || null,
+      signDateStart: convertDate(signDateStart) || null,
+      signDateEnd: convertDate(signDateEnd) || null,
+      modifyDateStart: convertDate(modifyDateStart) || null,
+      modifyDateEnd: convertDate(modifyDateEnd) || null,
       user_state: user_state || null,
       email: convertEmail(frontEmail, backEmail) || null,
     };
-    console.log('submit', submitData);
     userSubmitDispatch(userSlice.actions.handleSubmit(submitData));
   };
 
