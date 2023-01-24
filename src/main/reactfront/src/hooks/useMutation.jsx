@@ -25,6 +25,7 @@ const useMutation = (url) => {
     mutation,
     loading: value.loading,
     error: value.error,
+    data: value.data,
   };
 };
 export default useMutation;
