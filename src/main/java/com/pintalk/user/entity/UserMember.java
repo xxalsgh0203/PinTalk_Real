@@ -2,7 +2,6 @@ package com.pintalk.user.entity;
 
 import com.pintalk.common.entity.BaseEntity;
 import lombok.*;
-import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
 
@@ -11,6 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @ToString
 @Table(name = "USER_MEMBER", uniqueConstraints = {
         @UniqueConstraint(
@@ -60,16 +60,16 @@ public class UserMember extends BaseEntity {
     @Column(columnDefinition = "varchar(60) null comment '상세주소'")
     private String address2;
     @Column(columnDefinition = "varchar(4) null comment '직업코드'")
-    private String jobKey;
+    private String jobkey;
     @Column(columnDefinition = "varchar(1) not null comment '상태'")
     private String status;
     @Column(columnDefinition = "varchar(1) not null comment '활성화'")
     private String saveStatus;
 
     @Column(columnDefinition = "varchar(8) not null comment '가입날짜(문자열)'")
-    private String signDate;
+    private String sign_Date;
     @Column(columnDefinition = "varchar(8) not null comment '정보수정 날짜(문자열)'")
-    private String modifyDate;
+    private String modify_Date;
 
 
 }
