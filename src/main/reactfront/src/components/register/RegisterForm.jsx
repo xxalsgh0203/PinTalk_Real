@@ -66,7 +66,9 @@ const RegisterForm = () => {
             <CommonInput
               register={register('name', {
                 onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
+                required: '이름을 입력해주세요.',
               })}
+              necessary
               errorMessage={errors.name?.message}
               htmlFor="name"
               label="이름"
@@ -74,7 +76,14 @@ const RegisterForm = () => {
             />
           </div>
 
-          <Gender register={register('gender')} watch={watch} />
+          <Gender
+            necessary
+            errorMessage={errors?.gender?.message}
+            register={register('gender', {
+              required: '성별을 입력해주세요.',
+            })}
+            watch={watch}
+          />
         </div>
 
         <div className="space-y-2">

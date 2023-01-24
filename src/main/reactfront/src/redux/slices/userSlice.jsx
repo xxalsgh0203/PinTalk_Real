@@ -3,11 +3,17 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import HttpError from '../../service/httpError';
 
 export const getList = createAsyncThunk('GET_USER', async (arg, thunkApi) => {
+  const { page, submitData } = arg;
+  let response;
   try {
-    const response = await axios.get(
-      `/userMemberList?page=${arg.page}${arg.status ? `&status=${arg.status}` : ''}`,
-    );
-    return response.data;
+    if (submitData && submitData !== []) {
+      response = await (await axios.post('/userMemberListForm', submitData)).data;
+      console.log('slice', response);
+      return response;
+    }
+    response = await (await axios.get(`/userMemberList?page=${page}`)).data;
+    console.log(response);
+    return response;
   } catch (error) {
     if (error instanceof Error) {
       const errorMessage = thunkApi.rejectWithValue(error.response.data).payload.error;
@@ -21,10 +27,10 @@ export const getList = createAsyncThunk('GET_USER', async (arg, thunkApi) => {
 
 const initialState = {
   payload: [],
+  submitData: undefined,
   loading: false,
   error: undefined,
   page: 1,
-  status: null,
 };
 
 export const userSlice = createSlice({
@@ -34,8 +40,8 @@ export const userSlice = createSlice({
     handlePage(state, action) {
       state.page = action.payload;
     },
-    handleStatus(state, action) {
-      state.status = action.payload;
+    handleSubmit(state, action) {
+      state.submitData = action.payload;
     },
   },
   extraReducers: (builder) => {

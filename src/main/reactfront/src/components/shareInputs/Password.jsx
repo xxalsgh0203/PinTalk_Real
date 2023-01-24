@@ -47,11 +47,14 @@ const Password = ({
           type={type}
           maxLength={15}
           placeholder={editPage ? upassword : ''}
-          className={
+          className={cls(
             editPage
-              ? 'bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all'
-              : 'bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all'
-          }
+              ? ''
+              : 'bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all',
+            errorMessage
+              ? 'ring-1 ring-offset-1 ring-red-500 border-transparent'
+              : 'border-gray-200',
+          )}
         />
         <div
           className={cls(

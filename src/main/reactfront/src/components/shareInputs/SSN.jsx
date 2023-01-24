@@ -1,7 +1,11 @@
+import cls from '../../utils/cls';
 import { NUMBER } from '../../utils/validateForm';
 import FormErrorMessage from '../FormErrorMessage';
 
 const SSN = ({ register, errorMessage, validateForm, ssn1, ssn2, editPage }) => {
+  const isSSN1Error = errorMessage === '앞 주민번호를 입력해주세요';
+  const isSSN2Error = errorMessage === '뒷 주민번호를 입력해주세요';
+  console.log(errorMessage);
   return (
     <div className="space-y-2">
       <label className="flex text-sm" htmlFor="ssn">
@@ -15,7 +19,7 @@ const SSN = ({ register, errorMessage, validateForm, ssn1, ssn2, editPage }) => 
       <div className="flex items-center space-x-4">
         <input
           {...register('ssn1', {
-            required: '주민번호를 입력해주세요',
+            required: '앞 주민번호를 입력해주세요',
             maxLength: {
               value: 6,
               message: '6자리까지 입력해주세요.',
@@ -29,12 +33,17 @@ const SSN = ({ register, errorMessage, validateForm, ssn1, ssn2, editPage }) => 
           placeholder={editPage ? ssn1 : '앞 6자리'}
           type="text"
           maxLength={6}
-          className="bg-transparent  rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%] placeholder:text-gray-400 placeholder:text-sm"
+          className={cls(
+            'bg-transparent  rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%] placeholder:text-gray-400 placeholder:text-sm',
+            isSSN1Error
+              ? 'ring-1 ring-offset-1 ring-red-500 border-transparent'
+              : 'border-gray-200',
+          )}
         />
         <span>-</span>
         <input
           {...register('ssn2', {
-            required: '주민번호를 입력해주세요',
+            required: '뒷 주민번호를 입력해주세요',
             maxLength: {
               value: 7,
               message: '6자리까지 입력해주세요.',
@@ -48,10 +57,19 @@ const SSN = ({ register, errorMessage, validateForm, ssn1, ssn2, editPage }) => 
           type="text"
           maxLength={7}
           placeholder={editPage ? ssn2 : '뒤 7자리'}
-          className="bg-transparent rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%] placeholder:text-gray-400 placeholder:text-sm"
+          className={cls(
+            'bg-transparent  rounded-md p-1 px-3 outline-none border-2 transition-all w-[50%] placeholder:text-gray-400 placeholder:text-sm',
+            isSSN2Error
+              ? 'ring-1 ring-offset-1 ring-red-500 border-transparent'
+              : 'border-gray-200',
+          )}
         />
       </div>
     </div>
   );
 };
 export default SSN;
+
+/**
+ *
+ */
