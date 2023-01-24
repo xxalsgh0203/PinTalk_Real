@@ -33,7 +33,7 @@ const RegisterForm = () => {
       gender: data.gender || null,
       id: data.id,
       job: data.job || null,
-      job_key: data.job_key || null,
+      jobkey: data.jobkey || null,
       name: data.name || null,
       password: data.password,
       phone1,
@@ -48,7 +48,7 @@ const RegisterForm = () => {
       gender: data.gender || null,
       id: data.id,
       job: data.job || null,
-      job_key: data.job_key || null,
+      jobkey: data.jobkey || null,
       name: data.name || null,
       password: data.password,
       phone1,
@@ -160,20 +160,20 @@ const RegisterForm = () => {
         <div className="flex items-center space-x-6">
           <div className="w-[50%]">
             <CommonInput
-              register={register('job_key', {
-                onChange: (e) => validateForm.inputValid(e, 'job_key', NUMBER),
+              register={register('jobkey', {
+                onChange: (e) => validateForm.inputValid(e, 'jobkey', NUMBER),
                 minLength: {
                   value: 4,
                   message: '4자리 이상 입력해주세요.',
                 },
               })}
               errorMessage={errors.job_key?.message}
-              htmlFor="job_key"
+              htmlFor="jobkey"
               label="직업코드"
               maxLength={4}
             />
           </div>
-          <div className="w-[50%]">
+          {/*    <div className="w-[50%]">
             <CommonInput
               register={register('job', {
                 onChange: (e) => {
@@ -190,7 +190,7 @@ const RegisterForm = () => {
               label="직업명"
               maxLength={10}
             />
-          </div>
+          </div> */}
         </div>
       </div>
 
