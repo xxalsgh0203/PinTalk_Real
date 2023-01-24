@@ -8,7 +8,6 @@ import java.util.*;
 
 public class Util {
 
-    Util util;
 
     /**
      * Object to Map
@@ -16,7 +15,7 @@ public class Util {
      * @param object
      * @return
      */
-    public static HashMap convertObjectToMap(Object object) {
+    public HashMap convertObjectToMap(Object object) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         HashMap<String, Object> result = (HashMap<String, Object>) objectMapper.convertValue(object, Map.class);
