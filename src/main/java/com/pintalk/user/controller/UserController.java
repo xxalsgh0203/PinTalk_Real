@@ -1,6 +1,8 @@
 package com.pintalk.user.controller;
 
 import com.function.Util;
+import com.pintalk.common.Service.ComCodeService;
+import com.pintalk.common.entity.ComCode;
 import com.pintalk.user.entity.Param;
 import com.pintalk.user.entity.UserMember;
 import com.pintalk.user.service.UserService;
@@ -22,7 +24,10 @@ public class UserController {
     private Logger log = LoggerFactory.getLogger(getClass().getName());
 
     @Autowired
-    UserService service;
+    UserService userservice;
+
+    @Autowired
+    ComCodeService comCodeService;
 
     Util util = new Util();
 
@@ -38,7 +43,7 @@ public class UserController {
 
         Page<UserMember> list = null;
 
-        list = service.userMemberList(pageable);
+        list = userservice.userMemberList(pageable);
         log.info("검색 리스트 : " + list);
         log.info("=======================================");
         int currPage = list.getPageable().getPageNumber();
@@ -79,7 +84,7 @@ public class UserController {
         map = util.convertObjectToMap(param);
         System.out.println("map : " + map);
         log.info("============POST============");
-        Page<UserMember> list = service.userMemberListSearch(map, pageable);
+        Page<UserMember> list = userservice.userMemberListSearch(map, pageable);
 
         //페이징 처리
         int currPage = list.getPageable().getPageNumber();
@@ -114,7 +119,7 @@ public class UserController {
 
         List<UserMember> result_li = new ArrayList();
 
-        result_li.add(service.userMemberDetail(id));
+        result_li.add(userservice.userMemberDetail(id));
 
         log.info("============================");
         log.info("최종 결과값 : " +result_li);
@@ -124,25 +129,20 @@ public class UserController {
 
     /**
      * 회원 신규 화면
-     * @param resMap
      * @throws ParseException
      */
-//    @RequestMapping(value = "/userMemberInsertView", method = RequestMethod.GET)
-//    public void getUserMemberInsertView() throws ParseException {
-//        log.info("==================GetMapping.UserController.getUserMemberInsert.START==================");
-//
-//
-//        String[] strArr = {"GENDER", "EMAIL"};
-//
-//        service.userMemberInsertView(strArr);
-//
-//
-//
-//
-////        log.info("최종 결과 반환 : " + );
-//        log.info("==================GetMapping.UserController.getUserMemberInsert.END==================");
-//
-//    }
+    @RequestMapping(value = "/userMemberInsertView", method = RequestMethod.GET)
+    public HashMap getUserMemberInsertView() {
+        log.info("==================GET.UserController.getUserMemberInsertView.START==================");
+
+        HashMap resultMap = new HashMap();
+
+
+
+        log.info("==================GET.UserController.getUserMemberInsertView.END==================");
+
+        return resultMap;
+    }
     /**
      * 회원 신규 처리
      * @param resMap
@@ -150,12 +150,12 @@ public class UserController {
      */
     @RequestMapping(value = "/userMemberInsert", method = RequestMethod.POST)
     public boolean getUserMemberInsert(@RequestBody HashMap resMap) throws ParseException {
-        log.info("==================GetMapping.UserController.getUserMemberInsert.START==================");
+        log.info("==================POST.UserController.getUserMemberInsert.START==================");
 
-        boolean result = service.userMemberInsert(resMap);
+        boolean result = userservice.userMemberInsert(resMap);
 
         log.info("최종 결과 반환 : " + result);
-        log.info("==================GetMapping.UserController.getUserMemberInsert.END==================");
+        log.info("==================POST.UserController.getUserMemberInsert.END==================");
 
         return result;
     }
