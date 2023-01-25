@@ -1,57 +1,50 @@
 import Layout from '../components/layout/Layout';
+import logo from '../asset/pinbank_icon.png';
+import { AiOutlineDown } from 'react-icons/ai';
+import { useRef } from 'react';
+
+const bgUrl =
+  'https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlJTIwZ3JvdXB8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60';
 
 const Home = () => {
+  const nextSectionRef = useRef();
+
+  const handleNextSection = () => {
+    nextSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
   return (
-    <Layout page={'home'}>
-      <main className="h-screen overflow-hidden">
-        <div className="bg-slide-whitespace">
-          <div className="absolute w-full h-full text-pintalk-dark-brown flex pl-10 pt-40 items-front flex-col">
-            <h2 className="uppercase font-bold text-5xl mb-4">PIN BANK</h2>
-            <h2 className="text-4xl text-pintalk-dark-brown mb-10">가치에 금융을 더 합니다.</h2>
-            <div className="text-gray-400 flex items-end flex-col lg:flex-row px-2">
-              <h2 className="text-teal-500 font-bold text-3xl uppercase">PIN BANK &nbsp;</h2>
-              <h2 className="text-xl">
-                직접 투자하고, 대출이자는 적절한 현금과 가게의 상품(현물)으로 받음으로써 금리를
-                낮추고, 단골고객은 늘립니다.
-              </h2>
+    <Layout home>
+      <section className="relative min-h-screen">
+        <header className="">
+          <div className="z-10 absolute w-full h-full top-52 flex flex-col items-center space-y-12">
+            <h1 className="text-5xl font-extrabold text-black tracking-widest">금융을 내편으로</h1>
+            <div className="flex items-end">
+              <img className="w-16 h-16" src={logo} alt="logo" />
+              <div className="flex items-center text-black text-2xl font-extrabold">
+                <span className="uppercase mr-1">intalk</span>
+                <span>에서 쉽고 간편하게</span>
+              </div>
             </div>
-            <br />
-            <h2 className="text-2xl text-pintalk-dark-brown mb-10">
-              고객과 함께 꿈과 희망을 이야기하는
-              <br />
-              국민의 은행이 되겠습니다
-            </h2>
           </div>
 
-          <div className="flex justify-end">
-            <img
-              className="w-1/2 bg-right"
-              src="https://raw.githubusercontent.com/jytrack64/kookmin-bank/main/img/slideshow.jpg"
-            ></img>
+          <div className="absolute bottom-20 z-10 w-full flex items-center justify-center animate-[homeBounce_1s_ease-in-out_infinite]">
+            <span onClick={handleNextSection} className="cursor-pointer">
+              <AiOutlineDown size={60} />
+            </span>
           </div>
-        </div>
 
-        <div className="flex fixed bottom-0 justify-center text-2xl w-[100%] h-32">
-          <button className="bg-pintalk-light-yellow text-white w-1/6 h-full cursor-pointer">
-            전체계좌조회
-          </button>
-          <button className="bg-pintalk-light-yellow text-white w-1/6 h-full cursor-pointer">
-            계좌이체
-          </button>
-          <button className="bg-pintalk-light-yellow text-white w-1/6 h-full cursor-pointer">
-            빠른조회
-          </button>
-          <button className="bg-pintalk-dark-brown text-white w-1/6 h-full cursor-pointer">
-            보안센터
-          </button>
-          <button className="bg-pintalk-dark-brown text-white w-1/6 h-full cursor-pointer">
-            상담/예약
-          </button>
-          <button className="bg-pintalk-dark-brown text-white w-1/6 h-full cursor-pointer">
-            소비자보호
-          </button>
+          <div className="h-screen">
+            <img src={bgUrl} className="object-cover w-full h-full" alt="bg" />
+          </div>
+          <div className="absolute w-full h-full bg-white bg-gradient-to-t from-amber-50 opacity-70 top-0" />
+        </header>
+      </section>
+
+      <section ref={nextSectionRef} className="h-screen">
+        <div className="flex justify-center items-center h-full">
+          <span className="cursor-pointer">next section</span>
         </div>
-      </main>
+      </section>
     </Layout>
   );
 };
