@@ -120,12 +120,35 @@ public class UserService {
     }
 
     /**
-     * 회원 신규 등록
+     * 회원 신규 등록 화면
+     *
      * @param
      * @return
      */
-    public UserMember userMemberInsert(HashMap resMap) throws ParseException {
-        log.info("==================UserService.userMemberDetail.START==================");
+//    public boolean userMemberInsertView(String[] str) throws ParseException {
+//        log.info("==================UserService.userMemberInsertView.START==================");
+//
+//        ComCode comCode= new ComCode();
+//        List<String> strList = Arrays.asList(str);
+//
+//        try {
+//            Stream<String> strArrStream = Arrays.stream(str);
+//
+//
+//        } catch (Exception e) {
+//            return false;
+//        }
+//        log.info("==================UserService.userMemberInsertView.END==================");
+//        return true;
+//    }
+    /**
+     * 회원 신규 등록
+     *
+     * @param
+     * @return
+     */
+    public boolean userMemberInsert(HashMap resMap) throws ParseException {
+        log.info("==================UserService.userMemberInsert.START==================");
         String ssn = (String) resMap.get("ssn");
         resMap.put("ssn1",ssn.substring(0,6));
         resMap.put("ssn2",ssn.substring(7,13));
@@ -139,10 +162,13 @@ public class UserService {
         ObjectMapper objectMapper = new ObjectMapper();
         UserMember userMember = objectMapper.convertValue(resMap, UserMember.class);
 
-        UserMember result = repository.save(userMember);
-        log.info("최종 결과값 : " + result);
-        log.info("==================UserService.userMemberDetail.END==================");
-        return result;
+        try {
+            repository.save(userMember);
+        } catch (Exception e) {
+            return false;
+        }
+        log.info("==================UserService.userMemberInsert.END==================");
+        return true;
     }
 
 
