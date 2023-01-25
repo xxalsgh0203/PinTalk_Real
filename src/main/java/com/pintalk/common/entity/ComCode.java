@@ -14,7 +14,7 @@ public class ComCode extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "COMCODE_GENERATOR")
-    private Integer no;
+    private Long no;
 
     private String codeValue;
     private String codeGroup;

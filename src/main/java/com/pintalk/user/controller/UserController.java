@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.*;
 
-//@Controller
 @RestController
 public class UserController {
 
@@ -124,28 +123,40 @@ public class UserController {
     }
 
     /**
-     * 회원 신규 처리 화면
-     * @param userMember
+     * 회원 신규 화면
+     * @param resMap
+     * @throws ParseException
      */
-    @GetMapping("/userMemberInsertView")
-    public void getUserMemberInsertView(UserMember userMember) {
-
-        log.info("==================GetMapping.UserController.getUserMemberInsert.START==================");
-
-//        log.info("최종 결과값 : " + service.userMemberInsert(userMember));
-        log.info("==================GetMapping.UserController.getUserMemberInsert.END==================");
-    }
-
+//    @RequestMapping(value = "/userMemberInsertView", method = RequestMethod.GET)
+//    public void getUserMemberInsertView() throws ParseException {
+//        log.info("==================GetMapping.UserController.getUserMemberInsert.START==================");
+//
+//
+//        String[] strArr = {"GENDER", "EMAIL"};
+//
+//        service.userMemberInsertView(strArr);
+//
+//
+//
+//
+////        log.info("최종 결과 반환 : " + );
+//        log.info("==================GetMapping.UserController.getUserMemberInsert.END==================");
+//
+//    }
     /**
      * 회원 신규 처리
      * @param resMap
      * @throws ParseException
      */
     @RequestMapping(value = "/userMemberInsert", method = RequestMethod.POST)
-    public void getUserMemberInsert(@RequestBody HashMap resMap) throws ParseException {
+    public boolean getUserMemberInsert(@RequestBody HashMap resMap) throws ParseException {
         log.info("==================GetMapping.UserController.getUserMemberInsert.START==================");
 
-        log.info("최종 결과값 : " + service.userMemberInsert(resMap));
+        boolean result = service.userMemberInsert(resMap);
+
+        log.info("최종 결과 반환 : " + result);
         log.info("==================GetMapping.UserController.getUserMemberInsert.END==================");
+
+        return result;
     }
 }

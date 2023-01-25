@@ -14,8 +14,12 @@ import javax.persistence.*;
 @ToString
 @Table(name = "USER_MEMBER", uniqueConstraints = {
         @UniqueConstraint(
-                name = "ID_SSN_UNIQUE"
-                , columnNames = {"ID","SSN"}
+                name = "ID_UNIQUE"
+                , columnNames = {"ID"}
+        ),
+        @UniqueConstraint(
+                name = "SSN_UNIQUE"
+                , columnNames ={"ssn"}
         )
 })
 public class UserMember extends BaseEntity {
