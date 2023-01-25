@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import PinBankLogo from '../../asset/pinbank_icon.png';
-import cls from '../../utils/cls';
+import PinBankLogo from '../../../asset/pinbank_icon.png';
+import cls from '../../../utils/cls';
 
 const navigationItem = [
   {
