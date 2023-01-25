@@ -2,6 +2,21 @@ import { Link } from 'react-router-dom';
 import PinBankLogo from '../../asset/pinbank_icon.png';
 import cls from '../../utils/cls';
 
+const navigationItem = [
+  {
+    title: '투자자',
+    id: 'investment',
+  },
+  {
+    title: '대출자',
+    id: 'loan',
+  },
+  {
+    title: '관리자',
+    id: 'admin',
+  },
+];
+
 const Navbar = ({ title, home }) => {
   return (
     <div className="relative">
@@ -17,17 +32,19 @@ const Navbar = ({ title, home }) => {
         </Link>
         <h1>{title}</h1>
         <ul className="flex items-center space-x-10 text-kukmin-dark-brown font-semi-bold text-lg">
+          {navigationItem.map((item) => (
+            <li key={item.id}>
+              <Link to={`/${item.id}`}>
+                <span className="block p-2 hover:bg-gray-100 rounded-lg transition-all">
+                  {item.title}
+                </span>
+              </Link>
+            </li>
+          ))}
           <li>
-            <Link to="/investment">투자자</Link>
-          </li>
-          <li>
-            <Link to="/loan">대출자</Link>
-          </li>
-          <li>
-            <Link to="/admin">관리자</Link>
-          </li>
-          <li>
-            <Link to="/login">로그인</Link>
+            <Link to="/login">
+              <span className="p-2">로그인</span>
+            </Link>
           </li>
         </ul>
       </div>
