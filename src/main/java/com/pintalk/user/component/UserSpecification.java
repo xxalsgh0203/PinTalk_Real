@@ -22,8 +22,6 @@ public class UserSpecification {
     private static List<Predicate> getPredicateWithKeyword(Map<String, Object> searchKeyword, Root<UserMember> root, CriteriaBuilder builder) {
         List<Predicate> predicate = new ArrayList<>();
 
-        System.out.println("searchKeyword : " + searchKeyword);
-
         String $signDate = "signDate";
         String $signDateStartValue = "";
         String $signDateEndValue = "";
