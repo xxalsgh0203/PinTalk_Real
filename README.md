@@ -1,4 +1,4 @@
-<h1 align="center"> 💵 PinBank 💵 </h1>
+<h1 align="center"> 💵 PINBANK 💵 </h1>
 
 <div align="center">
   <p>
@@ -25,7 +25,7 @@
 
 <br>
 
-## Member 👨‍👨‍👦‍👦
+## Members 👨‍👨‍👦‍👦
 
 <div align="center">
 
