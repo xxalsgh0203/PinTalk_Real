@@ -38,7 +38,6 @@ public class UserService {
     public Page<UserMember> userMemberList(Pageable pageable) {
         log.info("==================UserService.userMemberList.START==================");
         Page<UserMember> result = repository.findAll(pageable);
-        log.info("최종 결과값 : " + result);
         log.info("==================UserService.userMemberList.END==================");
         return result;
     }
@@ -53,8 +52,6 @@ public class UserService {
      */
     public Page<UserMember> userMemberListSearch(HashMap map, Pageable pageable) throws ParseException {
         log.info("==================UserService.userMemberListSearch.START==================");
-        log.info("param : " + map);
-
         HashMap paramMap = util.convertObjectToMap(map);
         HashMap searchMap = new HashMap();
 
@@ -101,8 +98,6 @@ public class UserService {
         UserSpecification userSpecification = new UserSpecification();
         //결과값
         result = repository.findAll(userSpecification.searchWith(searchKeys),pageable);
-
-        log.info("최종 결과값 : " + result);
         log.info("==================UserService.userMemberListSearch.END==================");
         return result;
     }
@@ -111,9 +106,9 @@ public class UserService {
      * @param id
      * @return
      */
-    public UserMember userMemberDetail(Integer id) {
+    public UserMember userMemberDetail(int no) {
         log.info("==================UserService.userMemberDetail.START==================");
-        UserMember result = repository.findById(id).get();
+        UserMember result = repository.findById(no).get();
         log.info("최종 결과값 : " + result);
         log.info("==================UserService.userMemberDetail.END==================");
         return result;
