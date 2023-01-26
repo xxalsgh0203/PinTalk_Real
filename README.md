@@ -1,4 +1,4 @@
-<h1 align="center"> 💵 PinBank 💵 </h1>
+<h1 align="center"> 💵 PINBANK 💵 </h1>
 
 <div align="center">
   <p>
@@ -25,7 +25,7 @@
 
 <br>
 
-## Member 👨‍👨‍👦‍👦
+## Members 👨‍👨‍👦‍👦
 
 <div align="center">
 
@@ -52,14 +52,14 @@
 <br>
 
 
-### 이용 방법 🎯
+### 우리의 서비스 🎯
 <img align='left' src='https://media2.giphy.com/media/4oMoIbIQrvCjm/giphy.gif?cid=ecf05e47esel7g35iuq4diuyz01iw911vkecytet7dkfn18b&rid=giphy.gif&ct=g' width=350 />
       
-💵 블라블라
+💵 간편 송금
 
-💴 블라블라
+💴 간단한 인증
 
-💶 블라블라
+💶 빠른 계좌조회
 
 💷 블라블라
 
@@ -71,7 +71,7 @@
 
 <br>
 
-### 간편 계좌 확인 서비스 🏦
+### 간편 계좌 조회 서비스 🏦
 
 - ...
 - ...
@@ -99,7 +99,7 @@
 
 
 
-<h1 align="center"> ## Link 🎈 </h1>
+<h1 align="center"> 🎈 Link to 🎈 </h1>
 
 <div align=center>
   
