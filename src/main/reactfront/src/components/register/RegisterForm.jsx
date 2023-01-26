@@ -8,10 +8,13 @@ import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../utils/va
 import Password from '../shareInputs/Password';
 import useMutation from '../../hooks/useMutation';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading';
 
 const validateForm = new ValidateForm();
 const RegisterForm = () => {
   const { error, loading, mutation, data } = useMutation('/userMemberInsert');
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,28 +29,12 @@ const RegisterForm = () => {
     const ssn = data.ssn1 + data.ssn2;
     const phone1 = data.phone2 && data.phone3 ? data.phone1 : null;
 
-    console.log({
-      email: email || null,
-      address1: data.address1 || null,
-      address2: data.address2 || null,
-      gender: data.gender || null,
-      id: data.id,
-      job: data.job || null,
-      jobkey: data.jobkey || null,
-      name: data.name || null,
-      password: data.password,
-      phone1,
-      phone2: data.phone2 || null,
-      phone3: data.phone3 || null,
-      ssn,
-    });
     const submitData = {
       email: email || null,
       address1: data.address1 || null,
       address2: data.address2 || null,
       gender: data.gender || null,
       id: data.id,
-      job: data.job || null,
       jobkey: data.jobkey || null,
       name: data.name || null,
       password: data.password,
@@ -61,10 +48,17 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    console.log(data);
+    if (data) {
+      navigate('/admin');
+      window.close();
+    }
   }, [data]);
 
-  return (
+  console.debug('error', error);
+
+  return loading ? (
+    <Loading />
+  ) : (
     <form
       onSubmit={handleSubmit(onValid)}
       className="rounded-lg max-w-xl lg:max-w-2xl m-auto space-y-4 pb-3"
@@ -193,7 +187,6 @@ const RegisterForm = () => {
           </div> */}
         </div>
       </div>
-
       <div className="w-full flex justify-center items-center">
         <button className="text-white py-1 px-6 rounded-lg bg-yellow-500 hover:bg-pintalk-dark-yellow transition-colors text-lg w-full font-bold">
           등록
