@@ -18,6 +18,6 @@ const useWindowSize = () => {
     setWindowSize(window.innerWidth);
   }, []);
 
-  return { standardWindowSize: windowSize < STAND_SIZE };
+  return { smallSize: windowSize < STAND_SIZE };
 };
 export default useWindowSize;

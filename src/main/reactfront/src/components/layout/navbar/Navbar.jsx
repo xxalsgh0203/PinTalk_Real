@@ -26,7 +26,7 @@ const navigationItem = [
 ];
 
 const Navbar = ({ title, home }) => {
-  const { standardWindowSize } = useWindowSize();
+  const { smallSize } = useWindowSize();
   const [active, setActive] = useState(false);
 
   const toggleActiveNavbar = () => {
@@ -34,10 +34,9 @@ const Navbar = ({ title, home }) => {
   };
 
   useEffect(() => {
-    !standardWindowSize && setActive(false);
-  }, [standardWindowSize]);
+    !smallSize && setActive(false);
+  }, [smallSize]);
 
-  console.log(active);
   return (
     <div className="relative">
       <div
@@ -52,7 +51,7 @@ const Navbar = ({ title, home }) => {
         </Link>
         <h1>{title}</h1>
 
-        {standardWindowSize ? (
+        {smallSize ? (
           <div onClick={toggleActiveNavbar} className="cursor-pointer">
             {active ? <AiOutlineClose size={25} /> : <GiHamburgerMenu size={25} />}
           </div>
