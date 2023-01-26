@@ -32,9 +32,9 @@
 
 <div align="center">
 
-|                 [J017\_김기한](https://github.com/vgihan)                 |                [J024\_김미정](https://github.com/guiyomj)                 |               [J167\_이태욱](https://github.com/leetaewook)               |               [J202\_차재명](https://github.com/Coreight98)               |
+|                 [J017\_김기한](https://github.com/vgihan)                 |                [J024\_김미정](https://github.com/guiyomj)                 |                              |               [J202\_차재명](https://github.com/Coreight98)               |
 | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: |
-| <img src='https://avatars.githubusercontent.com/u/49841765?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/57428261?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/72855455?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/38166372?v=4' width=120> |
+| <img src='https://avatars.githubusercontent.com/u/49841765?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/57428261?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/72855455?v=4' width=120> 
 
 </div>
 
