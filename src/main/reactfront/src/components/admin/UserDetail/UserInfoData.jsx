@@ -47,7 +47,7 @@ const UserInfoData = ({ userInfo }) => {
       setValue('job_key', userInfo[0].job_key);
       setValue('status', userInfo[0].status);
     }
-  }, userInfo[0]);
+  }, [userInfo[0]]);
 
   const onValid = (data) => {
     const email = data.frontEmail && data.frontEmail + '@' + data.backEmail;
