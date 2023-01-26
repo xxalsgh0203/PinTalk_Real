@@ -27,7 +27,6 @@ function Pagination({ PageInfo }) {
         >
           &lt;
         </button>
-
         <div className="sm:space-x-4">
           {Array(PageInfo?.totalPage)
             .fill()
@@ -48,7 +47,6 @@ function Pagination({ PageInfo }) {
             .splice(0)
             .slice(PageInfo?.startPage === 0 ? 0 : PageInfo?.startPage - 1, PageInfo?.endPage - 1)}
         </div>
-
         <button
           className="ml-3 sm:ml-6 hover:font-bold p-1 cursor-pointer hover:scale-110 transition-all text-gray-500 hover:text-pintalk-dark-brown"
           disabled={PageInfo?.currPage + 1 === PageInfo?.totalPage}
