@@ -41,7 +41,7 @@
 
 <div class="callout">
   <div>
-    <p><code><a href='https://booducksound.com' target='_blank'>PINBANK</a></code> : 금융결제원 API 를 이용한 간편 송금, 이체, 계좌 조회를 위한 웹 서비스</b></p>
+    <p><code><a href='http://52.78.1.166:3000/' target='_blank'>PINBANK</a></code> : 금융결제원 API 를 이용한 간편 송금, 이체, 계좌 조회를 위한 웹 서비스</b></p>
   </div>
 </div>
 
