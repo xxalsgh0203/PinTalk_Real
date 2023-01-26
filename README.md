@@ -1,5 +1,4 @@
 <h1 align="center">💰 Pin Bank 💰</h1>
-<div align="center"><img src="https://user-images.githubusercontent.com/49841765/139250079-ebf5d063-5fac-40d9-8c7a-b59989baa1e0.png" alt="booducksound"/></div>
 <div align="center">
   <p>
     <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/>
@@ -32,8 +31,8 @@
 
 <div align="center">
 
-|                 [J017\_김기한](https://github.com/vgihan)                 |                [J024\_김미정](https://github.com/guiyomj)                 |                              |               [J202\_차재명](https://github.com/Coreight98)               |
-| :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: |
+|                 [J017\_김민호](https://github.com/vgihan)                 |                [J024\_태희](https://github.com/guiyomj)                 |                              |               [J202\_임진석](https://github.com/Coreight98)               |
+| :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: 
 | <img src='https://avatars.githubusercontent.com/u/49841765?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/57428261?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/72855455?v=4' width=120> 
 
 </div>
