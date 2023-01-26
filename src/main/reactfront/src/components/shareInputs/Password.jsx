@@ -18,6 +18,10 @@ const Password = ({
         {label}{' '}
         {errorMessage ? (
           <FormErrorMessage errorMessage={errorMessage} />
+        ) : editPage ? (
+          <span className="text-sm text-pintalk-dark-yellow">
+            {necessary ? '필수정보입니다.' : null}
+          </span>
         ) : (
           <span className="ml-4 text-sm text-pintalk-dark-yellow">
             {necessary ? '필수정보입니다.' : null}
@@ -49,7 +53,7 @@ const Password = ({
           placeholder={editPage ? upassword : ''}
           className={cls(
             editPage
-              ? ''
+              ? 'bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all'
               : 'bg-transparent border-gray-200 rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all',
             errorMessage
               ? 'ring-1 ring-offset-1 ring-red-500 border-transparent'

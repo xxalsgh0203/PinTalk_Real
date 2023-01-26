@@ -31,21 +31,27 @@ const UserInfoData = ({ userInfo }) => {
 
   useEffect(() => {
     if (userInfo[0]) {
-      setValue('name', userInfo[0].name);
-      setValue('gender', userInfo[0].gender);
-      setValue('ssn1', userInfo[0].ssn1);
-      setValue('ssn2', userInfo[0].ssn2);
-      setValue('phone1', userInfo[0].phone1);
-      setValue('phone2', userInfo[0].phone2);
-      setValue('phone3', userInfo[0].phone3);
-      setValue('id', userInfo[0].id);
-      setValue('password', userInfo[0].password);
-      setValue('address1', userInfo[0].address1);
-      setValue('address2', userInfo[0].address2);
-      setValue('frontEmail', userInfo[0].email.split('@')[0]);
-      setValue('backEmail', userInfo[0].email.split('@')[1]);
-      setValue('job_key', userInfo[0].job_key);
-      setValue('status', userInfo[0].status);
+      setValue('name', userInfo[0].name === null ? '' : userInfo[0].name);
+      setValue('gender', userInfo[0].gender === null ? '' : userInfo[0].gender);
+      setValue('ssn1', userInfo[0].ssn1 === null ? '' : userInfo[0].ssn1);
+      setValue('ssn2', userInfo[0].ssn2 === null ? '' : userInfo[0].ssn2);
+      setValue('phone1', userInfo[0].phone1 === null ? '' : [0].phone1);
+      setValue('phone2', userInfo[0].phone2 === null ? '' : userInfo[0].phone2);
+      setValue('phone3', userInfo[0].phone3 === null ? '' : userInfo[0].phone3);
+      setValue('id', userInfo[0].id === null ? '' : userInfo[0].id);
+      setValue('password', userInfo[0].password === null ? '' : userInfo[0].password);
+      setValue('address1', userInfo[0].address1 === null ? '' : userInfo[0].address1);
+      setValue('address2', userInfo[0].address2 === null ? '' : userInfo[0].address2);
+      setValue(
+        'frontEmail',
+        userInfo[0].email === null ? 'example' : userInfo[0].email.split('@')[0],
+      );
+      setValue(
+        'backEmail',
+        userInfo[0].email === null ? 'email.com' : userInfo[0].email.split('@')[1],
+      );
+      setValue('job_key', userInfo[0].job_key === null ? '' : userInfo[0].job_key);
+      setValue('status', userInfo[0].status === null ? '' : userInfo[0].status);
     }
   }, [userInfo[0]]);
 
@@ -145,7 +151,7 @@ const UserInfoData = ({ userInfo }) => {
                           ssn2={userInfo[0]?.ssn2}
                           editPage
                         />
-                        <button className="text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
+                        <button className="mt-3 text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
                           주민번호 확인
                         </button>
                       </td>
@@ -192,7 +198,7 @@ const UserInfoData = ({ userInfo }) => {
                           upassword={userInfo[0]?.password}
                           editPage
                         />
-                        <button className="text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
+                        <button className="mt-3 text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
                           비밀번호 검증
                         </button>
                       </td>
@@ -206,13 +212,13 @@ const UserInfoData = ({ userInfo }) => {
                         <CommonInput
                           register={register('address1')}
                           htmlFor="address1"
-                          label="사는곳"
+                          // label="사는곳"
                           placeholder={userInfo[0]?.address1}
                         />
                         <CommonInput
                           register={register('address2')}
                           htmlFor="address2"
-                          label="상세주소"
+                          // label="상세주소"
                           placeholder={userInfo[0]?.address2}
                         />
                       </td>
@@ -228,8 +234,16 @@ const UserInfoData = ({ userInfo }) => {
                           watch={watch}
                           validateForm={validateForm}
                           errorMessage={errors.frontEmail?.message || errors.backEmail?.message}
-                          email1={userInfo[0]?.email.split('@')[0]}
-                          email2={userInfo[0]?.email.split('@')[1]}
+                          email1={
+                            userInfo[0]?.email === null
+                              ? 'example'
+                              : userInfo[0]?.email.split('@')[0]
+                          }
+                          email2={
+                            userInfo[0]?.email === null
+                              ? 'email.com'
+                              : userInfo[0]?.email.split('@')[1]
+                          }
                           editPage
                         />
                       </td>
