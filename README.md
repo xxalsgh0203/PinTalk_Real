@@ -1,8 +1,9 @@
-<h1 align="center">💰 Pin Bank 💰</h1>
+<h1 align="center"> 🏦 PinBank 🏦 </h1>
+<div align="center"><img src="https://user-images.githubusercontent.com/49841765/139250079-ebf5d063-5fac-40d9-8c7a-b59989baa1e0.png" alt="booducksound"/></div>
 <div align="center">
   <p>
-    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=Socket.io&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Javascript-색상?style=for-the-badge&logo=Javascript&logoColor=#F7DF1E">
+    <img src="https://img.shields.io/badge/React-색상?style=for-the-badge&logo=React&logoColor=#61DAFB">
     <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=ESLint&logoColor=white"/>
     <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/>
   </p>
@@ -10,19 +11,12 @@
     <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
     <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=Next.js&logoColor=white"/>
     <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/>
-    <img src="https://img.shields.io/badge/emotion-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Testing Library-E33332?style=flat-square&logo=Testing Library&logoColor=white"/>
   </p>
   <p>
     <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=Express&logoColor=white"/>
     <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white"/>
   </p>
-  <p>
-    <img src="https://img.shields.io/badge/NGINX-009639?style=flat-square&logo=NGINX&logoColor=white"/>
-    <img src="https://img.shields.io/badge/PM2-2B037A?style=flat-square&logo=PM2&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Naver Cloud-03C75A?style=flat-square&logo=Naver&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Github Actions-2088FF?style=flat-square&logo=Github Actions&logoColor=white"/>
-  </p>
+ 
 </div>
 
 <br>
@@ -31,45 +25,45 @@
 
 <div align="center">
 
-|                 [J017\_김민호](https://github.com/vgihan)                 |                [J024\_태희](https://github.com/guiyomj)                 |                              |               [J202\_임진석](https://github.com/Coreight98)               |
-| :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: 
-| <img src='https://avatars.githubusercontent.com/u/49841765?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/57428261?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/72855455?v=4' width=120> 
+|                 [FRONT\_김민호](https://github.com/xxalsgh0203)                 |                [FRONT\_장태희](https://github.com/jangth0655)                 |               [BACK\_임진석](https://github.com/dks2922)               |
+| :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | 
+| <img src='https://avatars.githubusercontent.com/u/72855455?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/72855455?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/72855455?v=4' width=120> |
 
 </div>
 
 <br>
 
-## 핀뱅크란 ? 🎞
+## 핀뱅크 란? 💸
 
 <div class="callout">
   <div>
-    <p><code><a href='https://booducksound.com' target='_blank'>booducksound</a></code> : 친구들과 다함께 온라인으로 즐길 수 있는 <b>웹 기반 노래 맞추기 게임</b></p>
+    <p><code><a href='https://booducksound.com' target='_blank'>PINBANK</a></code> : 간편 송금, 이체, 계좌 조회를 위한 웹 서비스</b></p>
   </div>
 </div>
 
-> 스타크래프트 노래 맞추기 유즈맵에서 영감을 얻어 제작된 부덕사운드는 유튜브 링크를 통하여 문제를 만들고, 친구들과 함께 노래를 들으며 채팅으로 문제를 맞출 수 있는 온라인 노래 맞추기 배틀 게임입니다.
+> 핀뱅크는 웹 브라우저를 이용한 간편결제의 방식으로, 브라우저로 송금 및 결제서비스 가능한 서비스입니다. 또한, 공인인증서와 같은 인증 절차 없이 오직 이체 비밀번호로만 인증하여 서비스를 이용할 수 있습니다.
 
 
 
 <br>
 
 
-### 플레이 방법 ⚾
+### 이용 방법 ⚾
 <img align='left' src='https://media2.giphy.com/media/4oMoIbIQrvCjm/giphy.gif?cid=ecf05e47esel7g35iuq4diuyz01iw911vkecytet7dkfn18b&rid=giphy.gif&ct=g' width=350 />
       
-🏠 방을 만들고 싶으시다면, 방 생성을 눌러주시고, 원하는 플레이 리스트를 골라주세요!
+🏠 블라블라
 
-🎉 같이 플레이 하고 싶은 친구들에게 초대코드를 보내주세요!
+🎉 블라블라
 
-➕ 원하는 플레이 리스트가 없다면, 플레이 리스트 추가를 누르셔서, 만들어주세요!
+➕ 블라블라
 
-⚠️ 비회원은 플레이리스트 추가를 할 수 없습니다 🥲🥲
+⚠️ 블라블라
 
-🕹 모든 인원이 준비를 누르면 플레이를 해주세요~ㅎㅎ
+🕹 블라블라
 
-✅ 정답은 채팅창에 적어주세요 🧡
+✅ 블라블라
 
-⛷ 스킵은 모두 눌러야 넘어갑니다!
+⛷ 블라블라
 
 <br>
 
@@ -88,16 +82,6 @@
 - 플레이리스트를 직접 등록하거나, 다른 유저들이 만든 플레이리스트로 게임을 플레이 해보세요 !
 - 친구들과 함께 접속하여 플레이리스트를 골라 노래를 맞추며 즐길 수 있습니다 😆
 - 오늘 밤엔 친구들과 부덕사운드에 모여 2010 노래 모음 플레이리스트를 들으며 노래 맞추기 🍗 내기 어떤가요 ?!
-
-<br>
-
-### 오디오 스트림 중개 🎵
-
-![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/49841765/143987304-3500bcac-561c-4bed-92b1-5fc306e8dd99.gif)
-
-- 유저가 원하는 노래의 유튜브 URL을 입력하면, 서버는 해당 URL을 저장합니다.
-- 해당 플레이리스트가 플레이 될 때, 저장되어 있던 URL을 ytdl 라이브러리가 파싱하여 googleVideo의 실제 weba 파일이 저장되어 있는 저장소의 URL을 만듭니다.
-- 서버는 googleVideo에 저장되어 있는 weba 파일을 오디오 스트림을 통해 전달 받고, 클라이언트에게 중개해줍니다.
 
 <br>
 
