@@ -2,6 +2,7 @@
 
 <div align="center">
   <p>
+    <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=black">
     <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
     <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
   </p>
@@ -51,22 +52,22 @@
 <br>
 
 
-### 이용 방법 ⚾
+### 이용 방법 🎯
 <img align='left' src='https://media2.giphy.com/media/4oMoIbIQrvCjm/giphy.gif?cid=ecf05e47esel7g35iuq4diuyz01iw911vkecytet7dkfn18b&rid=giphy.gif&ct=g' width=350 />
       
-🏠 블라블라
+💵 블라블라
 
-🎉 블라블라
+💴 블라블라
 
-➕ 블라블라
+💶 블라블라
 
-⚠️ 블라블라
+💷 블라블라
 
-🕹 블라블라
+💰 블라블라
 
-✅ 블라블라
+💳 블라블라
 
-⛷ 블라블라
+🔐 블라블라
 
 <br>
 
@@ -79,7 +80,7 @@
 
 <br>
 
-### 간편 계좌 이체 서비스 🔊
+### 간편 계좌 이체 서비스 📲
 
 - ...
 - ...
@@ -88,7 +89,17 @@
 
 <br>
 
-## Link 🎈
+## 📍 프로젝트 설치 방법 (MAC) 🖥
+
+<br>
+
+## 📍 프로젝트 설치 방법 (WINDOWS) 🖥
+
+<br>
+
+
+
+<h1 align="center"> ## Link 🎈 </h1>
 
 <div align=center>
   
