@@ -9,9 +9,11 @@ const SSN = ({ register, errorMessage, validateForm, ssn1, ssn2, editPage }) => 
   return (
     <div className="space-y-2">
       <label className="flex text-sm" htmlFor="ssn">
-        주민번호
+        {editPage ? '' : '주민번호'}
         {errorMessage || errorMessage ? (
           <FormErrorMessage errorMessage={errorMessage} />
+        ) : editPage ? (
+          <span className="text-sm text-pintalk-dark-yellow">필수정보입니다.</span>
         ) : (
           <span className="ml-4 text-sm text-pintalk-dark-yellow">필수정보입니다.</span>
         )}

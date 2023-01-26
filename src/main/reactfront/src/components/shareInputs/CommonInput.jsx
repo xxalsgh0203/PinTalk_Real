@@ -34,7 +34,7 @@ const CommonInput = ({
           placeholder={placeholder}
           className={cls(
             editPage
-              ? ''
+              ? 'bg-transparent rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all'
               : 'bg-transparent rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all',
             errorMessage
               ? 'ring-1 ring-offset-1 ring-red-500 border-transparent'
