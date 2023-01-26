@@ -17,7 +17,7 @@ public class Param extends BaseEntity {
         return param;
     }
 
-    @GetMapping("/userMemberListForm")
+    @GetMapping("/userMemberList")
     public Param getParam(Param param){
 
         param.setGender(param.getGender());
