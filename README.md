@@ -1,20 +1,23 @@
-<h1 align="center"> 🏦 PinBank 🏦 </h1>
-<div align="center"><img src="https://user-images.githubusercontent.com/49841765/139250079-ebf5d063-5fac-40d9-8c7a-b59989baa1e0.png" alt="booducksound"/></div>
+<h1 align="center"> 💵 PinBank 💵 </h1>
+
 <div align="center">
   <p>
-    <img src="https://img.shields.io/badge/Javascript-색상?style=for-the-badge&logo=Javascript&logoColor=#F7DF1E">
-    <img src="https://img.shields.io/badge/React-색상?style=for-the-badge&logo=React&logoColor=#61DAFB">
-    <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=ESLint&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/>
+    <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+    <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
   </p>
   <p>
-    <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=Next.js&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/>
+    <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white">
+    <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=white">
+    <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white">
+    <img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=for-the-badge&logo=Tailwind CSS&logoColor=white">
   </p>
+
   <p>
-    <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=Express&logoColor=white"/>
-    <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white"/>
+    <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+    <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
+    <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+    <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
+    <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white">
   </p>
  
 </div>
@@ -27,7 +30,7 @@
 
 |                 [FRONT\_김민호](https://github.com/xxalsgh0203)                 |                [FRONT\_장태희](https://github.com/jangth0655)                 |               [BACK\_임진석](https://github.com/dks2922)               |
 | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | 
-| <img src='https://avatars.githubusercontent.com/u/72855455?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/72855455?v=4' width=120> | <img src='https://avatars.githubusercontent.com/u/72855455?v=4' width=120> |
+| <img src='https://user-images.githubusercontent.com/62753490/214890879-fa021378-a2da-47f1-9734-c038246f3da8.JPG' width=120> | <img src='https://user-images.githubusercontent.com/62753490/214891271-f534d4f6-a4b1-4920-9fdc-670bd70e38f8.png' width=120> | <img src='https://avatars.githubusercontent.com/u/72855455?v=4' width=120> |
 
 </div>
 
@@ -37,7 +40,7 @@
 
 <div class="callout">
   <div>
-    <p><code><a href='https://booducksound.com' target='_blank'>PINBANK</a></code> : 간편 송금, 이체, 계좌 조회를 위한 웹 서비스</b></p>
+    <p><code><a href='https://booducksound.com' target='_blank'>PINBANK</a></code> : 금융결제원 API 를 이용한 간편 송금, 이체, 계좌 조회를 위한 웹 서비스</b></p>
   </div>
 </div>
 
@@ -67,21 +70,21 @@
 
 <br>
 
-### 플레이리스트 생성 🎧
+### 간편 계좌 확인 서비스 🏦
 
-- 유저 모두 자신만의 노래 문제를 만들 수 있습니다 !
-- 유튜브 링크를 조합하여 나만의 플레이리스트를 만들어 보세요.
-- 평소에 즐겨 듣던 노래나 장르 별로 노래를 모아 문제를 내보는 건 어떨까요 ?
-- 취향저격 플레이리스트를 만들어 유저들의 좋아요를 모아보세요 😍
+- ...
+- ...
+- ...
+- ...
 
 <br>
 
-### 게임 플레이 🔊
+### 간편 계좌 이체 서비스 🔊
 
-- 부스트캠프 캠퍼이신데, 아직 플레이를 안해보셨나요 ? 부캠 최고의 인싸게임 지금 즐겨보시죠.
-- 플레이리스트를 직접 등록하거나, 다른 유저들이 만든 플레이리스트로 게임을 플레이 해보세요 !
-- 친구들과 함께 접속하여 플레이리스트를 골라 노래를 맞추며 즐길 수 있습니다 😆
-- 오늘 밤엔 친구들과 부덕사운드에 모여 2010 노래 모음 플레이리스트를 들으며 노래 맞추기 🍗 내기 어떤가요 ?!
+- ...
+- ...
+- ...
+- ...
 
 <br>
 
@@ -89,7 +92,7 @@
 
 <div align=center>
   
-| [기술 스택](https://github.com/boostcampwm-2021/web02-booducksound/wiki/%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D) | [디자인](https://www.figma.com/file/gLcrrYjkIrJPcMDj1RfisT/Untitled?node-id=0%3A1) | [백로그](https://docs.google.com/spreadsheets/d/1hkYKBwJsvGKt0R97B90KXuOqpwD8KcIyOTHcTGO9qLc/edit#gid=0) | [API 명세](https://github.com/boostcampwm-2021/web02-booducksound/wiki/API-%EB%AA%85%EC%84%B8) | [폴더 구조](https://github.com/boostcampwm-2021/web02-booducksound/wiki/%ED%8F%B4%EB%8D%94-%EA%B5%AC%EC%A1%B0) | [전체 Wiki](https://github.com/boostcampwm-2021/web02-booducksound/wiki) |
-|---|---|---|---|---|---|
+| [포트폴리오 소개](https://docs.google.com/presentation/d/1H_rjI6O2zBrEWozUJTMnuKWjPJJJRW6P/edit#slide=id.p1) | [WBS](https://docs.google.com/spreadsheets/d/1g7MpaDh9WYtmyc4QH8WAVY5tF35b4EH9L_3lOhc-jMQ/edit#gid=01) | 
+|---|---|
   
 </div>
