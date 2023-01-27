@@ -26,7 +26,9 @@ const FilteringTable = () => {
     reset,
     formState: { errors },
     control,
-  } = useForm();
+  } = useForm({
+    mode: 'onBlur',
+  });
 
   const handleResetValue = () => {
     reset((formValue) => ({
@@ -132,8 +134,8 @@ const FilteringTable = () => {
               })}
             >
               <option value="">성별</option>
-              <option value="M">남</option>
-              <option value="W">여</option>
+              <option value="M">남자</option>
+              <option value="W">여자</option>
             </select>
           </div>
 
@@ -141,8 +143,12 @@ const FilteringTable = () => {
             label="이름"
             placeholder="홍길동"
             htmlFor="name"
+            errorMessage={errors?.name?.message}
             register={register('name', {
-              onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
+              maxLength: {
+                value: 15,
+                message: '15자 이내로 입력해주세요.',
+              },
             })}
           />
 
@@ -183,6 +189,7 @@ const FilteringTable = () => {
                 })}
                 type="text"
                 className="bg-transparent outline-none rounded-md w-[20%] lg:w-[25%] shadow-sm"
+                maxLength={4}
               />
               <span>-</span>
               <input
