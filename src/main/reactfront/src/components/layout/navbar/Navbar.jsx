@@ -23,6 +23,10 @@ const navigationItem = [
     title: '로그인',
     id: 'login',
   },
+  {
+    title: '마이페이지',
+    id: 'usermypage',
+  },
 ];
 
 const Navbar = ({ title, home }) => {

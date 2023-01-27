@@ -10,6 +10,7 @@ import Status from '../../shareInputs/Status';
 import { useEffect } from 'react';
 import EditCloseButton from './EditCloseButton';
 import useMutation from '../../../hooks/useMutation';
+import Sidebar from './Sidebar';
 
 const validateForm = new ValidateForm();
 
@@ -98,6 +99,7 @@ const UserInfoData = ({ userInfo }) => {
 
   return (
     <>
+      <Sidebar></Sidebar>
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
           <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">

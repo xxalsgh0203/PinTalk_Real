@@ -16,6 +16,8 @@ import Admin from './pages/admin/Admin';
 import LoginRegister from './pages/login/LoginRegister';
 import AdminRegister from './pages/admin/AdminRegister';
 
+import UserMyPage from './pages/user/UserMyPage';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -57,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: 'register',
         element: <LoginRegister />,
+      },
+      {
+        path: 'usermypage',
+        element: <UserMyPage />,
       },
     ],
   },
