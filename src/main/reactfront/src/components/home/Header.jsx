@@ -14,6 +14,10 @@ const subNavbar = [
     title: '계좌이체',
     id: 'transfer',
   },
+  {
+    title: '이체내역',
+    id: 'transferList',
+  },
 ];
 
 const Header = () => {
