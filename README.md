@@ -75,19 +75,19 @@
 ### 우리의 서비스 🎯
 <img align='left' src='https://media2.giphy.com/media/4oMoIbIQrvCjm/giphy.gif?cid=ecf05e47esel7g35iuq4diuyz01iw911vkecytet7dkfn18b&rid=giphy.gif&ct=g' width=350 />
       
-💵 간편 송금
+&nbsp; &nbsp; 💵 간편 송금
 
-💴 간단한 인증
+&nbsp; &nbsp; 💴 간단한 인증
 
-💶 빠른 계좌조회
+&nbsp; &nbsp; 💶 빠른 계좌조회
 
-💷 블라블라
+&nbsp; &nbsp; 💷 블라블라
 
-💰 블라블라
+&nbsp; &nbsp; 💰 블라블라
 
-💳 블라블라
+&nbsp; &nbsp; 💳 블라블라
 
-🔐 블라블라
+&nbsp; &nbsp; 🔐 블라블라
 
 <br>
 
@@ -109,11 +109,18 @@
 
 <br>
 
-## 📍 프로젝트 설치 방법 (MAC) 🖥
-
+## 📍 프로젝트 설치/실행 방법 (MAC) 🖥
+1. Git clone
+```Javascript
+git clone https://github.com/Pin-Talk/PinTalk_Real.git
+```
+2. 모듈설치 
+```Javascript
+npm i
+```
 <br>
 
-## 📍 프로젝트 설치 방법 (WINDOW) 🖥
+## 📍 프로젝트 설치/실행 방법 (WINDOW) 🖥
 
 <br>
 
