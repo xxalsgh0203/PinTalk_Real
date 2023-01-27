@@ -14,18 +14,22 @@ const subNavbar = [
     title: '계좌이체',
     id: 'transfer',
   },
+  {
+    title: '이체내역',
+    id: 'transferList',
+  },
 ];
 
 const Header = () => {
   const { smallSize } = useWindowSize();
   return (
-    <header className="h-full">
+    <header className="h-full  animate-fade">
       <div className="flex justify-center items-center pl-1 py-96 sm:py-60 xl:py-52">
         <div className="w-full sm:w-[50%] h-full space-y-8 flex flex-col items-center">
-          <h1 className="text-5xl xl:text-7xl font-extrabold text-black xl:tracking-widest">
+          <h1 className="text-5xl xl:text-7xl font-extrabold text-black xl:tracking-widest animate-fadeEffect">
             금융을 내편으로
           </h1>
-          <div className="flex items-end">
+          <div className="flex items-end animate-slowFadeEffect">
             <img className="w-12 xl:w-16" src={logo} alt="logo" />
             <div className="flex items-center text-black text-2xl  sm:text-xl xl:text-4xl font-extrabold">
               <span className="uppercase mr-1">intalk</span>

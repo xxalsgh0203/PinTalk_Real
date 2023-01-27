@@ -1,5 +1,5 @@
 import { BiTransferAlt } from 'react-icons/bi';
-import { AiOutlineAccountBook } from 'react-icons/ai';
+import { AiOutlineAccountBook, AiFillCheckCircle } from 'react-icons/ai';
 
 const SubNavbar = ({ id, title }) => {
   return (
@@ -9,13 +9,21 @@ const SubNavbar = ({ id, title }) => {
     >
       <div className="z-10 w-full absolute flex flex-col items-center justify-center h-full space-y-4">
         <div className="">
-          {title === '전체계좌조회' ? (
+          {id === 'allAccount' && (
             <div className="text-teal-600">
               <AiOutlineAccountBook size={40} />
             </div>
-          ) : (
+          )}
+
+          {id === 'transfer' && (
             <div className="text-orange-600">
               <BiTransferAlt size={40} />
+            </div>
+          )}
+
+          {id === 'transferList' && (
+            <div className="text-sky-500">
+              <AiFillCheckCircle size={40} />
             </div>
           )}
         </div>
