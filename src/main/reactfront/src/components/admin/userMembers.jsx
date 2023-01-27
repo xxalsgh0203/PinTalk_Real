@@ -6,7 +6,8 @@ const UserMembers = ({ member }) => {
     let newWindow = window.open(
       `http://localhost:3000/userMemberDetail/${member.no}`,
       '_blank',
-      'fullscreen',
+      // 'fullscreen',
+      'width=1100,height=600',
     );
   };
 
