@@ -4,22 +4,26 @@ import Gender from '../shareInputs/Gender';
 import SSN from '../shareInputs/SSN';
 import Phone from '../shareInputs/Phone';
 import Email from '../shareInputs/Email';
-import ValidateForm, { NOT_NUMBER, NUMBER, NUMBER_ENGLISH } from '../../utils/validateForm';
+import ValidateForm, { NUMBER, NUMBER_ENGLISH } from '../../utils/validateForm';
 import Password from '../shareInputs/Password';
 import useMutation from '../../hooks/useMutation';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Loading from '../Loading';
+import useAddress from '../../hooks/useAddress';
 
 const validateForm = new ValidateForm();
 const RegisterForm = () => {
   const { error, loading, mutation, data } = useMutation('/userMemberInsert');
+  const { address, handleAddress } = useAddress();
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    setValue,
   } = useForm({
     mode: 'onChange',
   });
@@ -43,7 +47,6 @@ const RegisterForm = () => {
       phone3: data.phone3 || null,
       ssn,
     };
-
     mutation(submitData);
   };
 
@@ -53,6 +56,12 @@ const RegisterForm = () => {
       window.close();
     }
   }, [data]);
+
+  useEffect(() => {
+    if (address) {
+      setValue('address1', address);
+    }
+  }, [address]);
 
   console.debug('error', error);
 
@@ -68,14 +77,13 @@ const RegisterForm = () => {
           <div className="w-[50%]">
             <CommonInput
               register={register('name', {
-                onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
                 required: '이름을 입력해주세요.',
               })}
               necessary
               errorMessage={errors.name?.message}
               htmlFor="name"
               label="이름"
-              maxLength={10}
+              maxLength={15}
             />
           </div>
 
@@ -141,8 +149,24 @@ const RegisterForm = () => {
           </button>
         </div>
 
-        <CommonInput register={register('address1')} htmlFor="address1" label="사는곳" />
-        <CommonInput register={register('address2')} htmlFor="address2" label="상세주소" />
+        <div className="space-y-2 py-2">
+          <div className="space-x-4">
+            <input
+              type="text"
+              {...register('address1')}
+              className="bg-transparent rounded-md w-[70%] h-full p-1 px-3 outline-none border-2 transition-all"
+            />
+            <button
+              className="p-1 px-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all"
+              onClick={handleAddress}
+              type="button"
+            >
+              주소 찾기
+            </button>
+          </div>
+
+          <CommonInput register={register('address2')} htmlFor="address2" label="상세주소" />
+        </div>
 
         <Email
           register={register}
