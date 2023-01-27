@@ -36,7 +36,7 @@ const UserInfoData = ({ userInfo }) => {
       setValue('gender', userInfo[0].gender === null ? '' : userInfo[0].gender);
       setValue('ssn1', userInfo[0].ssn1 === null ? '' : userInfo[0].ssn1);
       setValue('ssn2', userInfo[0].ssn2 === null ? '' : userInfo[0].ssn2);
-      setValue('phone1', userInfo[0].phone1 === null ? '' : [0].phone1);
+      setValue('phone1', userInfo[0].phone1 === null ? '' : userInfo[0].phone1);
       setValue('phone2', userInfo[0].phone2 === null ? '' : userInfo[0].phone2);
       setValue('phone3', userInfo[0].phone3 === null ? '' : userInfo[0].phone3);
       setValue('id', userInfo[0].id === null ? '' : userInfo[0].id);
@@ -61,22 +61,22 @@ const UserInfoData = ({ userInfo }) => {
     const ssn = data.ssn1 + data.ssn2;
     const phone1 = data.phone2 && data.phone3 ? data.phone1 : null;
 
-    // console.log({
-    //   email: email || null,
-    //   address1: data.address1 || null,
-    //   address2: data.address2 || null,
-    //   gender: data.gender || null,
-    //   id: data.id,
-    //   job: data.job || null,
-    //   job_key: data.job_key || null,
-    //   name: data.name || null,
-    //   password: data.password,
-    //   phone1,
-    //   phone2: data.phone2 || null,
-    //   phone3: data.phone3 || null,
-    //   ssn,
-    //   status: data.status || null,
-    // });
+    console.log({
+      email: email || null,
+      address1: data.address1 || null,
+      address2: data.address2 || null,
+      gender: data.gender || null,
+      id: data.id,
+      job: data.job || null,
+      job_key: data.job_key || null,
+      name: data.name || null,
+      password: data.password,
+      phone1,
+      phone2: data.phone2 || null,
+      phone3: data.phone3 || null,
+      ssn,
+      status: data.status || null,
+    });
 
     const submitData = {
       email: email || null,
