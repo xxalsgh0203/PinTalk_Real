@@ -109,8 +109,7 @@ const FilteringTable = () => {
     userStatusDispatch(userSlice.actions.handleSubmit(value));
   };
 
-  const openWindow = (e) => {
-    console.log(e.target);
+  const openWindow = () => {
     openNewWindow('admin/insertUser');
   };
 
