@@ -35,7 +35,7 @@ const Header = () => {
         </div>
 
         {smallSize ? null : (
-          <div className="w-[50%]">
+          <div className="lg:w-[30%]">
             <img className="h-[270px] md:h-[320px] xl:h-[400px]" src={mainUrl} alt="icon" />
           </div>
         )}
