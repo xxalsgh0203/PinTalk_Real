@@ -3,12 +3,7 @@ import { useDispatch } from 'react-redux';
 import { userSlice } from '../../../redux/slices/userSlice';
 
 import { openNewWindow } from '../../../utils/openNewWindow';
-import ValidateForm, {
-  inputSetValues,
-  NOT_NUMBER,
-  NUMBER,
-  NUMBER_ENGLISH,
-} from '../../../utils/validateForm';
+import ValidateForm, { inputSetValues, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
 import FormErrorMessage from '../../FormErrorMessage';
 
 import BirthPicker from './datePicker/BirthPicker';
@@ -50,7 +45,7 @@ const FilteringTable = () => {
       modifyDateEnd: null,
       ssn1: null,
       ssn2: null,
-      user_state: null,
+      status: null,
     }));
   };
 
@@ -87,7 +82,7 @@ const FilteringTable = () => {
       signDateEnd,
       modifyDateStart,
       modifyDateEnd,
-      user_state,
+      status,
     } = data;
     const submitData = {
       address: address?.trim() || null,
@@ -103,7 +98,7 @@ const FilteringTable = () => {
       signDateEnd: convertDate(signDateEnd) || null,
       modifyDateStart: convertDate(modifyDateStart) || null,
       modifyDateEnd: convertDate(modifyDateEnd) || null,
-      user_state: user_state || null,
+      status: status || null,
       email: convertEmail(frontEmail, backEmail) || null,
     };
     userSubmitDispatch(userSlice.actions.handleSubmit(submitData));
@@ -111,7 +106,7 @@ const FilteringTable = () => {
 
   const handleUserStatus = (e) => {
     const value = e.target.value;
-    userStatusDispatch(userSlice.actions.handleStatus(value));
+    userStatusDispatch(userSlice.actions.handleSubmit(value));
   };
 
   const openWindow = () => {
@@ -290,7 +285,7 @@ const FilteringTable = () => {
           <div className="flex flex-col w-[50%] shadow-sm">
             <label className="font-bold text-sm mb-2">회원가입 상태</label>
             <select
-              {...register('user_state', {
+              {...register('status', {
                 onChange: (e) => handleUserStatus(e),
                 setValueAs: (v) => inputSetValues(v),
               })}
