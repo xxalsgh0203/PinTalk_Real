@@ -3,51 +3,29 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import HttpError from '../../service/httpError';
 
 export const getList = createAsyncThunk('GET_USER', async ({ page, submitData }, thunkApi) => {
-  let response;
   try {
-    if (submitData) {
-      const {
-        address,
-        year,
-        month,
-        day,
-        gender,
-        name,
-        phone1,
-        phone2,
-        phone3,
-        signDateStart,
-        signDateEnd,
-        modifyDateStart,
-        modifyDateEnd,
-        user_state,
-        email,
-      } = submitData;
-      response = await (
-        await axios.get('/userMemberListForm', {
-          params: {
-            page,
-            address,
-            year,
-            month,
-            day,
-            gender,
-            name,
-            phone1,
-            phone2,
-            phone3,
-            signDateStart,
-            signDateEnd,
-            modifyDateStart,
-            modifyDateEnd,
-            user_state,
-            email,
-          },
-        })
-      ).data;
-      return response;
-    }
-    response = await (await axios.get(`/userMemberList?page=${page}`)).data;
+    const response = await (
+      await axios.get('/userMemberList', {
+        params: {
+          page,
+          address: submitData?.address,
+          year: submitData?.year,
+          month: submitData?.month,
+          day: submitData?.day,
+          gender: submitData?.gender,
+          name: submitData?.name,
+          phone1: submitData?.phone1,
+          phone2: submitData?.phone2,
+          phone3: submitData?.phone3,
+          signDateStart: submitData?.signDateStart,
+          signDateEnd: submitData?.signDateEnd,
+          modifyDateStart: submitData?.modifyDateStart,
+          modifyDateEnd: submitData?.modifyDateEnd,
+          status: submitData?.status,
+          email: submitData?.email,
+        },
+      })
+    ).data;
     return response;
   } catch (error) {
     if (error instanceof Error) {

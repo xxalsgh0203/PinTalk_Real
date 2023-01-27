@@ -3,12 +3,7 @@ import { useDispatch } from 'react-redux';
 import { userSlice } from '../../../redux/slices/userSlice';
 
 import { openNewWindow } from '../../../utils/openNewWindow';
-import ValidateForm, {
-  inputSetValues,
-  NOT_NUMBER,
-  NUMBER,
-  NUMBER_ENGLISH,
-} from '../../../utils/validateForm';
+import ValidateForm, { inputSetValues, NUMBER, NUMBER_ENGLISH } from '../../../utils/validateForm';
 import FormErrorMessage from '../../FormErrorMessage';
 
 import BirthPicker from './datePicker/BirthPicker';
@@ -26,7 +21,9 @@ const FilteringTable = () => {
     reset,
     formState: { errors },
     control,
-  } = useForm();
+  } = useForm({
+    mode: 'onBlur',
+  });
 
   const handleResetValue = () => {
     reset((formValue) => ({
@@ -48,7 +45,7 @@ const FilteringTable = () => {
       modifyDateEnd: null,
       ssn1: null,
       ssn2: null,
-      user_state: null,
+      status: null,
     }));
   };
 
@@ -85,7 +82,7 @@ const FilteringTable = () => {
       signDateEnd,
       modifyDateStart,
       modifyDateEnd,
-      user_state,
+      status,
     } = data;
     const submitData = {
       address: address?.trim() || null,
@@ -101,7 +98,7 @@ const FilteringTable = () => {
       signDateEnd: convertDate(signDateEnd) || null,
       modifyDateStart: convertDate(modifyDateStart) || null,
       modifyDateEnd: convertDate(modifyDateEnd) || null,
-      user_state: user_state || null,
+      status: status || null,
       email: convertEmail(frontEmail, backEmail) || null,
     };
     userSubmitDispatch(userSlice.actions.handleSubmit(submitData));
@@ -109,7 +106,7 @@ const FilteringTable = () => {
 
   const handleUserStatus = (e) => {
     const value = e.target.value;
-    userStatusDispatch(userSlice.actions.handleStatus(value));
+    userStatusDispatch(userSlice.actions.handleSubmit(value));
   };
 
   const openWindow = () => {
@@ -132,8 +129,8 @@ const FilteringTable = () => {
               })}
             >
               <option value="">성별</option>
-              <option value="M">남</option>
-              <option value="W">여</option>
+              <option value="M">남자</option>
+              <option value="W">여자</option>
             </select>
           </div>
 
@@ -141,8 +138,12 @@ const FilteringTable = () => {
             label="이름"
             placeholder="홍길동"
             htmlFor="name"
+            errorMessage={errors?.name?.message}
             register={register('name', {
-              onChange: (e) => validateForm.inputValid(e, 'name', NOT_NUMBER),
+              maxLength: {
+                value: 15,
+                message: '15자 이내로 입력해주세요.',
+              },
             })}
           />
 
@@ -183,6 +184,7 @@ const FilteringTable = () => {
                 })}
                 type="text"
                 className="bg-transparent outline-none rounded-md w-[20%] lg:w-[25%] shadow-sm"
+                maxLength={4}
               />
               <span>-</span>
               <input
@@ -283,7 +285,7 @@ const FilteringTable = () => {
           <div className="flex flex-col w-[50%] shadow-sm">
             <label className="font-bold text-sm mb-2">회원가입 상태</label>
             <select
-              {...register('user_state', {
+              {...register('status', {
                 onChange: (e) => handleUserStatus(e),
                 setValueAs: (v) => inputSetValues(v),
               })}
