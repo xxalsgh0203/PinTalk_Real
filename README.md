@@ -1,24 +1,44 @@
-<h1 align="center"> 💵 PINBANK 💵 </h1>
+
+<div align="center"> 
+  <img width=50 src="https://user-images.githubusercontent.com/62753490/214989801-3e0f48f8-cdd7-450c-acfe-44417550b0fc.png">
+  <img width=50 src="https://user-images.githubusercontent.com/62753490/214988176-96d97e10-f8e0-4280-ac5f-d58efc960843.png">
+  <img width=50 src="https://user-images.githubusercontent.com/62753490/214988483-b5533373-9558-45f4-be70-39dfa078e61c.png">
+  <img width=50 src="https://user-images.githubusercontent.com/62753490/214989093-1dc2f9a2-0e17-44de-8701-026788301214.png">
+  <img width=50 src="https://user-images.githubusercontent.com/62753490/214988841-9af205e0-6c63-4834-8d77-a28b7696c878.png">
+  <img width=50 src="https://user-images.githubusercontent.com/62753490/214988848-9d044b69-ae63-468e-b00b-01541aab0bd7.png">
+  <img width=50 src="https://user-images.githubusercontent.com/62753490/214989093-1dc2f9a2-0e17-44de-8701-026788301214.png">
+  <img width=50 src="https://user-images.githubusercontent.com/62753490/214988857-87f6f25d-d3c1-47da-9ead-1fc55746b0db.png">
+  <img width=50 src="https://user-images.githubusercontent.com/62753490/214989786-8784a0f7-934c-41ff-a2b5-9fceba9718cb.png">
+</div>
+
+##
 
 <div align="center">
   <p>
     <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=black">
     <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
     <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
-  </p>
-  <p>
-    <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white">
-    <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=white">
     <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white">
     <img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=for-the-badge&logo=Tailwind CSS&logoColor=white">
   </p>
-
   <p>
     <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
     <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
     <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
     <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
+  </p>
+  
+  <p>
     <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white">
+    <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white">
+    <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white">
+  </p>
+  
+   <p>
+    <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white">
+    <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=white">
+    <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=for-the-badge&logo=IntelliJ IDEA&logoColor=white">
+    <img src="https://img.shields.io/badge/DataGrip IDEA-000000?style=for-the-badge&logo=DataGrip IDEA&logoColor=white">
   </p>
  
 </div>
@@ -55,19 +75,19 @@
 ### 우리의 서비스 🎯
 <img align='left' src='https://media2.giphy.com/media/4oMoIbIQrvCjm/giphy.gif?cid=ecf05e47esel7g35iuq4diuyz01iw911vkecytet7dkfn18b&rid=giphy.gif&ct=g' width=350 />
       
-💵 간편 송금
+&nbsp; &nbsp; 💵 간편 송금
 
-💴 간단한 인증
+&nbsp; &nbsp; 💴 간단한 인증
 
-💶 빠른 계좌조회
+&nbsp; &nbsp; 💶 빠른 계좌조회
 
-💷 블라블라
+&nbsp; &nbsp; 💷 블라블라
 
-💰 블라블라
+&nbsp; &nbsp; 💰 블라블라
 
-💳 블라블라
+&nbsp; &nbsp; 💳 블라블라
 
-🔐 블라블라
+&nbsp; &nbsp; 🔐 블라블라
 
 <br>
 
@@ -89,11 +109,18 @@
 
 <br>
 
-## 📍 프로젝트 설치 방법 (MAC) 🖥
-
+## 📍 프로젝트 설치/실행 방법 (MAC) 🖥
+1. Git clone
+```Javascript
+git clone https://github.com/Pin-Talk/PinTalk_Real.git
+```
+2. 모듈설치 
+```Javascript
+npm i
+```
 <br>
 
-## 📍 프로젝트 설치 방법 (WINDOWS) 🖥
+## 📍 프로젝트 설치/실행 방법 (WINDOW) 🖥
 
 <br>
 
