@@ -61,22 +61,22 @@ const UserInfoData = ({ userInfo }) => {
     const ssn = data.ssn1 + data.ssn2;
     const phone1 = data.phone2 && data.phone3 ? data.phone1 : null;
 
-    console.log({
-      email: email || null,
-      address1: data.address1 || null,
-      address2: data.address2 || null,
-      gender: data.gender || null,
-      id: data.id,
-      job: data.job || null,
-      job_key: data.job_key || null,
-      name: data.name || null,
-      password: data.password,
-      phone1,
-      phone2: data.phone2 || null,
-      phone3: data.phone3 || null,
-      ssn,
-      status: data.status || null,
-    });
+    // console.log({
+    //   email: email || null,
+    //   address1: data.address1 || null,
+    //   address2: data.address2 || null,
+    //   gender: data.gender || null,
+    //   id: data.id,
+    //   job: data.job || null,
+    //   job_key: data.job_key || null,
+    //   name: data.name || null,
+    //   password: data.password,
+    //   phone1,
+    //   phone2: data.phone2 || null,
+    //   phone3: data.phone3 || null,
+    //   ssn,
+    //   status: data.status || null,
+    // });
 
     const submitData = {
       email: email || null,
@@ -98,8 +98,8 @@ const UserInfoData = ({ userInfo }) => {
   };
 
   return (
-    <>
-      <Sidebar></Sidebar>
+    <div className="flex">
+      <Sidebar member_no={userInfo[0]?.no}></Sidebar>
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
           <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -108,7 +108,7 @@ const UserInfoData = ({ userInfo }) => {
                 회원 상세 정보
               </h1>
               <form onSubmit={handleSubmit(onValid)}>
-                <table className="min-w-full">
+                <table>
                   <tbody>
                     <tr className="border-b">
                       <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900 w-52">
@@ -309,7 +309,7 @@ const UserInfoData = ({ userInfo }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

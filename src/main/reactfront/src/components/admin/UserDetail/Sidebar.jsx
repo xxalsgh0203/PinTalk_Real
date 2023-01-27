@@ -1,13 +1,13 @@
-import { MdOutlineDashboard } from 'react-icons/md';
-import { HiMenuAlt3 } from 'react-icons/all';
 import React, { useState } from 'react';
+import { HiMenuAlt3 } from 'react-icons/hi';
+import { MdOutlineDashboard } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ member_no }) => {
   const menus = [
-    { name: 'user_info', link: '/', icon: MdOutlineDashboard },
-    { name: 'user_transfer_history', link: '/', icon: MdOutlineDashboard },
-    { name: 'withdrawal_history', link: '/', icon: MdOutlineDashboard },
+    { name: '개인정보', link: `/userMemberDetail/${member_no}`, icon: MdOutlineDashboard },
+    { name: '이체내역', link: `/userWithdrawalHistory/${member_no}`, icon: MdOutlineDashboard },
+    { name: '출금내역', link: `/userTransferHistory/${member_no}`, icon: MdOutlineDashboard },
   ];
 
   const [open, setOpen] = useState(true);
@@ -15,7 +15,7 @@ const Sidebar = () => {
   return (
     <section className="flex gap-6">
       <div
-        className={`bg-[#0e0e0e] min-h-screen ${
+        className={`bg-pintalk-dark-brown min-h-screen ${
           open ? 'w-72' : 'w-16'
         } duration-500 text-gray-100 px-4`}
       >

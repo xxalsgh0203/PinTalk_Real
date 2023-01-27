@@ -15,6 +15,8 @@ import RegisterForm from './components/register/RegisterForm';
 import Admin from './pages/admin/Admin';
 import LoginRegister from './pages/login/LoginRegister';
 import AdminRegister from './pages/admin/AdminRegister';
+import UserWithdrawalHistory from './components/admin/UserDetail/UserWithdrawalHistory';
+import UserTransferHistory from './components/admin/UserDetail/UserTransferHistory';
 
 import UserMyPage from './pages/user/UserMyPage';
 
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: 'userMemberDetail/:id',
         element: <UserMemberDetail />,
+      },
+      {
+        path: 'userWithdrawalHistory/:id',
+        element: <UserWithdrawalHistory />,
+      },
+      {
+        path: 'userTransferHistory/:id',
+        element: <UserTransferHistory />,
       },
       {
         path: 'login',
