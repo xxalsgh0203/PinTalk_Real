@@ -64,6 +64,7 @@ const Phone = ({
             019
           </option>
         </select>
+        <span>-</span>
         <input
           {...register('phone2', {
             onChange: (e) => validateForm.inputValid(e, 'phone2', NUMBER),
