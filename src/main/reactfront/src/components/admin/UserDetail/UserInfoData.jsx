@@ -61,23 +61,6 @@ const UserInfoData = ({ userInfo }) => {
     const ssn = data.ssn1 + data.ssn2;
     const phone1 = data.phone2 && data.phone3 ? data.phone1 : null;
 
-    console.log({
-      email: email || null,
-      address1: data.address1 || null,
-      address2: data.address2 || null,
-      gender: data.gender || null,
-      id: data.id,
-      job: data.job || null,
-      job_key: data.job_key || null,
-      name: data.name || null,
-      password: data.password,
-      phone1,
-      phone2: data.phone2 || null,
-      phone3: data.phone3 || null,
-      ssn,
-      status: data.status || null,
-    });
-
     const submitData = {
       email: email || null,
       address1: data.address1 || null,
@@ -92,6 +75,7 @@ const UserInfoData = ({ userInfo }) => {
       phone2: data.phone2 || null,
       phone3: data.phone3 || null,
       ssn,
+      no: userInfo[0].no,
     };
 
     mutation(submitData);
