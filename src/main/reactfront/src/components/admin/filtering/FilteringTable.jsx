@@ -59,9 +59,11 @@ const FilteringTable = () => {
 
   const convertDate = (date) => {
     if (!date) return;
-    const year = new Date(date).getFullYear() + '';
-    const month = new Date(date).toLocaleDateString('default', { month: '2-digit' });
-    const day = new Date(date).toLocaleDateString('default', { day: '2-digit' });
+    const newDate = new Date(date);
+    const year = newDate.getFullYear();
+    const month = ('0' + (1 + newDate.getMonth())).slice(-2);
+    const day = ('0' + newDate.getDate()).slice(-2);
+
     return year + '-' + month + '-' + day;
   };
 
@@ -101,6 +103,7 @@ const FilteringTable = () => {
       status: status || null,
       email: convertEmail(frontEmail, backEmail) || null,
     };
+
     userSubmitDispatch(userSlice.actions.handleSubmit(submitData));
   };
 
