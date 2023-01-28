@@ -71,9 +71,9 @@ public class UserMember extends BaseEntity {
     private String saveStatus;
 
     @Column(columnDefinition = "varchar(8) not null comment '가입날짜(문자열)'")
-    private String sign_Date;
+    private String signDate;
     @Column(columnDefinition = "varchar(8) not null comment '정보수정 날짜(문자열)'")
-    private String modify_Date;
+    private String modifyDate;
 
 
 }
