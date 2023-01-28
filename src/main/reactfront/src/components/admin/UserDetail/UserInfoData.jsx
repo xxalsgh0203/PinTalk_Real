@@ -58,32 +58,18 @@ const UserInfoData = ({ userInfo }) => {
 
   const onValid = (data) => {
     const email = data.frontEmail && data.frontEmail + '@' + data.backEmail;
-    const ssn = data.ssn1 + data.ssn2;
     const phone1 = data.phone2 && data.phone3 ? data.phone1 : null;
-
-    console.log({
-      email: email || null,
-      address1: data.address1 || null,
-      address2: data.address2 || null,
-      gender: data.gender || null,
-      id: data.id,
-      job: data.job || null,
-      job_key: data.job_key || null,
-      name: data.name || null,
-      password: data.password,
-      phone1,
-      phone2: data.phone2 || null,
-      phone3: data.phone3 || null,
-      ssn,
-      status: data.status || null,
-    });
+    const address = data.address1 + data.address2 || null;
+    const ssn = data.ssn1 + data.ssn2 || null;
 
     const submitData = {
+      no: userInfo[0].no || null,
       email: email || null,
+      address: address,
       address1: data.address1 || null,
       address2: data.address2 || null,
       gender: data.gender || null,
-      id: data.id,
+      id: data.id || null,
       job: data.job || null,
       job_key: data.job_key || null,
       name: data.name || null,
@@ -92,8 +78,10 @@ const UserInfoData = ({ userInfo }) => {
       phone2: data.phone2 || null,
       phone3: data.phone3 || null,
       ssn,
+      ssn1: data.ssn1 || null,
+      ssn2: data.ssn2 || null,
+      status: data.status || null,
     };
-
     mutation(submitData);
   };
 
