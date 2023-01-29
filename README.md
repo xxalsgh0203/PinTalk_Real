@@ -11,6 +11,15 @@
   <img width=50 src="https://user-images.githubusercontent.com/62753490/214989786-8784a0f7-934c-41ff-a2b5-9fceba9718cb.png">
 </div>
 
+<br/>
+
+<div align=center>
+  
+| [포트폴리오 소개](https://docs.google.com/presentation/d/1H_rjI6O2zBrEWozUJTMnuKWjPJJJRW6P/edit#slide=id.p1) | [WBS](https://docs.google.com/spreadsheets/d/1g7MpaDh9WYtmyc4QH8WAVY5tF35b4EH9L_3lOhc-jMQ/edit#gid=01) | 
+|---|---|
+  
+</div>
+
 ##
 
 <div align="center">
@@ -72,22 +81,23 @@
 <br>
 
 
-### 우리의 서비스 🎯
+### 우리의 서비스 / 사용한 금융거래 API 🎯
 <img align='left' src='https://media2.giphy.com/media/4oMoIbIQrvCjm/giphy.gif?cid=ecf05e47esel7g35iuq4diuyz01iw911vkecytet7dkfn18b&rid=giphy.gif&ct=g' width=350 />
       
-&nbsp; &nbsp; 💵 간편 송금
+&nbsp; &nbsp; 💵 잔액 조회
 
-&nbsp; &nbsp; 💴 간단한 인증
+&nbsp; &nbsp; 💴 거래 내역 조회
 
-&nbsp; &nbsp; 💶 빠른 계좌조회
+&nbsp; &nbsp; 💶 입금 이체
 
-&nbsp; &nbsp; 💷 블라블라
+&nbsp; &nbsp; 💷 출금 이체
 
-&nbsp; &nbsp; 💰 블라블라
+&nbsp; &nbsp; 💰 카드 목록 조회
 
-&nbsp; &nbsp; 💳 블라블라
+&nbsp; &nbsp; 💳 계약 해지
 
-&nbsp; &nbsp; 🔐 블라블라
+&nbsp; &nbsp; 🔐 이체 결과 조회
+
 
 <br>
 
@@ -109,7 +119,7 @@
 
 <br>
 
-## 📍 프로젝트 설치/실행 방법 (MAC) 🖥
+## 📍 프로젝트 설치/실행 방법 🖥
 1. Git clone
 ```Javascript
 git clone https://github.com/Pin-Talk/PinTalk_Real.git
@@ -118,19 +128,7 @@ git clone https://github.com/Pin-Talk/PinTalk_Real.git
 ```Javascript
 npm i
 ```
-<br>
-
-## 📍 프로젝트 설치/실행 방법 (WINDOW) 🖥
-
-<br>
-
-
-
-<h1 align="center"> 🎈 Link to 🎈 </h1>
-
-<div align=center>
-  
-| [포트폴리오 소개](https://docs.google.com/presentation/d/1H_rjI6O2zBrEWozUJTMnuKWjPJJJRW6P/edit#slide=id.p1) | [WBS](https://docs.google.com/spreadsheets/d/1g7MpaDh9WYtmyc4QH8WAVY5tF35b4EH9L_3lOhc-jMQ/edit#gid=01) | 
-|---|---|
-  
-</div>
+3. 프로젝트 실행
+```Javascript
+npm start
+```
