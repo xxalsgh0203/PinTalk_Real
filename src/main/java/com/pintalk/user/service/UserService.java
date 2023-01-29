@@ -221,19 +221,28 @@ public class UserService {
         log.info("==================UserService.userMemberInsert.START==================");
         String ssn = (String) resMap.get("ssn");
         resMap.put("ssn1", ssn.substring(0, 6));
-        resMap.put("ssn2", ssn.substring(7, 13));
+        resMap.put("ssn2", ssn.substring(6, 13));
 
         LocalDate seoulNow = LocalDate.now(ZoneId.of("Asia/Seoul"));
         String signDate = util.setDateFormatStr(seoulNow.toString(), "yyyy-MM-dd", "yyyyMMdd");
 
-        resMap.put("sign_Date", signDate);
-        resMap.put("modify_Date", signDate);
+        resMap.put("signDate", signDate);
+        resMap.put("modifyDate", signDate);
 
+        /**
+         * Test
+         */
+        resMap.put("status","A");
+        resMap.put("saveStatus","A");
+
+
+        System.out.println("resMa2222222p : " + resMap);
         ObjectMapper objectMapper = new ObjectMapper();
         UserMember userMember = objectMapper.convertValue(resMap, UserMember.class);
 
+        System.out.println("userMember : " + userMember);
         try {
-            repository.save(userMember);
+//            repository.save(userMember);
         } catch (Exception e) {
             return false;
         }
