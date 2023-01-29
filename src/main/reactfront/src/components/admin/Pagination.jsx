@@ -41,7 +41,7 @@ function Pagination({ PageInfo }) {
                 key={i}
                 onClick={() => handlePageChange(i)}
               >
-                {i}
+                {i + 1}
               </button>
             ))
             .splice(0)
