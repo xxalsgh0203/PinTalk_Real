@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Util {
@@ -21,7 +23,6 @@ public class Util {
         HashMap<String, Object> result = (HashMap<String, Object>) objectMapper.convertValue(object, Map.class);
         return result;
     }
-
     /**
      * Map values null Remove
      *
@@ -66,6 +67,18 @@ public class Util {
         Date date = simpleDateFormat.parse(dateStr);
         String result = new SimpleDateFormat(patternFormat).format(date);
 
+        return result;
+    }
+
+    /**
+     * Date Format
+     *
+     * @param dateStrFormat 변경할 날짜 패턴
+     * @return
+     * @throws ParseException
+     */
+    public String dateNowToStr(String dateStrFormat) {
+        String result = LocalDateTime.now().format(DateTimeFormatter.ofPattern(dateStrFormat));
         return result;
     }
 
