@@ -16,7 +16,7 @@ const Sidebar = ({ member_no }) => {
     <section className="flex gap-6">
       <div
         className={`bg-pintalk-dark-brown min-h-screen ${
-          open ? 'w-72' : 'w-16'
+          open ? 'w-48' : 'w-16'
         } duration-500 text-gray-100 px-4`}
       >
         <div className="py-3 flex justify-end">

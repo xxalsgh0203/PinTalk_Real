@@ -31,6 +31,16 @@ const UserInfoData = ({ userInfo }) => {
   const { error, loading, mutation, data } = useMutation('/userMemberDetailModify');
 
   useEffect(() => {
+    if (data === true) {
+      alert('수정완료');
+      window.opener.location.reload();
+      window.close();
+    } else if (data === false) {
+      alert('수정을 완료할 수 없습니다');
+    }
+  }, [data]);
+
+  useEffect(() => {
     if (userInfo[0]) {
       setValue('name', userInfo[0].name === null ? '' : userInfo[0].name);
       setValue('gender', userInfo[0].gender === null ? '' : userInfo[0].gender);
