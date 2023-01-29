@@ -47,7 +47,10 @@ const RegisterForm = () => {
       phone3: data.phone3 || null,
       ssn,
     };
-    mutation(submitData);
+    if (window.confirm('정말 등록하시겠습니까?')) {
+      mutation(submitData);
+    }
+    return;
   };
 
   useEffect(() => {
@@ -63,7 +66,7 @@ const RegisterForm = () => {
     }
   }, [address]);
 
-  console.debug('error', error);
+  console.log('error', error);
 
   return loading ? (
     <Loading />
@@ -150,19 +153,14 @@ const RegisterForm = () => {
         </div>
 
         <div className="space-y-2 py-2">
+          <label className="text-sm flex items-center">주소</label>
           <div className="space-x-4">
             <input
+              onClick={handleAddress}
               type="text"
               {...register('address1')}
-              className="bg-transparent rounded-md w-[70%] h-full p-1 px-3 outline-none border-2 transition-all"
+              className="bg-transparent rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all"
             />
-            <button
-              className="p-1 px-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all"
-              onClick={handleAddress}
-              type="button"
-            >
-              주소 찾기
-            </button>
           </div>
 
           <CommonInput register={register('address2')} htmlFor="address2" label="상세주소" />
