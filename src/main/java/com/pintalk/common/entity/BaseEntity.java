@@ -10,18 +10,21 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
+
+/**
+ * '@MappedSuperclass' : JPA Entity 클래스들이 BaseTimeEntity를 상속할 경우 필드들(createdDate, modifiedDate)도 칼럼으로 인식하도록 합니다.
+ * '@EntityListeners(AuditingEntityListener.class)': BaseTimeEntiy 클래스에 Auditing 기능을 포함시킵니다.
+ * '@CreatedDate': Entity가 생성되어 저장될 때 시간이 자동 저장됩니다.
+ * '@LastModifiedDate': 조회한 Entity의 값을 변경할 때 시간이 자동 저장됩니다.
+ */
 @Getter
-//JPA Entity 클래스들이 BaseEntity를 상속할 때 createdDate, modifiedDate도 컬럼으로 인식하도록 한다.
 @MappedSuperclass
-//BaseEntity에 Auditing 기능을 포함 시킨다.
-//리스너 클래스 지정을 통해 엔티티 객체 상태가 변경될 때 해당 리스너로 콜백을 받는다.
-//AuditingEntityListener는 JPA 내부에서 엔티티 객체가 생성/변경 되는것을 감지한다.
 @EntityListeners(AuditingEntityListener.class)
-public class BaseEntity {
+public abstract class BaseEntity {
 
     //생성일 자동 저장
     @CreatedDate
-    @Column(columnDefinition = "varchar(8) not null comment '가입날짜'")
+    @Column(columnDefinition = "varchar(8) not null comment '가입날짜'", updatable = false)
     private LocalDateTime reg_Date;
 
     //마지막 수정시간 자동저장
