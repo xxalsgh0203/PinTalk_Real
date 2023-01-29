@@ -28,7 +28,7 @@ const UserInfoData = ({ userInfo }) => {
     // },
   });
 
-  const { error, loading, mutation, data } = useMutation('updateUserMemberInfo');
+  const { error, loading, mutation, data } = useMutation('/userMemberDetailModify');
 
   useEffect(() => {
     if (userInfo[0]) {
