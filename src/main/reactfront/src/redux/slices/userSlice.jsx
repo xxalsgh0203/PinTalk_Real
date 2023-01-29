@@ -43,7 +43,7 @@ const initialState = {
   submitData: undefined,
   loading: false,
   error: undefined,
-  page: 1,
+  page: 0,
 };
 
 export const userSlice = createSlice({
