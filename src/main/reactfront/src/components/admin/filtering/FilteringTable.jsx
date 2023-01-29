@@ -14,7 +14,6 @@ import FilteringInput from './FilteringInput';
 const validateForm = new ValidateForm();
 const FilteringTable = () => {
   const userSubmitDispatch = useDispatch();
-  const userStatusDispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -46,6 +45,7 @@ const FilteringTable = () => {
       ssn1: null,
       ssn2: null,
       status: null,
+      saveStatus: null,
     }));
   };
 
@@ -83,6 +83,7 @@ const FilteringTable = () => {
       modifyDateStart,
       modifyDateEnd,
       status,
+      saveStatus,
     } = data;
     const submitData = {
       address: address?.trim() || null,
@@ -99,14 +100,10 @@ const FilteringTable = () => {
       modifyDateStart: convertDate(modifyDateStart) || null,
       modifyDateEnd: convertDate(modifyDateEnd) || null,
       status: status || null,
+      saveStatus: saveStatus || null,
       email: convertEmail(frontEmail, backEmail) || null,
     };
     userSubmitDispatch(userSlice.actions.handleSubmit(submitData));
-  };
-
-  const handleUserStatus = (e) => {
-    const value = e.target.value;
-    userStatusDispatch(userSlice.actions.handleSubmit(value));
   };
 
   const openWindow = () => {
@@ -263,7 +260,7 @@ const FilteringTable = () => {
           </div>
 
           <div>
-            <label className="text-sm font-bold">정보 변경일자</label>
+            <label className="text-sm font-bold">정보변경일자</label>
             <div className="flex items-center space-x-2 mt-2">
               <DatePicker
                 label="며칠 부터"
@@ -283,17 +280,29 @@ const FilteringTable = () => {
           </div>
 
           <div className="flex flex-col w-[50%] shadow-sm">
-            <label className="font-bold text-sm mb-2">회원가입 상태</label>
+            <label className="font-bold text-sm mb-2">회원 가입상태</label>
             <select
               {...register('status', {
-                onChange: (e) => handleUserStatus(e),
                 setValueAs: (v) => inputSetValues(v),
               })}
             >
               <option value="">전체</option>
-              <option value="A">승인</option>
-              <option value="P">대기</option>
+              <option value="A">활성</option>
               <option value="W">탈퇴</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col w-[50%] shadow-sm">
+            <label className="font-bold text-sm mb-2">회원 절차단계</label>
+            <select
+              {...register('saveStatus', {
+                setValueAs: (v) => inputSetValues(v),
+              })}
+            >
+              <option value="">전체</option>
+              <option value="A">가입승인</option>
+              <option value="P">대기</option>
+              <option value="W">서류반려</option>
             </select>
           </div>
         </div>
