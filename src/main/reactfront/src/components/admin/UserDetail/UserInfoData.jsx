@@ -247,9 +247,7 @@ const UserInfoData = ({ userInfo }) => {
                           editPage
                         />
                       </td>
-                    </tr>
 
-                    <tr className="border-b">
                       <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900">
                         JOB KEY
                       </td>
@@ -269,16 +267,30 @@ const UserInfoData = ({ userInfo }) => {
                           placeholder={userInfo[0]?.job_key}
                         />
                       </td>
-                      <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900">
-                        회원가입 여부
-                      </td>
+                    </tr>
 
+                    <tr className="border-b">
+                      <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900">
+                        회원 가입상태
+                      </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         <Status
                           register={register('status')}
                           watch={watch}
                           ustatus={userInfo[0]?.status}
-                          editPage
+                          infotype="status"
+                        />
+                      </td>
+
+                      <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900">
+                        회원 절차단계
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <Status
+                          register={register('saveStatus')}
+                          watch={watch}
+                          usavestatus={userInfo[0]?.saveStatus}
+                          infotype="saveStatus"
                         />
                       </td>
                     </tr>
