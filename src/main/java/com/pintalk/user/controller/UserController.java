@@ -2,6 +2,7 @@ package com.pintalk.user.controller;
 
 import com.function.Util;
 import com.pintalk.common.Service.ComCodeService;
+import com.pintalk.common.entity.ComCode;
 import com.pintalk.user.entity.Param;
 import com.pintalk.user.entity.UserMember;
 import com.pintalk.user.service.UserService;
@@ -64,6 +65,9 @@ public class UserController {
         int startPage = (int) Math.floor(currPage / 10) * 10;
         int endPage = Math.min(totalPage, startPage + 10);
 
+        List<ComCode> comCodes = comCodeService.getComCode("EMAIL");
+        result_li.add(comCodes);
+
 
         result_hs.put("currPage", currPage);
         result_hs.put("startPage", startPage);
@@ -118,6 +122,10 @@ public class UserController {
 
         HashMap resultMap = new HashMap();
 
+        List result_li = new ArrayList();
+        List<ComCode> comCodes = comCodeService.getComCode("EMAIL");
+        result_li.add(comCodes);
+        resultMap.put("comCodes",result_li);
 
 
         log.info("==================GET.UserController.getUserMemberInsertView.END==================");
