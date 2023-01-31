@@ -4,42 +4,11 @@ import cls from '../../../utils/cls';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
 import useWindowSize from '../../../hooks/useWindowSize';
-import { useEffect, useState } from 'react';
-
-const navigationItem = [
-  {
-    title: '투자자',
-    id: 'investment',
-  },
-  {
-    title: '대출자',
-    id: 'loan',
-  },
-  {
-    title: '관리자',
-    id: 'admin',
-  },
-  {
-    title: '로그인',
-    id: 'login',
-  },
-  {
-    title: '마이페이지',
-    id: 'usermypage',
-  },
-];
+import NavDropdown from './NavDropdown';
+import { mainNavItems } from '../../../data/navbar/mainNavbars';
 
 const Navbar = ({ title, home }) => {
-  const { smallSize } = useWindowSize();
-  const [active, setActive] = useState(false);
-
-  const toggleActiveNavbar = () => {
-    setActive((prev) => !prev);
-  };
-
-  useEffect(() => {
-    !smallSize && setActive(false);
-  }, [smallSize]);
+  const { smallSize, isActive, toggleActive } = useWindowSize();
 
   return (
     <div className="relative">
@@ -56,12 +25,12 @@ const Navbar = ({ title, home }) => {
         <h1>{title}</h1>
 
         {smallSize ? (
-          <div onClick={toggleActiveNavbar} className="cursor-pointer">
-            {active ? <AiOutlineClose size={25} /> : <GiHamburgerMenu size={25} />}
+          <div onClick={toggleActive} className="cursor-pointer">
+            {isActive ? <AiOutlineClose size={25} /> : <GiHamburgerMenu size={25} />}
           </div>
         ) : (
-          <ul className="flex items-center space-x-10 text-kukmin-dark-brown font-semi-bold text-lg">
-            {navigationItem.map((item) => (
+          <ul className="z-10 flex items-center space-x-10 text-kukmin-dark-brown font-semi-bold text-lg">
+            {mainNavItems.map((item) => (
               <li key={item.id}>
                 <Link to={`/${item.id}`}>
                   <span className="block p-2 hover:bg-gray-100 rounded-lg transition-all">
@@ -73,24 +42,7 @@ const Navbar = ({ title, home }) => {
           </ul>
         )}
 
-        <div
-          className={cls(
-            active ? 'scale-y-100' : 'scale-y-0',
-            'absolute w-full translate-y-32 left-0 origin-top-left transition-all',
-          )}
-        >
-          <ul className="bg-white">
-            {navigationItem.map((item) => (
-              <li key={item.id}>
-                <Link to={`/${item.id}`}>
-                  <span className="block p-3 pl-8 hover:bg-gray-100 transition-all">
-                    {item.title}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <NavDropdown active={isActive} navigationItems={mainNavItems} />
       </div>
     </div>
   );
