@@ -12,7 +12,7 @@ import FilteringButton from './FilteringButton';
 import FilteringInput from './FilteringInput';
 
 const validateForm = new ValidateForm();
-const FilteringTable = () => {
+const FilteringTable = ({ emailCodeGroup }) => {
   const userSubmitDispatch = useDispatch();
   const {
     register,
@@ -230,11 +230,11 @@ const FilteringTable = () => {
                 className="bg-transparent rounded-md p-1 outline-none w-[30%] md:w-[40%] relative text-sm shadow-sm"
               >
                 <option value="">선택</option>
-                <option value="naver.com">naver.com</option>
-                <option value="nate.com">nate.com</option>
-                <option value="gmail.com">gmail.com</option>
-                <option value="daum.net">daum.net</option>
-                <option value="hanmail.net">hanmail.net</option>
+                {emailCodeGroup?.map((email) => (
+                  <option key={email.no} value={email.codeValue.toLowerCase()}>
+                    {email.codeName.toLowerCase()}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
