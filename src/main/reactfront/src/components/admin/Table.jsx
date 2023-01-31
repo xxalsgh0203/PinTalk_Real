@@ -5,14 +5,15 @@ import Pagination from './Pagination';
 import FilteringTable from './filtering/FilteringTable';
 
 const Table = () => {
-  const { users: userList, error, PageInfo } = useMembers();
+  const { users: userList, error, PageInfo, emailCodeGroup } = useMembers();
+
   return (
     <div>
       {error ? (
         <span>{error}</span>
       ) : (
         <div className="p-3 bg-gray-100">
-          <FilteringTable />
+          <FilteringTable emailCodeGroup={emailCodeGroup} />
           <div className="overflow-hidden rounded-lg shadow-md">
             <table className="w-full">
               <thead className="bg-white ">

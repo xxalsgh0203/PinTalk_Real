@@ -17,10 +17,11 @@ const useMembers = () => {
   }, [userStatusSelector.page, userStatusSelector.submitData]);
 
   return {
-    users: userList.payload[0],
+    users: userList.payload[1],
     loading: userList.loading,
     error: userList.error,
-    PageInfo: userList.payload[1],
+    PageInfo: userList.payload[2],
+    emailCodeGroup: userList.payload[0],
   };
 };
 export default useMembers;

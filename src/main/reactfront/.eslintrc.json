@@ -37,6 +37,7 @@
     "array-callback-return": "off",
     "prefer-const": 0,
     "no-useless-return": 0,
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
 
     "react/react-in-jsx-scope": 0,
     "react/prop-types": 0,
