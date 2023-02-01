@@ -19,10 +19,9 @@ public class ComCodeService {
     }
     public List<ComCode> getComCodeArr(String[] codeGroup) {
         List<ComCode> result = new ArrayList<>();
-        for (String k : codeGroup) {
-            System.out.println(" k : " + k);
-            result = comCodeRepository.findAllByCodeGroup(k);
-            result.forEach(comCode -> System.out.println(comCode.getCodeValue()));
+        for (String key : codeGroup) {
+            result = comCodeRepository.findAllByCodeGroup(key);
+            result.forEach(comCode -> comCode.getCodeValue());
         }
 
         return result;

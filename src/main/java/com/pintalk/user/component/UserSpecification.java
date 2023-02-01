@@ -22,11 +22,9 @@ public class UserSpecification {
     private static List<Predicate> getPredicateWithKeyword(Map<String, Object> searchKeyword, Root<UserMember> root, CriteriaBuilder builder) {
         List<Predicate> predicate = new ArrayList<>();
 
-        String $signDate = "signDate";
         String $signDateStartValue = "";
         String $signDateEndValue = "";
 
-        String $modifyDate = "modifyDate";
         String $modifyDateStartValue = "";
         String $modifyDateEndValue = "";
 
@@ -54,6 +52,8 @@ public class UserSpecification {
         }
 
         if (searchKeyword.get("signDateStart") != null || searchKeyword.get("signDateEnd") != null) {
+
+            String $signDate = "signDate";
             if (searchKeyword.get("signDateStart") != null || searchKeyword.get("signDateStart") == null) {
                 if (searchKeyword.get("signDateEnd") == null) {
                     $signDateEndValue = "99991231";
@@ -65,6 +65,8 @@ public class UserSpecification {
             }
         }
         if (searchKeyword.get("modifyDateStart") != null || searchKeyword.get("modifyDateEnd") != null) {
+
+            String $modifyDate = "modifyDate";
             if (searchKeyword.get("modifyDateStart") != null || searchKeyword.get("modifyDateStart") == null) {
                 if (searchKeyword.get("modifyDateStart") == null) {
                     $modifyDateStartValue = "00000101";
