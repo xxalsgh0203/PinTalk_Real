@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import HttpError from '../service/httpError';
 
 const useMutation = (url) => {
   const [value, setValue] = useState({
@@ -14,7 +15,13 @@ const useMutation = (url) => {
       const response = await (await axios.post(url, data)).data;
       setValue((prev) => ({ ...prev, data: response }));
     } catch (error) {
-      setValue((prev) => ({ ...prev, error }));
+      if (error instanceof Error) {
+        const errorMessage = new HttpError(error.response.status, error.message).errorMessage;
+        setValue((prev) => ({ ...prev, error: errorMessage }));
+      } else {
+        setValue((prev) => ({ ...prev, error: error.message }));
+        return;
+      }
     } finally {
       setValue((prev) => ({ ...prev, loading: false }));
     }

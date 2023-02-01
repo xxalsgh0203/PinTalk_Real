@@ -75,6 +75,7 @@ const RegisterForm = () => {
       onSubmit={handleSubmit(onValid)}
       className="rounded-lg max-w-xl lg:max-w-2xl m-auto space-y-4 pb-3"
     >
+      <span className="text-red-500 text-xl font-bold">{error}</span>
       <div className="space-y-5">
         <div className="flex items-center space-x-10">
           <div className="w-[50%]">
