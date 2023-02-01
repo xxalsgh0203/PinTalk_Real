@@ -3,7 +3,7 @@ package com.pintalk.user.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.function.Util;
 import com.pintalk.user.component.UserSpecification;
-import com.pintalk.user.entity.Param;
+import com.pintalk.common.entity.Param;
 import com.pintalk.user.entity.UserMember;
 import com.pintalk.user.repository.UserRepository;
 import org.slf4j.Logger;
@@ -38,9 +38,9 @@ public class UserService {
      * @return
      */
     public Page<UserMember> userMemberList(Pageable pageable) {
-        log.info("==================UserService.userMemberList.START==================");
+        log.debug("==================UserService.userMemberList.START==================");
         Page<UserMember> result = repository.findAll(pageable);
-        log.info("==================UserService.userMemberList.END==================");
+        log.debug("==================UserService.userMemberList.END==================");
         return result;
     }
 
@@ -54,7 +54,7 @@ public class UserService {
      * @throws ParseException
      */
     public Page<UserMember> userMemberListSearch(Param param, Pageable pageable) throws ParseException {
-        log.info("==================UserService.userMemberListSearch.START==================");
+        log.debug("==================UserService.userMemberListSearch.START==================");
         HashMap paramMap = util.convertObjectToMap(param);
         HashMap searchMap = new HashMap();
 
@@ -101,7 +101,7 @@ public class UserService {
         UserSpecification userSpecification = new UserSpecification();
         //결과값
         result = repository.findAll(userSpecification.searchWith(searchKeys), pageable);
-        log.info("==================UserService.userMemberListSearch.END==================");
+        log.debug("==================UserService.userMemberListSearch.END==================");
         return result;
     }
 
@@ -112,10 +112,10 @@ public class UserService {
      * @return
      */
     public UserMember userMemberDetail(int no) {
-        log.info("==================UserService.userMemberDetail.START==================");
+        log.debug("==================UserService.userMemberDetail.START==================");
         UserMember result = repository.findById(no).get();
-        log.info("최종 결과값 : " + result);
-        log.info("==================UserService.userMemberDetail.END==================");
+        log.debug("최종 결과값 : " + result);
+        log.debug("==================UserService.userMemberDetail.END==================");
         return result;
     }
 
@@ -126,28 +126,23 @@ public class UserService {
      * @return
      */
     public boolean userMemberDetailModify(Param param) {
-        log.info("==================UserService.userMemberDetail.START==================");
+        log.debug("==================UserService.userMemberDetail.START==================");
 
         int no = param.getNo();
         Map<String, String> paramMap = util.convertObjectToMap(param);
-        System.out.println("paramMap : " + paramMap);
         HashMap resultMap = new HashMap();
         UserMember result = new UserMember();
 
         Optional<UserMember> oUserMember = repository.findById(no);
         if (oUserMember.isPresent()) {
             UserMember guserMember = oUserMember.get();
-            System.out.println("guserMember : " + guserMember);
             if (guserMember.getNo() != null) {
                 for (Map.Entry key : paramMap.entrySet()) {
-//                    if (key.getValue() != null) {
-                        System.out.println(key.getKey() + " : " + key.getValue());
                         resultMap.put(key.getKey(), key.getValue());
-//                    }
                 }
-                System.out.println("resultMap : " + resultMap);
 
-                System.out.println("for문 시작");
+
+
                 result = UserMember.builder()
                         .no(no)
                         .id((String) resultMap.get("id"))
@@ -169,14 +164,11 @@ public class UserService {
                         .signDate(guserMember.getSignDate())
                         .modifyDate(util.dateNowToStr("yyyyMMDD"))
                         .build();
-
-                System.out.println("for문 끝");
-
             }
         }
 
 
-        log.info("최종 결과값 : " + result);
+        log.debug("최종 결과값 : " + result);
         try {
             repository.save(result);
         } catch (Exception e) {
@@ -184,7 +176,7 @@ public class UserService {
             return false;
         }
 
-        log.info("==================UserService.userMemberDetail.END==================");
+        log.debug("==================UserService.userMemberDetail.END==================");
         return true;
     }
 
@@ -195,7 +187,7 @@ public class UserService {
      * @return
      */
 //    public boolean userMemberInsertView(String[] str) throws ParseException {
-//        log.info("==================UserService.userMemberInsertView.START==================");
+//        log.debug();("==================UserService.userMemberInsertView.START==================");
 //
 //        ComCode comCode= new ComCode();
 //        List<String> strList = Arrays.asList(str);
@@ -207,7 +199,7 @@ public class UserService {
 //        } catch (Exception e) {
 //            return false;
 //        }
-//        log.info("==================UserService.userMemberInsertView.END==================");
+//        log.debug();("==================UserService.userMemberInsertView.END==================");
 //        return true;
 //    }
 
@@ -218,7 +210,7 @@ public class UserService {
      * @return
      */
     public boolean userMemberInsert(HashMap resMap) throws ParseException {
-        log.info("==================UserService.userMemberInsert.START==================");
+        log.debug("==================UserService.userMemberInsert.START==================");
         String ssn = (String) resMap.get("ssn");
         resMap.put("ssn1", ssn.substring(0, 6));
         resMap.put("ssn2", ssn.substring(6, 13));
@@ -236,17 +228,15 @@ public class UserService {
         resMap.put("saveStatus","A");
 
 
-        System.out.println("resMa2222222p : " + resMap);
         ObjectMapper objectMapper = new ObjectMapper();
         UserMember userMember = objectMapper.convertValue(resMap, UserMember.class);
 
-        System.out.println("userMember : " + userMember);
         try {
-//            repository.save(userMember);
+            repository.save(userMember);
         } catch (Exception e) {
             return false;
         }
-        log.info("==================UserService.userMemberInsert.END==================");
+        log.debug("==================UserService.userMemberInsert.END==================");
         return true;
     }
 
