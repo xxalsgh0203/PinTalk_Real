@@ -6,7 +6,7 @@ const NavDropdown = ({ active, navigationItems }) => {
     <div
       className={cls(
         active ? 'scale-y-100' : 'scale-y-0',
-        'absolute w-full -top-2 mt-16 left-0 origin-top-left transition-all shadow-md shadow-gray-200',
+        'absolute w-full top-14 left-0 origin-top-left transition-all shadow-md shadow-gray-200 z-20',
       )}
     >
       <ul className="bg-white">
