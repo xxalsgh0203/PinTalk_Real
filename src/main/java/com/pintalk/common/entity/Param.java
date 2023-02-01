@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.time.LocalDateTime;
 
@@ -16,8 +18,8 @@ public class Param extends BaseEntity {
         return param;
     }
 
-    @GetMapping("/userMemberList")
-    public Param getParam(Param param){
+    @RequestMapping(method = RequestMethod.GET, path = {"/userMemberList","/userMemberListForm"})
+    public Param getUserMemberParam(Param param){
 
         param.setGender(param.getGender());
         param.setName(param.getName());
@@ -34,6 +36,7 @@ public class Param extends BaseEntity {
         param.setModifyDateStart(param.getModifyDateStart());
         param.setModifyDateEnd(param.getModifyDateEnd());
         param.setStatus(param.getStatus());
+        param.setSaveStatus(param.getSaveStatus());
 
         return param;
     }
