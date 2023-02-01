@@ -1,6 +1,8 @@
 package com.function;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,6 +12,7 @@ import java.util.*;
 
 public class Util {
 
+    private Logger log = LoggerFactory.getLogger(getClass().getName());
 
     /**
      * Object to Map
@@ -93,7 +96,7 @@ public class Util {
         Iterator<Map.Entry<Object, Object>> it = map.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<Object, Object> entry = it.next();
-            System.out.println(entry.getKey() + " : " + entry.getValue());
+            log.debug(entry.getKey() + " : " + entry.getValue());
             if (entry.getValue() != null) {
                 result.put(entry.getKey(), entry.getValue());
             }
