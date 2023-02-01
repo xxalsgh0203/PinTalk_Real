@@ -1,6 +1,5 @@
-package com.pintalk.user.entity;
+package com.pintalk.common.entity;
 
-import com.pintalk.common.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
