@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+//@RestController
 public class LoginController {
 
-    @RequestMapping(path = "/login",method = RequestMethod.POST)
-    public List loginCheck(@RequestBody Param param) {
-
-        System.out.println(param);
-        List result_list = new ArrayList();
-
-        try {
-
-
-
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return result_list;
-    }
+//    @RequestMapping(path = "/login",method = RequestMethod.POST)
+//    public List loginCheck(@RequestBody Param param) {
+//
+//        System.out.println(param);
+//        List result_list = new ArrayList();
+//
+//        try {
+//
+//
+//
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//        return result_list;
+//    }
 }

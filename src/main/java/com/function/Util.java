@@ -3,6 +3,7 @@ package com.function;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -104,5 +105,9 @@ public class Util {
         return result;
     }
 
-
+    public String passwordEncoder(String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String result = passwordEncoder.encode(password);
+        return result;
+    }
 }
