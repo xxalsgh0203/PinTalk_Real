@@ -23,6 +23,7 @@ export const getList = createAsyncThunk('GET_USER', async ({ page, submitData },
           modifyDateEnd: submitData?.modifyDateEnd,
           status: submitData?.status,
           email: submitData?.email,
+          saveStatus: submitData?.saveStatus,
         },
       })
     ).data;
