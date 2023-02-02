@@ -2,8 +2,8 @@ package com.pintalk.user.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.function.Util;
-import com.pintalk.user.component.UserSpecification;
 import com.pintalk.common.entity.Param;
+import com.pintalk.user.component.UserSpecification;
 import com.pintalk.user.entity.UserMember;
 import com.pintalk.user.repository.UserRepository;
 import org.slf4j.Logger;
@@ -17,7 +17,9 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 
 @Service
@@ -58,6 +60,7 @@ public class UserService {
         HashMap paramMap = util.convertObjectToMap(param);
         HashMap searchMap = new HashMap();
 
+        log.debug("paramMap : " + paramMap);
         //HashMap null 값 제거
         searchMap = util.mapKeyValueOupPut(paramMap);
 
@@ -220,13 +223,12 @@ public class UserService {
 
         resMap.put("signDate", signDate);
         resMap.put("modifyDate", signDate);
-
+        resMap.put("password", util.passwordEncoder((String) resMap.get("password")));
         /**
          * Test
          */
         resMap.put("status","A");
         resMap.put("saveStatus","A");
-
 
         ObjectMapper objectMapper = new ObjectMapper();
         UserMember userMember = objectMapper.convertValue(resMap, UserMember.class);
