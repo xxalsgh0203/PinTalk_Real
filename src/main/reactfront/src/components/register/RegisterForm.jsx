@@ -24,6 +24,7 @@ const RegisterForm = () => {
     watch,
     formState: { errors },
     setValue,
+    setError,
   } = useForm({
     mode: 'onChange',
   });
@@ -58,6 +59,9 @@ const RegisterForm = () => {
       navigate('/admin');
       window.close();
     }
+    if (data === false) {
+      setError('error', { message: '필수 정보가 중복되었습니다.' });
+    }
   }, [data]);
 
   useEffect(() => {
@@ -66,8 +70,6 @@ const RegisterForm = () => {
     }
   }, [address]);
 
-  console.log('error', error);
-
   return loading ? (
     <Loading />
   ) : (
@@ -75,7 +77,9 @@ const RegisterForm = () => {
       onSubmit={handleSubmit(onValid)}
       className="rounded-lg max-w-xl lg:max-w-2xl m-auto space-y-4 pb-3"
     >
-      <span className="text-red-500 text-xl font-bold">{error}</span>
+      {(error || errors.error?.message) && (
+        <span className="text-red-500 text-xl font-bold">{error || errors.error?.message}</span>
+      )}
       <div className="space-y-5">
         <div className="flex items-center space-x-10">
           <div className="w-[50%]">
@@ -107,9 +111,9 @@ const RegisterForm = () => {
             validateForm={validateForm}
             errorMessage={errors.ssn1?.message || errors.ssn2?.message}
           />
-          <button className="text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
+          {/*   <button className="text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
             주민번호 확인
-          </button>
+          </button> */}
         </div>
 
         <Phone
@@ -134,9 +138,9 @@ const RegisterForm = () => {
             errorMessage={errors.id?.message}
             maxLength={15}
           />
-          <button className="text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
+          {/*   <button className="text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
             아이디 중복체크
-          </button>
+          </button> */}
         </div>
 
         <div className="space-y-2">
@@ -148,9 +152,9 @@ const RegisterForm = () => {
             htmlFor="password"
             errorMessage={errors.password?.message}
           />
-          <button className="text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
+          {/*   <button className="text-sm bg-gray-200 p-1 px-2 rounded-md hover:bg-gray-300 transition-colors">
             비밀번호 검증
-          </button>
+          </button> */}
         </div>
 
         <div className="space-y-2 py-2">
