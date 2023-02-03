@@ -10,7 +10,6 @@ import UserMemberDetail from './components/admin/UserDetail/UserMemberDetail';
 import NotFound from './pages/NotFound';
 import Login from './pages/login/Login';
 import ForgotAccount from './pages/login/ForgotAccount';
-import RegisterForm from './components/register/RegisterForm';
 
 import Admin from './pages/admin/Admin';
 import LoginRegister from './pages/login/LoginRegister';
@@ -19,6 +18,7 @@ import UserWithdrawalHistory from './components/admin/UserDetail/UserWithdrawalH
 import UserTransferHistory from './components/admin/UserDetail/UserTransferHistory';
 
 import UserMyPage from './pages/user/UserMyPage';
+import AccountList from './pages/admin/AccountList';
 
 const router = createBrowserRouter([
   {
@@ -37,14 +37,6 @@ const router = createBrowserRouter([
       {
         path: 'loan',
         element: <Loan />,
-      },
-      {
-        path: 'admin/insertUser',
-        element: <AdminRegister />,
-      },
-      {
-        path: 'admin',
-        element: <Admin />,
       },
       {
         path: 'userMemberDetail/:id',
@@ -73,6 +65,24 @@ const router = createBrowserRouter([
       {
         path: 'usermypage',
         element: <UserMyPage />,
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    errorElement: <NotFound />,
+    children: [
+      {
+        index: true,
+        element: <Admin />,
+      },
+      {
+        path: 'account',
+        element: <AccountList />,
+      },
+      {
+        path: 'insertUser',
+        element: <AdminRegister />,
       },
     ],
   },
