@@ -33,12 +33,12 @@ export const navbarsMain = [
 
 export const navbarsAdmin = [
   {
-    title: '계좌조회',
+    title: '계좌',
     category: 'admin',
-    id: 'accountList',
+    id: 'account',
   },
   {
-    title: '이체내역',
+    title: '이체',
     category: 'admin',
     id: 'transferList',
   },
@@ -51,5 +51,23 @@ export const navbarsAdmin = [
     title: 'testB',
     category: 'admin',
     id: 'b',
+  },
+];
+
+export const navbarsAccount = [
+  {
+    title: '계좌조회',
+    category: 'account',
+    id: 'account',
+  },
+  {
+    title: '계좌 TestA',
+    category: 'account',
+    id: 'listA',
+  },
+  {
+    title: '계좌 TestB',
+    category: 'account',
+    id: 'listB',
   },
 ];

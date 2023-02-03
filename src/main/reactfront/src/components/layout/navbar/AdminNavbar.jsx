@@ -2,9 +2,10 @@ import MainLogo from '../MainLogo';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useState } from 'react';
-import SideNavbar from '../navbar/SideNavbar';
+
 import cls from '../../../utils/cls';
 import { navbarsAdmin } from '../../../data/navbar/navbars';
+import SideNavbar from './sideNavbar/SideNavbar';
 
 const AdminNavbar = () => {
   const [isActive, setIsActive] = useState(false);

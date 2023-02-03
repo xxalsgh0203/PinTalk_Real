@@ -113,7 +113,7 @@ const FilteringTable = ({ emailCodeGroup }) => {
   return (
     <form onSubmit={handleSubmit(onValid)} className="flex flex-col mb-1 shadow-md rounded-lg">
       <div className="bg-white px-6 py-3 rounded-lg">
-        <div className="grid md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-3">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 md:gap-4">
           <div className="flex flex-col">
             <label id="gender" className="font-bold text-sm">
               성별
