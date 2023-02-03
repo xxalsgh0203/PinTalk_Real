@@ -41,7 +41,7 @@ const Password = ({ label, htmlFor, register, errorMessage, necessary, upassword
               message: '15자 이내로 작성해주세요',
             },
           })}
-          type={showPassword ? 'text' : 'password'}
+          type={showPassword ? 'text' : editPage ? 'password' : 'password'}
           maxLength={15}
           placeholder={editPage ? upassword : ''}
           className={cls(
