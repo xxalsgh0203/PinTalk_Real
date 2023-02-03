@@ -19,7 +19,7 @@ function Pagination({ PageInfo }) {
 
   return (
     <>
-      <nav className="flex justify-center items-center m-16 rounded-1g font-[Poppins]">
+      <nav className="flex justify-center items-center mt-6 rounded-1g font-[Poppins]">
         <button
           className="mr-3 sm:mr-6 hover:font-bold p-1 cursor-pointer hover:scale-110 transition-all text-gray-500 hover:text-pintalk-dark-brown"
           disabled={PageInfo?.currPage - 1 === -1}

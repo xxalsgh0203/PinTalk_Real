@@ -6,14 +6,14 @@ const SideNavbar = ({ active, navItems }) => {
     <div
       className={cls(
         active ? 'scale-x-100' : 'scale-x-0',
-        'absolute origin-top-right left-0 right-0 top-16 w-full z-30 transition-all',
+        'fixed origin-bottom-left left-0 right-0 top-[60px] w-full z-50 transition-all',
       )}
     >
-      <ul className="bg-white">
+      <ul className="bg-pintalk-dark-brown text-white w-[60vw] lg:w-[30vw] h-screen">
         {navItems?.map((item) => (
           <li key={item.id}>
             <Link to={`/${item.id}`}>
-              <span className="block p-3 pl-8 hover:bg-gray-100 transition-all">{item.title}</span>
+              <span className="inline-block p-3 pl-8 cursor-pointer">{item.title}</span>
             </Link>
           </li>
         ))}

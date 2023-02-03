@@ -12,7 +12,7 @@ const Table = () => {
       {error ? (
         <span>{error}</span>
       ) : (
-        <div className="p-3 bg-gray-100">
+        <div className="p-3 bg-gray-100 pt-16">
           <FilteringTable emailCodeGroup={emailCodeGroup} />
           <div className="overflow-hidden rounded-lg shadow-md">
             <table className="w-full">
