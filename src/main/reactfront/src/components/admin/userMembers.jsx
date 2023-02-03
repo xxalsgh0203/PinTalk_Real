@@ -7,7 +7,7 @@ const UserMembers = ({ member }) => {
       `http://localhost:3000/userMemberDetail/${member.no}`,
       '_blank',
       // 'fullscreen',
-      `width = ${(window.screen.width * 7) / 9}, height = ${(window.screen.height * 6) / 8}`,
+      `width = ${(window.screen.width * 7) / 9}, height = ${(window.screen.height * 9) / 10}`,
     );
   };
 
