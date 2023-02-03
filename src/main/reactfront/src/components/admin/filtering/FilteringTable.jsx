@@ -111,9 +111,9 @@ const FilteringTable = ({ emailCodeGroup }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onValid)} className="flex flex-col mb-5 shadow-md rounded-lg">
-      <div className="bg-white p-6 rounded-lg">
-        <div className="grid md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
+    <form onSubmit={handleSubmit(onValid)} className="flex flex-col mb-1 shadow-md rounded-lg">
+      <div className="bg-white px-6 py-3 rounded-lg">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 md:gap-4">
           <div className="flex flex-col">
             <label id="gender" className="font-bold text-sm">
               성별
@@ -307,7 +307,7 @@ const FilteringTable = ({ emailCodeGroup }) => {
           </div>
         </div>
 
-        <div className="flex justify-end space-x-2 mt-10">
+        <div className="flex justify-end space-x-2 mt-4">
           <FilteringButton type="button" title="등록" handleButton={openWindow} />
           <FilteringButton type="button" handleButton={handleResetValue} title="리셋" />
           <FilteringButton type="submit" title="검색" />

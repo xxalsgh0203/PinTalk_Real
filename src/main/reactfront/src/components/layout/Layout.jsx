@@ -1,9 +1,10 @@
+import AdminNavbar from './navbar/AdminNavbar';
 import Navbar from './navbar/Navbar';
 
-const Layout = ({ children, title, home }) => {
+const Layout = ({ children, title, admin }) => {
   return (
     <section className="">
-      <Navbar title={title} home={home} />
+      {admin ? <AdminNavbar /> : <Navbar title={title} />}
       <main>{children}</main>
     </section>
   );
