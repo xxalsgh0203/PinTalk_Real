@@ -1,17 +1,10 @@
-import { AiOutlineLock } from 'react-icons/ai';
+import { useState } from 'react';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import cls from '../../utils/cls';
 import FormErrorMessage from '../FormErrorMessage';
 
-const Password = ({
-  label,
-  type = 'text',
-  htmlFor,
-  register,
-  errorMessage,
-  necessary,
-  upassword,
-  editPage,
-}) => {
+const Password = ({ label, htmlFor, register, errorMessage, necessary, upassword, editPage }) => {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="flex flex-col space-y-2">
       <label className="text-sm flex items-center" htmlFor={htmlFor}>
@@ -48,7 +41,7 @@ const Password = ({
               message: '15자 이내로 작성해주세요',
             },
           })}
-          type={type}
+          type={showPassword ? 'text' : 'password'}
           maxLength={15}
           placeholder={editPage ? upassword : ''}
           className={cls(
@@ -61,13 +54,12 @@ const Password = ({
           )}
         />
         <div
+          onClick={() => setShowPassword((prev) => !prev)}
           className={cls(
-            editPage
-              ? 'flex items-center absolute h-full top-0 bottom-0 right-2 px-1 text-center'
-              : 'flex items-center absolute h-full top-0 bottom-0 right-2 px-1 text-center',
+            'flex items-center absolute h-full top-0 bottom-0 right-3 px-1 text-center cursor-pointer',
           )}
         >
-          <AiOutlineLock size={18} />
+          {showPassword ? <AiFillEyeInvisible size={18} /> : <AiFillEye size={18} />}
         </div>
       </div>
     </div>
