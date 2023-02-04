@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import EditCloseButton from './EditCloseButton';
 import useMutation from '../../../hooks/useMutation';
 import Sidebar from './Sidebar';
+import useAddress from '../../../hooks/useAddress';
 
 const validateForm = new ValidateForm();
 
@@ -23,12 +24,10 @@ const UserInfoData = ({ userInfo }) => {
     setValue,
   } = useForm({
     mode: 'onChange',
-    // defaultValues: {
-    //   name: userInfo[0]?.name,
-    // },
   });
 
   const { error, loading, mutation, data } = useMutation('/userMemberDetailModify');
+  const { address, handleAddress } = useAddress();
 
   useEffect(() => {
     if (data === true) {
@@ -41,6 +40,12 @@ const UserInfoData = ({ userInfo }) => {
   }, [data]);
 
   useEffect(() => {
+    if (address) {
+      setValue('address1', address);
+    }
+  }, [address]);
+
+  useEffect(() => {
     if (userInfo[0]) {
       setValue('name', userInfo[0].name === null ? '' : userInfo[0].name);
       setValue('gender', userInfo[0].gender === null ? '' : userInfo[0].gender);
@@ -50,7 +55,7 @@ const UserInfoData = ({ userInfo }) => {
       setValue('phone2', userInfo[0].phone2 === null ? '' : userInfo[0].phone2);
       setValue('phone3', userInfo[0].phone3 === null ? '' : userInfo[0].phone3);
       setValue('id', userInfo[0].id === null ? '' : userInfo[0].id);
-      setValue('password', userInfo[0].password === null ? '' : userInfo[0].password);
+      // setValue('password', userInfo[0].password === null ? '' : userInfo[0].password);
       setValue('address1', userInfo[0].address1 === null ? '' : userInfo[0].address1);
       setValue('address2', userInfo[0].address2 === null ? '' : userInfo[0].address2);
       setValue(
@@ -83,7 +88,7 @@ const UserInfoData = ({ userInfo }) => {
       job: data.job || null,
       job_key: data.job_key || null,
       name: data.name || null,
-      password: data.password,
+      ...(data.password && { password: data.password }),
       phone1,
       phone2: data.phone2 || null,
       phone3: data.phone3 || null,
@@ -92,6 +97,7 @@ const UserInfoData = ({ userInfo }) => {
       ssn2: data.ssn2 || null,
       status: data.status || null,
     };
+
     mutation(submitData);
   };
 
@@ -191,7 +197,6 @@ const UserInfoData = ({ userInfo }) => {
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         <Password
-                          necessary
                           register={register}
                           htmlFor="password"
                           errorMessage={errors.password?.message}
@@ -209,17 +214,20 @@ const UserInfoData = ({ userInfo }) => {
                         주소
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        <CommonInput
-                          register={register('address1')}
-                          htmlFor="address1"
-                          // label="사는곳"
-                          placeholder={userInfo[0]?.address1}
-                        />
+                        <label className="text-sm flex items-center">주소</label>
+                        <div className="space-x-4">
+                          <input
+                            onClick={handleAddress}
+                            type="text"
+                            {...register('address1')}
+                            className="bg-transparent rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all"
+                          />
+                        </div>
+
                         <CommonInput
                           register={register('address2')}
                           htmlFor="address2"
-                          // label="상세주소"
-                          placeholder={userInfo[0]?.address2}
+                          label="상세주소"
                         />
                       </td>
                     </tr>
