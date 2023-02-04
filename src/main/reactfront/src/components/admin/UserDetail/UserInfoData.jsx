@@ -23,9 +23,6 @@ const UserInfoData = ({ userInfo }) => {
     setValue,
   } = useForm({
     mode: 'onChange',
-    // defaultValues: {
-    //   name: userInfo[0]?.name,
-    // },
   });
 
   const { error, loading, mutation, data } = useMutation('/userMemberDetailModify');
@@ -34,7 +31,7 @@ const UserInfoData = ({ userInfo }) => {
     if (data === true) {
       alert('수정완료');
       window.opener.location.reload();
-      window.close();
+      // window.close();
     } else if (data === false) {
       alert('수정을 완료할 수 없습니다');
     }
@@ -50,7 +47,7 @@ const UserInfoData = ({ userInfo }) => {
       setValue('phone2', userInfo[0].phone2 === null ? '' : userInfo[0].phone2);
       setValue('phone3', userInfo[0].phone3 === null ? '' : userInfo[0].phone3);
       setValue('id', userInfo[0].id === null ? '' : userInfo[0].id);
-      setValue('password', userInfo[0].password === null ? '' : userInfo[0].password);
+      // setValue('password', userInfo[0].password === null ? '' : userInfo[0].password);
       setValue('address1', userInfo[0].address1 === null ? '' : userInfo[0].address1);
       setValue('address2', userInfo[0].address2 === null ? '' : userInfo[0].address2);
       setValue(
@@ -83,7 +80,7 @@ const UserInfoData = ({ userInfo }) => {
       job: data.job || null,
       job_key: data.job_key || null,
       name: data.name || null,
-      password: data.password,
+      ...(data.password && { password: data.password }),
       phone1,
       phone2: data.phone2 || null,
       phone3: data.phone3 || null,
@@ -92,6 +89,7 @@ const UserInfoData = ({ userInfo }) => {
       ssn2: data.ssn2 || null,
       status: data.status || null,
     };
+    console.log(submitData);
     mutation(submitData);
   };
 
@@ -191,7 +189,6 @@ const UserInfoData = ({ userInfo }) => {
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         <Password
-                          necessary
                           register={register}
                           htmlFor="password"
                           errorMessage={errors.password?.message}

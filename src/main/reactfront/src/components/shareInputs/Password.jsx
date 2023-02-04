@@ -24,23 +24,30 @@ const Password = ({ label, htmlFor, register, errorMessage, necessary, upassword
 
       <div className="relative">
         <input
-          {...register('password', {
-            required: '비밀번호를 입력해주세요.',
-            validate: (value) => {
-              const checkSpecialString = /^(?=.*[a-zA-Z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,15}$/;
-              return (
-                checkSpecialString.test(value) || '숫자,영문,특수문자(!~@#$%^*+=-)를 포함해주세요.'
-              );
-            },
-            minLength: {
-              value: 8,
-              message: '8자 이상 작성해주세요',
-            },
-            maxLength: {
-              value: 15,
-              message: '15자 이내로 작성해주세요',
-            },
-          })}
+          {...register(
+            'password',
+            editPage
+              ? {}
+              : {
+                  required: '비밀번호를 입력해주세요.',
+                  validate: (value) => {
+                    const checkSpecialString =
+                      /^(?=.*[a-zA-Z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,15}$/;
+                    return (
+                      checkSpecialString.test(value) ||
+                      '숫자,영문,특수문자(!~@#$%^*+=-)를 포함해주세요.'
+                    );
+                  },
+                  minLength: {
+                    value: 8,
+                    message: '8자 이상 작성해주세요',
+                  },
+                  maxLength: {
+                    value: 15,
+                    message: '15자 이내로 작성해주세요',
+                  },
+                },
+          )}
           type={showPassword ? 'text' : editPage ? 'password' : 'password'}
           maxLength={15}
           placeholder={editPage ? upassword : ''}
