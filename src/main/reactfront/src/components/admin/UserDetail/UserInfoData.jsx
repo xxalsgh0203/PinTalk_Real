@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import EditCloseButton from './EditCloseButton';
 import useMutation from '../../../hooks/useMutation';
 import Sidebar from './Sidebar';
+import useAddress from '../../../hooks/useAddress';
 
 const validateForm = new ValidateForm();
 
@@ -26,16 +27,23 @@ const UserInfoData = ({ userInfo }) => {
   });
 
   const { error, loading, mutation, data } = useMutation('/userMemberDetailModify');
+  const { address, handleAddress } = useAddress();
 
   useEffect(() => {
     if (data === true) {
       alert('수정완료');
       window.opener.location.reload();
-      // window.close();
+      window.close();
     } else if (data === false) {
       alert('수정을 완료할 수 없습니다');
     }
   }, [data]);
+
+  useEffect(() => {
+    if (address) {
+      setValue('address1', address);
+    }
+  }, [address]);
 
   useEffect(() => {
     if (userInfo[0]) {
@@ -89,7 +97,7 @@ const UserInfoData = ({ userInfo }) => {
       ssn2: data.ssn2 || null,
       status: data.status || null,
     };
-    console.log(submitData);
+
     mutation(submitData);
   };
 
@@ -206,17 +214,20 @@ const UserInfoData = ({ userInfo }) => {
                         주소
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        <CommonInput
-                          register={register('address1')}
-                          htmlFor="address1"
-                          // label="사는곳"
-                          placeholder={userInfo[0]?.address1}
-                        />
+                        <label className="text-sm flex items-center">주소</label>
+                        <div className="space-x-4">
+                          <input
+                            onClick={handleAddress}
+                            type="text"
+                            {...register('address1')}
+                            className="bg-transparent rounded-md w-full h-full p-1 px-3 outline-none border-2 transition-all"
+                          />
+                        </div>
+
                         <CommonInput
                           register={register('address2')}
                           htmlFor="address2"
-                          // label="상세주소"
-                          placeholder={userInfo[0]?.address2}
+                          label="상세주소"
                         />
                       </td>
                     </tr>
