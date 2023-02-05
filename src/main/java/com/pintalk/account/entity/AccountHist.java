@@ -28,18 +28,18 @@ public class AccountHist {
     @Column(columnDefinition = "varchar(16) not null comment '계좌번호'")
     private String accountNum;
 
-    @Column(columnDefinition = "varchar(255) not null comment '입출금 여부(01: 입금, 02: 출금)'")
+    @Column(columnDefinition = "varchar(2) not null comment '입출금 여부(01: 입금, 02: 출금)'")
     private String depositStatus;
 
     @Column(columnDefinition = "varchar(255) not null comment '내용'")
     private String histStory;
 
     @Column(columnDefinition = "varchar(14) not null comment '기록 ip'")
-    private String createIP;
+    private String createIp;
 
     @Column(columnDefinition = "varchar(14) not null comment '기록 생성한 사용자명'")
     private String createUser;
 
     @Column(columnDefinition = "varchar(14) not null comment '기록 생성 일시'")
-    private String createDT;
+    private String createDt;
 }
