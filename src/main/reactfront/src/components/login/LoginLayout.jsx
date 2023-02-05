@@ -8,7 +8,7 @@ const LoginLayout = ({ children }) => {
           alt="img"
         />
       </div>
-      <div className="w-[35rem] 2xl:w-[50%]">{children}</div>
+      <div className="px-0 2xl:px-4 w-[35rem] 2xl:w-[50%]">{children}</div>
     </div>
   );
 };

@@ -69,7 +69,7 @@ const LoginForm = () => {
             onClick={openWindow}
             className="block hover:text-amber-600 cursor-pointer transition-all"
           >
-            회원신청 하기
+            회원가입
           </span>
         </div>
       </main>

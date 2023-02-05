@@ -4,7 +4,7 @@ import RegisterTitle from '../../components/register/RegisterTitle';
 const LoginRegister = () => {
   return (
     <>
-      <RegisterTitle title="회원등록 신청서" />
+      <RegisterTitle title="회원가입" />
       <RegisterForm />
     </>
   );
