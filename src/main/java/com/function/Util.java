@@ -105,9 +105,4 @@ public class Util {
         return result;
     }
 
-    public String passwordEncoder(String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String result = passwordEncoder.encode(password);
-        return result;
-    }
 }
