@@ -1,9 +1,12 @@
 package com.pintalk.user.entity;
 
+import com.pintalk.account.entity.Account;
 import com.pintalk.common.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -26,7 +29,7 @@ public class UserMember extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "USERMEMBER_GENERATOR")
-    @Column(columnDefinition = "int not null comment '고유번호'")
+    @Column(columnDefinition = "int not null comment '유저 고유번호'")
     private Integer no;
 
     @Column(columnDefinition = "varchar(20) not null comment '아이디'")
@@ -75,5 +78,11 @@ public class UserMember extends BaseEntity {
     @Column(columnDefinition = "varchar(8) not null comment '정보수정 날짜(문자열)'")
     private String modifyDate;
 
+    @Column(columnDefinition = "int null comment '사용자 등록계좌 개수'")
+    private String resCnt;
+
+
+    @OneToMany(mappedBy = "userMember")
+    private List<Account> accounts = new ArrayList<>();
 
 }
