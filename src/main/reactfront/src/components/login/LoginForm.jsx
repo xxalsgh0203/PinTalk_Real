@@ -33,7 +33,7 @@ const LoginForm = () => {
         </span>
       </Link>
 
-      <main className="w-[37rem] h-[40rem] flex flex-col items-center justify-center bg-white shadow-md rounded-md relative">
+      <main className="w-full h-[40rem] flex flex-col items-center justify-center bg-white shadow-md rounded-md relative">
         <LoginTitle title="로그인" />
         <form onSubmit={handleSubmit(onValid)} className="w-[50%]">
           <LoginInput
