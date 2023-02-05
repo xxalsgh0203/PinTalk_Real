@@ -45,7 +45,6 @@ const FilteringTable = ({ emailCodeGroup }) => {
       ssn1: null,
       ssn2: null,
       status: null,
-      saveStatus: null,
     }));
   };
 
@@ -83,7 +82,6 @@ const FilteringTable = ({ emailCodeGroup }) => {
       modifyDateStart,
       modifyDateEnd,
       status,
-      saveStatus,
     } = data;
     const submitData = {
       address: address?.trim() || null,
@@ -100,9 +98,9 @@ const FilteringTable = ({ emailCodeGroup }) => {
       modifyDateStart: convertDate(modifyDateStart) || null,
       modifyDateEnd: convertDate(modifyDateEnd) || null,
       status: status || null,
-      saveStatus: saveStatus || null,
       email: convertEmail(frontEmail, backEmail) || null,
     };
+
     userSubmitDispatch(userSlice.actions.handleSubmit(submitData));
   };
 
@@ -289,20 +287,6 @@ const FilteringTable = ({ emailCodeGroup }) => {
               <option value="">전체</option>
               <option value="A">활성</option>
               <option value="W">탈퇴</option>
-            </select>
-          </div>
-
-          <div className="flex flex-col w-[50%] shadow-sm">
-            <label className="font-bold text-sm mb-2">회원 절차단계</label>
-            <select
-              {...register('saveStatus', {
-                setValueAs: (v) => inputSetValues(v),
-              })}
-            >
-              <option value="">전체</option>
-              <option value="A">가입승인</option>
-              <option value="P">대기</option>
-              <option value="W">서류반려</option>
             </select>
           </div>
         </div>
