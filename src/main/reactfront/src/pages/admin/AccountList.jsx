@@ -1,10 +1,11 @@
-import AdminNavbar from '../../components/layout/navbar/AdminNavbar';
+import AdminLayout from '../../components/admin/AdminLayout';
+import AccountListTable from '../../components/admin/table/AccountListTable';
 
 const AccountList = () => {
   return (
-    <AdminNavbar>
-      <div>Account</div>
-    </AdminNavbar>
+    <AdminLayout title="계좌 조회">
+      <AccountListTable />
+    </AdminLayout>
   );
 };
 export default AccountList;
