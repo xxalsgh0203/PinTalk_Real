@@ -15,8 +15,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -30,6 +33,30 @@ public class UserController {
     ComCodeService comCodeService;
 
     Util util = new Util();
+
+    /**
+     * 로그인 체크
+     * @param id
+     * @param password
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, path = "/loginChk")
+    public boolean loginChk(@RequestParam String id, @RequestParam String password, HttpSession httpSession) {
+
+        Boolean result;
+        try {
+            result = userservice.loginChk(id,password);
+        } catch (Exception e) {
+            result = false;
+            e.printStackTrace();
+        }
+
+        return result;
+
+    }
+
+
+
 
     /**
      * 회원 리스트화면 (조회)

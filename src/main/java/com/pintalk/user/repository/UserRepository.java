@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<UserMember, Integer> {
 
     List<UserMember> findUserMemberByIdLike(String id);
     List<UserMember> findPasswordByIdContains(String id);
-    List<UserMember> findAllByIdContainsAndPasswordContains(String id, String password);
+    Boolean findAllByIdLikeAndPasswordLike(String id, String password);
 
 
 }
