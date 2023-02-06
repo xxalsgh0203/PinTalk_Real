@@ -26,7 +26,7 @@ public class Account {
     private String finTechUseNum;
 
     @Column(columnDefinition = "varchar(50) not null comment '계좌별명'")
-    private String accountAlias;
+    private String alias;
 
     @Column(columnDefinition = "varchar(3) not null comment '출금(개설)기관.대표코드'")
     private String bankCodeStd;
@@ -34,41 +34,38 @@ public class Account {
     @Column(columnDefinition = "varchar(7) null comment '출금(개설)기관.점별코드'")
     private String bankCodeSub;
 
-    @Column(columnDefinition = "varchar(20) not null comment '출금(개설)기관명'")
+    @Column(columnDefinition = "varchar(20) null comment '출금(개설)기관명'")
     private String bankName;
 
-    @Column(columnDefinition = "varchar(20) null comment '개별저축은행명'")
+    @Column(columnDefinition = "varchar(20) comment '개별저축은행명'")
     private String savingsBankName;
 
-    @Column(columnDefinition = "varchar(16) not null comment '계좌번호'")
-    private String accountNum;
-
-    @Column(columnDefinition = "varchar(20) not null comment '계좌예금주명'")
-    private String accountHolderName;
+    @Column(columnDefinition = "varchar(20) null comment '계좌예금주명'")
+    private String HolderName;
 
     @Column(columnDefinition = "varchar(1) not null comment '계좌구분(P:개인)'")
-    private String accountHolderType;
+    private String HolderType;
 
     @Column(columnDefinition = "varchar(1) not null comment '계좌종류(‘1’:수시입출금, ‘2’:예적금, ‘6’:수익증권, ‘T’:종합계좌)'")
-    private String accountType;
+    private String type;
 
     @Column(columnDefinition = "varchar(20) not null comment '계좌번호'")
-    private String account_no;
+    private String accountNo;
 
-    @Column(columnDefinition = "varchar(1) not null comment '조회서비스 동의여부'")
+    @Column(columnDefinition = "varchar(1) null comment '조회서비스 동의여부'")
     private String inquiryAgreeYn;
 
-    @Column(columnDefinition = "varchar(14) not null comment '조회서비스 동의일시'")
-    private String inquiryAgreeDT;
+    @Column(columnDefinition = "varchar(14) null comment '조회서비스 동의일시'")
+    private String inquiryAgreeDt;
 
-    @Column(columnDefinition = "varchar(1) not null comment '출금서비스 동의여부'")
+    @Column(columnDefinition = "varchar(1) null comment '출금서비스 동의여부'")
     private String transferAgree_yn;
 
-    @Column(columnDefinition = "varchar(14) not null comment '출금서비스 동의일시'")
-    private String transferAgreeDT;
+    @Column(columnDefinition = "varchar(14) null comment '출금서비스 동의일시'")
+    private String transferAgreeDt;
 
     @Column(columnDefinition = "varchar(2) not null comment '계좌상태(‘01’:사용, ‘09’:해지)'")
-    private String accountState;
+    private String State;
 
 
     @Column(columnDefinition = "varchar(14) not null comment '계좌개설 일시'")

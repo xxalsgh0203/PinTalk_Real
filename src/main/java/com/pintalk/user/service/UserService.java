@@ -49,8 +49,7 @@ public class UserService {
      * @param password
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, path = "/loginChk")
-    public boolean loginChk(@RequestParam("id") String id, @RequestParam("password") String password) {
+    public boolean login(@RequestParam("id") String id, @RequestParam("password") String password) {
         log.debug("==================UserService.loginChk.START==================");
         Boolean result;
         try {

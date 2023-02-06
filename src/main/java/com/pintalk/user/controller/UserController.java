@@ -15,7 +15,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,23 +39,17 @@ public class UserController {
      * @param password
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, path = "/loginChk")
-    public boolean loginChk(@RequestParam String id, @RequestParam String password, HttpSession httpSession) {
-
+    @RequestMapping(method = RequestMethod.POST, path = "/login")
+    public boolean login(@RequestParam String id, @RequestParam String password) {
         Boolean result;
         try {
-            result = userservice.loginChk(id,password);
+            result = userservice.login(id,password);
         } catch (Exception e) {
             result = false;
             e.printStackTrace();
         }
-
         return result;
-
     }
-
-
-
 
     /**
      * 회원 리스트화면 (조회)
@@ -84,7 +77,6 @@ public class UserController {
 
         log.debug("검색 리스트 : " + list);
         log.debug("=======================================");
-
 
         currPage = list.getPageable().getPageNumber();
 
@@ -118,7 +110,6 @@ public class UserController {
         log.debug("==================GetMapping.UserController.userMemberDetail.START==================");
 
         List<UserMember> result_li = new ArrayList();
-
         result_li.add(userservice.userMemberDetail(no));
 
         log.debug("============================");
@@ -154,7 +145,6 @@ public class UserController {
         result_li.add(comCodes);
         resultMap.put("comCodes",result_li);
 
-
         log.debug("==================GET.UserController.getUserMemberInsertView.END==================");
 
         return resultMap;
@@ -167,9 +157,7 @@ public class UserController {
     @RequestMapping(value = "/userMemberInsert", method = RequestMethod.POST)
     public boolean getUserMemberInsert(@RequestBody HashMap resMap) throws ParseException {
         log.debug("==================POST.UserController.getUserMemberInsert.START==================");
-
         boolean result = userservice.userMemberInsert(resMap);
-
         log.debug("최종 결과 반환 : " + result);
         log.debug("==================POST.UserController.getUserMemberInsert.END==================");
 
