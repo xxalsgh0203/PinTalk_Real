@@ -2,6 +2,7 @@ package com.pintalk.user.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.function.Util;
+import com.function.WebSecurityConfig;
 import com.pintalk.common.entity.Param;
 import com.pintalk.user.component.UserSpecification;
 import com.pintalk.user.entity.UserMember;
@@ -13,18 +14,25 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
 @EnableJpaAuditing
 public class UserService {
+
+    WebSecurityConfig webSecurityConfig = new WebSecurityConfig();
 
     @Autowired
     public UserRepository repository;
@@ -32,6 +40,35 @@ public class UserService {
     Util util = new Util();
 
     Logger log = LoggerFactory.getLogger(getClass().getName());
+
+
+    /**
+     * 로그인 체크
+     *
+     * @param id
+     * @param password
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, path = "/loginChk")
+    public boolean loginChk(@RequestParam("id") String id, @RequestParam("password") String password) {
+        log.debug("==================UserService.loginChk.START==================");
+        Boolean result;
+        try {
+            List<UserMember> userMember = repository.findUserMemberByIdLike(id);
+            String encodePassword = userMember.stream().map(a -> a.getPassword()).collect(Collectors.toList()).toString();
+            if (webSecurityConfig.getPasswordEncoder().matches(password, encodePassword)) {
+                result = true;
+            } else {
+                result = false;
+            }
+        } catch (Exception e) {
+            result = false;
+            e.printStackTrace();
+        }
+        log.debug("==================UserService.loginChk.END==================");
+        return result;
+
+    }
 
     /**
      * 회원 전체 리스트
@@ -50,7 +87,7 @@ public class UserService {
     /**
      * 회원 개인 리스트
      *
-     * * @param userMember
+     * @param param
      * @param pageable
      * @return
      * @throws ParseException
@@ -60,7 +97,6 @@ public class UserService {
         HashMap paramMap = util.convertObjectToMap(param);
         HashMap searchMap = new HashMap();
 
-        log.debug("paramMap : " + paramMap);
         //HashMap null 값 제거
         searchMap = util.mapKeyValueOupPut(paramMap);
 
@@ -90,8 +126,6 @@ public class UserService {
             searchMap.put("modifyDateEnd", util.setDateFormatStr(modifyDateEnd, "yyyy-MM-dd", "yyyyMMdd"));
         }
 
-        Page<UserMember> result = null;
-
         Map<String, Object> searchKeys = new HashMap<>();
         // Parameter 순차적으로 세팅
         for (Object key : searchMap.keySet()) {
@@ -102,6 +136,8 @@ public class UserService {
         }
 
         UserSpecification userSpecification = new UserSpecification();
+
+        Page<UserMember> result = null;
         //결과값
         result = repository.findAll(userSpecification.searchWith(searchKeys), pageable);
         log.debug("==================UserService.userMemberListSearch.END==================");
@@ -129,7 +165,7 @@ public class UserService {
      * @return
      */
     public boolean userMemberDetailModify(Param param) {
-        log.debug("==================UserService.userMemberDetail.START==================");
+        log.debug("==================UserService.userMemberDetailModify.START==================");
 
         int no = param.getNo();
         Map<String, String> paramMap = util.convertObjectToMap(param);
@@ -141,10 +177,19 @@ public class UserService {
             UserMember guserMember = oUserMember.get();
             if (guserMember.getNo() != null) {
                 for (Map.Entry key : paramMap.entrySet()) {
+                    if (key.getKey().equals("password")) {
+                        String password = "";
+
+                        if (key.getValue() != null) {
+                            password = webSecurityConfig.getPasswordEncoder().encode((String) key.getValue());
+                        } else {
+                            password = guserMember.getPassword();
+                        }
+                        resultMap.put(key.getKey(), password);
+                    } else {
                         resultMap.put(key.getKey(), key.getValue());
+                    }
                 }
-
-
 
                 result = UserMember.builder()
                         .no(no)
@@ -162,15 +207,13 @@ public class UserService {
                         .password((String) resultMap.get("password"))
                         .name((String) resultMap.get("name"))
                         .email((String) resultMap.get("email"))
-                        .status((String) resultMap.get("status"))
                         .saveStatus((String) resultMap.get("saveStatus"))
                         .signDate(guserMember.getSignDate())
                         .modifyDate(util.dateNowToStr("yyyyMMDD"))
                         .build();
             }
+
         }
-
-
         log.debug("최종 결과값 : " + result);
         try {
             repository.save(result);
@@ -179,7 +222,7 @@ public class UserService {
             return false;
         }
 
-        log.debug("==================UserService.userMemberDetail.END==================");
+        log.debug("==================UserService.userMemberDetailModify.END==================");
         return true;
     }
 
@@ -223,12 +266,12 @@ public class UserService {
 
         resMap.put("signDate", signDate);
         resMap.put("modifyDate", signDate);
-        resMap.put("password", util.passwordEncoder((String) resMap.get("password")));
+        resMap.put("password", webSecurityConfig.getPasswordEncoder().encode((String) resMap.get("password")));
         /**
          * Test
          */
-        resMap.put("status","A");
-        resMap.put("saveStatus","A");
+        resMap.put("status", "A");
+        resMap.put("saveStatus", "A");
 
         ObjectMapper objectMapper = new ObjectMapper();
         UserMember userMember = objectMapper.convertValue(resMap, UserMember.class);

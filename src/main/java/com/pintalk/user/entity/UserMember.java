@@ -32,6 +32,9 @@ public class UserMember extends BaseEntity {
     @Column(columnDefinition = "int not null comment '유저 고유번호'")
     private Integer no;
 
+    @OneToMany(mappedBy = "userMember")
+    private List<Account> accounts = new ArrayList<>();
+
     @Column(columnDefinition = "varchar(20) not null comment '아이디'")
     private String id;
 
@@ -68,9 +71,7 @@ public class UserMember extends BaseEntity {
     private String address2;
     @Column(columnDefinition = "varchar(4) null comment '직업코드'")
     private String jobkey;
-    @Column(columnDefinition = "varchar(1) not null comment '상태'")
-    private String status;
-    @Column(columnDefinition = "varchar(1) not null comment '활성화'")
+    @Column(columnDefinition = "varchar(1) not null comment '탈퇴여부'")
     private String saveStatus;
 
     @Column(columnDefinition = "varchar(8) not null comment '가입날짜(문자열)'")
@@ -82,7 +83,6 @@ public class UserMember extends BaseEntity {
     private String resCnt;
 
 
-    @OneToMany(mappedBy = "userMember")
-    private List<Account> accounts = new ArrayList<>();
 
 }
+
