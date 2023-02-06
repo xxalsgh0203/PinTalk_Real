@@ -13,7 +13,7 @@ public class AccountHist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "ACCOUNTHIST_GENERATOR")
     @Column(name = "hist_seq", nullable = false)
-    private Integer hist_seq;
+    private Integer no;
 
     @ManyToOne
     @JoinColumn(name = "account_no")
@@ -24,9 +24,6 @@ public class AccountHist {
 
     @Column(columnDefinition = "varchar(20) not null comment '출금(개설)기관명'")
     private String bankName;
-
-    @Column(columnDefinition = "varchar(16) not null comment '계좌번호'")
-    private String accountNum;
 
     @Column(columnDefinition = "varchar(2) not null comment '입출금 여부(01: 입금, 02: 출금)'")
     private String depositStatus;
