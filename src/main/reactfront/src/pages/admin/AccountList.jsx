@@ -1,4 +1,10 @@
+import AdminNavbar from '../../components/layout/navbar/AdminNavbar';
+
 const AccountList = () => {
-  return <div>Account</div>;
+  return (
+    <AdminNavbar>
+      <div>Account</div>
+    </AdminNavbar>
+  );
 };
 export default AccountList;

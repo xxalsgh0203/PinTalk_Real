@@ -2,7 +2,7 @@ import UserMembers from './userMembers';
 import useMembers from '../../hooks/useMembers';
 
 import Pagination from './Pagination';
-import FilteringTable from './filtering/FilteringTable';
+import UserFilteringTable from './filtering/UserFilteringTable';
 
 const Table = () => {
   const { users: userList, error, PageInfo, emailCodeGroup } = useMembers();
@@ -13,7 +13,7 @@ const Table = () => {
         <span>{error}</span>
       ) : (
         <div className="p-3 bg-gray-100 pt-16">
-          <FilteringTable emailCodeGroup={emailCodeGroup} />
+          <UserFilteringTable emailCodeGroup={emailCodeGroup} />
           <div className="overflow-hidden rounded-lg shadow-md">
             <table className="w-full">
               <thead className="bg-white ">

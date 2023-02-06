@@ -12,7 +12,7 @@ import FilteringButton from './FilteringButton';
 import FilteringInput from './FilteringInput';
 
 const validateForm = new ValidateForm();
-const FilteringTable = ({ emailCodeGroup }) => {
+const UserFilteringTable = ({ emailCodeGroup }) => {
   const userSubmitDispatch = useDispatch();
   const {
     register,
@@ -300,4 +300,4 @@ const FilteringTable = ({ emailCodeGroup }) => {
     </form>
   );
 };
-export default FilteringTable;
+export default UserFilteringTable;
