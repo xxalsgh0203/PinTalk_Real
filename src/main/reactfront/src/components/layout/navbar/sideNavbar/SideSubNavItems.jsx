@@ -26,7 +26,7 @@ const SideSubNavItems = ({ target, isActive }) => {
         <div className="space-y-4 text-lg pl-10">
           {handleItems(target)?.map((item, i) => (
             <div key={item.id}>
-              <Link to={`${item.id}`}>
+              <Link to={`/admin/${item.id}`}>
                 <li>
                   <span className="text-gray-500 hover:text-gray-400 transition-all">
                     {item.title}

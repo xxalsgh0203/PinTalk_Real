@@ -1,14 +1,12 @@
 import React from 'react';
-import Table from '../../components/admin/Table';
-import Layout from '../../components/layout/Layout';
+import AdminLayout from '../../components/admin/AdminLayout';
+import UserListTable from '../../components/admin/table/UserListTable';
 
 const Admin = () => {
   return (
-    <div>
-      <Layout title="관리자" admin>
-        <Table />
-      </Layout>
-    </div>
+    <AdminLayout title="사용자 조회">
+      <UserListTable />
+    </AdminLayout>
   );
 };
 
