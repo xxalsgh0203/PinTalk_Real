@@ -1,10 +1,10 @@
-import UserMembers from './userMembers';
-import useMembers from '../../hooks/useMembers';
+import UserMembers from '../userMembers';
+import useMembers from '../../../hooks/useMembers';
 
-import Pagination from './Pagination';
-import FilteringTable from './filtering/FilteringTable';
+import Pagination from '../Pagination';
+import UserFilteringTable from '../filtering/UserFilteringTable';
 
-const Table = () => {
+const UserListTable = () => {
   const { users: userList, error, PageInfo, emailCodeGroup } = useMembers();
 
   return (
@@ -12,8 +12,8 @@ const Table = () => {
       {error ? (
         <span>{error}</span>
       ) : (
-        <div className="p-3 bg-gray-100 pt-16">
-          <FilteringTable emailCodeGroup={emailCodeGroup} />
+        <div className="w-full h-full">
+          <UserFilteringTable emailCodeGroup={emailCodeGroup} />
           <div className="overflow-hidden rounded-lg shadow-md">
             <table className="w-full">
               <thead className="bg-white ">
@@ -55,4 +55,4 @@ const Table = () => {
   );
 };
 
-export default Table;
+export default UserListTable;
