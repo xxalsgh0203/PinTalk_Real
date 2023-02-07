@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { HiMenuAlt3 } from 'react-icons/hi';
 import { MdOutlineDashboard } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-const Sidebar = ({ member_no }) => {
+const Sidebar = () => {
+  const params = useParams().id;
   const menus = [
-    { name: '개인정보', link: `/userMemberDetail/${member_no}`, icon: MdOutlineDashboard },
-    { name: '이체내역', link: `/userWithdrawalHistory/${member_no}`, icon: MdOutlineDashboard },
-    { name: '출금내역', link: `/userTransferHistory/${member_no}`, icon: MdOutlineDashboard },
+    { name: '개인정보', link: `/userMemberDetail/${params}`, icon: MdOutlineDashboard },
+    { name: '계좌조회', link: `/userAccounts/${params}`, icon: MdOutlineDashboard },
+    { name: '이체내역', link: `/userWithdrawalHistory/${params}`, icon: MdOutlineDashboard },
+    { name: '출금내역', link: `/userTransferHistory/${params}`, icon: MdOutlineDashboard },
+    { name: '계좌등록', link: `/userRegisterAccount/${params}`, icon: MdOutlineDashboard },
   ];
 
   const [open, setOpen] = useState(true);
