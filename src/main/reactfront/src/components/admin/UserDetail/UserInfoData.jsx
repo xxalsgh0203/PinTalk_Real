@@ -98,7 +98,6 @@ const UserInfoData = ({ userInfo }) => {
       saveStatus: data.saveStatus || null,
       res_cnt: data.res_cnt ? data.res_cnt : 0,
     };
-    // console.log(submitData);
     mutation(submitData);
   };
 

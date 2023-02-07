@@ -14,7 +14,7 @@ const UserListTable = () => {
       ) : (
         <div className="w-full h-full">
           <UserFilteringTable emailCodeGroup={emailCodeGroup} />
-          <div className="overflow-hidden rounded-lg shadow-md">
+          <div className="overflow-hidden rounded-lg shadow-md mt-8 mb-12">
             <table className="w-full">
               <thead className="bg-white ">
                 <tr>
