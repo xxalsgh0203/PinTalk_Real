@@ -16,6 +16,8 @@ import LoginRegister from './pages/login/LoginRegister';
 import AdminRegister from './pages/admin/AdminRegister';
 import UserWithdrawalHistory from './components/admin/UserDetail/UserWithdrawalHistory';
 import UserTransferHistory from './components/admin/UserDetail/UserTransferHistory';
+import UserAccounts from './components/admin/UserDetail/UserAccounts';
+import UserRegisterAccount from './components/admin/UserDetail/UserRegisterAccount';
 
 import UserMyPage from './pages/user/UserMyPage';
 import AccountList from './pages/admin/AccountList';
@@ -49,6 +51,14 @@ const router = createBrowserRouter([
       {
         path: 'userTransferHistory/:id',
         element: <UserTransferHistory />,
+      },
+      {
+        path: 'userRegisterAccount/:id',
+        element: <UserRegisterAccount />,
+      },
+      {
+        path: 'userAccounts/:id',
+        element: <UserAccounts />,
       },
       {
         path: 'login',

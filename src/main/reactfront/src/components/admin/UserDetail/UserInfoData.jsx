@@ -67,7 +67,7 @@ const UserInfoData = ({ userInfo }) => {
         userInfo[0].email === null ? 'email.com' : userInfo[0].email.split('@')[1],
       );
       setValue('job_key', userInfo[0].job_key === null ? '' : userInfo[0].job_key);
-      setValue('status', userInfo[0].status === null ? '' : userInfo[0].status);
+      setValue('saveStatus', userInfo[0].saveStatus === null ? '' : userInfo[0].saveStatus);
     }
   }, [userInfo[0]]);
 
@@ -95,15 +95,16 @@ const UserInfoData = ({ userInfo }) => {
       ssn,
       ssn1: data.ssn1 || null,
       ssn2: data.ssn2 || null,
-      status: data.status || null,
+      saveStatus: data.saveStatus || null,
+      res_cnt: data.res_cnt ? data.res_cnt : 0,
     };
-
+    // console.log(submitData);
     mutation(submitData);
   };
 
   return (
     <div className="flex">
-      <Sidebar member_no={userInfo[0]?.no}></Sidebar>
+      <Sidebar></Sidebar>
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
           <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -283,22 +284,9 @@ const UserInfoData = ({ userInfo }) => {
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         <Status
-                          register={register('status')}
-                          watch={watch}
-                          ustatus={userInfo[0]?.status}
-                          infotype="status"
-                        />
-                      </td>
-
-                      <td className="px-6 py-4 bg-gray-100 whitespace-nowrap text-sm font-medium text-gray-900">
-                        회원 절차단계
-                      </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        <Status
                           register={register('saveStatus')}
                           watch={watch}
                           usavestatus={userInfo[0]?.saveStatus}
-                          infotype="saveStatus"
                         />
                       </td>
                     </tr>
